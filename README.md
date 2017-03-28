@@ -96,6 +96,3 @@ architecture…)
 * Concevoir et mettre en place une application Java SE qui se connecte à une base de données
 * Générer des graphiques pour afficher des statistiques
 * Générer des fichiers d’exports à partir de données des clients
-
-
-### Contraintes du client ###
