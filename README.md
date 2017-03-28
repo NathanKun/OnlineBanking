@@ -1,6 +1,10 @@
 # Système d’information d’une banque en ligne#
 
-This README would normally document whatever steps are necessary to get your application up and running.
+ESIGELEC 2016-2017 Projet S8 TIC
+
+Banque en ligne
+
+Groupe4
 
 ### Contexte ###
 
