@@ -11,6 +11,7 @@ DROP PROCEDURE IF EXISTS InsertRandToSHP;
     
 CREATE TABLE IF NOT EXISTS client_clt (
 	clt_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	clt_login VARCHAR(30) NOT NULL,
     clt_fname VARCHAR(30) NOT NULL,
     clt_lname VARCHAR(30) NOT NULL,
     clt_birthday DATE NOT NULL,
