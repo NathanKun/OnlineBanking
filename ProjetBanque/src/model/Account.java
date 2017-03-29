@@ -64,14 +64,6 @@ public class Account {
 		this.acc_clt_id = acc_clt_id;
 	}
 
-	public Client getAcc_client() {
-		return acc_client;
-	}
-
-	public void setAcc_client(Client acc_client) {
-		this.acc_client = acc_client;
-	}
-
 	public BigDecimal getAcc_balance() {
 		return acc_balance;
 	}
@@ -95,3 +87,4 @@ public class Account {
 	public void setAcc_type(String acc_type) {
 		this.acc_type = acc_type;
 	}
+}

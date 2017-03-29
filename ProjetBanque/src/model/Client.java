@@ -2,13 +2,13 @@ package model;
 
 import java.util.Date;
 
-public class client_clt {
+public class Client {
 
 	private int clt_id;
 	private String clt_fname,clt_lname,clt_nationality,clt_gender,clt_address,clt_postalcode,clt_city,clt_telephonenumber,clt_email,clt_status,clt_password,clt_login; 
 	private Date clt_birthday,clt_lastlogin,clt_createdon;
 	
-	public client_clt(int clt_id, String clt_fname, String clt_lname, String clt_nationality, String clt_gender,
+	public Client(int clt_id, String clt_fname, String clt_lname, String clt_nationality, String clt_gender,
 			String clt_address, String clt_postalcode, String clt_city, String clt_telephonenumber, String clt_email,
 			String clt_status, String clt_password, String clt_login, Date clt_birthday, Date clt_lastlogin,
 			Date clt_createdon) {
