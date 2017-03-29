@@ -40,7 +40,7 @@ public class Inscription extends HttpServlet {
 		String naissance;
 		nom= request.getParameter("nom");
 		prenom= request.getParameter("prenom");
-		nationalite= request.getParameter("nationalit�");
+		nationalite= request.getParameter("nationalite");
 		sexe= request.getParameter("sexe");
 		adresse= request.getParameter("adresse");
 		codepostal= request.getParameter("codepostal");
