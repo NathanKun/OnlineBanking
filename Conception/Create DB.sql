@@ -28,10 +28,6 @@ CREATE TABLE IF NOT EXISTS client_clt (
     clt_createdon DATETIME NOT NULL
 );
 
-INSERT INTO client_clt VALUES(null, "login123", "pw", "firstName", "lastName", STR_TO_DATE('1994-07-10','%Y-%d-%m'),
-	"Chinese", "M", "1 rue Abc", "76000", "Rouen", "01234567", "e@mail.com", "Celebataire", NOW(), 
-	('2009-06-08 23:53:17'));
-
 CREATE TABLE IF NOT EXISTS account_acc (
 	acc_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     acc_number CHAR(16) NOT NULL UNIQUE,
@@ -100,6 +96,31 @@ CREATE TABLE IF NOT EXISTS holdingshare_hds(
 
 # insert data
 
+INSERT INTO client_clt VALUES(null, "login", "pw", "firstName", "lastName", STR_TO_DATE('1994-07-10','%Y-%d-%m'),
+	"Chinese", "M", "1 rue Abc", "76000", "Rouen", "01234567", "e@mail.com", "Celebataire", NOW(), 
+	('2009-06-08 23:53:17'));
+INSERT INTO account_acc VALUES(null, "4444555566660001", 1, 987.65, 0, 1);
+INSERT INTO account_acc VALUES(null, "4444555566660002", 1, 23333.33, 2.5, 2);
+INSERT INTO account_acc VALUES(null, "4444555566660003", 1, 1200.00, 0, 3);
+
+INSERT INTO client_clt VALUES(null, "a", "a", "Haoran", "Wang", STR_TO_DATE('1999-09-09','%Y-%d-%m'),
+	"Chinese", "M", "233 rue de Rouen", "76800", "St du Ry", "0607080910", "wanghaoran@gmail.com", 
+	"Celebataire", NOW(), ('2017-03-29 10:05:21'));
+INSERT INTO account_acc VALUES(null, "2222333322220001", 2, 1643.68, 0, 1);
+INSERT INTO account_acc VALUES(null, "2222333322220002", 2, 2500.00, 2.5, 2);
+
+
+INSERT INTO client_clt VALUES(null, "b", "b", "Onepunch", "Man", STR_TO_DATE('1888-08-08','%Y-%d-%m'),
+	"Chinese", "M", "321 rue abbe de l'epee", "33445", "Fukuchima", "0607080910", "wanghaoran@gmail.com", 
+	"Celebataire", NOW(), ('2015-01-02 20:33:45'));
+INSERT INTO account_acc VALUES(null, "3333666699990001", 3, 65535.00, 0, 1);
+INSERT INTO account_acc VALUES(null, "3333666699990003", 3, 1200.00, 0, 3);
+
+INSERT INTO client_clt VALUES(null, "c", "c", "Bill", "Gate", STR_TO_DATE('1960-03-11','%Y-%d-%m'),
+	"American", "M", "some rode", "01234", "SomeCity", "0607080910", "billgate@gmail.com", 
+	"Married", NOW(), ('2016-07-08 07:20:11'));
+INSERT INTO account_acc VALUES(null, "4444888844440001", 4, 10086, 0, 1);
+
 INSERT INTO stock_stk VALUES(null, 'Accor', 'FR0000120404', 46.42);
 INSERT INTO stock_stk VALUES(null, 'Air Liquide', 'FR0000120073', 10);
 INSERT INTO stock_stk VALUES(null, 'Airbus', 'NL0000235190', 10);
@@ -160,7 +181,7 @@ CREATE PROCEDURE InsertRandToSHP(IN MinVal INT, IN MaxVal INT)
 			END WHILE;
 			SET stockId = stockId + 1;
 			SET i = 1;
-            # set today's stock price
+            # set today s stock price
 			UPDATE stock_stk 
 			SET stk_price = (MinVal + CEIL(RAND() * (MaxVal - MinVal))) * (stockId % 7) + RAND()
 			WHERE stk_id = stockId;

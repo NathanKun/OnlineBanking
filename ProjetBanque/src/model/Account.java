@@ -16,7 +16,7 @@ public class Account {
 
 	private String acc_type;
 
-	public Account (int id, String number, int clt_id, Client client, 
+	public Account (int id, String number, int clt_id, 
 			BigDecimal balance, BigDecimal interest, int type) {
 		this.acc_id = id;
 		this.acc_number = number;
@@ -86,5 +86,11 @@ public class Account {
 
 	public void setAcc_type(String acc_type) {
 		this.acc_type = acc_type;
+	}
+
+	@Override
+	public String toString() {
+		return "Account [acc_id=" + acc_id + ", acc_number=" + acc_number + ", acc_clt_id=" + acc_clt_id
+				+ ", acc_balance=" + acc_balance + ", acc_interest=" + acc_interest + ", acc_type=" + acc_type + "]";
 	}
 }
