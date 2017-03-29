@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.joda.time.DateTime;
+
+import dao.DaoClient;
+import model.Client;
+
 /**
  * Servlet implementation class Inscription
  */
@@ -34,23 +39,26 @@ public class Inscription extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// On recupere les parametres entrés dans le formulaire HTML
+		String nom= request.getParameter("nom");
+		String prenom= request.getParameter("prenom");
+		String nationalite= request.getParameter("nationalite");
+		String sexe= request.getParameter("sexe");
+		String adresse= request.getParameter("adresse");
+		String codepostal= request.getParameter("codepostal");
+		String ville= request.getParameter("ville");
+		String email= request.getParameter("email");
+		String password= request.getParameter("password");
+		String statut= request.getParameter("statut");
+		String tel= request.getParameter("tel");
+		String naissance= request.getParameter("naissance");
 		PrintWriter out= response.getWriter();
-		String nom,prenom,nationalite,sexe,adresse,codepostal,ville,email,password,statut;
-		String tel;
-		String naissance;
-		nom= request.getParameter("nom");
-		prenom= request.getParameter("prenom");
-		nationalite= request.getParameter("nationalite");
-		sexe= request.getParameter("sexe");
-		adresse= request.getParameter("adresse");
-		codepostal= request.getParameter("codepostal");
-		ville= request.getParameter("ville");
-		email= request.getParameter("email");
-		password= request.getParameter("password");
-		statut= request.getParameter("statut");
-		tel= request.getParameter("");
-		naissance= request.getParameter("naissance");
-
+		Client c =new Client(1,"12",password,prenom,nom,new DateTime(1993, 03, 03, 13, 45, 12),nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
+				new DateTime());
 		
+		out.println("OK ");
+		DaoClient dao_clt= new DaoClient();
+		
+		out.println(dao_clt.addClient(c));
 	}
 }
