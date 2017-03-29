@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS securitiesaccount_sca (
 CREATE TABLE IF NOT EXISTS transactionhistory_tsh (
 	tsh_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     #tsh_clt_id INT(10) NOT NULL,	# optional
+	tsh_description VARCHAR(254),
     tsh_acc_number CHAR(16) CHARACTER SET utf8 NOT NULL,
     tsh_transactionon DATETIME NOT NULL,
     tsh_amount NUMERIC(17,2) NOT NULL,
