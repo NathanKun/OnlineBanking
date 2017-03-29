@@ -16,16 +16,13 @@ public class HoldingShare {
 	
 	private DateTime hds_boughtOn;
 	
-	private BigDecimal hds_total;
-	
 	public HoldingShare(int id, int stk_id, int acc_id, int nb, 
-			DateTime boughtOn, BigDecimal total) {
+			DateTime boughtOn) {
 		this.hds_id = id;
 		this.hds_stk_id = stk_id;
 		this.hds_acc_id = acc_id;
 		this.hds_numberOfShares = nb;
 		this.hds_boughtOn = boughtOn;
-		this.hds_total = total;
 	}
 
 	public int getHds_id() {
@@ -68,12 +65,10 @@ public class HoldingShare {
 		this.hds_boughtOn = hds_boughtOn;
 	}
 
-	public BigDecimal getHds_total() {
-		return hds_total;
-	}
-
-	public void setHds_total(BigDecimal hds_total) {
-		this.hds_total = hds_total;
+	@Override
+	public String toString() {
+		return "HoldingShare [hds_id=" + hds_id + ", hds_stk_id=" + hds_stk_id + ", hds_acc_id=" + hds_acc_id
+				+ ", hds_numberOfShares=" + hds_numberOfShares + ", hds_boughtOn=" + hds_boughtOn + "]";
 	}
 	
 	

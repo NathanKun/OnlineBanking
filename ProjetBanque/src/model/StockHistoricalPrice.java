@@ -52,4 +52,10 @@ public class StockHistoricalPrice {
 	public void setShp_price(BigDecimal shp_price) {
 		this.shp_price = shp_price;
 	}
+
+	@Override
+	public String toString() {
+		return "StockHistoricalPrice [shp_id=" + shp_id + ", shp_stk_id=" + shp_stk_id + ", shp_datetime="
+				+ shp_datetime + ", shp_price=" + shp_price + "]";
+	}
 }

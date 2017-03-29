@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS holdingshare_hds(
     hds_acc_id INT(10) NOT NULL,
     hds_numberofshares INT(10) NOT NULL,
     hds_boughton DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    hds_total NUMERIC(17,2) NOT NULL,
+    #hds_total NUMERIC(17,2) NOT NULL,
     FOREIGN KEY(hds_stk_id) REFERENCES stock_stk(stk_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(hds_acc_id) REFERENCES account_acc(acc_id) ON DELETE CASCADE ON UPDATE CASCADE
 );

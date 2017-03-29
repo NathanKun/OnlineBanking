@@ -50,4 +50,10 @@ public class Stock {
 	public void setStk_price(BigDecimal stk_price) {
 		this.stk_price = stk_price;
 	}
+
+	@Override
+	public String toString() {
+		return "Stock [stk_id=" + stk_id + ", stk_name=" + stk_name + ", stk_description=" + stk_description
+				+ ", stk_price=" + stk_price + "]";
+	}
 }

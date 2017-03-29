@@ -15,6 +15,10 @@ import org.joda.time.DateTime;
 
 import model.Account;
 import model.Client;
+import model.HoldingShare;
+import model.Stock;
+import model.StockHistoricalPrice;
+import model.TransactionHistory;
 
 abstract public class Dao {
 
@@ -62,7 +66,23 @@ abstract public class Dao {
 			case "Account":
 				ps.setInt(1, (int) item);
 				break;
-
+				
+			case "HoldingShare":
+				ps.setInt(1, (int) item);
+				break;
+				
+			case "Stock":
+				ps.setInt(1, (int) item);
+				break;
+				
+			case "StockHistoricalPrice":
+				ps.setInt(1, (int) item);
+				break;
+				
+			case "TransactionHistory":
+				ps.setInt(1, (int) item);
+				break;
+				
 			default:
 				ps.setInt(1, (int) item);
 				break;
@@ -83,6 +103,27 @@ abstract public class Dao {
 				case "Account":
 					retour = new Account(rs.getInt("acc_id"), rs.getString("acc_number"), rs.getInt("acc_clt_id"), 
 							rs.getBigDecimal("acc_balance"), rs.getBigDecimal("acc_interest"), rs.getInt("acc_type"));
+					break;
+					
+				case "HoldingShare":
+					retour = new HoldingShare(rs.getInt("hds_id"), rs.getInt("hds_stk_id"), rs.getInt("hds_acc_id"), 
+							rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton")));
+					break;
+					
+				case "Stock":
+					retour = new Stock(rs.getInt("stk_id"), rs.getString("stk_name"), rs.getString("stk_description"), 
+							rs.getBigDecimal("stk_price"));
+					break;
+					
+				case "StockHistoricalPrice":
+					retour = new StockHistoricalPrice(rs.getInt("shp_id"), rs.getInt("shp_stk_id"), 
+							new DateTime(rs.getDate("shp_datetime")), rs.getBigDecimal("shp_price"));
+					break;
+					
+				case "TransactionHistory":
+					retour = new TransactionHistory(rs.getInt("tsh_id"), rs.getString("tsh_acc_number"), 
+							rs.getString("tsh_description"), new DateTime(rs.getDate("tsh_transactionOn")), 
+							rs.getBigDecimal("tsh_amount"));
 					break;
 					
 				default:
@@ -167,7 +208,35 @@ abstract public class Dao {
 							rs.getBigDecimal("acc_balance"), rs.getBigDecimal("acc_interest"), rs.getInt("acc_type")));
 				}
 				break;
+				
+			case "HoldingShare":
+				while (rs.next()) {
+					returnList.add(new HoldingShare(rs.getInt("hds_id"), rs.getInt("hds_stk_id"), rs.getInt("hds_acc_id"), 
+							rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton"))));
+				}
+				break;
 
+			case "Stock":
+				while (rs.next()) {
+					returnList.add(new Stock(rs.getInt("stk_id"), rs.getString("stk_name"), rs.getString("stk_description"), 
+						rs.getBigDecimal("stk_price")));
+				}
+				break;
+				
+			case "StockHistoricalPrice":
+				while (rs.next()) {
+					returnList.add(new StockHistoricalPrice(rs.getInt("shp_id"), rs.getInt("shp_stk_id"), 
+							new DateTime(rs.getDate("shp_datetime")), rs.getBigDecimal("shp_price")));
+				}
+				break;
+				
+			case "TransactionHistory":
+				while (rs.next()) {
+					returnList.add(new TransactionHistory(rs.getInt("tsh_id"), rs.getString("tsh_acc_number"), 
+						rs.getString("tsh_description"), new DateTime(rs.getDate("tsh_transactionOn")), 
+						rs.getBigDecimal("tsh_amount")));
+				}
+				break;
 			default:
 				System.out.println("String type not correct!");
 				break;
@@ -266,6 +335,44 @@ abstract public class Dao {
 				}
 				break;
 				
+			case "HoldingShare":
+				HoldingShare hds = (HoldingShare)item;
+				ps = con.prepareStatement(
+						"INSERT INTO holdingshare_hds VALUES(null, ?, ?, ?, ?)");
+				ps.setInt(1, hds.getHds_stk_id());
+				ps.setInt(2, hds.getHds_acc_id());
+				ps.setInt(3, hds.getHds_numberOfShares());
+				ps.setDate(4, new java.sql.Date(hds.getHds_boughtOn().getMillis()));
+				break;
+				
+			case "Stock":
+				Stock stk = (Stock)item;
+				ps = con.prepareStatement(
+						"INSERT INTO stock_stk VALUES(null, ?, ?, ?)");
+				ps.setString(1, stk.getStk_name());
+				ps.setString(2, stk.getStk_description());
+				ps.setBigDecimal(3, stk.getStk_price());
+				break;
+				
+			case "StockHistoricalPrice":
+				StockHistoricalPrice shp = (StockHistoricalPrice)item;
+				ps = con.prepareStatement(
+						"INSERT INTO stockhistoricalprice_shp VALUES(null, ?, ?, ?)");
+				ps.setInt(1, shp.getShp_stk_id());
+				ps.setDate(2, new Date(shp.getShp_datetime().getMillis()));
+				ps.setBigDecimal(3, shp.getShp_price());
+				break;
+				
+			case "TransactionHistory":
+				TransactionHistory tsh = (TransactionHistory)item;
+				ps = con.prepareStatement(
+						"INSERT INTO transactionhistory_tsh VALUES(null, ?, ?, ?, ?)");
+				ps.setString(1, tsh.getTsh_description());
+				ps.setString(2, tsh.getTsh_acc_number());
+				ps.setDate(3, new Date(tsh.getTsh_transactionOn().getMillis()));
+				ps.setBigDecimal(4, tsh.getTsh_amount());
+				break;
+				
 			default:
 				System.out.println("String type error!");
 				break;
@@ -321,6 +428,26 @@ abstract public class Dao {
 
 			case "Account":
 				ps = con.prepareStatement("DELETE FROM account_acc WHERE acc_id=?");
+				ps.setInt(1, (int) item);
+				break;
+
+			case "HoldingShare":
+				ps = con.prepareStatement("DELETE FROM holdingshare_hds WHERE hds_id=?");
+				ps.setInt(1, (int) item);
+				break;
+				
+			case "Stock":
+				ps = con.prepareStatement("DELETE FROM stock_stk WHERE stk_id=?");
+				ps.setInt(1, (int) item);
+				break;
+				
+			case "StockHistoricalPrice":
+				ps = con.prepareStatement("DELETE FROM stockhistoricalprice_shp WHERE shp_id=?");
+				ps.setInt(1, (int) item);
+				break;
+				
+			case "TransactionHistory":
+				ps = con.prepareStatement("DELETE FROM transactionhistory_tsh WHERE tsh_id=?");
 				ps.setInt(1, (int) item);
 				break;
 				
@@ -395,11 +522,43 @@ abstract public class Dao {
 				
 			case "Account":
 				Account acc = (Account)item;
-				ps = con.prepareStatement("UPDATE account_acc SET"
-						+ "acc_balance=?, acc_interest=? WHERE acc_id=?");
+				ps = con.prepareStatement("UPDATE account_acc SET acc_balance=?, acc_interest=? WHERE acc_id=?");
 				ps.setBigDecimal(1, acc.getAcc_balance());
 				ps.setBigDecimal(2, acc.getAcc_interest());
 				ps.setInt(3, acc.getAcc_id());
+				break;
+				
+			case "HoldingShare":
+				HoldingShare hds = (HoldingShare)item;
+				ps = con.prepareStatement("UPDATE holdingshare_hds SET hds_numberofshares=? WHERE hds_id=?");
+				ps.setInt(1, hds.getHds_numberOfShares());
+				ps.setInt(2, hds.getHds_id());
+				break;
+				
+			case "Stock":
+				Stock stk = (Stock)item;
+				ps = con.prepareStatement("UPDATE stock_stk SET "
+						+ "stk_name=?, stk_description=?, stk_price=? WHERE stk_id=?");
+				ps.setString(1, stk.getStk_name());
+				ps.setString(2, stk.getStk_description());
+				ps.setBigDecimal(3, stk.getStk_price());
+				ps.setInt(4, stk.getStk_id());
+				break;
+				
+			case "StockHistoricalPrice":
+				StockHistoricalPrice shp = (StockHistoricalPrice)item;
+				ps = con.prepareStatement("UPDATE stockhistoricalprice_shp SET "
+						+ "shp_datetime=?, shp_price=? WHERE shp_id=?");
+				ps.setDate(1, new Date(shp.getShp_datetime().getMillis()));
+				ps.setBigDecimal(2, shp.getShp_price());
+				ps.setInt(3, shp.getShp_id());
+				break;
+				
+			case "TransactionHistory":
+				TransactionHistory tsh = (TransactionHistory)item;
+				ps = con.prepareStatement("UPDATE transactionhistory_tsh SET tsh_description=? WHERE tsh_id=?");
+				ps.setString(1, tsh.getTsh_description());
+				ps.setInt(2, tsh.getTsh_id());
 				break;
 				
 			default:

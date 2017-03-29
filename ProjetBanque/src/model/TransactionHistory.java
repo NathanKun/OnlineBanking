@@ -10,13 +10,16 @@ public class TransactionHistory {
 	
 	private String tsh_acc_number;
 	
+	private String tsh_description;
+	
 	private DateTime tsh_transactionOn;
 	
 	private BigDecimal tsh_amount;
 	
-	public TransactionHistory(int id, String accNb, DateTime time, BigDecimal amount) {
+	public TransactionHistory(int id, String accNb, String description, DateTime time, BigDecimal amount) {
 		this.tsh_id = id;
 		this.tsh_acc_number = accNb;
+		this.tsh_description = description;
 		this.tsh_transactionOn = time;
 		this.tsh_amount = amount;
 	}
@@ -51,5 +54,19 @@ public class TransactionHistory {
 
 	public void setTsh_amount(BigDecimal tsh_amount) {
 		this.tsh_amount = tsh_amount;
+	}
+
+	public String getTsh_description() {
+		return tsh_description;
+	}
+
+	public void setTsh_description(String tsh_description) {
+		this.tsh_description = tsh_description;
+	}
+
+	@Override
+	public String toString() {
+		return "TransactionHistory [tsh_id=" + tsh_id + ", tsh_acc_number=" + tsh_acc_number + ", tsh_description="
+				+ tsh_description + ", tsh_transactionOn=" + tsh_transactionOn + ", tsh_amount=" + tsh_amount + "]";
 	}
 }

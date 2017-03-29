@@ -3,11 +3,8 @@ package dao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import org.joda.time.DateTime;
 
 import model.Account;
-import model.Account;
-
 public class DaoAccount extends Dao {
 
 	/**
@@ -87,11 +84,11 @@ public class DaoAccount extends Dao {
 		//DaoAccount.deleteAccount(9);
 
 		// Update test
-		Account acc = DaoAccount.getAccount(1);
-		acc.setAcc_balance(new BigDecimal(3366.99));
-		acc.setAcc_interest(new BigDecimal(5.64));
-		DaoAccount.updateAccount(acc);
-		System.out.println(DaoAccount.getAccount(1).toString());
+//		Account acc = DaoAccount.getAccount(1);
+//		acc.setAcc_balance(new BigDecimal(33656.99));
+//		acc.setAcc_interest(new BigDecimal(7.64));
+//		DaoAccount.updateAccount(acc);
+//		System.out.println(DaoAccount.getAccount(1).toString());
 		
 	}
 
