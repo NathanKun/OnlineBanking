@@ -15,6 +15,10 @@ public class Client {
 	   */
 	private int clt_id;
 	/**
+	 * Le login du client
+	 */
+	private String clt_login;
+	/**
 	   * Le prenom du client
 	   */
 	private String clt_fname;
@@ -43,7 +47,7 @@ public class Client {
 	   */
 	private String clt_city;
 	/**
-	   * Le numéro de téléphone du client
+	   * Le numï¿½ro de tï¿½lï¿½phone du client
 	   */
 	private String clt_telephonenumber;
 	/**
@@ -59,10 +63,6 @@ public class Client {
 	   */
 	private String clt_password;
 	/**
-	   * Le login du client
-	   */
-	private String clt_login;
-	/**
 	   * La date de naissance du client
 	   */
 	private DateTime clt_birthday;
@@ -71,7 +71,7 @@ public class Client {
 	   */
 	private DateTime clt_lastlogin;
 	/**
-	   * La date de création du compte courant du client
+	   * La date de crï¿½ation du compte courant du client
 	   */
 	private DateTime clt_createdon;
 	
@@ -79,9 +79,9 @@ public class Client {
 	   * Le constructeur de la classe Client
 	   *
 	   * @param clt_id L'id du client
-	   * @param clt_fname Le prénom du client
+	   * @param clt_fname Le prï¿½nom du client
 	   * @param clt_lname Le nom du client
-	   * @param clt_nationality la nationalité du client
+	   * @param clt_nationality la nationalitï¿½ du client
 	   * @param clt_gender Le sexe du client
 	   * @param clt_address l'adresse du client
 	   * @param clt_postalcode Le code postal du client
@@ -95,10 +95,10 @@ public class Client {
 	   * @param clt_lastlogin la date de la derniere connexion du client
 	   * @param clt_createdon la date de creation du compte courant du client
 	   */
-	public Client(int clt_id, String clt_fname, String clt_lname, String clt_nationality, String clt_gender,
-			String clt_address, String clt_postalcode, String clt_city, String clt_telephonenumber, String clt_email,
-			String clt_status, String clt_password, String clt_login, DateTime clt_birthday, DateTime clt_lastlogin,
-			DateTime clt_createdon) {
+	public Client(int clt_id, String clt_login, String clt_password, String clt_fname, String clt_lname, 
+			DateTime clt_birthday, String clt_nationality, String clt_gender, String clt_address,
+			String clt_postalcode, String clt_city, String clt_telephonenumber, String clt_email,
+			String clt_status,  DateTime clt_lastlogin, DateTime clt_createdon) {
 		this.clt_id = clt_id;
 		this.clt_fname = clt_fname;
 		this.clt_lname = clt_lname;
