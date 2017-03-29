@@ -1,4 +1,5 @@
 # eclipse
+.classpath
 .metadata
 bin/
 tmp/

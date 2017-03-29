@@ -1,4 +1,4 @@
-package fr.mabanqueenligne;
+package dao;
 
 public class Dao {
 

@@ -1,4 +1,4 @@
-package fr.mabanqueenligne;
+package srvlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,12 +35,12 @@ public class Inscription extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out= response.getWriter();
-		String nom,prenom,nationalité,sexe,adresse,codepostal,ville,email,password,statut;
+		String nom,prenom,nationalite,sexe,adresse,codepostal,ville,email,password,statut;
 		String tel;
 		String naissance;
 		nom= request.getParameter("nom");
 		prenom= request.getParameter("prenom");
-		nationalité= request.getParameter("nationalité");
+		nationalite= request.getParameter("nationalitï¿½");
 		sexe= request.getParameter("sexe");
 		adresse= request.getParameter("adresse");
 		codepostal= request.getParameter("codepostal");

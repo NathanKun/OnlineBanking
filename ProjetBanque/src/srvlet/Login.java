@@ -1,4 +1,4 @@
-package fr.mabanqueenligne;
+package srvlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
