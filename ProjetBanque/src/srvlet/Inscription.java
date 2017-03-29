@@ -52,13 +52,14 @@ public class Inscription extends HttpServlet {
 		String statut= request.getParameter("statut");
 		String tel= request.getParameter("tel");
 		String naissance= request.getParameter("naissance");
+		
 		PrintWriter out= response.getWriter();
-		Client c =new Client(1,"12",password,prenom,nom,new DateTime(1993, 03, 03, 13, 45, 12),nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
-				new DateTime());
+		Client c =new Client(0,"12",password,prenom,nom,new DateTime(1993, 03, 03, 13, 45),
+				nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
+				new DateTime(2017, 03, 03, 13, 45));
 		
 		out.println("OK ");
-		DaoClient dao_clt= new DaoClient();
 		
-		out.println(dao_clt.addClient(c));
+		out.println(DaoClient.addClient(c));
 	}
 }
