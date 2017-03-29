@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS client_clt (
     clt_nationality VARCHAR(30) NOT NULL,
     clt_gender CHAR(1) NOT NULL, 	# m/f
     clt_address VARCHAR(255) NOT NULL,
-    clt_postalcode INT(5) NOT NULL,
+    clt_postalcode CHAR(5) NOT NULL,
     clt_city VARCHAR(30) NOT NULL,
     clt_telephonenumber VARCHAR(14) NOT NULL,
     clt_email VARCHAR(254) NOT NULL,
@@ -27,6 +27,10 @@ CREATE TABLE IF NOT EXISTS client_clt (
     clt_lastlogin DATETIME,
     clt_createdon DATETIME NOT NULL
 );
+
+INSERT INTO client_clt VALUES(null, "login123", "pw", "firstName", "lastName", STR_TO_DATE('1994-07-10','%Y-%d-%m'),
+	"Chinese", "M", "1 rue Abc", "76000", "Rouen", "01234567", "e@mail.com", "Celebataire", NOW(), 
+	('2009-06-08 23:53:17'));
 
 CREATE TABLE IF NOT EXISTS account_acc (
 	acc_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
