@@ -2,6 +2,9 @@ div {
 	text-align:center;
 	}
 
+#hint {
+	color: red;
+}
 
 div#bandeau {
 	

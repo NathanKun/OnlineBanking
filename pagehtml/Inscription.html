@@ -10,65 +10,68 @@
         <div id="menu">Ceci est le menu</div>
 
         <div id="contenu">
-          <form action="http://localhost:8080/ProjetBanque/Inscription" method="post" >
+          <form action="./ProjetBanque/Inscription" method="post" >
               <fieldset>
-
+			  
                     <legend>Vos coordonnées :</legend>
 
                      <p> Vous êtes : </p>
                        
                       <label for="nom"> Nom :</label>
-                       <input type="text" name="nom" size="20" 
-                       maxlength="40" id="nom" />
+                       <input type="text" name="nom" id="nom" size="20" 
+                       maxlength="40" id="nom" required/>
 
                        <label for="prenom"> Prénom :</label>
-                       <input type="text" name="prenom" size="20" 
-                       maxlength="40" id="prenom" />
+                       <input type="text" id="prenom" name="prenom" size="20" 
+                       maxlength="40" id="prenom" required/>
 
                        <label for="naissance">Date de naissance :</label>
-                       <input type="date" name="naissance" size="20" 
-                        id="naissance" />
+                       <input type="date" id="naissance" name="naissance" size="20" 
+                        id="naissance" required/>
 
                        <label for="nationalite"> Nationalité :</label>
-                       <input type="text" name ="nationalite" size="20" 
-                       maxlength="40" id="nationalite" />
+                       <input type="text" id ="nationalite" name ="nationalite" size="20" 
+                       maxlength="40" id="nationalite" required/>
 
                        <label for="adresse">Adresse :</label>
-                       <input type="text" name= "adresse" size="20" 
-                       maxlength="40" id="adresse" />
+                       <input type="text" id= "adresse" name= "adresse" size="20" 
+                       maxlength="40" id="adresse" required/>
 
 
                        <label for="codepostal"> Code postal :</label>
-                       <input type="text" name="codepostal" size="20" 
-                       maxlength="40" id="codepostal" />
+                       <input type="text" id="codepostal" name="codepostal" size="20" 
+                       maxlength="40" id="codepostal" required/>
 
                        <label for="ville"> Ville :</label>
-                       <input type="text" name="ville"  size="20" 
-                       maxlength="40" id="ville" />
+                       <input type="text" id="ville" name="ville" size="20" 
+                       maxlength="40" id="ville" required/>
 
                        <label for="pays"> Pays :</label>
-                       <input type="text" name = "pays" size="20" 
-                       maxlength="40" id="pays" />
+                       <input type="text" id = "pays" name = "pays" size="20" 
+                       maxlength="40" id="pays" required/>
 
                        <label for="tel"> Numéro de téléphone :</label>
-                       <input type="text" name ="tel" size="20" 
-                       maxlength="10" id="tel" />
+                       <input type="text" id ="tel" name ="tel" size="20" 
+                       maxlength="10" id="tel" required/>
 
                         <label for="email"> Email:</label>
-                       <input type="email" name="email"  size="20" 
-                       maxlength="40" id="email" />
+                       <input type="email" id="email" name="email"  size="20" 
+                       maxlength="40" id="email" required/>
+					   
 					   <label for="password"> Choisissez un mot de passe :</label>
-                       <input type="password" name="password"  size="20" 
-                       maxlength="40" id="password" />
+                       <input type="password" id="password" name="password"  size="20" 
+                       maxlength="40" onchange="checkInput()" required/>
 
                        <label for="cmdp">Confirmez votre mot de passe :</label>
-                       <input type="password" name="confirm_mdp" size="20" 
-                       maxlength="40" id="cmdp" />
+                       <input type="password" id="password2" name="password2" size="20" 
+                       maxlength="40" onchange="checkInput()" required/>
+					   
+                       <label id="hint"></label>
 
                         
                         <br/> Vous êtes :<br />
 
-                        <select name="statut" value="choix">
+                        <select name="statut" value="choix" required>
                            <option value="Etudiant">Un(e) étudiant(e)</option>
                            <option value="professionnel">Un professionnel </option>
                            <option value="chomage"> En recherche d'emploi </option>
@@ -83,34 +86,38 @@
                      <legend> Compte supplémentaire  </legend>
 
                        <p>Voulez- vous créer un second compte ? Si oui choississez le(s) type(s) de compte : </p>
-                         <input type="radio" name="CSS" value="compte épargne" id="compte_epargne"
-                         checked="checked" />
-                         <label for=" compte_epargne" class="inline">Compte épargne</label>
-                         <input type="radio" name="CSS" value="Compte_titre" id="Compte_titre" />
-                         <label for="Compte_titre" class="inline"> Compte titre </label>
+                         <label for=" epargneCheckBox">Compte épargne</label>
+                         <input class="checkBoxes" type="checkbox" name="epargneCheckBox" id="epargneCheckBox" value="compte épargne" id="epargneCheckBox"/>
+                         <label for="titreCheckBox"> Compte titre </label>
+                         <input class="checkBoxes" type="checkbox" name="titreCheckBox" id="titreCheckBox" value="Compte_titre" id="titreCheckBox" />
                        
-                     
                     </fieldset>
 
                     <p> 
-                     <input type="submit" value="Envoyer" /> 
-                    <input type="reset" value="Annuler" />
+						<input type="submit" id="submit" value="Envoyer" /> 
+						<input type="reset" value="Annuler" />
                     </p>
 
                     </form>
-
-
-
         </div>
-
-
-
-
 
         <div id="piedpage">Ceci est le pied de page</div>
         
 
-        
+<script>
+	function checkInput(){
+		var pw1 = document.getElementById("password").value;
+		var pw2 = document.getElementById("password2").value;
+		if(pw1 == pw2){
+			document.getElementById('submit').disabled = false;
+			document.getElementById("hint").innerHTML = "";
+		}
+		else {
+			document.getElementById('submit').disabled = true;
+			document.getElementById("hint").innerHTML = "Deux mots de passe sont différents"
+		}
+	}
+</script>        
 
 
         
