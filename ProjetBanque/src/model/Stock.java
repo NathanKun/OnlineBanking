@@ -1,6 +1,9 @@
 package model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+
+import dao.DaoStockHistoricalPrice;
 
 public class Stock {
 
@@ -30,6 +33,14 @@ public class Stock {
 		this.stk_name = name;
 		this.stk_description = description;
 		this.stk_price = price;
+	}
+	
+	/**
+	 * Get the historical price list of this stock
+	 * @return List of StockHistoricalPrice
+	 */
+	public ArrayList<StockHistoricalPrice> getHistoricalPrice() {
+		return DaoStockHistoricalPrice.findShpByStkId(stk_id);
 	}
 
 	/**

@@ -1,6 +1,5 @@
 package dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 
@@ -64,7 +63,25 @@ public class DaoAccount extends Dao {
 	public static int updateAccount(Account acc) {
 		return Dao.updateLine("Account", acc);
 	}
+	
+	/**
+	 * return a list of Account of a specified Client id.
+	 * 
+	 * @param id
+	 *            id of the Client
+	 * @return tsh - the list of Account
+	 */
+	public static ArrayList<Account> findAccountByClientId(int id) {
+		String sql = "SELECT * FROM Account_acc WHERE acc_clt_id = " + String.valueOf(id);
+		ArrayList<Account> accList = (ArrayList<Account>) getList("FindAccountByClientId", sql);
+		return accList;
+	}
 
+	/**
+	 * Main for testing
+	 * 
+	 * @param args Arguments
+	 */
 	public static void main(String[] args) {
 		// insert test
 		/*Account acc = new Account(0, "0000111122223333", 1, new BigDecimal(123.45), new BigDecimal(0.12), 2);
@@ -89,6 +106,8 @@ public class DaoAccount extends Dao {
 //		acc.setAcc_interest(new BigDecimal(7.64));
 //		DaoAccount.updateAccount(acc);
 //		System.out.println(DaoAccount.getAccount(1).toString());
+		
+//		System.out.println(DaoAccount.findAccountByClientId(2));
 		
 	}
 

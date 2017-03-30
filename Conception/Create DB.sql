@@ -11,7 +11,7 @@ DROP PROCEDURE IF EXISTS InsertRandToSHP;
     
 CREATE TABLE IF NOT EXISTS client_clt (
 	clt_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	clt_login VARCHAR(30) NOT NULL,
+	clt_login VARCHAR(30) NOT NULL UNIQUE,
 	clt_password VARCHAR(20) NOT NULL,
     clt_fname VARCHAR(30) NOT NULL,
     clt_lname VARCHAR(30) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS client_clt (
     clt_status VARCHAR(30) NOT NULL,
     clt_lastlogin DATETIME,
     clt_createdon DATETIME NOT NULL
-);
+) ENGINE = Innodb;
 
 CREATE TABLE IF NOT EXISTS account_acc (
 	acc_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS account_acc (
     acc_interest NUMERIC(5,2) NOT NULL DEFAULT 0,
     acc_type TINYINT(1) NOT NULL, # 1 for transaction account, 2 for savings account, 3 for securities account
     FOREIGN KEY(acc_clt_id) REFERENCES client_clt(clt_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+) ENGINE = Innodb;
 
 /*
 CREATE TABLE IF NOT EXISTS savingsaccount_sva (
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS transactionhistory_tsh (
     tsh_amount NUMERIC(17,2) NOT NULL,
     #FOREIGN KEY(tsh_clt_id) REFERENCES client_clt(clt_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(tsh_acc_number) REFERENCES account_acc(acc_number) ON DELETE CASCADE ON UPDATE CASCADE
-);
+) ENGINE = Innodb;
 
 CREATE TABLE IF NOT EXISTS stock_stk (
 	stk_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS stock_stk (
     stk_name VARCHAR(254) NOT NULL,
     stk_description TEXT(65534),
     stk_price NUMERIC(10,2) NOT NULL
-);
+) ENGINE = Innodb;
 
 CREATE TABLE IF NOT EXISTS stockhistoricalprice_shp (
 	shp_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS stockhistoricalprice_shp (
     shp_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     shp_price NUMERIC(10,2) NOT NULL,
     FOREIGN KEY(shp_stk_id) REFERENCES stock_stk(stk_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+) ENGINE = Innodb;
 
 CREATE TABLE IF NOT EXISTS holdingshare_hds(
 	hds_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS holdingshare_hds(
     #hds_total NUMERIC(17,2) NOT NULL,
     FOREIGN KEY(hds_stk_id) REFERENCES stock_stk(stk_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(hds_acc_id) REFERENCES account_acc(acc_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+) ENGINE = Innodb;
 
 
 

@@ -63,6 +63,12 @@ public class DaoStock extends Dao {
 		return Dao.updateLine("Stock", stk);
 	}
 
+
+	/**
+	 * Main for testing
+	 * 
+	 * @param args Arguments
+	 */
 	public static void main(String[] args) {
 		// insert test
 //		Stock stk = new Stock(0, "stk1", "first stock", new BigDecimal(200));

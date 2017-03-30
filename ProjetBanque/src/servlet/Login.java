@@ -1,13 +1,17 @@
-package srvlet;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.DaoClient;
+import model.Client;
 
 /**
  * Servlet implementation class Login
@@ -39,6 +43,28 @@ public class Login extends HttpServlet {
 		PrintWriter out= response.getWriter();
 		String login= request.getParameter("login");
 		String password=request.getParameter("password");
+		ArrayList<Client> cltList= DaoClient.getClientList();
+		Boolean isFound = false;
+		Client cltFound = null;
+		out.println(login);
+		out.println(password);
+		for (Client clt : cltList){
+			if(clt.getClt_login().equals(login) && clt.getClt_password().equals(password)) {
+				isFound = true;
+				cltFound = clt;
+				out.println("Client found");
+			}
+
+			out.println(clt.getClt_login());
+			out.println(clt.getClt_password());
+		}
+		
+		if(isFound){
+			// redirection
+			request.setAttribute("client", cltFound);
+			request.getRequestDispatcher("./AccueilClient.jsp").forward(request, response);
+		}
+		else{out.println("Not found");}
 	}
 
 }
