@@ -57,7 +57,7 @@ public class Inscription extends HttpServlet {
 		String tel= request.getParameter("tel");
 		String naissance= request.getParameter("naissance");
 		PrintWriter out= response.getWriter();
-		/*Random rn = new Random();
+		Random rn = new Random();
 		String login= String.valueOf(rn.nextInt(99999999)) ;
 		String acc_number= login + "01" ;
 		
@@ -74,9 +74,14 @@ public class Inscription extends HttpServlet {
 		Account acc=new Account(0,acc_number,c.getClt_id(),BigDecimal.ZERO,BigDecimal.ZERO,1);
 		DaoAccount.addAccount(acc);
 		out.println("Votre numero de compte est  "+ acc_number );
-*/
-		out.println("eparne = " + request.getParameter("epargneCheckBox"));
-		out.println("titre = " + request.getParameter("titreCheckBox"));
+
+
+		if(request.getParameter("epargneCheckBox") == "on"){
+			// create saving account
+		}
+		if(request.getParameter("titreCheckBox") == "on"){
+			// create securities account
+		}
 		
 	}
 }
