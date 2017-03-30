@@ -78,9 +78,13 @@ abstract public class Dao {
 			case "StockHistoricalPrice":
 				ps.setInt(1, (int) item);
 				break;
-				
+
 			case "TransactionHistory":
 				ps.setInt(1, (int) item);
+				break;
+				
+			case "FindClientByLogin":
+				ps.setString(1, (String) item);
 				break;
 				
 			default:
@@ -124,6 +128,16 @@ abstract public class Dao {
 					retour = new TransactionHistory(rs.getInt("tsh_id"), rs.getString("tsh_acc_number"), 
 							rs.getString("tsh_description"), new DateTime(rs.getDate("tsh_transactionOn")), 
 							rs.getBigDecimal("tsh_amount"));
+					break;
+					
+				case "FindClientByLogin":
+					retour = new Client(rs.getInt("clt_id"), rs.getString("clt_login"), rs.getString("clt_password"),
+							rs.getString("clt_fname"), rs.getString("clt_lname"),
+							new DateTime(rs.getTimestamp("clt_birthday")), rs.getString("clt_nationality"),
+							rs.getString("clt_gender"), rs.getString("clt_address"), rs.getString("clt_postalcode"),
+							rs.getString("clt_city"), rs.getString("clt_telephonenumber"), rs.getString("clt_email"),
+							rs.getString("clt_status"), new DateTime(rs.getTimestamp("clt_lastlogin")),
+							new DateTime(rs.getTimestamp("clt_createdon")));
 					break;
 					
 				default:

@@ -66,6 +66,12 @@ public class DaoClient extends Dao{
 		return Dao.updateLine("Client", clt);
 	}
 	
+	
+	public static Client findClientByLogin(String login) {
+		String sql = "SELECT * FROM client_clt WHERE clt_login=?";
+		Client clt = (Client) getOne("FindClientByLogin", sql, login);
+		return clt;
+	}
 
 
 	/**
@@ -83,13 +89,13 @@ public class DaoClient extends Dao{
 //		System.out.println(DaoClient.addClient(clt));
 //		
 		// get one test
-		//System.out.println(DaoClient.getClient(7).toString());
+//		System.out.println(DaoClient.getClient(1));
 		
 		// get all test
 		
-		for (Client clt : DaoClient.getClientList()){
-			System.out.println(clt);
-		}
+//		for (Client clt : DaoClient.getClientList()){
+//			System.out.println(clt);
+//		}
 		
 		// delete test
 		//DaoClient.deleteClient(2);
@@ -112,5 +118,8 @@ public class DaoClient extends Dao{
 		clt.setClt_birthday(new DateTime());
 		DaoClient.updateClient(clt);
 		System.out.println(DaoClient.getClient(3).toString());*/
+		
+		// get by login test
+		System.out.println(DaoClient.findClientByLogin("a"));
 	}
 }
