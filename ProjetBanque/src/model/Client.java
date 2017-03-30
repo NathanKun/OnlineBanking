@@ -14,26 +14,16 @@ import dao.DaoAccount;
 
 public class Client {
 	/**
-<<<<<<< HEAD
-	   * L'identifiant du client
-	   */
-=======
-	 * L'id du client
+	 * L'identifiant du client
 	 */
->>>>>>> origin/master
 	private int clt_id;
 	/**
 	 * Le login du client
 	 */
 	private String clt_login;
 	/**
-<<<<<<< HEAD
-	   * Le prénom du client
-	   */
-=======
-	 * Le prenom du client
+	 * Le prénom du client
 	 */
->>>>>>> origin/master
 	private String clt_fname;
 	/**
 	 * Le nom du client
@@ -60,13 +50,8 @@ public class Client {
 	 */
 	private String clt_city;
 	/**
-<<<<<<< HEAD
-	   * Le numéro de téléphone du client
-	   */
-=======
-	 * Le num�ro de t�l�phone du client
+	 * Le numéro de téléphone du client
 	 */
->>>>>>> origin/master
 	private String clt_telephonenumber;
 	/**
 	 * L'email du client
@@ -89,13 +74,8 @@ public class Client {
 	 */
 	private DateTime clt_lastlogin;
 	/**
-<<<<<<< HEAD
-	   * La date de création du compte courant du client
-	   */
-=======
-	 * La date de cr�ation du compte courant du client
+	 * La date de création du compte courant du client
 	 */
->>>>>>> origin/master
 	private DateTime clt_createdon;
 
 	/**
@@ -167,10 +147,10 @@ public class Client {
 		this.clt_birthday = clt_birthday;
 		this.clt_lastlogin = clt_lastlogin;
 		this.clt_createdon = clt_createdon;
-		
+
 		ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt_id);
-		for(Account acc : accList){
-			switch(acc.getAcc_type()){
+		for (Account acc : accList) {
+			switch (acc.getAcc_type()) {
 			case "Compte de courant":
 				this.currentAccount = acc;
 				break;
@@ -185,7 +165,6 @@ public class Client {
 			}
 		}
 	}
-	
 
 	public Account getCurrentAccount() {
 		return currentAccount;
@@ -211,20 +190,12 @@ public class Client {
 		this.securitiesAccount = securitiesAccount;
 	}
 
-
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir l'id du client.
-	* @return l'id du client.
-	* @see #setClt_id(int clt_id)
-	*/
-=======
 	 * Permet d'obtenir l'id du client.
 	 * 
 	 * @return l'id du client.
-	 * @see #setClt_id(String name)
+	 * @see #setClt_id(int clt_id)
 	 */
->>>>>>> origin/master
 	public int getClt_id() {
 		return clt_id;
 	}
@@ -234,18 +205,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir le prenom du client.
-	* @return le prenom du client.
-	* @see #setClt_fname(String clt_fname)
-	*/
-=======
 	 * Permet d'obtenir le prenom du client.
 	 * 
 	 * @return le prenom du client.
-	 * @see #setClt_fname(String name)
+	 * @see #setClt_fname(String clt_fname)
 	 */
->>>>>>> origin/master
 	public String getClt_fname() {
 		return clt_fname;
 	}
@@ -255,18 +219,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir le nom du client.
-	* @return le nom du client.
-	* @see #setClt_lastname(String clt_lname)
-	*/
-=======
 	 * Permet d'obtenir le nom du client.
 	 * 
 	 * @return le nom du client.
-	 * @see #setClt_lastname(String name)
+	 * @see #setClt_lastname(String clt_lname)
 	 */
->>>>>>> origin/master
 	public String getClt_lname() {
 		return clt_lname;
 	}
@@ -276,18 +233,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir la nationalité du client.
-	* @return le nationalité du client.
-	* @see #setClt_nationality(String clt_nationality)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir la nationalité du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return le nationalité du client.
+	 * @see #setClt_nationality(String clt_nationality)
 	 */
->>>>>>> origin/master
 	public String getClt_nationality() {
 		return clt_nationality;
 	}
@@ -297,18 +247,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir le sexe du client.
-	* @return le sexe du client.
-	* @see #setClt_gender(String clt_gender)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir le sexe du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return le sexe du client.
+	 * @see #setClt_gender(String clt_gender)
 	 */
->>>>>>> origin/master
 	public String getClt_gender() {
 		return clt_gender;
 	}
@@ -318,18 +261,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir l'adresse du client.
-	* @return l'adresse du client.
-	* @see #setClt_address(String clt_address)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir l'adresse du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return l'adresse du client.
+	 * @see #setClt_address(String clt_address)
 	 */
->>>>>>> origin/master
 	public String getClt_address() {
 		return clt_address;
 	}
@@ -339,18 +275,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir le code postal du client.
-	* @return le code postal du client.
-	* @see #setClt_postalcode(String clt_postalcode)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir le code postal du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return le code postal du client.
+	 * @see #setClt_postalcode(String clt_postalcode)
 	 */
->>>>>>> origin/master
 	public String getClt_postalcode() {
 		return clt_postalcode;
 	}
@@ -360,18 +289,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir la ville du client.
-	* @return la ville du client.
-	* @see #setClt_city(String clt_city)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir la ville du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return la ville du client.
+	 * @see #setClt_city(String clt_city)
 	 */
->>>>>>> origin/master
 	public String getClt_city() {
 		return clt_city;
 	}
@@ -381,18 +303,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir le numéro de téléphone du client.
-	* @return le numéro de téléphone du client.
-	* @see #setClt_telephonenumber(String clt_telephonenumber)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir le numéro de téléphone du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return le numéro de téléphone du client.
+	 * @see #setClt_telephonenumber(String clt_telephonenumber)
 	 */
->>>>>>> origin/master
 	public String getClt_telephonenumber() {
 		return clt_telephonenumber;
 	}
@@ -402,18 +317,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir l'email du client.
-	* @return l'email du client.
-	* @see #setClt_email(String clt_email)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir l'email du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return l'email du client.
+	 * @see #setClt_email(String clt_email)
 	 */
->>>>>>> origin/master
 	public String getClt_email() {
 		return clt_email;
 	}
@@ -423,18 +331,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir le statut du client.
-	* @return le statut client.
-	* @see #setClt_status(String clt_status)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir le statut du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return le statut client.
+	 * @see #setClt_status(String clt_status)
 	 */
->>>>>>> origin/master
 	public String getClt_status() {
 		return clt_status;
 	}
@@ -444,18 +345,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir le mot de passe du client.
-	* @return le mot de passe du client.
-	* @see #setClt_password(String clt_password)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir le mot de passe du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return le mot de passe du client.
+	 * @see #setClt_password(String clt_password)
 	 */
->>>>>>> origin/master
 	public String getClt_password() {
 		return clt_password;
 	}
@@ -465,18 +359,11 @@ public class Client {
 	}
 
 	/**
-<<<<<<< HEAD
-	* Permet d'obtenir le login du client.
-	* @return le login du client.
-	* @see #setClt_login(String clt_login)
-	*/
-=======
-	 * Permet d'obtenir l'id du client.
+	 * Permet d'obtenir le login du client.
 	 * 
-	 * @return le nom du client.
-	 * @see #setClt_id(String name)
+	 * @return le login du client.
+	 * @see #setClt_login(String clt_login)
 	 */
->>>>>>> origin/master
 	public String getClt_login() {
 		return clt_login;
 	}
@@ -485,21 +372,13 @@ public class Client {
 		this.clt_login = clt_login;
 	}
 
-	public DateTime getClt_birthday() {
-<<<<<<< HEAD
 	/**
-	* Permet d'obtenir la date de naissance du client.
-	* @return la date de naissance du client.
-	* @see #setClt_birthday(DateTime clt_birthday)
-	*/
-=======
-		/**
-		 * Permet d'obtenir l'id du client.
-		 * 
-		 * @return le nom du client.
-		 * @see #setClt_id(String name)
-		 */
->>>>>>> origin/master
+	 * Permet d'obtenir la date de naissance du client.
+	 * 
+	 * @return la date de naissance du client.
+	 * @see #setClt_birthday(DateTime clt_birthday)
+	 */
+	public DateTime getClt_birthday() {
 		return clt_birthday;
 	}
 
@@ -507,21 +386,13 @@ public class Client {
 		this.clt_birthday = clt_birthday;
 	}
 
-	public DateTime getClt_lastlogin() {
-<<<<<<< HEAD
 	/**
-	* Permet d'obtenir La derniere connexion du client.
-	* @return La derniere connexion du client
-	* @see #setClt_lastlogin(DateTime clt_lastlogin)
-	*/
-=======
-		/**
-		 * Permet d'obtenir l'id du client.
-		 * 
-		 * @return le nom du client.
-		 * @see #setClt_id(String name)
-		 */
->>>>>>> origin/master
+	 * Permet d'obtenir La derniere connexion du client.
+	 * 
+	 * @return La derniere connexion du client
+	 * @see #setClt_lastlogin(DateTime clt_lastlogin)
+	 */
+	public DateTime getClt_lastlogin() {
 		return clt_lastlogin;
 	}
 
@@ -529,21 +400,13 @@ public class Client {
 		this.clt_lastlogin = clt_lastlogin;
 	}
 
-	public DateTime getClt_createdon() {
-<<<<<<< HEAD
 	/**
-	* Permet d'obtenir la date de création du compte du client.
-	* @return la date de création du compte du client.
-	* @see #setClt_createdon(DateTime clt_createdon)
-	*/
-=======
-		/**
-		 * Permet d'obtenir l'id du client.
-		 * 
-		 * @return le nom du client.
-		 * @see #setClt_id(String name)
-		 */
->>>>>>> origin/master
+	 * Permet d'obtenir la date de création du compte du client.
+	 * 
+	 * @return la date de création du compte du client.
+	 * @see #setClt_createdon(DateTime clt_createdon)
+	 */
+	public DateTime getClt_createdon() {
 		return clt_createdon;
 	}
 
@@ -561,6 +424,5 @@ public class Client {
 				+ clt_lastlogin + ", clt_createdon=" + clt_createdon + "\n    currentAccount=" + currentAccount
 				+ "\n    savingAccount=" + savingAccount + "\n    securitiesAccount=" + securitiesAccount + "]";
 	}
-
 
 }
