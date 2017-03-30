@@ -74,7 +74,7 @@ public class DaoClient extends Dao{
 		Client clt = new Client(0, "loginAdd3", "pwAdd3", "firstNameAdd3", "lastNameAdd3", 
 				new DateTime(1993, 03, 03, 13, 45, 12),
 				"Franch3", "F", "3 rue Abc3", "76333", "Sottevill3", "03335678", "e@mail.fr3", "Celebatair3", null, 
-				new DateTime());
+				new DateTime(1993, 03, 03, 13, 45, 12));
 		DaoClient.addClient(clt);
 		System.out.println(DaoClient.addClient(clt));
 		

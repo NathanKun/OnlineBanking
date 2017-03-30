@@ -52,7 +52,7 @@ public class Inscription extends HttpServlet {
 		String statut= request.getParameter("statut");
 		String tel= request.getParameter("tel");
 		String naissance= request.getParameter("naissance");
-		
+		sexe="M";
 		PrintWriter out= response.getWriter();
 		Client c =new Client(0,"12",password,prenom,nom,new DateTime(1993, 03, 03, 13, 45),
 				nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 

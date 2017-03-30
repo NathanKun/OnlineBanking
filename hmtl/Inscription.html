@@ -10,13 +10,19 @@
         <div id="menu">Ceci est le menu</div>
 
         <div id="contenu">
-          <form action="http://localhost:8080/ProjetBanque/Inscription" method="post" >
+          <form action="inscription.css" method="post" >
               <fieldset>
 
                     <legend>Vos coordonnées :</legend>
 
                      <p> Vous êtes : </p>
-                       
+                        <label for="femme" class="inline"> Une femme </label>
+                         <input type="radio" name="CSS" value="femme" id="femme"
+                         checked="checked" />
+                         <label for="homme" class="inline"> Un homme </label>
+                         <input type="radio" name="CSS" value="" id="homme" />
+                         
+
                       <label for="nom"> Nom :</label>
                        <input type="text" name="nom" size="20" 
                        maxlength="40" id="nom" />
@@ -27,7 +33,7 @@
 
                        <label for="naissance">Date de naissance :</label>
                        <input type="date" name="naissance" size="20" 
-                        id="naissance" />
+                       id="naissance" />
 
                        <label for="nationalite"> Nationalité :</label>
                        <input type="text" name ="nationalite" size="20" 
@@ -51,24 +57,21 @@
                        maxlength="40" id="pays" />
 
                        <label for="tel"> Numéro de téléphone :</label>
-                       <input type="text" name ="tel" size="20" 
+                       <input type="tel" name ="tel" size="20" 
                        maxlength="10" id="tel" />
 
-                        <label for="email"> Email:</label>
-                       <input type="email" name="email"  size="20" 
-                       maxlength="40" id="email" />
-					   <label for="password"> Choisissez un mot de passe :</label>
+                       <label for="password"> Choisissez un mot de passe :</label>
                        <input type="password" name="password"  size="20" 
                        maxlength="40" id="password" />
 
-                       <label for="cmdp">Confirmez votre mot de passe :</label>
-                       <input type="password" name="confirm_mdp" size="20" 
+                       <label for="cmdp"> Confirmez votre mot de passe :</label>
+                       <input type="password" name="cmdp" size="20" 
                        maxlength="40" id="cmdp" />
 
                         
                         <br/> Vous êtes :<br />
 
-                        <select name="statut" value="choix">
+                        <select name="statut" >
                            <option value="Etudiant">Un(e) étudiant(e)</option>
                            <option value="professionnel">Un professionnel </option>
                            <option value="chomage"> En recherche d'emploi </option>
@@ -85,7 +88,7 @@
                        <p>Voulez- vous créer un second compte ? Si oui choississez le(s) type(s) de compte : </p>
                          <input type="radio" name="CSS" value="compte épargne" id="compte_epargne"
                          checked="checked" />
-                         <label for=" compte_epargne" class="inline">Compte épargne</label>
+                         <label for="compte_epargne" class="inline">Compte épargne</label>
                          <input type="radio" name="CSS" value="Compte_titre" id="Compte_titre" />
                          <label for="Compte_titre" class="inline"> Compte titre </label>
                        
