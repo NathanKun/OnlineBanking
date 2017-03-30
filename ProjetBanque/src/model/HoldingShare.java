@@ -6,15 +6,31 @@ import org.joda.time.DateTime;
 
 public class HoldingShare {
 
+	/**
+	 *l'identifiant du HoldingShare 	
+	 */
 	private int hds_id;
-	
+
+	/**
+     * 	l'identifiant de l'action achetée
+     */
 	private int hds_stk_id;
 	
+	/**
+	 * l'identifiant du compte du HoldingShare
+	 */
 	private int hds_acc_id;
 	
+	/**
+	 * le nombre d'actions achetées
+	 */
 	private int hds_numberOfShares;
 	
+	/**
+	 * la date de l'achat
+	 */
 	private DateTime hds_boughtOn;
+	
 	
 	public HoldingShare(int id, int stk_id, int acc_id, int nb, 
 			DateTime boughtOn) {
@@ -25,6 +41,11 @@ public class HoldingShare {
 		this.hds_boughtOn = boughtOn;
 	}
 
+	/**
+	* Permet d'obtenir l'identifiant du HoldingShare.
+	* @return l'identifiant du HoldingShare.
+	* @see #setHds_id(int hds_id)
+	*/
 	public int getHds_id() {
 		return hds_id;
 	}
@@ -33,6 +54,11 @@ public class HoldingShare {
 		this.hds_id = hds_id;
 	}
 
+	/**
+	* Permet d'obtenir l'identifiant de l'action du HoldingShare.
+	* @return l'identifiant de l'action du HoldingShare.
+	* @see #setHds_stk_idd(int hds_stk_id)
+	*/
 	public int getHds_stk_id() {
 		return hds_stk_id;
 	}
@@ -41,6 +67,11 @@ public class HoldingShare {
 		this.hds_stk_id = hds_stk_id;
 	}
 
+	/**
+	* Permet d'obtenir l'identifiant du compte du HoldingShare.
+	* @return l'identifiant du compte du HoldingShare.
+	* @see #setHds_acc_id(int hds_acc_id)
+	*/
 	public int getHds_acc_id() {
 		return hds_acc_id;
 	}
@@ -49,6 +80,11 @@ public class HoldingShare {
 		this.hds_acc_id = hds_acc_id;
 	}
 
+	/**
+	* Permet d'obtenir le nombre d'actions achetées.
+	* @return le nombre d'actions achetées.
+	* @see #setHds_numberOfShares(int hds_numberOfShares)
+	*/
 	public int getHds_numberOfShares() {
 		return hds_numberOfShares;
 	}
@@ -57,6 +93,11 @@ public class HoldingShare {
 		this.hds_numberOfShares = hds_numberOfShares;
 	}
 
+	/**
+	* Permet d'obtenir le nombre d'actions achetées.
+	* @return le nombre d'actions achetées.
+	* @see # setHds_boughtOn(DateTime hds_boughtOn).
+	*/
 	public DateTime getHds_boughtOn() {
 		return hds_boughtOn;
 	}
