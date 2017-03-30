@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.joda.time.DateTime;
 
+import model.Account;
 import model.TransactionHistory;
 
 public class DaoTransactionHistory extends Dao {
@@ -65,7 +66,28 @@ public class DaoTransactionHistory extends Dao {
 	public static int updateTransactionHistory(TransactionHistory tsh) {
 		return Dao.updateLine("TransactionHistory", tsh);
 	}
+	
+	
+	/**
+	 * return a list of TransactionHistory of a specified account's id.
+	 * 
+	 * @param id
+	 *            id of the account
+	 * @return tsh - the list of TransactionHistory
+	 */
+	// TODO: Not tested
+	public static ArrayList<TransactionHistory> findTshByAccId(int id) {
+		String sql = "SELECT * FROM transactionhistory_tsh WHERE tsh_acc_id = " + String.valueOf(id);
+		ArrayList<TransactionHistory> tshList = (ArrayList<TransactionHistory>) getList("FindTshByAccId", sql);
+		return tshList;
+	}
 
+
+	/**
+	 * Main for testing
+	 * 
+	 * @param args Arguments
+	 */
 	public static void main(String[] args) {
 		// insert test
 //		TransactionHistory tsh = new TransactionHistory(0, "4444555566660003", "test3", new DateTime(), new BigDecimal(333));

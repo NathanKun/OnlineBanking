@@ -66,6 +66,28 @@ public class DaoHoldingShare extends Dao {
 		return Dao.updateLine("HoldingShare", hds);
 	}
 
+	/**
+	 * Get list of HoldingShare for a client
+	 * 
+	 * @param cltId	client's ID
+	 * @return	list of HoldingShare for this client
+	 */
+	// TODO : NOT TESTED
+	public static ArrayList<HoldingShare> findHdsByCltId(int cltId) {
+		String sql = "SELECT * FROM holdingshare_hds "
+				+ "INNER JOINT account_acc ON hds_acc_id = acc_id "
+				+ "INNER JOINT client_clt ON acc_clt_id = clt_id "
+				+ "WHERE clt_id = " + String.valueOf(cltId);
+		ArrayList<HoldingShare> hdsList = (ArrayList<HoldingShare>)Dao.getList("FindHdsByCltId", sql);
+		return hdsList;
+	}
+	
+
+	/**
+	 * Main for testing
+	 * 
+	 * @param args Arguments
+	 */
 	public static void main(String[] args) {
 		// insert test
 //		HoldingShare hds = new HoldingShare(0, 1, 2, 200, new DateTime());
