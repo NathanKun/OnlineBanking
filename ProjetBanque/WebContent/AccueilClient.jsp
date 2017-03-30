@@ -8,12 +8,12 @@
 </head>
 <body>
 Bienvenue Votre Solde est de 
-<%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount" %>
+<%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList" %>
 <%
-	//Client clt = DaoClient.getClient(1);
-	Account acc = DaoAccount.getAccount(1);
+	Client clt = (Client)request.getAttribute("client"); 
+	ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt.getClt_id());
 %>
-<%= acc.getAcc_balance() %>
+<%= accList.get(0).getAcc_balance() %>
  euros
 </body>
 </html>

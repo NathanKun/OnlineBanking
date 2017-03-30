@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.joda.time.DateTime;
 
+import model.HoldingShare;
 import model.StockHistoricalPrice;
 
 public class DaoStockHistoricalPrice extends Dao {
@@ -65,6 +66,26 @@ public class DaoStockHistoricalPrice extends Dao {
 		return Dao.updateLine("StockHistoricalPrice", shp);
 	}
 
+	/**
+	 * Get list of HoldingShare for a client
+	 * 
+	 * @param cltId	client's ID
+	 * @return	list of HoldingShare for this client
+	 */
+	// TODO: NOT TESTED
+	public static ArrayList<StockHistoricalPrice> findShpByStkId(int stkId) {
+		String sql = "SELECT * FROM stockhistoricalprice_shp "
+				+ "WHERE shp_stk_id = " + String.valueOf(stkId);
+		
+		ArrayList<StockHistoricalPrice> shpList = (ArrayList<StockHistoricalPrice>)Dao.getList("FindShpByStkId", sql);
+		return shpList;
+	}
+
+	/**
+	 * Main for testing
+	 * 
+	 * @param args Arguments
+	 */
 	public static void main(String[] args) {
 		// insert test
 //		StockHistoricalPrice shp = new StockHistoricalPrice(0, 42, new DateTime(), new BigDecimal(233));

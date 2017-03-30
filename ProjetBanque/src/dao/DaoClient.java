@@ -66,26 +66,36 @@ public class DaoClient extends Dao{
 		return Dao.updateLine("Client", clt);
 	}
 	
+	
+	public static Client findClientByLogin(String login) {
+		String sql = "SELECT * FROM client_clt WHERE clt_login=?";
+		Client clt = (Client) getOne("FindClientByLogin", sql, login);
+		return clt;
+	}
+
+
 	/**
-	 * main for testing
+	 * Main for testing
+	 * 
+	 * @param args Arguments
 	 */
 	public static void main(String args[]){
 		// insert test
-		Client clt = new Client(0, "loginAdd3", "pwAdd3", "firstNameAdd3", "lastNameAdd3", 
-				new DateTime(1993, 03, 03, 13, 45, 12),
-				"Franch3", "F", "3 rue Abc3", "76333", "Sottevill3", "03335678", "e@mail.fr3", "Celebatair3", null, 
-				new DateTime(1993, 03, 03, 13, 45, 12));
-		DaoClient.addClient(clt);
-		System.out.println(DaoClient.addClient(clt));
-		
+//		Client clt = new Client(0, "loginAdd3", "pwAdd3", "firstNameAdd3", "lastNameAdd3", 
+//				new DateTime(1993, 03, 03, 13, 45, 12),
+//				"Franch3", "F", "3 rue Abc3", "76333", "Sottevill3", "03335678", "e@mail.fr3", "Celebatair3", null, 
+//				new DateTime(1993, 03, 03, 13, 45, 12));
+//		DaoClient.addClient(clt);
+//		System.out.println(DaoClient.addClient(clt));
+//		
 		// get one test
-		//System.out.println(DaoClient.getClient(7).toString());
+//		System.out.println(DaoClient.getClient(1));
 		
 		// get all test
-		/*
-		for (Client clt : DaoClient.getClientList()){
-			System.out.println(clt);
-		}*/
+		
+//		for (Client clt : DaoClient.getClientList()){
+//			System.out.println(clt);
+//		}
 		
 		// delete test
 		//DaoClient.deleteClient(2);
@@ -108,5 +118,8 @@ public class DaoClient extends Dao{
 		clt.setClt_birthday(new DateTime());
 		DaoClient.updateClient(clt);
 		System.out.println(DaoClient.getClient(3).toString());*/
+		
+		// get by login test
+		System.out.println(DaoClient.findClientByLogin("a"));
 	}
 }
