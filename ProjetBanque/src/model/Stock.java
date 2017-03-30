@@ -14,6 +14,7 @@ public class Stock {
 	
 	/**
 	 * le nom de l'action
+	 */
 	private String stk_name;
 	
 	/**

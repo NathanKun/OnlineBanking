@@ -1,7 +1,6 @@
 ﻿package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 /**
  * Classe Client
  * @author Groupe4-BanqueEnLigne
@@ -11,6 +10,7 @@ import java.util.Date;
 import org.joda.time.DateTime;
 
 import dao.DaoAccount;
+import dao.DaoHoldingShare;
 
 public class Client {
 	/**
@@ -148,6 +148,7 @@ public class Client {
 		this.clt_lastlogin = clt_lastlogin;
 		this.clt_createdon = clt_createdon;
 
+		// set accounts
 		ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt_id);
 		for (Account acc : accList) {
 			switch (acc.getAcc_type()) {
@@ -188,6 +189,14 @@ public class Client {
 
 	public void setSecuritiesAccount(Account securitiesAccount) {
 		this.securitiesAccount = securitiesAccount;
+	}
+	
+	/**
+	 * Get the Holding Share list of this client
+	 * @return List of HoldingShare
+	 */
+	public ArrayList<HoldingShare> getHoldingShare() {
+		return DaoHoldingShare.findHdsByCltId(clt_id);
 	}
 
 	/**

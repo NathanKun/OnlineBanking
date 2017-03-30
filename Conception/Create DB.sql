@@ -166,28 +166,43 @@ INSERT INTO stock_stk VALUES(null, 'Vivendi', 'FR0000127771', 10);
 
 # procedure to generate random historical price
 DELIMITER $$
-CREATE PROCEDURE InsertRandToSHP(IN MinVal INT, IN MaxVal INT)
+CREATE PROCEDURE InsertRandToSHP(IN Seed INT)
     BEGIN
         DECLARE i INT;
         DECLARE stockId INT;
+        DECLARE basePrice INT;
+        DECLARE lastPrice INT;
+        DECLARE thisPrice DOUBLE;
         SET i = 1;
         SET stockId = 1;
         START TRANSACTION;
         WHILE stockId <= 40 DO
+			# Generate base price
+			SET basePrice = Seed * stockId % 9 + 1;
+            SET lastPrice = basePrice;
 			WHILE i <= 180 DO
-				INSERT INTO stockhistoricalprice_shp VALUES (
-                null, stockId, subdate(current_date, i), (MinVal + CEIL(RAND() * (MaxVal - MinVal))) * (stockId % 7 + 1) + RAND());
+				# Generate today's data
+				SET thisPrice = lastPrice + CEIL((RAND() - 0.5) * 100) * stockId % 7 + RAND();
+				# prevent price < 0
+                IF (thisPrice < 0) THEN
+					SET thisPrice = RAND() * Seed;
+				END IF;
+                # INSERT data
+                INSERT INTO stockhistoricalprice_shp VALUES (
+                null, stockId, subdate(current_date, i), thisPrice);
+                # Counter++
 				SET i = i + 1;
+                SET lastPrice = thisPrice;
 			END WHILE;
 			SET stockId = stockId + 1;
 			SET i = 1;
             # set today s stock price
 			UPDATE stock_stk 
-			SET stk_price = (MinVal + CEIL(RAND() * (MaxVal - MinVal))) * (stockId % 7) + RAND()
-			WHERE stk_id = stockId;
+				SET stk_price = lastPrice + CEIL((RAND() - 0.5) * 100) * stockId % 7 + RAND()
+				WHERE stk_id = stockId;
         END WHILE;
         COMMIT;
     END$$
 DELIMITER ;
 
-CALL InsertRandToSHP(45, 60);
+CALL InsertRandToSHP(18);

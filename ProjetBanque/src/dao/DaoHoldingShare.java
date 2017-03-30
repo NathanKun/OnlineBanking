@@ -81,6 +81,22 @@ public class DaoHoldingShare extends Dao {
 		ArrayList<HoldingShare> hdsList = (ArrayList<HoldingShare>)Dao.getList("FindHdsByCltId", sql);
 		return hdsList;
 	}
+
+	/**
+	 * Get list of HoldingShare for a account
+	 * 
+	 * @param accId	account's ID
+	 * @return	list of HoldingShare for this account
+	 */
+	// TODO : NOT TESTED
+	public static ArrayList<HoldingShare> findHdsByAccId(int accId) {
+		String sql = "SELECT * FROM holdingshare_hds "
+				+ "INNER JOINT account_acc ON hds_acc_id = acc_id "
+				+ "WHERE acc_id = " + String.valueOf(accId);
+		// same as FindHdsByCltId
+		ArrayList<HoldingShare> hdsList = (ArrayList<HoldingShare>)Dao.getList("FindHdsByCltId", sql);
+		return hdsList;
+	}
 	
 
 	/**

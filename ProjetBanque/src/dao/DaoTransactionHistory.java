@@ -82,7 +82,6 @@ public class DaoTransactionHistory extends Dao {
 		return tshList;
 	}
 
-
 	/**
 	 * Main for testing
 	 * 

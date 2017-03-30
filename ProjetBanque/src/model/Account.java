@@ -1,6 +1,11 @@
 package model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+
+import dao.DaoHoldingShare;
+import dao.DaoStockHistoricalPrice;
+import dao.DaoTransactionHistory;
 
 public class Account {
 
@@ -11,12 +16,12 @@ public class Account {
 	
 	private String acc_number;
 /**
- * le numéro du compte
+ * le numï¿½ro du compte
  */
 	
 	private int acc_clt_id;
 /**
- * l'id du client possédant le compte
+ * l'id du client possï¿½dant le compte
  */
 
 	private BigDecimal acc_balance;
@@ -26,7 +31,7 @@ public class Account {
 	
 	private BigDecimal acc_interest;
 /**
- * les intérets du compte
+ * les intï¿½rets du compte
  */
 	
 	private String acc_type;
@@ -50,6 +55,7 @@ public class Account {
 		this.acc_balance = balance;
 		this.acc_interest = interest;
 		
+		// set String of account's type by (int)type
 		switch (type){
 		case 1:
 			this.acc_type = "Compte de courant";
@@ -64,6 +70,22 @@ public class Account {
 			this.acc_type = "error";
 			break;
 		}
+	}
+	
+	/**
+	 * Get the Transaction history list of this account
+	 * @return List of TransactionHistory
+	 */
+	public ArrayList<TransactionHistory> getTransactionHistory() {
+		return DaoTransactionHistory.findTshByAccId(acc_id);
+	}
+	
+	/**
+	 * Get the Holding Share list of this account
+	 * @return List of HoldingShare
+	 */
+	public ArrayList<HoldingShare> getHoldingShare() {
+		return DaoHoldingShare.findHdsByAccId(acc_id);
 	}
 	
 	
@@ -81,8 +103,8 @@ public class Account {
 	}
 	
 	/**
-	* Permet d'obtenir le numéro du compte.
-	* @return le numéro du compte.
+	* Permet d'obtenir le numï¿½ro du compte.
+	* @return le numï¿½ro du compte.
 	* @see #setAcc_number(String acc_number)
 	*/
 
@@ -95,8 +117,8 @@ public class Account {
 	}
 	
 	/**
-	* Permet d'obtenir l'identifiant du client possédant le compte.
-	* @return l'identifiant du client possédant le compte.
+	* Permet d'obtenir l'identifiant du client possï¿½dant le compte.
+	* @return l'identifiant du client possï¿½dant le compte.
 	* @see #setAcc_clt_id(String acc_clt_id)
 	*/
 
@@ -123,8 +145,8 @@ public class Account {
 	}
 	
 	/**
-	* Permet d'obtenir les intérets du compte.
-	* @return les intérets du compte.
+	* Permet d'obtenir les intï¿½rets du compte.
+	* @return les intï¿½rets du compte.
 	* @see #setAcc_interest(BigDecimal acc_interest)
 	*/
 	public BigDecimal getAcc_interest() {
