@@ -3,6 +3,7 @@ package srvlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.joda.time.DateTime;
 
 import dao.DaoClient;
+import model.Account;
 import model.Client;
 
 /**
@@ -54,12 +56,19 @@ public class Inscription extends HttpServlet {
 		String naissance= request.getParameter("naissance");
 		sexe="M";
 		PrintWriter out= response.getWriter();
-		Client c =new Client(0,"12",password,prenom,nom,new DateTime(1993, 03, 03, 13, 45),
+		Random rn = new Random();
+		String login= String.valueOf(rn.nextInt(99999999)) ;
+		String acc_number= login + "01" ;
+		out.println(login + " "+ acc_number);
+		Client c =new Client(0,login,password,prenom,nom,new DateTime(1993, 03, 03, 13, 45),
 				nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
 				new DateTime(2017, 03, 03, 13, 45));
 		
 		out.println("OK ");
 		
 		out.println(DaoClient.addClient(c));
+		/*c = DaoClient.get
+		ArrayDaoClient.getClientList();
+		Account acc=new Account(0,acc_number,);*/
 	}
 }
