@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-index
+<a href="./login.jsp">login</a>
+<a href="./subscribe.jsp">subscribe</a>
 </body>
 </html>

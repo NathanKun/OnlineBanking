@@ -10,7 +10,7 @@
 Espace créé
 <br>
 Votre login est:
-<%@ page import="servlet.Inscription"%>
+<%@ page import="servlet.Subscribe"%>
 
 
 </body>

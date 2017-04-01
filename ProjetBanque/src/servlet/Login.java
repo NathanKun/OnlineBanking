@@ -55,10 +55,15 @@ public class Login extends HttpServlet {
 		
 		if(isFound){
 			// redirection
-			request.setAttribute("client", cltFound);
-			request.getRequestDispatcher("./AccueilClient.jsp").forward(request, response);
+			request.getSession(true).setAttribute("client", cltFound);
+			response.sendRedirect("./AccueilClient.jsp");
 		}
-		else{out.println("Not found");}
+		else{
+			// go back to login page
+			request.setAttribute("loginFailed", true);
+			request.setAttribute("login", login);
+			response.sendRedirect("./login.jsp");
+		}
 	}
 
 }

@@ -15,7 +15,7 @@
     <div id="menu">Ceci est le menu</div>
 
     <div id="contenu">
-        <form action="./Inscription" onsubmit="return checkInputs()" method="post">
+        <form action="./Subscribe" onsubmit="return checkInputs()" method="post">
             <fieldset>
 
                 <legend>Vos coordonnées :</legend>

@@ -22,8 +22,8 @@ import util.PasswordAuthentication;
 /**
  * Servlet implementation class Inscription
  */
-@WebServlet("/Inscription")
-public class Inscription extends HttpServlet {
+@WebServlet("/Subscribe")
+public class Subscribe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
