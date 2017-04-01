@@ -3,6 +3,8 @@ package dao;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import org.joda.time.DateTime;
+
 import model.Account;
 
 public class DaoAccount extends Dao {
@@ -124,7 +126,7 @@ public class DaoAccount extends Dao {
 		// System.out.println(DaoAccount.findAccountByClientId(2));
 		
 		// get next acc_number test
-		System.out.println(getNextAccountNumber());
+//		System.out.println(getNextAccountNumber());
 
 	}
 
