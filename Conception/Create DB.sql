@@ -11,7 +11,7 @@ DROP PROCEDURE IF EXISTS InsertRandToSHP;
     
 CREATE TABLE IF NOT EXISTS client_clt (
 	clt_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	clt_login VARCHAR(30) NOT NULL UNIQUE,
+	clt_login CHAR(10) NOT NULL UNIQUE,
 	clt_password VARCHAR(20) NOT NULL,
     clt_fname VARCHAR(30) NOT NULL,
     clt_lname VARCHAR(30) NOT NULL,
@@ -116,7 +116,7 @@ INSERT INTO client_clt VALUES(null, "b", "b", "Onepunch", "Man", STR_TO_DATE('18
 INSERT INTO account_acc VALUES(null, "3333666699990001", 3, 65535.00, 0, 1);
 INSERT INTO account_acc VALUES(null, "3333666699990003", 3, 1200.00, 0, 3);
 
-INSERT INTO client_clt VALUES(null, "c", "c", "Bill", "Gate", STR_TO_DATE('1960-03-11','%Y-%d-%m'),
+INSERT INTO client_clt VALUES(null, "1236784567", "c", "Bill", "Gate", STR_TO_DATE('1960-03-11','%Y-%d-%m'),
 	"American", "M", "some rode", "01234", "SomeCity", "0607080910", "billgate@gmail.com", 
 	"Married", NOW(), ('2016-07-08 07:20:11'));
 INSERT INTO account_acc VALUES(null, "4444888844440001", 4, 10086, 0, 1);

@@ -1,9 +1,10 @@
 package dao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
-
 import model.Account;
+
 public class DaoAccount extends Dao {
 
 	/**
@@ -53,9 +54,9 @@ public class DaoAccount extends Dao {
 	}
 
 	/**
-	 * update a Account.
-	 * ONLY Balance and Interest are modifiable.
-	 * Account Number and Account type NOT MODIFIABLE
+	 * update a Account. ONLY Balance and Interest are modifiable. Account
+	 * Number and Account type NOT MODIFIABLE
+	 * 
 	 * @param Account
 	 *            the Account for update
 	 * @return numbers of line updated
@@ -63,7 +64,7 @@ public class DaoAccount extends Dao {
 	public static int updateAccount(Account acc) {
 		return Dao.updateLine("Account", acc);
 	}
-	
+
 	/**
 	 * return a list of Account of a specified Client id.
 	 * 
@@ -77,38 +78,54 @@ public class DaoAccount extends Dao {
 		return accList;
 	}
 
+	public static String getNextAccountNumber() {
+		String sql = "SELECT acc_number FROM account_acc WHERE acc_id = (( " 
+				+ "SELECT AUTO_INCREMENT "
+				+ "FROM information_schema.tables " 
+				+ "WHERE table_name = 'account_acc' "
+				+ "AND table_schema = DATABASE( )) - 1)";
+		String accNb = Dao.getNextItem("acc_number", sql);
+		return String.valueOf(Long.parseLong(accNb) + 1);
+	}
+
 	/**
 	 * Main for testing
 	 * 
-	 * @param args Arguments
+	 * @param args
+	 *            Arguments
 	 */
 	public static void main(String[] args) {
 		// insert test
-		/*Account acc = new Account(0, "0000111122223333", 1, new BigDecimal(123.45), new BigDecimal(0.12), 2);
-		DaoAccount.addAccount(acc);*/
+		/*
+		 * Account acc = new Account(0, "0000111122223333", 1, new
+		 * BigDecimal(123.45), new BigDecimal(0.12), 2);
+		 * DaoAccount.addAccount(acc);
+		 */
 
 		// get one test
-		//System.out.println(DaoAccount.getAccount(7).toString());
+		// System.out.println(DaoAccount.getAccount(7).toString());
 
 		// get all test
 		/*
-		for (Account acc : DaoAccount.getAccountList()){
-			System.out.println(acc); 
-		}*/
-		
+		 * for (Account acc : DaoAccount.getAccountList()){
+		 * System.out.println(acc); }
+		 */
 
 		// delete test
-		//DaoAccount.deleteAccount(9);
+		// DaoAccount.deleteAccount(9);
 
 		// Update test
-//		Account acc = DaoAccount.getAccount(1);
-//		acc.setAcc_balance(new BigDecimal(33656.99));
-//		acc.setAcc_interest(new BigDecimal(7.64));
-//		DaoAccount.updateAccount(acc);
-//		System.out.println(DaoAccount.getAccount(1).toString());
+		// Account acc = DaoAccount.getAccount(1);
+		// acc.setAcc_balance(new BigDecimal(33656.99));
+		// acc.setAcc_interest(new BigDecimal(7.64));
+		// DaoAccount.updateAccount(acc);
+		// System.out.println(DaoAccount.getAccount(1).toString());
+
+		// System.out.println(DaoAccount.findAccountByClientId(2));
 		
-//		System.out.println(DaoAccount.findAccountByClientId(2));
-		
+		// get next acc_number test
+		System.out.println(getNextAccountNumber());
+
 	}
 
 }
