@@ -61,7 +61,7 @@ public class Inscription extends HttpServlet {
 		String login= String.valueOf(rn.nextInt(99999999)) ;
 		String acc_number= login + "01" ;
 		
-		out.println("Espace cr��");
+		out.println("Espace cree");
 		out.println("Votre login est "+ login);
 		Client c =new Client(0,login,password,prenom,nom,new DateTime(1993, 03, 03, 13, 45),
 				nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
@@ -70,7 +70,7 @@ public class Inscription extends HttpServlet {
 		DaoClient.addClient(c);
 	
 		c = DaoClient.findClientByLogin(login);
-		//On cr�� un compte courant pour le nouveau client
+		//On cree un compte courant pour le nouveau client
 		Account acc=new Account(0,acc_number,c.getClt_id(),BigDecimal.ZERO,BigDecimal.ZERO,1);
 		DaoAccount.addAccount(acc);
 		out.println("Votre numero de compte est  "+ acc_number );
