@@ -1,0 +1,21 @@
+div#offre1{
+	margin : 20% 20% 20% 25%;
+	float:right;
+	width:1000px;
+	height:500px ;
+	background-color:gray;
+	font-size: 15px;
+	font-color: Black;
+	}
+div#offre2{
+	margin : 20% 20% 20% 25%;
+	float:right;
+	width:1000px;
+	height:500px ;
+	background-color:gray;
+	font-size: 15px;
+	font-color: Black;
+	}
+h1 {
+	font-color: BLue;
+	}
