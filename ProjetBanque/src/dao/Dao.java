@@ -15,6 +15,7 @@ import org.joda.time.DateTime;
 
 import model.Account;
 import model.Client;
+import model.ContactForm;
 import model.HoldingShare;
 import model.Stock;
 import model.StockHistoricalPrice;
@@ -60,34 +61,21 @@ abstract public class Dao {
 			ps = con.prepareStatement(sql);
 			switch (type) {
 			case "Client":
-				ps.setInt(1, (int) item);
-				break;
-
 			case "Account":
-				ps.setInt(1, (int) item);
-				break;
-
 			case "HoldingShare":
-				ps.setInt(1, (int) item);
-				break;
-
 			case "Stock":
-				ps.setInt(1, (int) item);
-				break;
-
-			case "StockHistoricalPrice":
-				ps.setInt(1, (int) item);
-				break;
-
 			case "TransactionHistory":
+			case "StockHistoricalPrice":
+			case "ContactForm":
 				ps.setInt(1, (int) item);
 				break;
-
+				
 			case "FindClientByLogin":
 				ps.setString(1, (String) item);
 				break;
 
 			default:
+				System.out.println("String type error!");
 				ps.setInt(1, (int) item);
 				break;
 			}
@@ -138,6 +126,11 @@ abstract public class Dao {
 							rs.getString("clt_city"), rs.getString("clt_telephonenumber"), rs.getString("clt_email"),
 							rs.getString("clt_status"), new DateTime(rs.getTimestamp("clt_lastlogin")),
 							new DateTime(rs.getTimestamp("clt_createdon")));
+					break;
+
+				case "ContactForm":
+					retour = new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"), rs.getString("ctf_email"), 
+							rs.getString("ctf_tel"), rs.getString("ctf_message"));
 					break;
 
 				default:
@@ -283,6 +276,13 @@ abstract public class Dao {
 				}
 				break;
 
+
+			case "ContactForm":
+				while (rs.next()) {
+					returnList.add(new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"), rs.getString("ctf_email"), 
+						rs.getString("ctf_tel"), rs.getString("ctf_message")));
+			}
+				break;
 			default:
 				System.out.println("String type not correct!");
 				break;
@@ -414,6 +414,15 @@ abstract public class Dao {
 				ps.setBigDecimal(4, tsh.getTsh_amount());
 				break;
 
+			case "ContactForm":
+				ContactForm ctf = (ContactForm) item;
+				ps = con.prepareStatement("INSERT INTO contactform_ctf VALUES(null, ?, ?, ?, ?)");
+				ps.setString(1, ctf.getCtf_name());
+				ps.setString(2, ctf.getCtf_email());
+				ps.setString(3, ctf.getCtf_tel());
+				ps.setString(4, ctf.getCff_message());
+				break;
+
 			default:
 				System.out.println("String type error!");
 				break;
@@ -489,6 +498,11 @@ abstract public class Dao {
 
 			case "TransactionHistory":
 				ps = con.prepareStatement("DELETE FROM transactionhistory_tsh WHERE tsh_id=?");
+				ps.setInt(1, (int) item);
+				break;
+
+			case "ContactForm":
+				ps = con.prepareStatement("DELETE FROM contactform_ctf WHERE ctf_id=?");
 				ps.setInt(1, (int) item);
 				break;
 

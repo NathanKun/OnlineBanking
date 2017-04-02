@@ -3,7 +3,7 @@
 
 <head>
     <title>Page inscription</title>
-    <link rel="stylesheet" type="text/css" href="subscribe.css">
+    <link rel="stylesheet" type="text/css" href="./css/subscribe.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
     <meta charset="utf-8">

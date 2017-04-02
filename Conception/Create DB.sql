@@ -1,6 +1,8 @@
 CREATE DATABASE IF NOT EXISTS onlineBank;
 #DROP DATABASE onlinebank;
 USE onlinebank;
+
+DROP TABLE IF EXISTS contactform_ctf;
 DROP TABLE IF EXISTS holdingshare_hds;
 DROP TABLE IF EXISTS stockhistoricalprice_shp;
 DROP TABLE IF EXISTS stock_stk;
@@ -8,6 +10,15 @@ DROP TABLE IF EXISTS transactionhistory_tsh;
 DROP TABLE IF EXISTS account_acc;
 DROP TABLE IF EXISTS client_clt;
 DROP PROCEDURE IF EXISTS InsertRandToSHP;
+    
+    
+CREATE TABLE IF NOT EXISTS contactform_ctf (
+	ctf_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ctf_name VARCHAR(60) NOT NULL,
+    ctf_email VARCHAR(254) NOT NULL,
+    ctf_tel VARCHAR(10),
+    ctf_message TEXT
+) ENGINE = Innodb;
     
 CREATE TABLE IF NOT EXISTS client_clt (
 	clt_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,

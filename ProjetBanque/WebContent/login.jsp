@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="sessionCheck.jsp"%>
 <%	
 	// get entered login if redirection by login failed (login/password incorrect)
 	String login = (String)request.getAttribute("login"); 
@@ -7,21 +9,17 @@
 	else
 		hint = "ID ou mot de passe incorrect";
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Page Connexion</title>
-    <meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="login.css">
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="./css/login.css">
 </head>
 
 <body>
-	<%   
-   		// if logged in  
-   		if(session.getAttribute("client")!=null) {  
-   			response.sendRedirect("./AccueilClient.jsp");
-   		}
-	%> 
+<body>
 	<div id="bandeau">menu horizontal ? image ?</div>
 	<div id="menu">Menu ???</div>
 
@@ -42,7 +40,7 @@
 	</div>
 	<div id="newcli">
 		<p>Pas encore client de notre banque ?</p>
-		<label for="Ide"><a href="./subscribe.html">CrÃ©er votre </a></label>
+		<label for="Ide"><a href="./subscribe.html">Créer votre compte</a></label>
 	</div>
 
 	<div id="piedpage">Ceci est le pied de page</div>
