@@ -145,8 +145,8 @@ public class Account {
 	}
 	
 	/**
-	* Permet d'obtenir les int�rets du compte.
-	* @return les int�rets du compte.
+	* Permet d'obtenir les interets du compte.
+	* @return les interets du compte.
 	* @see #setAcc_interest(BigDecimal acc_interest)
 	*/
 	public BigDecimal getAcc_interest() {
