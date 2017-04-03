@@ -1,11 +1,7 @@
 package dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import org.joda.time.DateTime;
-
-import model.Account;
 import model.TransactionHistory;
 
 public class DaoTransactionHistory extends Dao {
@@ -75,6 +71,7 @@ public class DaoTransactionHistory extends Dao {
 	 *            id of the account
 	 * @return tsh - the list of TransactionHistory
 	 */
+	@SuppressWarnings("unchecked")
 	// TODO: Not tested
 	public static ArrayList<TransactionHistory> findTshByAccId(int id) {
 		String sql = "SELECT * FROM transactionhistory_tsh WHERE tsh_acc_id = " + String.valueOf(id);

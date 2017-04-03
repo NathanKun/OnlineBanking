@@ -1,15 +1,11 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.joda.time.DateTime;
 
@@ -329,7 +325,6 @@ abstract public class Dao {
 	protected static int addRow(String type, Object item) {
 		Connection con = null;
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 		int retour = 0;
 		// connection to date base
 		try {

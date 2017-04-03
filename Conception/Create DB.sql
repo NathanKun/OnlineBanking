@@ -182,6 +182,17 @@ INSERT INTO stock_stk VALUES(null, 'Veolia Environnement', 'FR0000124141', 10);
 INSERT INTO stock_stk VALUES(null, 'Vinci', 'FR0000125486', 10);
 INSERT INTO stock_stk VALUES(null, 'Vivendi', 'FR0000127771', 10);
 
+# gauss distribution generator
+DROP FUNCTION IF EXISTS gauss;
+DELIMITER //
+CREATE FUNCTION gauss(mean float, stdev float) RETURNS float
+BEGIN
+set @x=rand(), @y=rand();
+set @gaus = ((sqrt(-2*log(@x))*cos(2*pi()*@y))*stdev)+mean;
+return @gaus;
+END
+//
+DELIMITER ;
 
 # procedure to generate random historical price
 DELIMITER $$
@@ -192,16 +203,16 @@ CREATE PROCEDURE InsertRandToSHP(IN Seed INT)
         DECLARE basePrice INT;
         DECLARE lastPrice INT;
         DECLARE thisPrice DOUBLE;
-        SET i = 1;
+        SET i = 180;
         SET stockId = 1;
         START TRANSACTION;
         WHILE stockId <= 40 DO
 			# Generate base price
-			SET basePrice = Seed * stockId % 9 + 1;
+			SET basePrice = Seed * (stockId % 9) + 1;
             SET lastPrice = basePrice;
-			WHILE i <= 180 DO
+			WHILE i >= 1 DO
 				# Generate today's data
-				SET thisPrice = lastPrice + CEIL((RAND() - 0.5) * 100) * stockId % 7 + RAND();
+				SET thisPrice = lastPrice + gauss(0, 0.1) * lastPrice; # varie maximum +- 10%
 				# prevent price < 0
                 IF (thisPrice < 0) THEN
 					SET thisPrice = RAND() * Seed;
@@ -210,18 +221,18 @@ CREATE PROCEDURE InsertRandToSHP(IN Seed INT)
                 INSERT INTO stockhistoricalprice_shp VALUES (
                 null, stockId, subdate(current_date, i), thisPrice);
                 # Counter++
-				SET i = i + 1;
+				SET i = i - 1;
                 SET lastPrice = thisPrice;
 			END WHILE;
 			SET stockId = stockId + 1;
-			SET i = 1;
+			SET i = 180;
             # set today s stock price
 			UPDATE stock_stk 
-				SET stk_price = lastPrice + CEIL((RAND() - 0.5) * 100) * stockId % 7 + RAND()
+				SET stk_price = lastPrice + gauss(0, 0.1) * lastPrice
 				WHERE stk_id = stockId;
         END WHILE;
         COMMIT;
     END$$
 DELIMITER ;
 
-CALL InsertRandToSHP(18);
+CALL InsertRandToSHP(25);

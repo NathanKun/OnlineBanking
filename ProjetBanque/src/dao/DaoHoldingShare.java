@@ -1,9 +1,6 @@
 package dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-
-import org.joda.time.DateTime;
 
 import model.HoldingShare;
 
@@ -72,6 +69,7 @@ public class DaoHoldingShare extends Dao {
 	 * @param cltId	client's ID
 	 * @return	list of HoldingShare for this client
 	 */
+	@SuppressWarnings("unchecked")
 	// TODO : NOT TESTED
 	public static ArrayList<HoldingShare> findHdsByCltId(int cltId) {
 		String sql = "SELECT * FROM holdingshare_hds "
@@ -88,6 +86,7 @@ public class DaoHoldingShare extends Dao {
 	 * @param accId	account's ID
 	 * @return	list of HoldingShare for this account
 	 */
+	@SuppressWarnings("unchecked")
 	// TODO : NOT TESTED
 	public static ArrayList<HoldingShare> findHdsByAccId(int accId) {
 		String sql = "SELECT * FROM holdingshare_hds "
