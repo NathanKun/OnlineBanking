@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DaoContactForm;
 import model.ContactForm;
-
 /**
  * Servlet implementation class Contact
  */
 @WebServlet("/Contact")
 public class Contact extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
