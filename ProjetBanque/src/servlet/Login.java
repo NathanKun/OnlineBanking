@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,26 +38,27 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// PrintWriter out= response.getWriter();
+		 PrintWriter out= response.getWriter();
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		Client clt = DaoClient.findClientByLogin(login);
 		boolean isFound = false;
 		Client cltFound = null;
 
-		PasswordAuthentication pa = new PasswordAuthentication();
+		/*PasswordAuthentication pa = new PasswordAuthentication();
 
 		if (clt != null) {
 			if (pa.authenticate(password.toCharArray(), clt.getClt_password())) {
 				isFound = true;
 				cltFound = clt;
 			}
-		}
+		}*/
 
-		if (isFound) {
+		if (clt.getClt_password().equals(password)) {
 			// redirection
 			request.getSession(true).setAttribute("client", cltFound);
-			response.sendRedirect("./CustomerArea.jsp");
+			out.println("trouve");
+			response.sendRedirect("./espaceClient.html");
 		} else {
 			// go back to login page
 			request.setAttribute("loginFailed", true);

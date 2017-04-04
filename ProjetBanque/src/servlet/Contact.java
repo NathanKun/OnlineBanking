@@ -36,7 +36,7 @@ public class Contact extends HttpServlet {
 		int rt = DaoContactForm.addContactForm(new ContactForm(0, name, email, phone, message));
 		
 		if(rt == 1){
-			response.getWriter().write("Message envoyé"); 
+			response.getWriter().write("Message envoye"); 
 		} else {
 			response.getWriter().write("Failed"); 
 		}

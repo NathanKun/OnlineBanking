@@ -19,9 +19,9 @@
 			        <form id="form" action="./Subscribe" onsubmit="return checkInputs()" method="post">
 			            <fieldset>
 			
-			                <legend>Vos coordonnées :</legend>
+			                <legend>Vos coordonnees :</legend>
 			
-			                <p>Vous êtes :</p>
+			                <p>Vous etes :</p>
 			
 			                <select name="sexe">
 								<option value="F">Une femme</option>
@@ -31,34 +31,36 @@
 			                <label for="nom"> Nom :</label>
 			                <input type="text" name="nom" id="nom" size="20" maxlength="30" required />
 			
-			                <label for="prenom"> Prénom :</label>
+			                <label for="prenom"> Prenom :</label>
 			                <input type="text" id="prenom" name="prenom" size="20" maxlength="30" required />
 			
 			                <label for="naissance">Date de naissance :</label>
-			                <input type="date" id="naissance" name="naissance" size="20" min='1899-01-01' max='2000-12-13' required />
-			
-			                <label for="nationalite"> Nationalité :</label>
+			                               <input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
+                 <input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
+                 <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required >
+                <label for="nationalite"> Nationalite :</label>
+
 			                <select id="nationalite" name="nationalite" required>
 								<option>	Afghan	</option>
 								<option>	Albanais	</option>
-								<option>	Algérien	</option>
+								<option>	Algerien	</option>
 								<option>	Allemand	</option>
-								<option>	Américain	</option>
+								<option>	Americain	</option>
 								<option>	Angolais	</option>
 								<option>	Argentin	</option>
-								<option>	Arménien	</option>
+								<option>	Armenien	</option>
 								<option>	Australien	</option>
 								<option>	Autrichien	</option>
 								<option>	Bangladais	</option>
 								<option>	Belge	</option>
-								<option>	Béninois	</option>
+								<option>	Beninois	</option>
 								<option>	Bosniaque	</option>
 								<option>	Botswanais	</option>
 								<option>	Bhoutan	</option>
-								<option>	Brésilien	</option>
+								<option>	Bresilien	</option>
 								<option>	Britannique	</option>
 								<option>	Bulgare	</option>
-								<option>	Burkinabè	</option>
+								<option>	Burkinabe	</option>
 								<option>	Cambodgien	</option>
 								<option>	Camerounais	</option>
 								<option>	Canadien	</option>
@@ -72,24 +74,24 @@
 								<option>	Egyptien	</option>
 								<option>	Espagnol	</option>
 								<option>	Estonien	</option>
-								<option>	Européen	</option>
+								<option>	Europeen	</option>
 								<option>	Finlandais	</option>
 								<option>	Français	</option>
 								<option>	Gabonais	</option>
 								<option>	Georgien	</option>
 								<option>	Grec	</option>
-								<option>	Guinéen	</option>
+								<option>	Guineen	</option>
 								<option>	Haïtien	</option>
 								<option>	Hollandais	</option>
 								<option>	Hong-Kong	</option>
 								<option>	Hongrois	</option>
 								<option>	Indien	</option>
-								<option>	Indonésien	</option>
+								<option>	Indonesien	</option>
 								<option>	Irakien	</option>
 								<option>	Iranien	</option>
 								<option>	Irlandais	</option>
 								<option>	Islandais	</option>
-								<option>	Israélien	</option>
+								<option>	Israelien	</option>
 								<option>	Italien	</option>
 								<option>	Ivoirien	</option>
 								<option>	Jamaïcain	</option>
@@ -102,7 +104,7 @@
 								<option>	Liechtenstein	</option>
 								<option>	Lituanien	</option>
 								<option>	Luxembourgeois	</option>
-								<option>	Macédonien	</option>
+								<option>	Macedonien	</option>
 								<option>	Madagascar	</option>
 								<option>	Malaisien	</option>
 								<option>	Malien	</option>
@@ -111,43 +113,43 @@
 								<option>	Mauritanien	</option>
 								<option>	Mauricien	</option>
 								<option>	Mexicain	</option>
-								<option>	Monégasque	</option>
+								<option>	Monegasque	</option>
 								<option>	Mongol	</option>
-								<option>	Néo-Zélandais	</option>
-								<option>	Nigérien	</option>
-								<option>	Nord Coréen	</option>
-								<option>	Norvégien	</option>
+								<option>	Neo-Zelandais	</option>
+								<option>	Nigerien	</option>
+								<option>	Nord Coreen	</option>
+								<option>	Norvegien	</option>
 								<option>	Pakistanais	</option>
 								<option>	Palestinien	</option>
-								<option>	Péruvien	</option>
+								<option>	Peruvien	</option>
 								<option>	Philippins	</option>
 								<option>	Polonais	</option>
 								<option>	Portoricain	</option>
 								<option>	Portugais	</option>
 								<option>	Roumain	</option>
 								<option>	Russe	</option>
-								<option>	Sénégalais	</option>
+								<option>	Senegalais	</option>
 								<option>	Serbe	</option>
 								<option>	Serbo-croate	</option>
 								<option>	Singapour	</option>
 								<option>	Slovaque	</option>
-								<option>	Soviétique	</option>
+								<option>	Sovietique	</option>
 								<option>	Sri-lankais	</option>
 								<option>	Sud-Africain	</option>
-								<option>	Sud-Coréen	</option>
-								<option>	Suédois	</option>
+								<option>	Sud-Coreen	</option>
+								<option>	Suedois	</option>
 								<option>	Suisse	</option>
 								<option>	Syrien	</option>
 								<option>	Tadjik	</option>
 								<option>	Taïwanais	</option>
 								<option>	Tchadien	</option>
-								<option>	Tchèque	</option>
+								<option>	Tcheque	</option>
 								<option>	Thaïlandais	</option>
 								<option>	Tunisien	</option>
 								<option>	Turc	</option>
 								<option>	Ukrainien	</option>
 								<option>	Uruguayen	</option>
-								<option>	Vénézuélien	</option>
+								<option>	Venezuelien	</option>
 								<option>	Vietnamien	</option>
 			                </select>
 			                
@@ -160,7 +162,7 @@
 			                <label for="ville"> Ville :</label>
 			                <input type="text" id="ville" name="ville" size="20" maxlength="30" required />
 			
-			                <label for="tel">Numéro de téléphone :</label>
+			                <label for="tel">Numero de telephone :</label>
 			                <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" placeholder = "10 chiffres" size="20" maxlength="14" required />
 			
 			                <label for="email">Email:</label>
@@ -172,9 +174,9 @@
 			                <label for="cmdp">Confirmez votre mot de passe :</label>
 			                <input type="password" id="password2" name="password2" size="20" maxlength="20" onchange="checkPw()" required />
 			
-			                <label id="hint"></label> <br /> Vous êtes :<br />
+			                <label id="hint"></label> <br /> Vous etes :<br />
 			                <select name="statut" required>
-								<option>Un(e) étudiant(e)</option>
+								<option>Un(e) etudiant(e)</option>
 								<option>Un professionnel</option>
 								<option>En recherche d'emploi</option>
 							</select>
@@ -185,13 +187,13 @@
 			
 			            <fieldset>
 			
-			                <legend> Compte supplémentaire </legend>
+			                <legend> Compte supplementaire </legend>
 			
-			                <p>Voulez- vous créer un second compte ? Si oui choississez le(s) type(s) de compte :</p>
+			                <p>Voulez- vous creer un second compte ? Si oui choississez le(s) type(s) de compte :</p>
 			                <table>
 				                <tr>
 					                <td><input class="checkBoxes" type="checkbox" name="epargneCheckBox" id="epargneCheckBox" /></td>
-					                <td><label class="lbForCheckBox" for="epargneCheckBox">Compte épargne</label></td>
+					                <td><label class="lbForCheckBox" for="epargneCheckBox">Compte epargne</label></td>
 				                </tr>
 				                <tr>
 					                <td><input class="checkBoxes" type="checkbox" name="titreCheckBox" id="titreCheckBox" /></td>
