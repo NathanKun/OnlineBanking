@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-Espace créé
-<br>
-Votre login est:
-<%@ page import="servlet.Inscription"%>
-
-
+<a href="./login.jsp">login</a>
+<a href="./subscribe.jsp">subscribe</a>
 </body>
 </html>

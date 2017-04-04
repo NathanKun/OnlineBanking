@@ -73,6 +73,16 @@ public class DaoClient extends Dao{
 		return clt;
 	}
 
+	public static String getNextClientLogin() {
+		String sql = "SELECT clt_login FROM client_clt WHERE clt_id = (( " 
+				+ "SELECT AUTO_INCREMENT "
+				+ "FROM information_schema.tables " 
+				+ "WHERE table_name = 'client_clt' "
+				+ "AND table_schema = DATABASE( )) - 1)";
+		String cltLogin = Dao.getNextItem("clt_login", sql);
+		return String.valueOf(Long.parseLong(cltLogin) + 1);
+	}
+
 
 	/**
 	 * Main for testing
@@ -120,6 +130,9 @@ public class DaoClient extends Dao{
 		System.out.println(DaoClient.getClient(3).toString());*/
 		
 		// get by login test
-		System.out.println(DaoClient.findClientByLogin("a"));
+//		System.out.println(DaoClient.findClientByLogin("a"));
+		
+		// get next clt login test
+		System.out.println(getNextClientLogin());
 	}
 }

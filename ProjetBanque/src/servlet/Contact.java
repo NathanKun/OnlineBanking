@@ -9,24 +9,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringEscapeUtils;
-
+import dao.Dao;
 import dao.DaoClient;
+import dao.DaoContactForm;
 import model.Client;
-import util.PasswordAuthentication;
-
+import model.ContactForm;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Contact
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Contact")
+public class Contact extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Contact() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -35,35 +43,13 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out= response.getWriter();
-		String login= request.getParameter("login");
-		String password=request.getParameter("password");
-		Client clt= DaoClient.findClientByLogin(login);
-		Boolean isFound = false;
-		Client cltFound = null;
+		String name= request.getParameter("name");
+		String email=request.getParameter("email");
+		String tel= request.getParameter("phone");
+		String message=request.getParameter("message");
+		ContactForm ctf= new ContactForm(0,name,tel,email,message);
+		out.println(DaoContactForm.addContactForm(ctf));
 		
-		PasswordAuthentication pa = new PasswordAuthentication();
-		
-		
-		if(clt != null) {
-			if (pa.authenticate(password.toCharArray(), clt.getClt_password())) {
-				isFound = true;
-				cltFound = clt;
-			}
-		}
-			
-		
-		
-		if(isFound){
-			// redirection
-			request.getSession(true).setAttribute("client", cltFound);
-			response.sendRedirect("./AccueilClient.jsp");
-		}
-		else{
-			// go back to login page
-			request.setAttribute("loginFailed", true);
-			request.setAttribute("login", login);
-			response.sendRedirect("./login.jsp");
-		}
 	}
 
 }
