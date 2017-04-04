@@ -25,7 +25,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("./login.jsp");
+		response.sendRedirect("./index.jsp");
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Login extends HttpServlet {
 		if (isFound) {
 			// redirection
 			request.getSession(true).setAttribute("client", cltFound);
-			response.sendRedirect("./AccueilClient.jsp");
+			response.sendRedirect("./CustomerArea.jsp");
 		} else {
 			// go back to login page
 			request.setAttribute("loginFailed", true);

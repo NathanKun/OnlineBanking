@@ -23,9 +23,9 @@
 				Au-delà de cette période et de ce montant, le taux standard du Livret d'épargne est appliqué. 
 				Le taux standard du Livret d’épargne BforBank est actuellement de 0,30% annuel brut et est susceptible d’être révisé à tout moment par la banque.</p>
 			</section><!-- end of #content -->
-	</section>
 	
-	<%@ include file="../includes/loginFormInIndex.inc.jsp"%>
+		<%@ include file="../includes/loginFormInIndex.inc.jsp"%>
+	</section>
 
 </div><!-- #wrapper -->
 

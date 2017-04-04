@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Offre 2</title>
-	<link rel="stylesheet" href="../css/offres.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/offres.css" type="text/css"/>
 	
 
 </head>
@@ -22,11 +22,11 @@
 			<p>-Choisir entre le débit immédiat et différé</p>	
 			<p>-Ajuster vous-même vos plafonds de façon temporaire ou définitive en fonction de vos besoins (Sous réserve d’acceptation en ligne par la Banque)</p>	
 			<p>-Disposer du paiement sans contact</p>	
-			<p>-Fixer les alertes sur vos opérations cartes depuis votre Espace Client</p>	</font> 				
+			<p>-Fixer les alertes sur vos opérations cartes depuis votre Espace Client</p>			
 		</section><!-- end of #content -->
-	</section>
 	
-	<%@ include file="../includes/loginFormInIndex.inc.jsp"%>
+		<%@ include file="../includes/loginFormInIndex.inc.jsp"%>
+	</section>
 		
 </div><!-- #wrapper -->
 

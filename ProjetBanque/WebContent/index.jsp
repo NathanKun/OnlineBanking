@@ -1,13 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<a href="./login.jsp">login</a>
-<a href="./subscribe.jsp">subscribe</a>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Index</title>
+    	<link rel="stylesheet" href="./css/global.css" type="text/css">
+		<link rel="stylesheet" href="./css/offres.css" type="text/css">
+	</head>
+	
+	<body>
+		<div id="wrapper"><!-- #wrapper -->
+			<%@ include file="../includes/header.inc.jsp"%>
+		
+			<section id="main"><!-- #main content and sidebar area -->
+				<section id="content"><!-- #content -->
+			
+			
+			
+				
+				
+				
+				</section><!-- end of #content -->
+				<%@ include file="../includes/loginFormInIndex.inc.jsp"%>
+			</section>
+			
+	</div><!-- #wrapper -->
+	</body>
 </html>

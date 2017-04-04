@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="./includes/sessionCheck.inc.jsp"%>
 <%	
 	// get entered login if redirection by login failed (login/password incorrect)
@@ -15,6 +15,7 @@
 <head>
 	<title>Page Connexion</title>
     <meta charset="UTF-8">
+    	<link rel="stylesheet" href="./css/global.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="./css/login.css">
 </head>
 
@@ -24,7 +25,7 @@
 	<div id="menu">Menu ???</div>
 
 	<div id="contenu">
-		<form action="http://localhost:8080/ProjetBanque/Login" method="post">
+		<form action="./Login" method="post">
 			<fieldset>
 				<legend>Vos Identifiants :</legend>
 				<label for="login"> Identifiant :</label> 

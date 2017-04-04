@@ -41,5 +41,4 @@ public class Contact extends HttpServlet {
 			response.getWriter().write("Failed"); 
 		}
 	}
-
 }
