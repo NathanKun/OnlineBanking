@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="sessionCheck.jsp"%>
+<%@ include file="./includes/sessionCheck.inc.jsp"%>
 <%	
 	// get entered login if redirection by login failed (login/password incorrect)
 	String login = (String)request.getAttribute("login"); 

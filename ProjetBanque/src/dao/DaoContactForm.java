@@ -71,8 +71,8 @@ public class DaoContactForm extends Dao {
 	 */
 	public static void main(String args[]){
 		// insert test
-//		ContactForm ctf = new ContactForm(0, "Name2", "e@mai.il2", "phonenb2", "msgmsgmsgmsgmsgmsgmsg2");
-//		System.out.println(DaoContactForm.addContactForm(ctf));
+		ContactForm ctf = new ContactForm(0, "Name2", "e@mai.il2", "phonenb2", "msgmsgmsgmsgmsgmsgmsg2");
+		System.out.println(DaoContactForm.addContactForm(ctf));
 
 		// get one test
 //		System.out.println(DaoContactForm.getContactForm(4));

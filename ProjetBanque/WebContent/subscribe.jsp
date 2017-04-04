@@ -150,7 +150,7 @@
                     <option>	Uruguayen	</option>
                     <option>	Venezuelien	</option>
                     <option>	Vietnamien	</option>
-                </select>
+</select>
                 
                 <label for="adresse">Adresse :</label>
                 <input type="text" id="adresse" name="adresse" size="20" maxlength="255" required />
