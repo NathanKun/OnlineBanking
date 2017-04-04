@@ -144,7 +144,7 @@
 								<option>	Taïwanais	</option>
 								<option>	Tchadien	</option>
 								<option>	Tcheque	</option>
-								<option>	Thaïlandais	</option>
+								<option>	Thailandais	</option>
 								<option>	Tunisien	</option>
 								<option>	Turc	</option>
 								<option>	Ukrainien	</option>
