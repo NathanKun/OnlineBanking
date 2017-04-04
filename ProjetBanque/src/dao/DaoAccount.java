@@ -1,9 +1,6 @@
 package dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-
-import org.joda.time.DateTime;
 
 import model.Account;
 
@@ -74,6 +71,7 @@ public class DaoAccount extends Dao {
 	 *            id of the Client
 	 * @return tsh - the list of Account
 	 */
+	@SuppressWarnings("unchecked")
 	public static ArrayList<Account> findAccountByClientId(int id) {
 		String sql = "SELECT * FROM Account_acc WHERE acc_clt_id = " + String.valueOf(id);
 		ArrayList<Account> accList = (ArrayList<Account>) getList("FindAccountByClientId", sql);

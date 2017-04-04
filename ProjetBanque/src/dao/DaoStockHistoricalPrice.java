@@ -1,11 +1,7 @@
 package dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import org.joda.time.DateTime;
-
-import model.HoldingShare;
 import model.StockHistoricalPrice;
 
 public class DaoStockHistoricalPrice extends Dao {
@@ -72,6 +68,7 @@ public class DaoStockHistoricalPrice extends Dao {
 	 * @param cltId	client's ID
 	 * @return	list of HoldingShare for this client
 	 */
+	@SuppressWarnings("unchecked")
 	// TODO: NOT TESTED
 	public static ArrayList<StockHistoricalPrice> findShpByStkId(int stkId) {
 		String sql = "SELECT * FROM stockhistoricalprice_shp "

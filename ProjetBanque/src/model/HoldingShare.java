@@ -1,7 +1,5 @@
 package model;
 
-import java.math.BigDecimal;
-
 import org.joda.time.DateTime;
 
 public class HoldingShare {
@@ -12,7 +10,7 @@ public class HoldingShare {
 	private int hds_id;
 
 	/**
-     * 	l'identifiant de l'action achetée
+     * 	l'identifiant de l'action achetï¿½e
      */
 	private int hds_stk_id;
 	
@@ -22,7 +20,7 @@ public class HoldingShare {
 	private int hds_acc_id;
 	
 	/**
-	 * le nombre d'actions achetées
+	 * le nombre d'actions achetï¿½es
 	 */
 	private int hds_numberOfShares;
 	
@@ -81,8 +79,8 @@ public class HoldingShare {
 	}
 
 	/**
-	* Permet d'obtenir le nombre d'actions achetées.
-	* @return le nombre d'actions achetées.
+	* Permet d'obtenir le nombre d'actions achetï¿½es.
+	* @return le nombre d'actions achetï¿½es.
 	* @see #setHds_numberOfShares(int hds_numberOfShares)
 	*/
 	public int getHds_numberOfShares() {
@@ -94,8 +92,8 @@ public class HoldingShare {
 	}
 
 	/**
-	* Permet d'obtenir le nombre d'actions achetées.
-	* @return le nombre d'actions achetées.
+	* Permet d'obtenir le nombre d'actions achetï¿½es.
+	* @return le nombre d'actions achetï¿½es.
 	* @see # setHds_boughtOn(DateTime hds_boughtOn).
 	*/
 	public DateTime getHds_boughtOn() {

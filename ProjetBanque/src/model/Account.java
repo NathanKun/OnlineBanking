@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import dao.DaoHoldingShare;
-import dao.DaoStockHistoricalPrice;
 import dao.DaoTransactionHistory;
 
 public class Account {

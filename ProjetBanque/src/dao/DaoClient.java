@@ -2,8 +2,6 @@ package dao;
 
 import java.util.ArrayList;
 
-import org.joda.time.DateTime;
-
 import model.Client;
 
 public class DaoClient extends Dao{
