@@ -46,37 +46,31 @@ public class Subscribe extends HttpServlet {
 		String statut = request.getParameter("statut");
 		String tel = request.getParameter("tel");
 		String naissance = request.getParameter("naissance");
-		
-
 		PrintWriter out = response.getWriter();
 		String login = DaoClient.getNextClientLogin();
 		String acc_number = DaoAccount.getNextAccountNumber();
 
-		PasswordAuthentication pa = new PasswordAuthentication();
-		password = pa.hash(password.toCharArray());
+	/*	PasswordAuthentication pa = new PasswordAuthentication();
+		password = pa.hash(password.toCharArray());*/
 		
 		out.println("Espace cree");
 
 		out.println("Votre login est "+ login);
-		out.println(naissance);
-		/*Client c = new Client(0,login,password,prenom,nom, new DateTime(naissance),
+		
+		Client c = new Client(0,login,password,prenom,nom, new DateTime(naissance),
 				nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
-				new DateTime());
+				new DateTime().toDateTimeISO());
 		//On ajoute les infos du client dans la base de donn�es
 		DaoClient.addClient(c);
-	
+		out.println(c.getClt_fname()+ "votre espace a ete cree");
 		c = DaoClient.findClientByLogin(login);
-<<<<<<< HEAD:ProjetBanque/src/servlet/Inscription.java
+
 		//On cree un compte courant pour le nouveau client
 		Account acc=new Account(0,acc_number,c.getClt_id(),BigDecimal.ZERO,BigDecimal.ZERO,1);
-=======
-		//On créé un compte courant pour le nouveau client
-		Account acc = new Account(0, acc_number, c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 1);
->>>>>>> 014e01296e7bbdd00892fee5b4c0c3352debca0f:ProjetBanque/src/servlet/Subscribe.java
 		DaoAccount.addAccount(acc);
 		out.println("Votre numero de compte est  "+ acc_number );
 
-
+/*
 		if(request.getParameter("epargneCheckBox") == "on"){
 			// create saving account
 			acc = new Account(0, DaoAccount.getNextAccountNumber(), c.getClt_id(), new BigDecimal(1.5), BigDecimal.ZERO, 2);
@@ -86,7 +80,7 @@ public class Subscribe extends HttpServlet {
 			// create securities account
 			acc = new Account(0, DaoAccount.getNextAccountNumber(), c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 3);
 			DaoAccount.addAccount(acc);
-		}*/
+		} */
 		
 	}
 }

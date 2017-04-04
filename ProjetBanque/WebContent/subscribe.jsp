@@ -219,7 +219,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
-	<script> src="./js/subscribe.js"</script>
+	<script src="./js/subscribe.js"></script>
 	
 	
 	</body>
