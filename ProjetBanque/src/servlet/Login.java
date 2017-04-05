@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("./index.jsp");
+		response.sendRedirect("./login.jsp");
 	}
 
 	/**
@@ -38,7 +38,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 PrintWriter out= response.getWriter();
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		Client clt = DaoClient.findClientByLogin(login);
@@ -57,14 +56,13 @@ public class Login extends HttpServlet {
 		if (isFound) {
 			// redirection
 			request.getSession(true).setAttribute("client", cltFound);
-			System.out.println("found");
-			response.sendRedirect("./CustomerArea.jsp");
+			System.out.println("clt found");
+			response.sendRedirect("./zoneclient.jsp");
 		} else {
 			// go back to login page
 			request.setAttribute("loginFailed", true);
 			request.setAttribute("login", login);
-			System.out.println("not found");
-			response.sendRedirect("./CustomerArea.jsp");
+			request.getRequestDispatcher("./login.jsp").forward(request, response);
 		}
 	}
 

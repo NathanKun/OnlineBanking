@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 $('.nav-tabs-dropdown').each(function(i, elm) {
+=======
+﻿$('.nav-tabs-dropdown').each(function(i, elm) {
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332
     
     $(elm).text($(elm).next('ul').find('li.active a').text());
     

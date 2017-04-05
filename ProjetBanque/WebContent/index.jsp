@@ -94,7 +94,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace client <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="full-width.html">AccÃ©der Ã  mon compte</a>
+                                <a href="full-width.html">Accéder à mon compte</a>
                             </li>
                             <li>
                                 <a href="sidebar.html">Devenir membre</a>
@@ -187,7 +187,7 @@
             <h1>We are creative</h1>        
             <h3>Rejoignez nous</h3>
         </hgroup>
-        <button class="btn btn-hero btn-lg" role="button">DÃ©tails</button>
+        <button class="btn btn-hero btn-lg" role="button">Détails</button>
       </div>
     </div>
     <div class="item slides">
@@ -195,9 +195,9 @@
       <div class="hero">        
         <hgroup>
             <h1>We are smart</h1>        
-            <h3>bÃ©nÃ©ficiez d'un compte sans frais</h3>
+            <h3>bénéficiez d'un compte sans frais</h3>
         </hgroup>       
-        <button class="btn btn-hero btn-lg" role="button">DÃ©tails</button>
+        <button class="btn btn-hero btn-lg" role="button">Détails</button>
       </div>
     </div>
     <div class="item slides">
@@ -207,7 +207,7 @@
             <h1>We are amazing</h1>        
             <h3>oOtenez gratuitement votre carte visa</h3>
         </hgroup>
-        <button class="btn btn-hero btn-lg" role="button">DÃ©tails</button>
+        <button class="btn btn-hero btn-lg" role="button">Détails</button>
       </div>
     </div>
   </div> 
@@ -320,11 +320,11 @@
                     </li>-->
                     <li>80 euros offerts lors de l'ouverture de votre premier compte</li>
                     <li>Des conseillers clients en chair et en os</li>
-                    <li>Une assistance de proximitÃ©</li>
-                    <li>AccÃ¨s instantanÃ© Ã  la bourse</li>
-                    <li>ActualitÃ©s en temps rÃ©el</li>
+                    <li>Une assistance de proximité</li>
+                    <li>Accès instantané à la bourse</li>
+                    <li>Actualités en temps réel</li>
                 </ul>
-                <p> Pilotez vos finances au juste prix. Vous ne payez que pour les services qui ont de la valeur. DÃ©couvrez tous les services quotidiens gratuits, Ã§a change la vie.</p>
+                <p> Pilotez vos finances au juste prix. Vous ne payez que pour les services qui ont de la valeur. Découvrez tous les services quotidiens gratuits, ça change la vie.</p>
             </div>
             <div class="col-md-6">
                 <img class="img-responsive" src="http://placehold.it/700x450" alt="">
@@ -338,7 +338,7 @@
         <div class="well">
             <div class="row">
                 <div class="col-md-8">
-                    <p>Une offre claire. Peu de frais... Jamais cachÃ©s</p>
+                    <p>Une offre claire. Peu de frais... Jamais cachés</p>
                 </div>
                 <div class="col-md-4">
                     <a class="btn btn-lg btn-default btn-block" href="#">Voir les offres</a>

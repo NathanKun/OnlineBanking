@@ -59,12 +59,10 @@ public class Subscribe extends HttpServlet {
 		
 		PasswordAuthentication pa = new PasswordAuthentication();
 		password = pa.hash(password.toCharArray());
+		
 		Client c = new Client(0,login,password,prenom,nom, new DateTime(a,m,j,0,0,0,0),
                 nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
                 new DateTime().toDateTimeISO());
-		out.println("Espace cree");
-
-		out.println("Votre login est "+ login);
 		//On ajoute les infos du client dans la base de donn�es
 		DaoClient.addClient(c);
 		c = DaoClient.findClientByLogin(login);
@@ -72,8 +70,6 @@ public class Subscribe extends HttpServlet {
 		//On cree un compte courant pour le nouveau client
 		Account acc=new Account(0,acc_number,c.getClt_id(),BigDecimal.ZERO,BigDecimal.ZERO,1);
 		DaoAccount.addAccount(acc);
-		out.println("Votre numero de compte est  "+ acc_number );
-
 
 		if(request.getParameter("epargneCheckBox") == "on"){
 			// create saving account
@@ -85,6 +81,8 @@ public class Subscribe extends HttpServlet {
 			acc = new Account(0, DaoAccount.getNextAccountNumber(), c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 3);
 			DaoAccount.addAccount(acc);
 		} 
-		
+		// redirection
+		request.getSession(true).setAttribute("client", DaoClient.findClientByLogin(login));
+		response.sendRedirect("./zoneclient.jsp");
 	}
 }
