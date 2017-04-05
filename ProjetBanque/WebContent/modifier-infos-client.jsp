@@ -1,3 +1,4 @@
+<%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +10,11 @@
 </head>
 <body>
 <div id="wrapper"><!-- #wrapper -->
-
+<%
+								Client clt = (Client) session.getAttribute("client");
+								ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt.getClt_id());
+								request.setAttribute("accList", accList);
+							%>
 	<header><!-- header -->
 	<h1><img src="bank.png" alt="image"><a href="#">BankRading </a></h1><!-- header image -->
 		
@@ -55,7 +60,7 @@
    <tr>
         
 	<td> <label>Identifiant   </label> : </td>
-	<td><input type="text" name="clt_login" id ="clt_login" /> </td>
+	<td><input type="text" name="clt_login" id ="clt_login"  value= "<%=clt.getClt_login()%>"/> </td>
 		 
 		 </tr>
 		 

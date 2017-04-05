@@ -63,10 +63,21 @@ public class ModifyInfo extends HttpServlet {
 		//On doit reprendre le login precedent
 		String login = DaoClient.getNextClientLogin();
 		String acc_number = DaoAccount.getNextAccountNumber();
-		Client c = new Client(0,login,password,prenom,nom, new DateTime(a,m,j,0,0,0,0),
-                nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
-                new DateTime().toDateTimeISO());
-		DaoClient.updateClient(c);
+		Client c= (Client)request.getSession(true).getAttribute("client");
+		c.setClt_lname(nom);
+		c.setClt_fname(prenom);
+		c.setClt_nationality(nationalite);
+		c.setClt_gender(sexe);
+		c.setClt_address(adresse);
+		c.setClt_postalcode(codepostal);
+		c.setClt_city(ville);
+		c.setClt_email(email);
+		c.setClt_password(password);
+		c.setClt_status(statut);
+		c.setClt_telephonenumber(tel);
+		DateTime date= new DateTime (a,m,j,0,0,0,0);
+		c.setClt_birthday(date);
+		DaoClient.updateClient(c);		
 		out.println("Modifications apportées");
 	}
 

@@ -35,9 +35,9 @@
 			                <input type="text" id="prenom" name="prenom" size="20" maxlength="30" required />
 			
 			                <label for="naissance">Date de naissance :</label>
-			                               <input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
-                 <input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
-                 <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required >
+			                <input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
+                 			<input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
+                			 <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required >
                 <label for="nationalite"> Nationalite :</label>
 
 			                <select id="nationalite" name="nationalite" required>
