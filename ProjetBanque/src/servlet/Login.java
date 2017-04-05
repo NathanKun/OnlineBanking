@@ -45,25 +45,26 @@ public class Login extends HttpServlet {
 		boolean isFound = false;
 		Client cltFound = null;
 
-		/*PasswordAuthentication pa = new PasswordAuthentication();
+		PasswordAuthentication pa = new PasswordAuthentication();
 
 		if (clt != null) {
 			if (pa.authenticate(password.toCharArray(), clt.getClt_password())) {
 				isFound = true;
 				cltFound = clt;
 			}
-		}*/
+		}
 
-		if (clt.getClt_password().equals(password)) {
+		if (isFound) {
 			// redirection
 			request.getSession(true).setAttribute("client", cltFound);
-			out.println("trouve");
-			response.sendRedirect("./espaceClient.html");
+			System.out.println("found");
+			response.sendRedirect("./CustomerArea.jsp");
 		} else {
 			// go back to login page
 			request.setAttribute("loginFailed", true);
 			request.setAttribute("login", login);
-			response.sendRedirect("./login.jsp");
+			System.out.println("not found");
+			response.sendRedirect("./CustomerArea.jsp");
 		}
 	}
 
