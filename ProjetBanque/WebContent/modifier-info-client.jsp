@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -170,12 +170,10 @@
 	<section id="main"><!-- #main content and sidebar area -->
 			<section id="content"><!-- #content -->
 			
-				     <h1><legend>Afficher vos informations :<legend></h1> <!-- Titre du fieldset --> 
+				     <h1><legend>Modifier vos informations :<legend></h1> <!-- Titre du fieldset --> 
 	   
 	   
-	   
-	   
-	   
+	  
 	   
 	   
 	    <form method="post" action=".php">
@@ -185,73 +183,84 @@
    <tr>
         
 	<td> <label>Identifiant   </label> : </td>
-	<td> </td>
+	<td><input type="text" name="identifiant" id ="identifiant" /> </td>
 		 
 		 </tr>
+		 
+		 
+	 <tr>
+    <td><label>Mot de passe  </label> : </td>
+	<td><input type="password" name="password" id ="password" /></td>
+	 </tr>
+	 
+	  <tr>
+    <td><label>Confirmer le mot de passe  </label> : </td>
+	<td><input type="password" name="clt_password" id ="clt_password" /></td>
+	 </tr>
 	 
 	 <tr>	
     <td><label>Nom</label> : </td>
-	<td> </td>
+	<td><input type="text" name="name" id ="name" /></td>
 	</tr>
 	 
 	 <tr>	
     <td><label>Prénom</label> : </td>
-	<td> </td>
+	<td><input type="text" name="prenom" id ="prenom" /></td>
 	</tr>
 	 
 	 <tr>
    <td> <label>Date de naissance</label> : </td>
-	<td> </td>
+	<td><input type="date" name="date" id ="date" /></td>
 </tr>
 	 
 	 <tr>	 
     <td><label>Nationalité</label> : </td>
-	<td> </td>
+	<td><input type="text" name="nationalite" id ="nationalite" /></td>
 	</tr>
 	 
 	 <tr>	
    <td> <label>Sexe</label> : </td>
-	<td> </td>
+	<td><input type="text" name="sexe" id ="sexe" /></td>
 	</tr>
 	
 	<tr>	
     <td><label>Adresse</label> : </td>
-	<td> </td>
+	<td><input type="text" name="addresse" id ="addresse" /></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Code postal</label> : </td>
-	<td> </td>
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="codepostal" id ="codepostal" /></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Ville</label> : </td>
-	<td> </td>
+	<td><input type="text" name="ville" id ="ville" /></td>
 	</tr>
 	
 	<tr>	
     <td><label>Numéro de téléphone</label> : </td>
-	<td> </td>
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="tel" id ="tel" /></td>
 	</tr>
 	
 	<tr>
    <td> <label>E-mail</label> : </td>
-	<td> <td>
+	<td><input type="email" name="mail" id ="mail" /></td>
 	 </tr>
 	
 	<tr>	
    <td> <label>Statut</label> : </td>
-	<td> </td>
+	<td><input type="text" name="statut" id ="statut" /></td>
 	</tr>
 	
 	</table>
 	
 	
 	
-	
-	
     <p>
-<input type="button" value="Modifier les informations" OnClick="location.href='modifier-infos-client.jsp'"/>          
+	<input type="submit" value="Enregistrer les modifications" OnClick="zoneclient.html"/> 
+    <input type="button" value="Annuler"  OnClick= "location.href='zoneclient.html'"/>
+    <input type="reset" value="Recommencer" />
 	</p>
 	
  </form>
@@ -260,6 +269,7 @@
 	
 	
 	</center>
+			
 			
 			
 			</section><!-- end of #content -->

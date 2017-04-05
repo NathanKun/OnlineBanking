@@ -1,46 +1,125 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Index</title>
-    	<link rel="stylesheet" href="./css/global.css" type="text/css">
-    	<link rel="stylesheet" href="./css/subscribe.css" type="text/css">
-	</head>
-	
-	<body>
-		<div id="wrapper"><!-- #wrapper -->
-			<%@ include file="../includes/header.inc.jsp"%>
-		
-			<section id="main"><!-- #main content and sidebar area -->
-				<section id="content"><!-- #content -->
-			
-			        <form id="form" action="./Subscribe" onsubmit="return checkInputs()" method="post">
-			            <fieldset>
-			
-			                <legend>Vos coordonnees :</legend>
-			
-			                <p>Vous etes :</p>
-			
-			                <select name="sexe">
-								<option value="F">Une femme</option>
-								<option value="M">Un homme</option>
-							</select>
-			
-			                <label for="nom"> Nom :</label>
-			                <input type="text" name="nom" id="nom" size="20" maxlength="30" required />
-			
-			                <label for="prenom"> Prenom :</label>
-			                <input type="text" id="prenom" name="prenom" size="20" maxlength="30" required />
-			
-			                <label for="naissance">Date de naissance :</label>
-			                               <input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
-                 <input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
-                 <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required >
-                <label for="nationalite"> Nationalite :</label>
+<html lang="en">
 
-			                <select id="nationalite" name="nationalite" required>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Créer compte client</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/modern-business.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+	<%@ include file="./includes/nav.inc.jsp"%>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Page inscription
+                    <small>Créer mon compte</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li class="active">Page inscription</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Veuillez remplir le formulaire d'inscription svp :</h3>
+                <form id="form" class="form-horizontal" action="./Subscribe" onsubmit="return checkInputs()" method="post">
+                        <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Données Personnelles</legend>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="selectbasic">Titre</label>
+                          <div class="col-md-4">
+                            <select id="selectbasic" name="sexe" class="form-control">
+                              <option value="1">Mademoiselle</option>
+                              <option value="2">Madame</option>
+                              <option value="3">Monsieur</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="Nom22">Nom</label>  
+                          <div class="col-md-4">
+                          <input id="nom" name="nom" placeholder="Nom" class="form-control input-md" required="" type="text">
+                            
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="Prénom">Prénom</label>  
+                          <div class="col-md-4">
+                          <input id="prenom" name="prenom" placeholder="Prénom" class="form-control input-md" required="" type="text">
+                            
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="Ddn">Date de Naissance</label>  
+                          <div class="col-md-4">
+                          	<input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
+				            <input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
+				            <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required >
+                          </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="EtatC">Etat Civil</label>
+                          <div class="col-md-4">
+                            <select id="EtatC" name="statut" class="form-control">
+                              <option value="1">Marié(e)</option>
+                              <option value="2">Divorcé(e)</option>
+                              <option value="3">Séparé(e)</option>
+                              <option value="4">Célibataire</option>
+                              <option value="5">Veuf(ve)</option>
+                            </select>
+                          </div>
+                        </div>
+
+                         <div class="form-group">
+                          <label class="col-md-4 control-label" for="nationalite">Nationalité</label>  
+                          <div class="col-md-4">
+                          <select id="nationalite" name="nationalite" class="form-control input-md" required>
+								<option></option>
 								<option>	Afghan	</option>
 								<option>	Albanais	</option>
 								<option>	Algerien	</option>
@@ -151,80 +230,140 @@
 								<option>	Uruguayen	</option>
 								<option>	Venezuelien	</option>
 								<option>	Vietnamien	</option>
-			                </select>
-			                
-			                <label for="adresse">Adresse :</label>
-			                <input type="text" id="adresse" name="adresse" size="20" maxlength="255" required />
-			
-			                <label for="codepostal">Code postal :</label>
-			                <input type="text" id="codepostal" name="codepostal" size="20" maxlength="10" onchange="getCity()" required />
-			
-			                <label for="ville"> Ville :</label>
-			                <input type="text" id="ville" name="ville" size="20" maxlength="30" required />
-			
-			                <label for="tel">Numero de telephone :</label>
-			                <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" placeholder = "10 chiffres" size="20" maxlength="14" required />
-			
-			                <label for="email">Email:</label>
-			                <input type="email" id="email" name="email" size="20" maxlength="20" required />
-			
-			                <label for="password">Choisissez un mot de passe :</label>
-			                <input type="password" id="password" name="password" size="20" maxlength="20" onchange="checkPw()" required />
-			
-			                <label for="cmdp">Confirmez votre mot de passe :</label>
-			                <input type="password" id="password2" name="password2" size="20" maxlength="20" onchange="checkPw()" required />
-			
-			                <label id="hint"></label> <br /> Vous etes :<br />
-			                <select name="statut" required>
-								<option>Un(e) etudiant(e)</option>
-								<option>Un professionnel</option>
-								<option>En recherche d'emploi</option>
-							</select>
-			
-			
-			            </fieldset>
-			
-			
-			            <fieldset>
-			
-			                <legend> Compte supplementaire </legend>
-			
-			                <p>Voulez- vous creer un second compte ? Si oui choississez le(s) type(s) de compte :</p>
-			                <table>
-				                <tr>
-					                <td><input class="checkBoxes" type="checkbox" name="epargneCheckBox" id="epargneCheckBox" /></td>
-					                <td><label class="lbForCheckBox" for="epargneCheckBox">Compte epargne</label></td>
-				                </tr>
-				                <tr>
-					                <td><input class="checkBoxes" type="checkbox" name="titreCheckBox" id="titreCheckBox" /></td>
-					                <td><label class="lbForCheckBox" for="titreCheckBox"> Compte titre </label> </td>
-								</tr>
-							</table>
-			            </fieldset>
-			
-			            <p>
-			                <input type="submit" id="submit" />
-			                <input type="reset" />
-			            </p>
-			
-			        </form>
-				
-				
-				
-				</section><!-- end of #content -->
-				<%@ include file="../includes/loginFormInIndex.inc.jsp"%>
-			</section>
-			
-	</div><!-- #wrapper -->
-	
-	
+			                </select>  
+                          </div>
+                        </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="rue">Adresse</label>  
+                          <div class="col-md-4">
+                          <input id="adresse" name="adresse" placeholder="Adresse" class="form-control input-md" required="" type="text">
+                            
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="CP">Code Postal</label>  
+                          <div class="col-md-2">
+                          <input id="codepostal" name="codepostal" onchange="getCity()" placeholder="Code Postal" class="form-control input-md" required="" type="text">
+                            
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="ville">Ville</label>  
+                          <div class="col-md-4">
+                          <input id="ville" name="ville" placeholder="ville" class="form-control input-md" required="" type="text">
+                            
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="mail">Adresse e-mail</label>  
+                          <div class="col-md-4">
+                          <input id="email" name="email" placeholder="Adresse e-mail" class="form-control input-md" required="" type="text">
+                            
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tel">Téléphone</label>  
+                          <div class="col-md-4">
+                          <input id="tel" name="tel"  pattern="[0-9]{10}" placeholder="Téléphone" class="form-control input-md" required="" type="text">
+                            
+                          </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="revMensNet">Choisissez votre mot de passe </label>  
+                          <div class="col-md-4">
+                          <input id="password" name="password" onchange="checkPw()" placeholder="password" class="form-control input-md" required="" type="password">
+                            
+                          </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="cpassword">Confirmez mot de passe</label>  
+                          <div class="col-md-4">
+                          <input id="password2" name="password2" onchange="checkPw()" placeholder="cpassword" class="form-control input-md" type="password">
+                            
+                          </div>
+                        </div>
+
+
+
+                             <div class="form-group">
+                               <p>    <label class="col-md-4 control-label" for="cpassword">Je crée également un: </label> 
+            
+                         
+                                <input type="checkbox" id="epargne" name="epargneCheckBox" >
+                                <label for="epargne">Compte épargne</label>
+
+                                <input type="checkbox" id="titre" name="titreCheckBox" >
+                                <label for="titre"> Compte titre.</label></p>
+                          </div>
+                        
+
+			            <label id="hint"></label> <br /> 
+			            
+                        <!-- Button -->
+                        <div class="form-group">
+                         <label class="col-md-4 control-label" for="send"></label>
+                          <div class="col-md-4">
+                            <input type="submit" value=" Je crée mon compte !" id="submit" name="send" class="btn btn-primary">
+                          </div>
+                        </div>
+
+                        </fieldset>
+                        </form>
+
+                   
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+            <!-- Content Column -->
+           <!-- <div class="col-md-9">
+                <h2>Section Heading</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p>
+            </div>
+        </div>-->
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; BanKrading 2017</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+    
 	<script src="./js/subscribe.js"></script>
-	
-	
-	</body>
+    
+    <script> window.onload = function(){document.getElementById("costumerarea").className = "dropdown active"; }</script>
+
+</body>
+
 </html>
-
-

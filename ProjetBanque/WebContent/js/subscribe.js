@@ -1,7 +1,7 @@
 /**
  * js file to handle subscribe events
  */
-window.onload = function() {
+/*window.onload = function() {
     // set max date
     var today = new Date();
     var dd = today.getDate();
@@ -17,8 +17,8 @@ window.onload = function() {
     today = yyyy + '-' + mm + '-' + dd;
 
     document.getElementById("naissance").setAttribute("max", today);
+}*/
 
-}
 // XSS special characters check
 function checkXSS(input) {
     var filteredInput = filterXSS(input);

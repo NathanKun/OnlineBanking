@@ -185,73 +185,82 @@
    <tr>
         
 	<td> <label>Identifiant   </label> : </td>
-	<td> </td>
+	<td><input type="text" name="clt_login" id ="clt_login" /> </td>
 		 
 		 </tr>
+		 
+		 
+	 <tr>
+    <td><label>Mot de passe  </label> : </td>
+	<td><input type="password" name="clt_password" id ="clt_password" /></td>
+	 </tr>
+	 
+	  <tr>
+    <td><label>Confirmer le mot de passe  </label> : </td>
+	<td><input type="password" name="clt_password" id ="clt_password" /></td>
+	 </tr>
 	 
 	 <tr>	
     <td><label>Nom</label> : </td>
-	<td> </td>
+	<td><input type="text" name="clt_lname" id ="clt_lname" /></td>
 	</tr>
 	 
 	 <tr>	
     <td><label>Prénom</label> : </td>
-	<td> </td>
+	<td><input type="text" name="clt_fname" id ="clt_fname" /></td>
 	</tr>
 	 
 	 <tr>
    <td> <label>Date de naissance</label> : </td>
-	<td> </td>
+	<td><input type="date" name="clt_birthday" id ="clt_birthday" /></td>
 </tr>
 	 
 	 <tr>	 
     <td><label>Nationalité</label> : </td>
-	<td> </td>
+	<td><input type="text" name="clt_nationality" id ="clt_nationality" /></td>
 	</tr>
 	 
 	 <tr>	
    <td> <label>Sexe</label> : </td>
-	<td> </td>
+	<td><input type="text" name="clt_gender" id ="clt_gender" /></td>
 	</tr>
 	
 	<tr>	
     <td><label>Adresse</label> : </td>
-	<td> </td>
+	<td><input type="text" name="clt_address" id ="clt_address" /></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Code postal</label> : </td>
-	<td> </td>
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="clt_postalcode" id ="clt_postalcode" /></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Ville</label> : </td>
-	<td> </td>
+	<td><input type="text" name="clt_city" id ="clt_city" /></td>
 	</tr>
 	
 	<tr>	
     <td><label>Numéro de téléphone</label> : </td>
-	<td> </td>
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="clt_telephonenumber" id ="clt_telephonenumber" /></td>
 	</tr>
 	
 	<tr>
    <td> <label>E-mail</label> : </td>
-	<td> <td>
+	<td><input type="email" name="clt_email" id ="clt_email" /></td>
 	 </tr>
 	
 	<tr>	
    <td> <label>Statut</label> : </td>
-	<td> </td>
+	<td><input type="text" name="clt_status" id ="clt_status" /></td>
 	</tr>
 	
 	</table>
 	
 	
 	
-	
-	
     <p>
-<input type="button" value="Modifier les informations" OnClick="location.href='modifier-infos-client.jsp'"/>          
+	<input type="submit" value="Enregistrer les modifications" />       	<input type="button" value="Annuler" OnClick="location.href='afficher-infos-client.jsp'"/>           <input type="reset" value="Recommencer" />
 	</p>
 	
  </form>
@@ -260,6 +269,7 @@
 	
 	
 	</center>
+			
 			
 			
 			</section><!-- end of #content -->
