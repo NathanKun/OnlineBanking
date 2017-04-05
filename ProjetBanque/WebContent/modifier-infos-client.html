@@ -170,7 +170,7 @@
 	<section id="main"><!-- #main content and sidebar area -->
 			<section id="content"><!-- #content -->
 			
-				     <h1><legend>Modifier vos informations :<legend></h1> <!-- Titre du fieldset --> 
+				     <h1><legend>Afficher vos informations :<legend></h1> <!-- Titre du fieldset --> 
 	   
 	   
 	   
@@ -181,16 +181,22 @@
 	    <form method="post" action=".php">
      <center>
 	 <table>
-  
+
+   <tr>
+        
+	<td> <label>Identifiant   </label> : </td>
+	<td><input type="text" name="clt_login" id ="clt_login" /> </td>
+		 
+		 </tr>
 		 
 		 
 	 <tr>
-    <td><label>Nouveau mot de passe  </label> : </td>
+    <td><label>Mot de passe  </label> : </td>
 	<td><input type="password" name="clt_password" id ="clt_password" /></td>
 	 </tr>
 	 
 	  <tr>
-    <td><label>Confirmer le nouveau mot de passe  </label> : </td>
+    <td><label>Confirmer le mot de passe  </label> : </td>
 	<td><input type="password" name="clt_password" id ="clt_password" /></td>
 	 </tr>
 	 
@@ -206,134 +212,17 @@
 	 
 	 <tr>
    <td> <label>Date de naissance</label> : </td>
-	<td><input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
-        <input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
-        <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required > </td>
-	
+	<td><input type="date" name="clt_birthday" id ="clt_birthday" /></td>
 </tr>
 	 
 	 <tr>	 
     <td><label>Nationalité</label> : </td>
-	<td><select id="nationalite" name="nationalite" required>
-								<option>	Afghan	</option>
-								<option>	Albanais	</option>
-								<option>	Algerien	</option>
-								<option>	Allemand	</option>
-								<option>	Americain	</option>
-								<option>	Angolais	</option>
-								<option>	Argentin	</option>
-								<option>	Armenien	</option>
-								<option>	Australien	</option>
-								<option>	Autrichien	</option>
-								<option>	Bangladais	</option>
-								<option>	Belge	</option>
-								<option>	Beninois	</option>
-								<option>	Bosniaque	</option>
-								<option>	Botswanais	</option>
-								<option>	Bhoutan	</option>
-								<option>	Bresilien	</option>
-								<option>	Britannique	</option>
-								<option>	Bulgare	</option>
-								<option>	Burkinabe	</option>
-								<option>	Cambodgien	</option>
-								<option>	Camerounais	</option>
-								<option>	Canadien	</option>
-								<option>	Chilien	</option>
-								<option>	Chinois	</option>
-								<option>	Colombien	</option>
-								<option>	Congolais	</option>
-								<option>	Cubain	</option>
-								<option>	Danois	</option>
-								<option>	Ecossais	</option>
-								<option>	Egyptien	</option>
-								<option>	Espagnol	</option>
-								<option>	Estonien	</option>
-								<option>	Europeen	</option>
-								<option>	Finlandais	</option>
-								<option>	Français	</option>
-								<option>	Gabonais	</option>
-								<option>	Georgien	</option>
-								<option>	Grec	</option>
-								<option>	Guineen	</option>
-								<option>	Haïtien	</option>
-								<option>	Hollandais	</option>
-								<option>	Hong-Kong	</option>
-								<option>	Hongrois	</option>
-								<option>	Indien	</option>
-								<option>	Indonesien	</option>
-								<option>	Irakien	</option>
-								<option>	Iranien	</option>
-								<option>	Irlandais	</option>
-								<option>	Islandais	</option>
-								<option>	Israelien	</option>
-								<option>	Italien	</option>
-								<option>	Ivoirien	</option>
-								<option>	Jamaïcain	</option>
-								<option>	Japonais	</option>
-								<option>	Kazakh	</option>
-								<option>	Kirghiz	</option>
-								<option>	Kurde	</option>
-								<option>	Letton	</option>
-								<option>	Libanais	</option>
-								<option>	Liechtenstein	</option>
-								<option>	Lituanien	</option>
-								<option>	Luxembourgeois	</option>
-								<option>	Macedonien	</option>
-								<option>	Madagascar	</option>
-								<option>	Malaisien	</option>
-								<option>	Malien	</option>
-								<option>	Maltais	</option>
-								<option>	Marocain	</option>
-								<option>	Mauritanien	</option>
-								<option>	Mauricien	</option>
-								<option>	Mexicain	</option>
-								<option>	Monegasque	</option>
-								<option>	Mongol	</option>
-								<option>	Neo-Zelandais	</option>
-								<option>	Nigerien	</option>
-								<option>	Nord Coreen	</option>
-								<option>	Norvegien	</option>
-								<option>	Pakistanais	</option>
-								<option>	Palestinien	</option>
-								<option>	Peruvien	</option>
-								<option>	Philippins	</option>
-								<option>	Polonais	</option>
-								<option>	Portoricain	</option>
-								<option>	Portugais	</option>
-								<option>	Roumain	</option>
-								<option>	Russe	</option>
-								<option>	Senegalais	</option>
-								<option>	Serbe	</option>
-								<option>	Serbo-croate	</option>
-								<option>	Singapour	</option>
-								<option>	Slovaque	</option>
-								<option>	Sovietique	</option>
-								<option>	Sri-lankais	</option>
-								<option>	Sud-Africain	</option>
-								<option>	Sud-Coreen	</option>
-								<option>	Suedois	</option>
-								<option>	Suisse	</option>
-								<option>	Syrien	</option>
-								<option>	Tadjik	</option>
-								<option>	Taïwanais	</option>
-								<option>	Tchadien	</option>
-								<option>	Tcheque	</option>
-								<option>	Thailandais	</option>
-								<option>	Tunisien	</option>
-								<option>	Turc	</option>
-								<option>	Ukrainien	</option>
-								<option>	Uruguayen	</option>
-								<option>	Venezuelien	</option>
-								<option>	Vietnamien	</option>
-			                </select></td>
+	<td><input type="text" name="clt_nationality" id ="clt_nationality" /></td>
 	</tr>
 	 
 	 <tr>	
    <td> <label>Sexe</label> : </td>
-	<td><select name="sexe">
-		<option value="F">Une femme</option>
-		<option value="M">Un homme</option>
-		</select></td>
+	<td><input type="text" name="clt_gender" id ="clt_gender" /></td>
 	</tr>
 	
 	<tr>	
@@ -363,25 +252,16 @@
 	
 	<tr>	
    <td> <label>Statut</label> : </td>
-	<td><select name="statut" required>
-			<option>Un(e) etudiant(e)</option>						
-			<option>Un professionnel</option>
-		<option>En recherche d'emploi</option>
-							</select>
-							</td>
+	<td><input type="text" name="clt_status" id ="clt_status" /></td>
 	</tr>
 	
 	</table>
 	
 	
 	
-	
-	
     <p>
 	<input type="submit" value="Enregistrer les modifications" />       	<input type="button" value="Annuler" OnClick="location.href='afficher-infos-client.jsp'"/>           <input type="reset" value="Recommencer" />
 	</p>
-	
-	
 	
  </form>
  
