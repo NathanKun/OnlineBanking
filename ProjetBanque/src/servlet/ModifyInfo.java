@@ -77,7 +77,8 @@ public class ModifyInfo extends HttpServlet {
 		c.setClt_telephonenumber(tel);
 		DateTime date= new DateTime (a,m,j,0,0,0,0);
 		c.setClt_birthday(date);
-		DaoClient.updateClient(c);		
+		DaoClient.updateClient(c);
+		
 		out.println("Modifications apportées");
 	}
 

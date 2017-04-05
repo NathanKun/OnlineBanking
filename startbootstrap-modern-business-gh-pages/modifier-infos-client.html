@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
-<!doctype html>
-=======
 <!DOCTYPE html>
->>>>>>> 1ca1c44de6ca5920969a03014f0b4a59258737f0
 <html lang="en">
 
 <head>
@@ -35,41 +30,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<div id="wrapper"><!-- #wrapper -->
-<%
-								Client clt = (Client) session.getAttribute("client");
-								ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt.getClt_id());
-								request.setAttribute("accList", accList);
-							%>
-	<header><!-- header -->
-	<h1><img src="bank.png" alt="image"><a href="#">BankRading </a></h1><!-- header image -->
-		
-		
-	</header><!-- end of header -->
-	<nav><!-- top nav -->
-		<div class="menu">
-			<ul>
-				<li><a href="#">Acceuil</a></li>
-  			</li>
-				<li><a href="#">Services</a>
-					
-				</li>
-				<li><a href="#">About us</a>
-					
-				</li>
-				<li><a href="#">Bourse</a></li>
-				<li><a href="contact.html">Nous Contacter</a></li>
-				<li><a href="#">Espace Client</a>
-			    <ul>
-   					<li><a href="Se connecter.html">Se connecter</a></li>
-   					<li><a href="Créer un compte.php">Créer un compte</a></li>
-   				</ul>
-			</ul>
-		</div>
-	</nav><!-- end of top nav -->
-	
-=======
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -207,7 +167,6 @@
 
 
 
->>>>>>> 1ca1c44de6ca5920969a03014f0b4a59258737f0
 	<section id="main"><!-- #main content and sidebar area -->
 			<section id="content"><!-- #content -->
 			
@@ -222,17 +181,7 @@
 	    <form method="post" action=".php">
      <center>
 	 <table>
-<<<<<<< HEAD
-
-   <tr>
-        
-	<td> <label>Identifiant   </label> : </td>
-	<td><input type="text" name="clt_login" id ="clt_login"  value= "<%=clt.getClt_login()%>"/> </td>
-		 
-		 </tr>
-=======
   
->>>>>>> 1ca1c44de6ca5920969a03014f0b4a59258737f0
 		 
 		 
 	 <tr>
