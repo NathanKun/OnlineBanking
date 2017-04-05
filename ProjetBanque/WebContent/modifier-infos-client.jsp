@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 <%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
-
+<!doctype html>
+=======
 <!DOCTYPE html>
+>>>>>>> 1ca1c44de6ca5920969a03014f0b4a59258737f0
 <html lang="en">
 
 <head>
@@ -60,7 +63,7 @@
 				<li><a href="#">Espace Client</a>
 			    <ul>
    					<li><a href="Se connecter.html">Se connecter</a></li>
-   					<li><a href="Creer un compte.php">Creer un compte</a></li>
+   					<li><a href="Créer un compte.php">Créer un compte</a></li>
    				</ul>
 			</ul>
 		</div>
@@ -131,7 +134,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace client <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="full-width.html">Acceder à mon compte</a>
+                                <a href="full-width.html">Accéder à mon compte</a>
                             </li>
                             <li>
                                 <a href="sidebar.html">Devenir membre</a>
@@ -211,148 +214,225 @@
 				     <h1><legend>Modifier vos informations :<legend></h1> <!-- Titre du fieldset --> 
 	   
 	   
-	  
+	   
+	   
+	   
 	   
 	   
 	    <form method="post" action=".php">
      <center>
 	 <table>
+<<<<<<< HEAD
 
    <tr>
         
 	<td> <label>Identifiant   </label> : </td>
-<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
-	<td><input type="text" name="identifiant" id ="identifiant" /> </td>
+	<td><input type="text" name="clt_login" id ="clt_login"  value= "<%=clt.getClt_login()%>"/> </td>
 		 
 		 </tr>
+=======
+  
+>>>>>>> 1ca1c44de6ca5920969a03014f0b4a59258737f0
 		 
 		 
 	 <tr>
-    <td><label>Mot de passe  </label> : </td>
-	<td><input type="password" name="password" id ="password" /></td>
+    <td><label>Nouveau mot de passe  </label> : </td>
+	<td><input type="password" name="clt_password" id ="clt_password" /></td>
 	 </tr>
 	 
 	  <tr>
-    <td><label>Confirmer le mot de passe  </label> : </td>
+    <td><label>Confirmer le nouveau mot de passe  </label> : </td>
 	<td><input type="password" name="clt_password" id ="clt_password" /></td>
 	 </tr>
 	 
 	 <tr>	
     <td><label>Nom</label> : </td>
-	<td><input type="text" name="name" id ="name" /></td>
+	<td><input type="text" name="clt_lname" id ="clt_lname" /></td>
 	</tr>
 	 
 	 <tr>	
     <td><label>Prénom</label> : </td>
-	<td><input type="text" name="prenom" id ="prenom" /></td>
-=======
-	<td> <%=clt.getClt_login()%></td>
-		 
-		 </tr>
-
-	 <tr>	
-    <td><label>Nom</label> : </td>
-	<td> <%=clt.getClt_lname()%></td>
-	</tr>
-	 
-	 <tr>	
-    <td><label>Prenom</label> : </td>
-	<td><%=clt.getClt_fname()%> </td>
->>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	<td><input type="text" name="clt_fname" id ="clt_fname" /></td>
 	</tr>
 	 
 	 <tr>
    <td> <label>Date de naissance</label> : </td>
-<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
-	<td><input type="date" name="date" id ="date" /></td>
+	<td><input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
+        <input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
+        <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required > </td>
+	
 </tr>
 	 
 	 <tr>	 
     <td><label>Nationalité</label> : </td>
-	<td><input type="text" name="nationalite" id ="nationalite" /></td>
-=======
-	<td> <%=clt.getClt_birthday()%></td>
-</tr>
-	 
-	 <tr>	 
-    <td><label>Nationalite</label> : </td>
-	<td> <%=clt.getClt_nationality()%></td>
->>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	<td><select id="nationalite" name="nationalite" required>
+								<option>	Afghan	</option>
+								<option>	Albanais	</option>
+								<option>	Algerien	</option>
+								<option>	Allemand	</option>
+								<option>	Americain	</option>
+								<option>	Angolais	</option>
+								<option>	Argentin	</option>
+								<option>	Armenien	</option>
+								<option>	Australien	</option>
+								<option>	Autrichien	</option>
+								<option>	Bangladais	</option>
+								<option>	Belge	</option>
+								<option>	Beninois	</option>
+								<option>	Bosniaque	</option>
+								<option>	Botswanais	</option>
+								<option>	Bhoutan	</option>
+								<option>	Bresilien	</option>
+								<option>	Britannique	</option>
+								<option>	Bulgare	</option>
+								<option>	Burkinabe	</option>
+								<option>	Cambodgien	</option>
+								<option>	Camerounais	</option>
+								<option>	Canadien	</option>
+								<option>	Chilien	</option>
+								<option>	Chinois	</option>
+								<option>	Colombien	</option>
+								<option>	Congolais	</option>
+								<option>	Cubain	</option>
+								<option>	Danois	</option>
+								<option>	Ecossais	</option>
+								<option>	Egyptien	</option>
+								<option>	Espagnol	</option>
+								<option>	Estonien	</option>
+								<option>	Europeen	</option>
+								<option>	Finlandais	</option>
+								<option>	Français	</option>
+								<option>	Gabonais	</option>
+								<option>	Georgien	</option>
+								<option>	Grec	</option>
+								<option>	Guineen	</option>
+								<option>	Haïtien	</option>
+								<option>	Hollandais	</option>
+								<option>	Hong-Kong	</option>
+								<option>	Hongrois	</option>
+								<option>	Indien	</option>
+								<option>	Indonesien	</option>
+								<option>	Irakien	</option>
+								<option>	Iranien	</option>
+								<option>	Irlandais	</option>
+								<option>	Islandais	</option>
+								<option>	Israelien	</option>
+								<option>	Italien	</option>
+								<option>	Ivoirien	</option>
+								<option>	Jamaïcain	</option>
+								<option>	Japonais	</option>
+								<option>	Kazakh	</option>
+								<option>	Kirghiz	</option>
+								<option>	Kurde	</option>
+								<option>	Letton	</option>
+								<option>	Libanais	</option>
+								<option>	Liechtenstein	</option>
+								<option>	Lituanien	</option>
+								<option>	Luxembourgeois	</option>
+								<option>	Macedonien	</option>
+								<option>	Madagascar	</option>
+								<option>	Malaisien	</option>
+								<option>	Malien	</option>
+								<option>	Maltais	</option>
+								<option>	Marocain	</option>
+								<option>	Mauritanien	</option>
+								<option>	Mauricien	</option>
+								<option>	Mexicain	</option>
+								<option>	Monegasque	</option>
+								<option>	Mongol	</option>
+								<option>	Neo-Zelandais	</option>
+								<option>	Nigerien	</option>
+								<option>	Nord Coreen	</option>
+								<option>	Norvegien	</option>
+								<option>	Pakistanais	</option>
+								<option>	Palestinien	</option>
+								<option>	Peruvien	</option>
+								<option>	Philippins	</option>
+								<option>	Polonais	</option>
+								<option>	Portoricain	</option>
+								<option>	Portugais	</option>
+								<option>	Roumain	</option>
+								<option>	Russe	</option>
+								<option>	Senegalais	</option>
+								<option>	Serbe	</option>
+								<option>	Serbo-croate	</option>
+								<option>	Singapour	</option>
+								<option>	Slovaque	</option>
+								<option>	Sovietique	</option>
+								<option>	Sri-lankais	</option>
+								<option>	Sud-Africain	</option>
+								<option>	Sud-Coreen	</option>
+								<option>	Suedois	</option>
+								<option>	Suisse	</option>
+								<option>	Syrien	</option>
+								<option>	Tadjik	</option>
+								<option>	Taïwanais	</option>
+								<option>	Tchadien	</option>
+								<option>	Tcheque	</option>
+								<option>	Thailandais	</option>
+								<option>	Tunisien	</option>
+								<option>	Turc	</option>
+								<option>	Ukrainien	</option>
+								<option>	Uruguayen	</option>
+								<option>	Venezuelien	</option>
+								<option>	Vietnamien	</option>
+			                </select></td>
 	</tr>
 	 
 	 <tr>	
    <td> <label>Sexe</label> : </td>
-<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
-	<td><input type="text" name="sexe" id ="sexe" /></td>
-=======
-	<td> <%=clt.getClt_gender()%></td>
->>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	<td><select name="sexe">
+		<option value="F">Une femme</option>
+		<option value="M">Un homme</option>
+		</select></td>
 	</tr>
 	
 	<tr>	
     <td><label>Adresse</label> : </td>
-<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
-	<td><input type="text" name="addresse" id ="addresse" /></td>
-=======
-	<td> <%=clt.getClt_address()%></td>
->>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	<td><input type="text" name="clt_address" id ="clt_address" /></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Code postal</label> : </td>
-<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
-	<td><input type="number" onkeypress="return isNumberKey(evt)" name="codepostal" id ="codepostal" /></td>
-=======
-	<td> <%=clt.getClt_postalcode()%></td>
->>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="clt_postalcode" id ="clt_postalcode" /></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Ville</label> : </td>
-<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
-	<td><input type="text" name="ville" id ="ville" /></td>
+	<td><input type="text" name="clt_city" id ="clt_city" /></td>
 	</tr>
 	
 	<tr>	
     <td><label>Numéro de téléphone</label> : </td>
-	<td><input type="number" onkeypress="return isNumberKey(evt)" name="tel" id ="tel" /></td>
-=======
-	<td> <%=clt.getClt_city()%></td>
-	</tr>
-	
-	<tr>	
-    <td><label>Numero de telephone</label> : </td>
-	<td> <%=clt.getClt_telephonenumber()%></td>
->>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="clt_telephonenumber" id ="clt_telephonenumber" /></td>
 	</tr>
 	
 	<tr>
    <td> <label>E-mail</label> : </td>
-<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
-	<td><input type="email" name="mail" id ="mail" /></td>
-=======
-	<td> <%=clt.getClt_email()%><td>
->>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	<td><input type="email" name="clt_email" id ="clt_email" /></td>
 	 </tr>
 	
 	<tr>	
    <td> <label>Statut</label> : </td>
-<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
-	<td><input type="text" name="statut" id ="statut" /></td>
-=======
-	<td> <%=clt.getClt_status()%></td>
->>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	<td><select name="statut" required>
+			<option>Un(e) etudiant(e)</option>						
+			<option>Un professionnel</option>
+		<option>En recherche d'emploi</option>
+							</select>
+							</td>
 	</tr>
 	
 	</table>
 	
 	
 	
+	
+	
     <p>
-	<input type="submit" value="Enregistrer les modifications" OnClick="zoneclient.html"/> 
-    <input type="button" value="Annuler"  OnClick= "location.href='zoneclient.html'"/>
-    <input type="reset" value="Recommencer" />
+	<input type="submit" value="Enregistrer les modifications" />       	<input type="button" value="Annuler" OnClick="location.href='afficher-infos-client.jsp'"/>           <input type="reset" value="Recommencer" />
 	</p>
+	
+	
 	
  </form>
  
