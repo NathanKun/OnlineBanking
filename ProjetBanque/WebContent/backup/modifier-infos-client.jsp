@@ -1,3 +1,4 @@
+<%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +95,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace client <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="full-width.html">Accéder à mon compte</a>
+                                <a href="full-width.html">Acceder à mon compte</a>
                             </li>
                             <li>
                                 <a href="sidebar.html">Devenir membre</a>
@@ -161,60 +162,64 @@
     </header> -->
 
 
+<%
+                                Client clt = (Client) session.getAttribute("client");
+                                ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt.getClt_id());
+                                request.setAttribute("accList", accList);
+                            %>
 
-
-
-
-
-
+							
 	<section id="main"><!-- #main content and sidebar area -->
 			<section id="content"><!-- #content -->
 			
 				     <h1><legend>Modifier vos informations :<legend></h1> <!-- Titre du fieldset --> 
 	   
 	   
+	  
 	   
 	   
-	   
-	   
-	   
-	    <form method="post" action=".php">
+	      <form id="form" class="form-horizontal" action="./ModifiyInfo" method="post">
      <center>
 	 <table>
-  
+
+   <tr>
+        
+	<td> <label>Identifiant   </label> : </td>
+	<td><%=clt.getClt_login()%></td>
+		 
+		 </tr>
 		 
 		 
 	 <tr>
-    <td><label>Nouveau mot de passe  </label> : </td>
-	<td><input type="password" name="clt_password" id ="clt_password" /></td>
+    <td><label>Mot de passe  </label> : </td>
+	<td><input type="password" name="password" id ="password" /></td>
 	 </tr>
 	 
 	  <tr>
-    <td><label>Confirmer le nouveau mot de passe  </label> : </td>
+    <td><label>Confirmer le mot de passe  </label> : </td>
 	<td><input type="password" name="clt_password" id ="clt_password" /></td>
 	 </tr>
 	 
 	 <tr>	
     <td><label>Nom</label> : </td>
-	<td><input type="text" name="clt_lname" id ="clt_lname" /></td>
+	<td><input type="text" name="name" id ="name" value="<%=clt.getClt_lname()%>" /></td>
 	</tr>
 	 
 	 <tr>	
-    <td><label>Prénom</label> : </td>
-	<td><input type="text" name="clt_fname" id ="clt_fname" /></td>
+    <td><label>Prenom</label> : </td>
+	<td><input type="text" name="prenom" id ="prenom" value="<%=clt.getClt_fname()%>" /></td>
 	</tr>
 	 
 	 <tr>
    <td> <label>Date de naissance</label> : </td>
-	<td><input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
-        <input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
-        <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required > </td>
-	
+	<td><input type="number" name="jour" min="1" max="31" style="width: 3em;" value="" required >
+        <input type="number"  name="mois" min="1" max="12" style="width: 3em;" value="" required >
+        <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;"  value="" required ></td>
 </tr>
 	 
 	 <tr>	 
-    <td><label>Nationalité</label> : </td>
-	<td><select id="nationalite" name="nationalite" required>
+    <td><label>Nationalite</label> : </td>
+	<td> <select id="nationalite" name="nationalite" required>
 								<option>	Afghan	</option>
 								<option>	Albanais	</option>
 								<option>	Algerien	</option>
@@ -250,12 +255,12 @@
 								<option>	Estonien	</option>
 								<option>	Europeen	</option>
 								<option>	Finlandais	</option>
-								<option>	Français	</option>
+								<option>	Fran�ais	</option>
 								<option>	Gabonais	</option>
 								<option>	Georgien	</option>
 								<option>	Grec	</option>
 								<option>	Guineen	</option>
-								<option>	Haïtien	</option>
+								<option>	Ha�tien	</option>
 								<option>	Hollandais	</option>
 								<option>	Hong-Kong	</option>
 								<option>	Hongrois	</option>
@@ -268,7 +273,7 @@
 								<option>	Israelien	</option>
 								<option>	Italien	</option>
 								<option>	Ivoirien	</option>
-								<option>	Jamaïcain	</option>
+								<option>	Jama�cain	</option>
 								<option>	Japonais	</option>
 								<option>	Kazakh	</option>
 								<option>	Kirghiz	</option>
@@ -315,7 +320,7 @@
 								<option>	Suisse	</option>
 								<option>	Syrien	</option>
 								<option>	Tadjik	</option>
-								<option>	Taïwanais	</option>
+								<option>	Ta�wanais	</option>
 								<option>	Tchadien	</option>
 								<option>	Tcheque	</option>
 								<option>	Thailandais	</option>
@@ -331,57 +336,54 @@
 	 <tr>	
    <td> <label>Sexe</label> : </td>
 	<td><select name="sexe">
-		<option value="F">Une femme</option>
-		<option value="M">Un homme</option>
-		</select></td>
+								<option value="F">Une femme</option>
+								<option value="M">Un homme</option>
+							</select></td>
 	</tr>
 	
 	<tr>	
     <td><label>Adresse</label> : </td>
-	<td><input type="text" name="clt_address" id ="clt_address" /></td>
+	<td><input type="text" name="addresse" id ="addresse"  value="<%=clt.getClt_address()%>"/></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Code postal</label> : </td>
-	<td><input type="number" onkeypress="return isNumberKey(evt)" name="clt_postalcode" id ="clt_postalcode" /></td>
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="codepostal" id ="codepostal" value="<%=clt.getClt_postalcode()%>"/></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Ville</label> : </td>
-	<td><input type="text" name="clt_city" id ="clt_city" /></td>
+	<td><input type="text" name="ville" id ="ville" value="<%=clt.getClt_city()%>"/></td>
 	</tr>
 	
 	<tr>	
-    <td><label>Numéro de téléphone</label> : </td>
-	<td><input type="number" onkeypress="return isNumberKey(evt)" name="clt_telephonenumber" id ="clt_telephonenumber" /></td>
+    <td><label>Numero de telephone</label> : </td>
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="tel" id ="tel" value="<%=clt.getClt_telephonenumber()%>" /></td>
 	</tr>
 	
 	<tr>
    <td> <label>E-mail</label> : </td>
-	<td><input type="email" name="clt_email" id ="clt_email" /></td>
+	<td><input type="email" name="mail" id ="mail" value="<%=clt.getClt_email()%>"/></td>
 	 </tr>
 	
 	<tr>	
    <td> <label>Statut</label> : </td>
 	<td><select name="statut" required>
-			<option>Un(e) etudiant(e)</option>						
-			<option>Un professionnel</option>
-		<option>En recherche d'emploi</option>
-							</select>
-							</td>
+								<option>Un(e) etudiant(e)</option>
+								<option>Un professionnel</option>
+								<option>En recherche d'emploi</option>
+							</select></td>
 	</tr>
 	
 	</table>
 	
 	
 	
-	
-	
     <p>
-	<input type="submit" value="Enregistrer les modifications" />       	<input type="button" value="Annuler" OnClick="location.href='afficher-infos-client.jsp'"/>           <input type="reset" value="Recommencer" />
+	<input type="submit" value="Enregistrer les modifications" /> 
+    <input type="button" value="Annuler"  OnClick= "location.href='zoneclient.html'"/>
+    <input type="reset" value="Recommencer" />
 	</p>
-	
-	
 	
  </form>
  

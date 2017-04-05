@@ -1,3 +1,4 @@
+<%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +95,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace client <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="full-width.html">Accéder à mon compte</a>
+                                <a href="full-width.html">Acceder a mon compte</a>
                             </li>
                             <li>
                                 <a href="sidebar.html">Devenir membre</a>
@@ -160,11 +161,11 @@
         </a>
     </header> -->
 
-
-
-
-
-
+<%
+                                Client clt = (Client) session.getAttribute("client");
+                                ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt.getClt_id());
+                                request.setAttribute("accList", accList);
+                            %>
 
 
 	<section id="main"><!-- #main content and sidebar area -->
@@ -185,71 +186,68 @@
    <tr>
         
 	<td> <label>Identifiant   </label> : </td>
-	<td> </td>
+	<td><%=clt.getClt_login()%> </td>
 		 
 		 </tr>
 	 
 	 <tr>	
     <td><label>Nom</label> : </td>
-	<td> </td>
+	<td> <%=clt.getClt_lname()%></td>
 	</tr>
 	 
 	 <tr>	
-    <td><label>Prénom</label> : </td>
-	<td> </td>
+    <td><label>Prenom</label> : </td>
+	<td> <%=clt.getClt_fname()%></td>
 	</tr>
 	 
 	 <tr>
    <td> <label>Date de naissance</label> : </td>
-	<td> </td>
+	<td> <%=clt.getClt_birthday()%></td>
 </tr>
 	 
 	 <tr>	 
-    <td><label>Nationalité</label> : </td>
-	<td> </td>
+    <td><label>Nationalite</label> : </td>
+	<td> <%=clt.getClt_nationality()%></td>
 	</tr>
 	 
 	 <tr>	
    <td> <label>Sexe</label> : </td>
-	<td> </td>
+	<td> <%=clt.getClt_gender()%></td>
 	</tr>
 	
 	<tr>	
     <td><label>Adresse</label> : </td>
-	<td> </td>
+	<td> <%=clt.getClt_address()%></td>
 	</tr>
 	
 	<tr>	
    <td> <label>Code postal</label> : </td>
-	<td> </td>
+	<td><%=clt.getClt_postalcode()%> </td>
 	</tr>
 	
 	<tr>	
    <td> <label>Ville</label> : </td>
-	<td> </td>
+	<td> <%=clt.getClt_city()%></td>
 	</tr>
 	
 	<tr>	
-    <td><label>Numéro de téléphone</label> : </td>
-	<td> </td>
+    <td><label>Numero de telephone</label> : </td>
+	<td> <%=clt.getClt_telephonenumber()%></td>
 	</tr>
 	
 	<tr>
    <td> <label>E-mail</label> : </td>
-	<td> <td>
+	<td> <%=clt.getClt_email()%><td>
 	 </tr>
 	
 	<tr>	
    <td> <label>Statut</label> : </td>
-	<td> </td>
+	<td> <%=clt.getClt_status()%></td>
 	</tr>
 	
 	</table>
-	
-	
-	
-	
-	
+
+<br>
     <p>
 <input type="button" value="Modifier les informations" OnClick="location.href='modifier-infos-client.jsp'"/>          
 	</p>
