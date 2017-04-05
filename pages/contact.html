@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Offre 3</title>
+	<link rel="stylesheet" href="offres.css" type="text/css" media="screen" />
+	
+
+</head>
+<body>
+<div id="wrapper"><!-- #wrapper -->
+
+	<header><!-- header -->
+	<h1><img src="bank.png" alt="image"><a href="#">BankRading </a></h1><!-- header image -->
+		
+		
+	</header><!-- end of header -->
+	<nav><!-- top nav -->
+		<div class="menu">
+			<ul>
+				<li><a href="#">Acceuil</a></li>
+  			</li>
+				<li><a href="#">Services</a>
+					
+				</li>
+				<li><a href="#">About us</a>
+					
+				</li>
+				<li><a href="#">Bourse</a></li>
+				<li><a href="#">Nous Contacter</a></li>
+				<li><a href="#">Espace Client</a>
+			    <ul>
+   					<li><a href="Se connecter.html">Se connecter</a></li>
+   					<li><a href="Créer un compte.php">Créer un compte</a></li>
+   				</ul>
+			</ul>
+		</div>
+	</nav><!-- end of top nav -->
+	
+	<section id="main"><!-- #main content and sidebar area -->
+			<section id="content"><!-- #content -->
+				<h3>Send us a Message</h3>
+				</br> </br>
+				<div class="control-group form-group">
+                        <div class="controls">
+                            <label>Full Name:</label>
+                            <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+					
+				<div class="control-group form-group">
+                        <div class="controls">
+                            <label>Phone Number:</label>
+                            <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+                        </div>
+                    </div>
+					</br> </br>
+					<div class="control-group form-group">
+                        <div class="controls">
+                            <label>Email Address:</label>
+                            <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
+                        </div>
+                    </div>
+					</br> </br>
+					<div class="control-group form-group">
+                        <div class="controls">
+                            <label>Message:</label>
+							</br> </br>
+                            <textarea rows="10" cols="60" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <!-- For success/fail messages -->
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+			</section><!-- end of #content -->
+
+		<aside id="sidebar"><!-- sidebar -->
+		
+		  <form method="post" action="traitement.php">
+                     <p>
+                     <label for="pseudo"> Login : </label> 
+                     <input type="text" name="pseudo" id="pseudo" placeholder="Ex : Amghar" size="20" maxlength="10" />
+
+                     </br> </br>
+                     <label for="pass">Password :</label>
+                     <input type="password" name="pass" id="pass" />
+
+                     </p>
+                      </form>
+					  <a href="" class="button">Connexion</a>
+					 <a href="" class="button">S'inscrire </a></br></br>
+<a href="Password.html">Forgot your Password?</a> </br>
+                    
+			</div>
+			 
+
+		
+	
+</div><!-- #wrapper -->
+
+</body>
+</html>
