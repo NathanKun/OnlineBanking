@@ -147,7 +147,10 @@ public class Client {
 		this.clt_birthday = clt_birthday;
 		this.clt_lastlogin = clt_lastlogin;
 		this.clt_createdon = clt_createdon;
-
+		this.currentAccount = null;
+		this.savingAccount = null;
+		this.securitiesAccount = null;
+		
 		// set accounts
 		ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt_id);
 		for (Account acc : accList) {

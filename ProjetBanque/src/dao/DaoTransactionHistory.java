@@ -65,16 +65,15 @@ public class DaoTransactionHistory extends Dao {
 	
 	
 	/**
-	 * return a list of TransactionHistory of a specified account's id.
+	 * return a list of TransactionHistory of a specified account's number.
 	 * 
-	 * @param id
-	 *            id of the account
+	 * @param number
+	 *            number of the account
 	 * @return tsh - the list of TransactionHistory
 	 */
 	@SuppressWarnings("unchecked")
-	// TODO: Not tested
-	public static ArrayList<TransactionHistory> findTshByAccId(int id) {
-		String sql = "SELECT * FROM transactionhistory_tsh WHERE tsh_acc_id = " + String.valueOf(id);
+	public static ArrayList<TransactionHistory> findTshByAccNumber(String number) {
+		String sql = "SELECT * FROM transactionhistory_tsh WHERE tsh_acc_number = " + number;
 		ArrayList<TransactionHistory> tshList = (ArrayList<TransactionHistory>) getList("FindTshByAccId", sql);
 		return tshList;
 	}

@@ -116,6 +116,7 @@ INSERT INTO account_acc VALUES(null, "4444555566660001", 1, 987.65, 0, 1);
 INSERT INTO account_acc VALUES(null, "4444555566660002", 1, 23333.33, 2.5, 2);
 INSERT INTO account_acc VALUES(null, "4444555566660003", 1, 1200.00, 0, 3);
 
+
 INSERT INTO client_clt VALUES(null, "a", 
 	"$31$16$dbPTfmG7Rsoc_404pj9xhSdcYfeSnRWUTpceh1k2Qf9WYXmEYdjU-kAf3Lo4wycfc2awxnRyCiMhDVPl4V-AX24NuC6dC2iXaMEVm_5p2D0Egbb6gR4M08o_w1oWEgk5zkH_Kkr8g7_JdCbxGngvPVwFL49KWXGfKvQXm353FdY", 
 	"Haoran", "Wang", STR_TO_DATE('1999-09-09','%Y-%d-%m'),
@@ -123,6 +124,15 @@ INSERT INTO client_clt VALUES(null, "a",
 	"Celebataire", NOW(), ('2017-03-29 10:05:21'));
 INSERT INTO account_acc VALUES(null, "2222333322220001", 2, 1643.68, 0, 1);
 INSERT INTO account_acc VALUES(null, "2222333322220002", 2, 2500.00, 2.5, 2);
+
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), 33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), 23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), 13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), 3.33);
+
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 1", "2222333322220002", NOW(), 333.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 2", "2222333322220002", NOW(), 323.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 3", "2222333322220002", NOW(), 313.33);
 
 
 INSERT INTO client_clt VALUES(null, "b", 
@@ -133,12 +143,23 @@ INSERT INTO client_clt VALUES(null, "b",
 INSERT INTO account_acc VALUES(null, "3333666699990001", 3, 65535.00, 0, 1);
 INSERT INTO account_acc VALUES(null, "3333666699990003", 3, 1200.00, 0, 3);
 
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 1", "3333666699990001", NOW(), 733.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 2", "3333666699990001", NOW(), 723.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 3", "3333666699990001", NOW(), 713.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 4", "3333666699990001", NOW(), 73.33);
+
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 1", "3333666699990003", NOW(), 433.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 2", "3333666699990003", NOW(), 423.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 3", "3333666699990003", NOW(), 413.33);
+
+
 INSERT INTO client_clt VALUES(null, "1236784567", 
 	"$31$16$BnYo6uJe7XrpkVWoOB0VQ3a_czDxDs0Y3K6JnhN-dTTGNgskiOsIFSywcuBgB_gR2JBuMFkLmus91-IaaRdl3ZAMLlnsaXIcJy0soYuTmdmo_VEJJbXG2FbsZ-iukUTvxnno0LUqokfwKpjI8qtcUkP_DsHSqNo7Gt8UaLmwLBQ", 
 	"Bill", "Gate", STR_TO_DATE('1960-03-11','%Y-%d-%m'),
 	"American", "M", "some rode", "01234", "SomeCity", "0607080910", "billgate@gmail.com", 
 	"Married", NOW(), ('2016-07-08 07:20:11'));
 INSERT INTO account_acc VALUES(null, "4444888844440001", 4, 10086, 0, 1);
+
 
 INSERT INTO stock_stk VALUES(null, 'Accor', 'FR0000120404', 46.42);
 INSERT INTO stock_stk VALUES(null, 'Air Liquide', 'FR0000120073', 10);

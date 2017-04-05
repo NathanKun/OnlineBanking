@@ -76,7 +76,7 @@ public class Account {
 	 * @return List of TransactionHistory
 	 */
 	public ArrayList<TransactionHistory> getTransactionHistory() {
-		return DaoTransactionHistory.findTshByAccId(acc_id);
+		return DaoTransactionHistory.findTshByAccNumber(acc_number);
 	}
 	
 	/**

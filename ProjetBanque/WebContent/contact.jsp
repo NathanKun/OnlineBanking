@@ -38,7 +38,7 @@
                     <small>...</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="index.jsp">Home</a>
                     </li>
                     <li class="active">Des questions? Nous avons les réponses qu'il vous faut </li>
                 </ol>
@@ -130,14 +130,8 @@
 
         <hr>
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; BanKrading 2017</p>
-                </div>
-            </div>
-        </footer>
+		<!-- Footer -->
+		<%@ include file="./includes/footer.inc.jsp"%>
 
     </div>
     <!-- /.container -->

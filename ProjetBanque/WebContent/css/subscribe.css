@@ -1,32 +1,4 @@
-#form {
-	display: block;
-	text-align: center;
-	background-color: #FAFAFA;
-	padding: 10px;
-	width: 400px;
-  	margin: 0 auto;
-}
 
 #hint {
 	color: red;
-}
-
-.lbForCheckBox{
-	display: inline;
-}
-
-table {
-	display: inline-block;
-	text-align: center;
-  	margin: 0 auto;
-}
-
-label {
-	margin-top: 10px;
-	display: block;
-}
-
-label.inline {
-	display: inline;
-	margin-right: 50px;
 }

@@ -53,9 +53,7 @@ public class Subscribe extends HttpServlet {
         int a= Integer.parseInt(annee);
         
 
-		PrintWriter out = response.getWriter();
 		String login = DaoClient.getNextClientLogin();
-		String acc_number = DaoAccount.getNextAccountNumber();
 		
 		PasswordAuthentication pa = new PasswordAuthentication();
 		password = pa.hash(password.toCharArray());
@@ -63,20 +61,21 @@ public class Subscribe extends HttpServlet {
 		Client c = new Client(0,login,password,prenom,nom, new DateTime(a,m,j,0,0,0,0),
                 nationalite,sexe,adresse,codepostal,ville,tel,email,statut,null, 
                 new DateTime().toDateTimeISO());
-		//On ajoute les infos du client dans la base de donn�es
+		
+		//On ajoute les infos du client dans la base de donnees
 		DaoClient.addClient(c);
 		c = DaoClient.findClientByLogin(login);
 
 		//On cree un compte courant pour le nouveau client
-		Account acc=new Account(0,acc_number,c.getClt_id(),BigDecimal.ZERO,BigDecimal.ZERO,1);
+		Account acc=new Account(0,DaoAccount.getNextAccountNumber(),c.getClt_id(),BigDecimal.ZERO,BigDecimal.ZERO,1);
 		DaoAccount.addAccount(acc);
 
-		if(request.getParameter("epargneCheckBox") == "on"){
+		if(request.getParameter("epargneCheckBox").equals("on")){
 			// create saving account
-			acc = new Account(0, DaoAccount.getNextAccountNumber(), c.getClt_id(), new BigDecimal(1.5), BigDecimal.ZERO, 2);
+			acc = new Account(0, DaoAccount.getNextAccountNumber(), c.getClt_id(), BigDecimal.ZERO, new BigDecimal(1.5), 2);
 			DaoAccount.addAccount(acc);
 		}
-		if(request.getParameter("titreCheckBox") == "on"){
+		if(request.getParameter("titreCheckBox").equals("on")){
 			// create securities account
 			acc = new Account(0, DaoAccount.getNextAccountNumber(), c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 3);
 			DaoAccount.addAccount(acc);

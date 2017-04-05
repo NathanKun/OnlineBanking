@@ -12,7 +12,7 @@ public class TransactionHistory {
 	private int tsh_id;
 	
 	/**
-	 * le numéro de compte dont l'historique des transactions
+	 * le numï¿½ro de compte dont l'historique des transactions
 	 */
 	private String tsh_acc_number;
 	
@@ -52,8 +52,8 @@ public class TransactionHistory {
 	}
 	
 	/**
-	* Permet d'obtenir le numéro de compte dont l'historique des transactions.
-	* @return le numéro de compte dont l'historique des transactions.
+	* Permet d'obtenir le numï¿½ro de compte dont l'historique des transactions.
+	* @return le numï¿½ro de compte dont l'historique des transactions.
 	* @see #setTsh_acc_number(String tsh_acc_number)
 	*/
 	public String getTsh_acc_number() {

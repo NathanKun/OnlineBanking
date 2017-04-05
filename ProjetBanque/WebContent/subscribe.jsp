@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    
+    <link rel="stylesheet" href="./css/subscribe.css" type="text/css">
 
     <title>Créer compte client</title>
 
@@ -300,19 +302,27 @@
 
 
 
-                             <div class="form-group">
-                               <p>    <label class="col-md-4 control-label" for="cpassword">Je crée également un: </label> 
+                          <div class="form-group">
+                                <label class="col-md-4 control-label" for="cpassword">Je crée également un: </label> 
             
-                         
+                            <div class="col-md-4">
                                 <input type="checkbox" id="epargne" name="epargneCheckBox" >
                                 <label for="epargne">Compte épargne</label>
+                                
+                                <br>
 
                                 <input type="checkbox" id="titre" name="titreCheckBox" >
-                                <label for="titre"> Compte titre.</label></p>
+                                <label for="titre"> Compte titre.</label>
+                            </div>
                           </div>
                         
 
+                        <div class="form-group">
+                         <label class="col-md-4 control-label" for="send"></label>
+                          <div class="col-md-4">
 			            <label id="hint"></label> <br /> 
+                          </div>
+                        </div>
 			            
                         <!-- Button -->
                         <div class="form-group">
@@ -330,25 +340,11 @@
             </div>
 
         </div>
-        <!-- /.row -->
-            <!-- Content Column -->
-           <!-- <div class="col-md-9">
-                <h2>Section Heading</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p>
-            </div>
-        </div>-->
-        <!-- /.row -->
-
+        
         <hr>
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; BanKrading 2017</p>
-                </div>
-            </div>
-        </footer>
+		<!-- Footer -->
+		<%@ include file="./includes/footer.inc.jsp"%>
 
     </div>
     <!-- /.container -->
@@ -363,7 +359,7 @@
     
 	<script src="./js/subscribe.js"></script>
     
-    <script> window.onload = function(){document.getElementById("costumerarea").className = "dropdown active"; }</script>
+    <script> window.onload = function(){document.getElementById("customerarea").className = "dropdown active"; }</script>
 
 </body>
 
