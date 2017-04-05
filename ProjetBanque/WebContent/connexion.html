@@ -53,7 +53,7 @@
                     <li>
                         <a href="services.html">Services</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="contact.html">Contact</a>
                     </li>
                     <li class="dropdown">
@@ -90,16 +90,16 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace client <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li>
+                            <li class="active">
                                 <a href="full-width.html">Accéder à mon compte</a>
                             </li>
                             <li>
-                                <a href="sidebar.html">Devenir membre</a>
+                                <a href="sidebar.html">Inscription</a>
                             </li>
-                            <!--<li>
+                           <!-- <li>
                                 <a href="faq.html">FAQ</a>
                             </li>
                             <li>
@@ -107,7 +107,7 @@
                             </li>
                             <li>
                                 <a href="pricing.html">Pricing Table</a>
-                            </li>-->
+                            </li> -->
                         </ul>
                     </li>
                 </ul>
@@ -123,93 +123,66 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Comment nous joindre ?
-                    <small>...</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
-                    </li>
-                    <li class="active">Des questions? Nous avons les réponses qu'il vous faut </li>
-                </ol>
+                <h1 class="page-header"> <img src="brokenbaques.png" alt="Une imaaaaaaaage ou un messaaaage">
+                    <small></small>
+                </h1> 
+        
+                </br>
+                <div id="login" class="panel panel-primary container">
+  <div class="panel-heading"><h3 class="panel-title"><strong> Identification</strong></h3></div>
+  <div class="panel-body">
+    <form id="frm-login" class="form-horizontal" action="javascript:ctrl.effectuerLogin();">
+      <fieldset>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="control-label" for="nomUtilisateur"><span class="glyphicon glyphicon-user"></span> Nom d'utilisateur</label>  
+          <a class="pull-right" href="javascript:ctrl.chargerVue('compte');">Créer un compte</a>
+          <div>
+            <input id="nomUtilisateur" name="nomUtilisateur" type="text" placeholder="Entrez votre nom d'utilisateur" class="form-control input-md" required="">
+          </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+          <label class="control-label" for="password"><span class="glyphicon glyphicon-lock"></span> Mot de passe</label>
+          <a class="pull-right">Mot de passe oublié</a>
+          <div>
+            <input id="password" name="mdp" type="password" placeholder="Entrez votre mot de passe" class="form-control input-md" required="">
+          </div>
+        </div>
+        <!-- Button -->
+        <div class="form-group">
+          <label class="control-label" for="btnSigner"></label>
+          <div>
+              <button id="btnSigner" type="submit" name="btnSigner" class="btn btn-primary">Se connecter</button>
+          </div>  
+           
+
+        <!--</div> -->
+      </fieldset>
+    </form>
+
+  </div>
+</div>
+
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+
+
             </div>
         </div>
         <!-- /.row -->
 
         <!-- Content Row -->
         <div class="row">
-            <!-- Map Column -->
-            <div class="col-md-8">
-                <!-- Embedded Google Map -->
-                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
-            </div>
-            <!-- Contact Details Column -->
-            <div class="col-md-4">
-                <h3>Nos coordonnées</h3>
-                <p>
-                    1, avenue Maryse Bastié<br>76800, Saint-Etienne-Du-Rouvray<br>
-                </p>
-                <p><i class="fa fa-phone"></i> 
-                    <abbr title="Phone">Tél: </abbr>: +33(0)653541829</p>
-                <p><i class="fa fa-envelope-o"></i> 
-                    <abbr title="Email">E-mail</abbr>: <a href="mailto:name@example.com">contact@bankrading.com</a>
-                </p>
-                <p><i class="fa fa-clock-o"></i> 
-                    <abbr title="Hours">Horaires:</abbr>: Lundi - Vendredi: 9h:00  à 17h:30</p>
-                <ul class="list-unstyled list-inline list-social-icons">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-linkedin-square fa-2x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Contact Form -->
-        <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-        <div class="row">
-            <div class="col-md-8">
-                <h3>Envoyez nous un message</h3>
-                <form name="sentMessage" id="contactForm" novalidate>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Nom complet :</label>
-                            <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-                            <p class="help-block"></p>
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Numéro de téléphone :</label>
-                            <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Adresse mail:</label>
-                            <input type="email" class="form-control" id="email" required data-validation-required-message="Please enter your email address.">
-                        </div>
-                    </div>
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>Message:</label>
-                            <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
-                        </div>
-                    </div>
-                    <div id="success"></div>
-                    <!-- For success/fail messages -->
-                    <button type="submit" class="btn btn-primary">Envoyez le message</button>
-                </form>
-            </div>
-
+           <!-- <div class="col-lg-12">
+                <p>Most of Start Bootstrap's unstyled templates can be directly integrated into the Modern Business template. You can view all of our unstyled templates on our website at <a href="http://startbootstrap.com/template-categories/unstyled">http://startbootstrap.com/template-categories/unstyled</a>.</p>
+            </div> -->
         </div>
         <!-- /.row -->
 
@@ -232,11 +205,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-    <!-- Contact Form JavaScript -->
-    <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
 
 </body>
 

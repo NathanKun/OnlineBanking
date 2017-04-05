@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -160,196 +160,202 @@
         </a>
     </header> -->
 
+<%
+                                Client clt = (Client) session.getAttribute("client");
+                                ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt.getClt_id());
+                                request.setAttribute("accList", accList);
+                            %>
 
 
+	<section id="main"><!-- #main content and sidebar area -->
+			<section id="content"><!-- #content -->
+			
+				     <h1><legend>Modifier vos informations :<legend></h1> <!-- Titre du fieldset --> 
+	   
+	   
+	  
+	   
+	   
+	    <form method="post" action=".php">
+     <center>
+	 <table>
 
+   <tr>
+        
+	<td> <label>Identifiant   </label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp:ProjetBanque/WebContent/modifier-info-client.jsp
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
+	<td><input type="text" name="identifiant" id ="identifiant" /> </td>
+		 
+		 </tr>
+		 
+		 
+	 <tr>
+    <td><label>Mot de passe  </label> : </td>
+	<td><input type="password" name="password" id ="password" /></td>
+	 </tr>
+	 
+	  <tr>
+    <td><label>Confirmer le mot de passe  </label> : </td>
+	<td><input type="password" name="clt_password" id ="clt_password" /></td>
+	 </tr>
+	 
+	 <tr>	
+    <td><label>Nom</label> : </td>
+	<td><input type="text" name="name" id ="name" /></td>
+	</tr>
+	 
+	 <tr>	
+    <td><label>PrÃ©nom</label> : </td>
+	<td><input type="text" name="prenom" id ="prenom" /></td>
+=======
+	<td> <%=clt.getClt_login()%></td>
+=======
+	<td><%=clt.getClt_login()%> </td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/afficher-infos-client.jsp:ProjetBanque/WebContent/afficher-infos-client.jsp
+		 
+		 </tr>
+	 
+	 <tr>	
+    <td><label>Nom</label> : </td>
+	<td> <%=clt.getClt_lname()%></td>
+	</tr>
+	 
+	 <tr>	
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp:ProjetBanque/WebContent/modifier-info-client.jsp
+    <td><label>Prenom</label> : </td>
+	<td><%=clt.getClt_fname()%> </td>
+>>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+=======
+    <td><label>Prénom</label> : </td>
+	<td> <%=clt.getClt_fname()%></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/afficher-infos-client.jsp:ProjetBanque/WebContent/afficher-infos-client.jsp
+	</tr>
+	 
+	 <tr>
+   <td> <label>Date de naissance</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
+	<td><input type="date" name="date" id ="date" /></td>
+</tr>
+	 
+	 <tr>	 
+    <td><label>NationalitÃ©</label> : </td>
+	<td><input type="text" name="nationalite" id ="nationalite" /></td>
+=======
+	<td> <%=clt.getClt_birthday()%></td>
+</tr>
+	 
+	 <tr>	 
+    <td><label>Nationalité</label> : </td>
+	<td> <%=clt.getClt_nationality()%></td>
+>>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	</tr>
+	 
+	 <tr>	
+   <td> <label>Sexe</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
+	<td><input type="text" name="sexe" id ="sexe" /></td>
+=======
+	<td> <%=clt.getClt_gender()%></td>
+>>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	</tr>
+	
+	<tr>	
+    <td><label>Adresse</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
+	<td><input type="text" name="addresse" id ="addresse" /></td>
+=======
+	<td> <%=clt.getClt_address()%></td>
+>>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	</tr>
+	
+	<tr>	
+   <td> <label>Code postal</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp:ProjetBanque/WebContent/modifier-info-client.jsp
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="codepostal" id ="codepostal" /></td>
+=======
+	<td> <%=clt.getClt_postalcode()%></td>
+>>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+=======
+	<td><%=clt.getClt_postalcode()%> </td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/afficher-infos-client.jsp:ProjetBanque/WebContent/afficher-infos-client.jsp
+	</tr>
+	
+	<tr>	
+   <td> <label>Ville</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
+	<td><input type="text" name="ville" id ="ville" /></td>
+	</tr>
+	
+	<tr>	
+    <td><label>NumÃ©ro de tÃ©lÃ©phone</label> : </td>
+	<td><input type="number" onkeypress="return isNumberKey(evt)" name="tel" id ="tel" /></td>
+=======
+	<td> <%=clt.getClt_city()%></td>
+	</tr>
+	
+	<tr>	
+    <td><label>Numéro de téléphone</label> : </td>
+	<td> <%=clt.getClt_telephonenumber()%></td>
+>>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	</tr>
+	
+	<tr>
+   <td> <label>E-mail</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
+	<td><input type="email" name="mail" id ="mail" /></td>
+=======
+	<td> <%=clt.getClt_email()%><td>
+>>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	 </tr>
+	
+	<tr>	
+   <td> <label>Statut</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp
+	<td><input type="text" name="statut" id ="statut" /></td>
+=======
+	<td> <%=clt.getClt_status()%></td>
+>>>>>>> origin/master:ProjetBanque/WebContent/afficher-infos-client.jsp
+	</tr>
+	
+	</table>
+	
+	
+	
+<<<<<<< HEAD:ProjetBanque/WebContent/modifier-info-client.jsp:ProjetBanque/WebContent/modifier-info-client.jsp
+=======
+	
+	<br><br>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/afficher-infos-client.jsp:ProjetBanque/WebContent/afficher-infos-client.jsp
+    <p>
+	<input type="submit" value="Enregistrer les modifications" OnClick="zoneclient.html"/> 
+    <input type="button" value="Annuler"  OnClick= "location.href='zoneclient.html'"/>
+    <input type="reset" value="Recommencer" />
+	</p>
+	
+ </form>
+ 
+   </fieldset>
+	
+	
+	</center>
+			
+			
+			
+			</section><!-- end of #content -->
 
-
-
-<header id="myCarousel" class="carousel slide">
-<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
-  <!-- Overlay -->
-  <div class="overlay"></div>
-
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-    <li data-target="#bs-carousel" data-slide-to="1"></li>
-    <li data-target="#bs-carousel" data-slide-to="2"></li>
-  </ol>
-  
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item slides active">
-      <div class="slide-1"></div>
-      <div class="hero">
-        <hgroup>
-            <h1>We are creative</h1>        
-            <h3>Rejoignez nous</h3>
-        </hgroup>
-        <button class="btn btn-hero btn-lg" role="button">Détails</button>
-      </div>
-    </div>
-    <div class="item slides">
-      <div class="slide-2"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>We are smart</h1>        
-            <h3>bénéficiez d'un compte sans frais</h3>
-        </hgroup>       
-        <button class="btn btn-hero btn-lg" role="button">Détails</button>
-      </div>
-    </div>
-    <div class="item slides">
-      <div class="slide-3"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>We are amazing</h1>        
-            <h3>oOtenez gratuitement votre carte visa</h3>
-        </hgroup>
-        <button class="btn btn-hero btn-lg" role="button">Détails</button>
-      </div>
-    </div>
-  </div> 
-</div>
-
-
-</header>
-
-
-
-
-
-
-
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- Marketing Icons Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    
-                </h1>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i> Service 1</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="#" class="btn btn-default">Pour en savoir plus</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-gift"></i>  &amp; Service 2</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="#" class="btn btn-default">Plus ...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-compass"></i> Autres services</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="#" class="btn btn-default">Plus ...</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Portfolio Section // des images -->
-      <!--  <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Portfolio Heading</h2>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-        </div>
-       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --> 
-        <!-- /.row -->
-
-        <!-- Features Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">BankRadind</h2>
-            </div>
-            <div class="col-md-6">
-                <p>La banque en ligne Bankrading inclut des services tels que:</p>
-                <ul>
-                   <!-- <li><strong>Bootstrap v3.3.7</strong>
-                    </li>-->
-                    <li>80 euros offerts lors de l'ouverture de votre premier compte</li>
-                    <li>Des conseillers clients en chair et en os</li>
-                    <li>Une assistance de proximité</li>
-                    <li>Accès instantané à la bourse</li>
-                    <li>Actualités en temps réel</li>
-                </ul>
-                <p> Pilotez vos finances au juste prix. Vous ne payez que pour les services qui ont de la valeur. Découvrez tous les services quotidiens gratuits, ça change la vie.</p>
-            </div>
-            <div class="col-md-6">
-                <img class="img-responsive" src="http://placehold.it/700x450" alt="">
-            </div>
-        </div>
-        <!-- /.row -->
 
         <hr>
 
-        <!-- Call to Action Section -->
-        <div class="well">
+        <!-- Footer -->
+        <footer>
             <div class="row">
-                <div class="col-md-8">
-                    <p>Une offre claire. Peu de frais... Jamais cachés</p>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-lg btn-default btn-block" href="#">Voir les offres</a>
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Banque en ligne 2017</p>
                 </div>
             </div>
-        </div>
-
-        <hr>
-
-		<!-- Footer -->
-		<%@ include file="./includes/footer.inc.jsp"%>
+        </footer>
 
     </div>
     <!-- /.container -->

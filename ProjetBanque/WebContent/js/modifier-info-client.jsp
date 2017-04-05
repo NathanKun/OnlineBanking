@@ -1,3 +1,4 @@
+<%@ page import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -160,11 +161,11 @@
         </a>
     </header> -->
 
-
-
-
-
-
+<%
+                                Client clt = (Client) session.getAttribute("client");
+                                ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt.getClt_id());
+                                request.setAttribute("accList", accList);
+                            %>
 
 
 	<section id="main"><!-- #main content and sidebar area -->
@@ -185,7 +186,11 @@
    <tr>
         
 	<td> <label>Identifiant   </label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td><%=clt.getClt_login()%> </td>
+=======
 	<td><input type="text" name="clt_login" id ="clt_login" /> </td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 		 
 		 </tr>
 		 
@@ -202,57 +207,101 @@
 	 
 	 <tr>	
     <td><label>Nom</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_lname()%></td>
+=======
 	<td><input type="text" name="clt_lname" id ="clt_lname" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	 
 	 <tr>	
     <td><label>Prénom</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_fname()%></td>
+=======
 	<td><input type="text" name="clt_fname" id ="clt_fname" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	 
 	 <tr>
    <td> <label>Date de naissance</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_birthday()%></td>
+=======
 	<td><input type="date" name="clt_birthday" id ="clt_birthday" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 </tr>
 	 
 	 <tr>	 
     <td><label>Nationalité</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_nationality()%></td>
+=======
 	<td><input type="text" name="clt_nationality" id ="clt_nationality" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	 
 	 <tr>	
    <td> <label>Sexe</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_gender()%></td>
+=======
 	<td><input type="text" name="clt_gender" id ="clt_gender" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	
 	<tr>	
     <td><label>Adresse</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_address()%></td>
+=======
 	<td><input type="text" name="clt_address" id ="clt_address" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	
 	<tr>	
    <td> <label>Code postal</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td><%=clt.getClt_postalcode()%> </td>
+=======
 	<td><input type="number" onkeypress="return isNumberKey(evt)" name="clt_postalcode" id ="clt_postalcode" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	
 	<tr>	
    <td> <label>Ville</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_city()%></td>
+=======
 	<td><input type="text" name="clt_city" id ="clt_city" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	
 	<tr>	
     <td><label>Numéro de téléphone</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_telephonenumber()%></td>
+=======
 	<td><input type="number" onkeypress="return isNumberKey(evt)" name="clt_telephonenumber" id ="clt_telephonenumber" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	
 	<tr>
    <td> <label>E-mail</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_email()%><td>
+=======
 	<td><input type="email" name="clt_email" id ="clt_email" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	 </tr>
 	
 	<tr>	
    <td> <label>Statut</label> : </td>
+<<<<<<< HEAD:ProjetBanque/WebContent/afficher-infos-client.html
+	<td> <%=clt.getClt_status()%></td>
+=======
 	<td><input type="text" name="clt_status" id ="clt_status" /></td>
+>>>>>>> 257839360dcd3726db3c5bc35eaf419676048332:ProjetBanque/WebContent/js/modifier-info-client.jsp
 	</tr>
 	
 	</table>
