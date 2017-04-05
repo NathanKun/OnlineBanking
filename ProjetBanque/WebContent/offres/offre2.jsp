@@ -38,7 +38,7 @@
                     <small>BanKrading</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">Home</a>
+                    <li><a href="../index.jsp">Home</a>
                     </li>
                     <li class="active">Nos offres</li>
                 </ol>
@@ -74,14 +74,8 @@
 
         <hr>
 
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
+		<!-- Footer -->
+		<%@ include file="../includes/footer.inc.jsp"%>
 
     </div>
     <!-- /.container -->

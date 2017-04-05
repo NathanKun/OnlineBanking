@@ -37,15 +37,23 @@
                     <li id="contact">
                         <a href="<%=request.getContextPath()%>/contact.jsp">Nous contacter</a>
                     </li>
-                    <li id="costumerarea" class="dropdown">
+                    <li id="customerarea" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace client <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="<%=request.getContextPath()%>/login.jsp">Accéder à mon compte</a>
                             </li>
-                            <li>
-                                <a href="<%=request.getContextPath()%>/subscribe.jsp">Devenir membre</a>
-                            </li>
+                            <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+							<c:if test="${not empty client}">
+	                            <li>
+	                                <a href="<%=request.getContextPath()%>/Logout">Déconnexion</a>
+	                            </li>
+							</c:if>
+							<c:if test="${empty client}">
+	                            <li>
+	                                <a href="<%=request.getContextPath()%>/subscribe.jsp">Devenir membre</a>
+	                            </li>
+							</c:if>
                         </ul>
                     </li>
                 </ul>

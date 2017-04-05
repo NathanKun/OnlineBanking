@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+#accountsInfo td, #currentHistory td, #savingHistory td, #securitiesHistory td { 
+    padding: 10px;
+}
+
+#accountsInfo, #currentHistory, #savingHistory, #securitiesHistory { 
+    border-spacing: 10px;
+    border-collapse: separate;
+}
