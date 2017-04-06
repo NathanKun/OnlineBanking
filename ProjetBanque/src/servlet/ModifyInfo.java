@@ -60,7 +60,7 @@ public class ModifyInfo extends HttpServlet {
         int j= Integer.parseInt(jour);
         int m= Integer.parseInt(mois);
         int a= Integer.parseInt(annee);
-
+        /*if (password.isEmpty=*/
 		PasswordAuthentication pa = new PasswordAuthentication();
 		password = pa.hash(password.toCharArray());
         

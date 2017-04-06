@@ -101,6 +101,7 @@
 					<tr>
 						<td><label>Nationalite</label> :</td>
 						<td><select id="nationalite" name="nationalite" required>
+								<option> <%=clt.getClt_nationality()%>  </option>
 								<option>Afghan</option>
 								<option>Albanais</option>
 								<option>Algerien</option>

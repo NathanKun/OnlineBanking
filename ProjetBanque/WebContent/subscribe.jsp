@@ -68,9 +68,9 @@
                           <label class="col-md-4 control-label" for="selectbasic">Titre</label>
                           <div class="col-md-4">
                             <select id="selectbasic" name="sexe" class="form-control">
-                              <option value="1">Mademoiselle</option>
-                              <option value="2">Madame</option>
-                              <option value="3">Monsieur</option>
+                              <option value="Feminin">Mademoiselle</option>
+                              <option value="Feminin">Madame</option>
+                              <option value="Masculin">Monsieur</option>
                             </select>
                           </div>
                         </div>
@@ -277,7 +277,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tel">Téléphone</label>  
                           <div class="col-md-4">
-                          <input id="tel" name="tel"  pattern="[0-9]{10}" placeholder="Téléphone" class="form-control input-md" required="" type="text">
+                          <input id="tel" name="tel"  pattern="[0-9]{10}" placeholder="Ex:0XXXXXXXXXX " class="form-control input-md" required="" type="text">
                             
                           </div>
                         </div>
