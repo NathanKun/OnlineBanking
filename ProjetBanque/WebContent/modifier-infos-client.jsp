@@ -1,5 +1,6 @@
 <%@ page
 	import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
+<%@ include file="./includes/sessionCheck.inc.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 

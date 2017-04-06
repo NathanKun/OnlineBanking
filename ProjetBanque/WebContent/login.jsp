@@ -71,7 +71,7 @@
 						<div class="form-group">
 							<label class="control-label" for="nomUtilisateur"><span
 								class="glyphicon glyphicon-user"></span> Nom d'utilisateur</label> <a
-								class="pull-right" href="javascript:ctrl.chargerVue('compte');">Créer
+								class="pull-right" href="/Subscrib;">Créer
 								un compte</a>
 							<div>
 								<input id="nomUtilisateur" name="login" type="text"
