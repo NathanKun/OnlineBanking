@@ -20,6 +20,7 @@ import util.PasswordAuthentication;
 
 /**
  * Servlet implementation class Inscription
+ *@author 
  */
 @WebServlet("/Subscribe")
 public class Subscribe extends HttpServlet {

@@ -53,7 +53,7 @@
 				<h1>
 					<img src="../images/offre2.png" width="600" height="322" alt="image">
 				</h1>
-				<h2>*Mentions legals</h2>
+				<h2>*Mentions legales</h2>
 	
 				<p>Avec votre Carte Bancaire Visa Premier BankRading, c’est vous
 					qui décidez, vous pouvez :</p>

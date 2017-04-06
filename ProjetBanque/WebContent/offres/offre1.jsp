@@ -49,8 +49,8 @@
 		<section id="main">
 			<section id="content">
 				<!-- #content -->
-				<img src="../images/offre1.png" width="600" height="322" alt="offre1" />
-				<h2>*Mentions legals</h2>
+				<img src="../images/offre_1.png" width="600" height="322" alt="offre1" />
+				<h2>*Mentions legales</h2>
 				<img src="../images/mentions.png" alt="Mentions legals" />
 			</section>
 			<!-- end of #content -->
