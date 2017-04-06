@@ -42,6 +42,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h2 class="page-header">${ client.getClt_lname() }, Bienvenue dans votre espace client</h2>
+				<h4>Votre login : ${ client.getClt_login() }</h4>
 			</div>
 		</div>
 		
