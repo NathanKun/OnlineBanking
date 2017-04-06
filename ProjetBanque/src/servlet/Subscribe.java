@@ -29,7 +29,7 @@ public class Subscribe extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("./sidebar.jsp");
+		response.sendRedirect("./subscribe.jsp");
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,12 +70,19 @@ public class Subscribe extends HttpServlet {
 		Account acc=new Account(0,DaoAccount.getNextAccountNumber(),c.getClt_id(),BigDecimal.ZERO,BigDecimal.ZERO,1);
 		DaoAccount.addAccount(acc);
 
-		if(request.getParameter("epargneCheckBox").equals("on")){
+		String epargneCB = "";
+		String titreCB = "";
+		if(request.getParameter("epargneCheckBox") != null)
+			epargneCB = request.getParameter("epargneCheckBox");
+		if(request.getParameter("titreCheckBox") != null)
+			titreCB = request.getParameter("titreCheckBox");
+
+		if(epargneCB.equals("on")){
 			// create saving account
 			acc = new Account(0, DaoAccount.getNextAccountNumber(), c.getClt_id(), BigDecimal.ZERO, new BigDecimal(1.5), 2);
 			DaoAccount.addAccount(acc);
 		}
-		if(request.getParameter("titreCheckBox").equals("on")){
+		if(titreCB.equals("on")){
 			// create securities account
 			acc = new Account(0, DaoAccount.getNextAccountNumber(), c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 3);
 			DaoAccount.addAccount(acc);
