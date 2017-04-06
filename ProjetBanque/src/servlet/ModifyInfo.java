@@ -14,6 +14,7 @@ import org.joda.time.DateTime;
 import dao.DaoAccount;
 import dao.DaoClient;
 import model.Client;
+import util.PasswordAuthentication;
 
 /**
  * Servlet implementation class ModifyInfo
@@ -59,7 +60,10 @@ public class ModifyInfo extends HttpServlet {
         int j= Integer.parseInt(jour);
         int m= Integer.parseInt(mois);
         int a= Integer.parseInt(annee);
-        PrintWriter out = response.getWriter();
+
+		PasswordAuthentication pa = new PasswordAuthentication();
+		password = pa.hash(password.toCharArray());
+        
 		//On doit reprendre le login precedent
 		String login = DaoClient.getNextClientLogin();
 		String acc_number = DaoAccount.getNextAccountNumber();
@@ -77,9 +81,12 @@ public class ModifyInfo extends HttpServlet {
 		c.setClt_telephonenumber(tel);
 		DateTime date= new DateTime (a,m,j,0,0,0,0);
 		c.setClt_birthday(date);
-		DaoClient.updateClient(c);
 		
-		out.println("Modifications apportées");
+
+		
+		DaoClient.updateClient(c);
+
+		response.sendRedirect("./zoneclient.jsp");
 	}
 
 }

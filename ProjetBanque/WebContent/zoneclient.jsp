@@ -1,28 +1,3 @@
-<<<<<<< HEAD
-
-$('.nav-tabs-dropdown').each(function(i, elm) {
-
-    
-    $(elm).text($(elm).next('ul').find('li.active a').text());
-    
-});
-  
-$('.nav-tabs-dropdown').on('click', function(e) {
-
-    e.preventDefault();
-    
-    $(e.target).toggleClass('open').next('ul').slideToggle();
-    
-});
-
-$('#nav-tabs-wrapper a[data-toggle="tab"]').on('click', function(e) {
-
-    e.preventDefault();
-    
-    $(e.target).closest('ul').hide().prev('a').removeClass('open').text($(this).text());
-      
-});
-=======
 <%@ page
 	import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
 <%@ include file="./includes/sessionCheck.inc.jsp"%>
@@ -185,83 +160,86 @@ $('#nav-tabs-wrapper a[data-toggle="tab"]').on('click', function(e) {
 						<fieldset>
 							<legend> Afficher vos informations : </legend>
 
-							<form method="post" action=".php">
-								<table>
+							<%
+                                ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt.getClt_id());
+                                request.setAttribute("accList", accList);
+                            %>
 
-									<tr>
-
-										<td><label for="identifiant">Identifiant </label> :</td>
-										<td></td>
-
-									</tr>
-
-									<tr>
-										<td><label for="nom">Nom</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="prenom">Prénom</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="date">Date de naissance</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="nationalite">Nationalité</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="sexe">Sexe</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="adresse">Adresse</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="codepostal">Code postal</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="ville">Ville</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="tel">Numéro de téléphone</label> :</td>
-										<td></td>
-									</tr>
-
-									<tr>
-										<td><label for="mail">E-mail</label> :</td>
-										<td>
-										<td>
-									</tr>
-
-									<tr>
-										<td><label>Statut</label> :</td>
-										<td></td>
-									</tr>
-
+							    <form method="post" action=".php">
+							 <table>
+						
+							   <tr>
+							        
+								<td> <label>Identifiant   </label> : </td>
+								<td><%=clt.getClt_login()%> </td>
+									 
+									 </tr>
+								 
+								 <tr>	
+							    <td><label>Nom</label> : </td>
+								<td> <%=clt.getClt_lname()%></td>
+								</tr>
+								 
+								 <tr>	
+							    <td><label>Prenom</label> : </td>
+								<td> <%=clt.getClt_fname()%></td>
+								</tr>
+								 
+								 <tr>
+							   <td> <label>Date de naissance</label> : </td>
+								<td> <%=clt.getClt_birthday()%></td>
+							</tr>
+								 
+								 <tr>	 
+							    <td><label>Nationalite</label> : </td>
+								<td> <%=clt.getClt_nationality()%></td>
+								</tr>
+								 
+								 <tr>	
+							   <td> <label>Sexe</label> : </td>
+								<td> <%=clt.getClt_gender()%></td>
+								</tr>
+								
+								<tr>	
+							    <td><label>Adresse</label> : </td>
+								<td> <%=clt.getClt_address()%></td>
+								</tr>
+								
+								<tr>	
+							   <td> <label>Code postal</label> : </td>
+								<td><%=clt.getClt_postalcode()%> </td>
+								</tr>
+								
+								<tr>	
+							   <td> <label>Ville</label> : </td>
+								<td> <%=clt.getClt_city()%></td>
+								</tr>
+								
+								<tr>	
+							    <td><label>Numero de telephone</label> : </td>
+								<td> <%=clt.getClt_telephonenumber()%></td>
+								</tr>
+								
+								<tr>
+							   <td> <label>E-mail</label> : </td>
+								<td> <%=clt.getClt_email()%><td>
+								 </tr>
+								
+								<tr>	
+							   <td> <label>Statut</label> : </td>
+								<td> <%=clt.getClt_status()%></td>
+								</tr>
+								
 								</table>
-
-
-
-								<p>
-									<input type="button" value="Modifier les informations"
-										OnClick="location.href='modifier-info-client.jsp'" />
+							
+							<br>
+							    <p>
+							<input type="button" value="Modifier les informations" OnClick="location.href='modifier-infos-client.jsp'"/>          
 								</p>
-							</form>
-
-						</fieldset>
+							
+						 </form>
+						 
+						   </fieldset>
 
 
 					</div>
@@ -349,4 +327,3 @@ $('#nav-tabs-wrapper a[data-toggle="tab"]').on('click', function(e) {
 </body>
 
 </html>
->>>>>>> 7d27c1c4db7b1fbc0ae7a8304db6d49e0a2f681a

@@ -1,372 +1,326 @@
+<%@ page
+	import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
+<%@ include file="./includes/sessionCheck.inc.jsp"%>
+<%
+	Client clt = (Client)session.getAttribute("client");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Modern Business - Start Bootstrap Template</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/modern-business.css" rel="stylesheet">
-    <link href="css/carousel.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	
+	<title>Modern Business - Start Bootstrap Template</title>
+	
+	<link href="css/accountsInfo.css" rel="stylesheet">
+	
+	<!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Custom CSS -->
+	<link href="css/modern-business.css" rel="stylesheet">
+	
+	<!-- Custom Fonts -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+		type="text/css">
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">BankRading</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="about.html">Mieux nous connaitre</a>
-                    </li>
-                    <li>
-                        <a href="services.html">Nos services</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Nous contacter</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bourse <b class="caret"></b></a>
-                      <!--  <ul class="dropdown-menu">
-                            <li>
-                                <a href="portfolio-1-col.html">1 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-2-col.html">2 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-3-col.html">3 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-4-col.html">4 Column Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="portfolio-item.html">Single Portfolio Item</a>
-                            </li>
-                        </ul> -->
-                    </li>
-                   <!-- <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="blog-home-1.html">Blog Home 1</a>
-                            </li>
-                            <li>
-                                <a href="blog-home-2.html">Blog Home 2</a>
-                            </li>
-                            <li>
-                                <a href="blog-post.html">Blog Post</a>
-                            </li> 
-                        </ul>-->
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Espace client <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="full-width.html">Accéder à mon compte</a>
-                            </li>
-                            <li>
-                                <a href="sidebar.html">Devenir membre</a>
-                            </li>
-                          <!--  <li>
-                                <a href="faq.html">FAQ</a>
-                            </li>
-                            <li>
-                                <a href="404.html">404</a>
-                            </li>
-                            <li>
-                                <a href="pricing.html">Pricing Table</a>
-                            </li>-->
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+	<%@ include file="./includes/nav.inc.jsp"%>
 
-    <!-- Header Carousel -->
-   <!-- <header id="myCarousel" class="carousel slide">-->
-        <!-- Indicators -->
-    <!--   <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol> -->
-
-        <!-- Wrapper for slides -->
-       <!-- <div class="carousel-inner">-->
-          <!--  <div class="item active"> -->
-                <!--<div class="fill" style="background-image:url('Pictur/labview');"></div>-->
-              <!--  <img src="cartevisa.png" alt="chuchu1">
-                <div class="carousel-caption">
-                    <h2>Caption 1</h2>
-                </div>
-            </div>
-            <div class="item"> -->
-               <!-- <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>-->
-             <!--   <img src="offres.png" alt="chuchu2">
-                <div class="carousel-caption">
-                    <h2>Caption 2</h2>
-                </div>
-            </div>
-            <div class="item"> -->
-              <!--  <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>-->
-             <!--   <img src="compte_sans_frais.png" alt="chuchu3">
-                <div class="carousel-caption">
-                    <h2>Caption 3</h2>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Controls -->
-        <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
-    </header> -->
+	<!-- Page Content -->
+	<div class="container">
 
 
+		<!-- Service Tabs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="page-header">${ client.getClt_lname() }, Bienvenue dans votre espace client</h2>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+
+				<ul id="myTab" class="nav nav-tabs nav-justified">
+					<li class="active"><a href="#generalites" data-toggle="tab"><i
+							class="fa fa-tree"></i> Gï¿½nï¿½ralitï¿½s du compte</a></li>
+					<li class=""><a href="#comptes" data-toggle="tab"><i
+							class="fa fa-car"></i> Historique des transactions</a></li>
+					<li class=""><a href="#virement" data-toggle="tab"><i
+							class="fa fa-car"></i> Transferts et virement</a></li>
+					<li class=""><a href="#creditercompte" data-toggle="tab"><i
+							class="fa fa-support"></i> Crï¿½diter mon compte</a></li>
+					<li class=""><a href="#infosperso" data-toggle="tab"><i
+							class="fa fa-database"></i> Mes informations personnelles</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade active in" id="generalites">
+						<h3>Mes comptes</h3>
+						<table id="accountsInfo">
+							<tr><th>Type</th><th>Numï¿½ro</th><th>intï¿½ret</th><th>Solde</th></tr>
+							<tr>
+								<td>Compte courant:</td>
+								<td>${ client.getCurrentAccount().getAcc_number() }</td>
+								<td>${ client.getCurrentAccount().getAcc_interest() }</td>
+								<td id="currentBalance"><button onclick="showBalance('currentBalance');">Show</button></td>
+							</tr><tr>
+							<%if(clt.getSavingAccount() != null){ %>
+							<tr>
+								<td>Compte d'ï¿½pargne:</td>
+								<td>${ client.getSavingAccount().getAcc_number() }</td>
+								<td>${ client.getSavingAccount().getAcc_interest() }</td>
+								<td id="savingBalance"><button onclick="showBalance('savingBalance');">Show</button></td>
+							</tr><tr>
+							<%} if(clt.getSecuritiesAccount() != null){ %>
+							<tr>
+								<td>Compte de titre:</td>
+								<td>${ client.getSecuritiesAccount().getAcc_number() }</td>
+								<td>${ client.getSecuritiesAccount().getAcc_interest() }</td>
+								<td id="securitiesBalance"><button onclick="showBalance('securitiesBalance');">Show</button></td>
+							</tr>
+							<%} %>
+						</table>
+					</div>
+					<!-- Gï¿½nï¿½ralitï¿½s comptes -->
+
+					<div class="tab-pane fade" id="comptes">
+							<h3>Historique des transactions</h3>
+							<p>Compte courant: ${ client.getCurrentAccount().getAcc_number() }</p>
+							<button onclick="showTsh('currentHistory')";>show</button>
+							<table id="currentHistory">
+							</table>
+						<%if(clt.getSavingAccount() != null){ %>
+							<p>Compte d'ï¿½pargne: ${ client.getSavingAccount().getAcc_number() }</p>
+							<button onclick="showTsh('savingHistory')";>show</button>
+							<table id="savingHistory">
+							</table>
+						<%} if(clt.getSecuritiesAccount() != null){ %>
+							<p>Compte de titre: ${ client.getSecuritiesAccount().getAcc_number() }</p>
+							<button onclick="showTsh('securitiesHistory')";>show</button>
+							<table id="securitiesHistory">
+							</table>
+						<%} %>
+					</div>
+					<!-- Transaction history -->
+
+
+					<div class="tab-pane fade" id="virement">
+						<h3>Effectuer un virement :</h3>
+						<div class="form-group">
+							<p>
+								<label class="col-md-4 control-label" for="compte">Compte
+									ï¿½metteur: </label> <label for="courant"> <input type="checkbox"
+									id="courant" value="courant"> Compte courant
+								</label> <label for="epargne"> <input type="checkbox"
+									id="epargne" value="epargne"> Compte ï¿½pargne
+								</label> <input type="checkbox" id="titre" value="checkbox1"> <label
+									for="titre"> Compte titre. </label>
+							</p>
+
+						</div>
+
+						<div class="form-group">
+							<p>
+								<label class="col-md-4 control-label" for="compte">Compte
+									bï¿½nï¿½ficiaire: </label> <label for="courant"> <input
+									type="checkbox" id="courant" value="courant"> Compte
+									courant
+								</label> <label for="epargne"> <input type="checkbox"
+									id="epargne" value="epargne"> Compte ï¿½pargne
+								</label> <input type="checkbox" id="titre" value="checkbox1"> <label
+									for="titre"> Compte titre. </label>
+							</p>
+
+						</div>
+					</div>
+					<!-- virement -->
+
+
+					<div class="tab-pane fade" id="creditercompte">
+						<h3>Alimenter mon compte</h3>
+
+					</div>
+					<!-- creditercompte -->
+
+
+					<div class="tab-pane fade" id="infosperso">
+
+						<fieldset>
+							<legend> Afficher vos informations : </legend>
+
+							<form method="post" action=".php">
+								<table>
+
+									<tr>
+
+										<td><label for="identifiant">Identifiant </label> :</td>
+										<td></td>
+
+									</tr>
+
+									<tr>
+										<td><label for="nom">Nom</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="prenom">Prï¿½nom</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="date">Date de naissance</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="nationalite">Nationalitï¿½</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="sexe">Sexe</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="adresse">Adresse</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="codepostal">Code postal</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="ville">Ville</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="tel">Numï¿½ro de tï¿½lï¿½phone</label> :</td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td><label for="mail">E-mail</label> :</td>
+										<td>
+										<td>
+									</tr>
+
+									<tr>
+										<td><label>Statut</label> :</td>
+										<td></td>
+									</tr>
+
+								</table>
 
 
 
+								<p>
+									<input type="button" value="Modifier les informations"
+										OnClick="location.href='modifier-info-client.jsp'" />
+								</p>
+							</form>
+
+						</fieldset>
 
 
-<header id="myCarousel" class="carousel slide">
-<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
-  <!-- Overlay -->
-  <div class="overlay"></div>
-
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-    <li data-target="#bs-carousel" data-slide-to="1"></li>
-    <li data-target="#bs-carousel" data-slide-to="2"></li>
-  </ol>
-  
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item slides active">
-      <div class="slide-1"></div>
-      <div class="hero">
-        <hgroup>
-            <h1>We are creative</h1>        
-            <h3>Rejoignez nous</h3>
-        </hgroup>
-        <button class="btn btn-hero btn-lg" role="button">Détails</button>
-      </div>
-    </div>
-    <div class="item slides">
-      <div class="slide-2"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>We are smart</h1>        
-            <h3>bénéficiez d'un compte sans frais</h3>
-        </hgroup>       
-        <button class="btn btn-hero btn-lg" role="button">Détails</button>
-      </div>
-    </div>
-    <div class="item slides">
-      <div class="slide-3"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>We are amazing</h1>        
-            <h3>oOtenez gratuitement votre carte visa</h3>
-        </hgroup>
-        <button class="btn btn-hero btn-lg" role="button">Détails</button>
-      </div>
-    </div>
-  </div> 
-</div>
-
-
-</header>
-
-
-
-
-
-
-
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- Marketing Icons Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    
-                </h1>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-check"></i> Service 1</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="#" class="btn btn-default">Pour en savoir plus</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-gift"></i>  &amp; Service 2</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="#" class="btn btn-default">Plus ...</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-compass"></i> Autres services</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                        <a href="#" class="btn btn-default">Plus ...</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Portfolio Section // des images -->
-      <!--  <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Portfolio Heading</h2>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-        </div>
-       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ --> 
-        <!-- /.row -->
-
-        <!-- Features Section -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">BankRadind</h2>
-            </div>
-            <div class="col-md-6">
-                <p>La banque en ligne Bankrading inclut des services tels que:</p>
-                <ul>
-                   <!-- <li><strong>Bootstrap v3.3.7</strong>
-                    </li>-->
-                    <li>80 euros offerts lors de l'ouverture de votre premier compte</li>
-                    <li>Des conseillers clients en chair et en os</li>
-                    <li>Une assistance de proximité</li>
-                    <li>Accès instantané à la bourse</li>
-                    <li>Actualités en temps réel</li>
-                </ul>
-                <p> Pilotez vos finances au juste prix. Vous ne payez que pour les services qui ont de la valeur. Découvrez tous les services quotidiens gratuits, ça change la vie.</p>
-            </div>
-            <div class="col-md-6">
-                <img class="img-responsive" src="http://placehold.it/700x450" alt="">
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Call to Action Section -->
-        <div class="well">
-            <div class="row">
-                <div class="col-md-8">
-                    <p>Une offre claire. Peu de frais... Jamais cachés</p>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-lg btn-default btn-block" href="#">Voir les offres</a>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
+					</div>
+					<!-- info perso -->
+				</div>
+				<!-- myTabContent -->
+			</div>
+			<!-- col-lg-12 -->
+		</div>
+		<!-- row -->
+		
 		<!-- Footer -->
 		<%@ include file="./includes/footer.inc.jsp"%>
+	</div>
+	<!-- /.container -->
 
-    </div>
-    <!-- /.container -->
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+	<!-- Script to Activate the Carousel -->
+	<script>
+		$('.carousel').carousel({
+			interval : 5000
+		//changes the speed
+		})
+	</script>
 
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
-
+	<script>
+		window.onload = function() {
+			document.getElementById("customerarea").className = "dropdown active";
+		}
+		
+		// show balance
+		// TODO: use Ajax to be more security
+		function showBalance(type){
+			switch(type){
+				case "currentBalance":
+					document.getElementById("currentBalance").innerHTML = <%= clt.getCurrentAccount().getAcc_balance() %>;
+					break;
+				<% if(clt.getSavingAccount() != null){ %>
+				case "savingBalance":
+					document.getElementById("savingBalance").innerHTML = <%= clt.getSavingAccount().getAcc_balance() %>;
+					break;
+				<%} if(clt.getSecuritiesAccount() != null){ %>
+				case "securitiesBalance":
+					document.getElementById("securitiesBalance").innerHTML = <%= clt.getSecuritiesAccount().getAcc_balance() %>;
+					break;
+				<% } %>
+			}
+		}
+		
+		// Ajax show transaction history
+		
+		
+		
+		function showTsh(type) {
+			switch(type){
+			case "currentHistory":
+				$.get("./GetTransactionHistories", { type: 'currentHistory' }, function(responseText) {
+                    document.getElementById("currentHistory").innerHTML = 
+                    	"<tr><th>Date</th><th>Description</th><th>Montant</th></tr>" 
+                    	+ responseText;
+                });
+				break;
+			case "savingHistory":
+				$.get("./GetTransactionHistories", { type: 'savingHistory' }, function(responseText) {
+                    document.getElementById("savingHistory").innerHTML = 
+                    	"<tr><th>Date</th><th>Description</th><th>Montant</th></tr>" 
+                    	+ responseText;
+                });
+				break;
+			case "securitiesHistory":
+				$.get("./GetTransactionHistories", { type: 'securitiesHistory' }, function(responseText) {
+                    document.getElementById("securitiesHistory").innerHTML = 
+                    	"<tr><th>Date</th><th>Description</th><th>Montant</th></tr>" 
+                    	+ responseText;
+                });
+				break;
+			}
+		}
+	</script>
 </body>
 
 </html>

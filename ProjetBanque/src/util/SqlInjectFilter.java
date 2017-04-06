@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter(filterName="SqlInjectFilter", 
 	initParams={
     @WebInitParam(name="invalidsql", value="select insert delete from update create destory drop "
-    		+ "alter like exec count chr mid master truncate char declare ; ' % < >"), 
+    		+ "alter like exec count chr mid master truncate char declare ; % < >"), 
     @WebInitParam(name="error", value="/error.jsp"), 
     @WebInitParam(name="debug", value="true"),
 	}, 
