@@ -1,5 +1,6 @@
 <%@ page
 	import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="./includes/sessionCheck.inc.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +56,7 @@
 
 
 			<form id="form" class="form-horizontal" action="./ModifyInfo"
-				method="post">
+				method="post" onsubmit="return checkInputs()">
 				<table>
 
 					<tr>
@@ -68,34 +69,33 @@
 
 					<tr>
 						<td><label>Mot de passe </label> :</td>
-						<td><input type="password" name="password" id="password" /></td>
+						<td><input type="password" name="password" id="password" onchange="checkPw()" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Confirmer le mot de passe </label> :</td>
-						<td><input type="password" name="clt_password"
-							id="clt_password" /></td>
+						<td><input type="password" name="password2"
+							id="password2" onchange="checkPw()" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Nom</label> :</td>
 						<td><input type="text" name="nom" id="nom"
-							value="<%=clt.getClt_lname()%>" /></td>
+							value="${fn:escapeXml(client.getClt_lname())}" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Prenom</label> :</td>
 						<td><input type="text" name="prenom" id="prenom"
-							value="<%=clt.getClt_fname()%>" /></td>
+							value="${fn:escapeXml(client.getClt_fname())}" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Date de naissance</label> :</td>
-						<td><input type="number" name="jour" min="1" max="31"
-							style="width: 3em;" value="" required> <input
-							type="number" name="mois" min="1" max="12" style="width: 3em;"
-							value="" required> <input type="number" name="annee"
-							min="1900" max="2000" style="width: 6em;" value="" required></td>
+						<td><input type="number" name="jour" min="1" max="31" style="width: 3em;" value="<%=clt.getClt_birthday().getDayOfMonth() %>" required />
+							<input type="number" name="mois" min="1" max="12" style="width: 3em;" value="<%=clt.getClt_birthday().getMonthOfYear() %>" required />
+							<input type="number" name="annee" min="1900" max="2000" style="width: 6em;" value="<%=clt.getClt_birthday().getYear() %>" required />
+						</td>
 					</tr>
 
 					<tr>
@@ -154,7 +154,7 @@
 								<option>Israelien</option>
 								<option>Italien</option>
 								<option>Ivoirien</option>
-								<option>Jamaï¿½cain</option>
+								<option>Jamaïcain</option>
 								<option>Japonais</option>
 								<option>Kazakh</option>
 								<option>Kirghiz</option>
@@ -201,7 +201,7 @@
 								<option>Suisse</option>
 								<option>Syrien</option>
 								<option>Tadjik</option>
-								<option>Taï¿½wanais</option>
+								<option>Taïwanais</option>
 								<option>Tchadien</option>
 								<option>Tcheque</option>
 								<option>Thailandais</option>
@@ -225,20 +225,19 @@
 					<tr>
 						<td><label>Adresse</label> :</td>
 						<td><input type="text" name="adresse" id="adresse"
-							value="<%=clt.getClt_address()%>" /></td>
+							value="${fn:escapeXml(client.getClt_address())}" /></td>
 					</tr>
 
 					<tr>
 						<td><label>Code postal</label> :</td>
-						<td><input type="number" onkeypress="return isNumberKey(evt)"
-							name="codepostal" id="codepostal"
-							value="<%=clt.getClt_postalcode()%>" /></td>
+						<td><input type="txex" name="codepostal" id="codepostal"
+							value="<%=clt.getClt_postalcode()%>" onchange="getCity()"/></td>
 					</tr>
 
 					<tr>
 						<td><label>Ville</label> :</td>
 						<td><input type="text" name="ville" id="ville"
-							value="<%=clt.getClt_city()%>" /></td>
+							value="${fn:escapeXml(client.getClt_city())}" /></td>
 					</tr>
 
 					<tr>
@@ -250,7 +249,7 @@
 					<tr>
 						<td><label>E-mail</label> :</td>
 						<td><input type="email" name="email" id="email"
-							value="<%=clt.getClt_email()%>" /></td>
+							value="${fn:escapeXml(client.getClt_email())}" /></td>
 					</tr>
 
 					<tr>
@@ -267,12 +266,12 @@
 
 
 				<p>
-					<input type="submit" value="Enregistrer les modifications" /> <input
+					<input type="submit" id="submit" value="Enregistrer les modifications" /> <input
 						type="button" value="Annuler"
 						OnClick="location.href='zoneclient.html'" /> <input type="reset"
 						value="Recommencer" />
 				</p>
-
+				<label id="hint"></label>
 			</form>
 
 		</fieldset>
@@ -306,6 +305,8 @@
 		//changes the speed
 		})
 	</script>
+	
+	<script src="./js/subscribe.js"></script>
 
 </body>
 

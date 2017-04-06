@@ -83,14 +83,14 @@ function checkPw() {
 
     if (pw1.length < 6) {
         document.getElementById('submit').disabled = true;
-        document.getElementById("hint").innerHTML = "Le mot de passe est trop court"
+        document.getElementById("hint").innerHTML = "Le mot de passe est trop court";
     } else {
         if (pw1 == pw2) {
             document.getElementById('submit').disabled = false;
             document.getElementById("hint").innerHTML = "";
         } else {
             document.getElementById('submit').disabled = true;
-            document.getElementById("hint").innerHTML = "Deux mots de passe sont différents"
+            document.getElementById("hint").innerHTML = "Deux mots de passe sont différents";
         }
     }
 }

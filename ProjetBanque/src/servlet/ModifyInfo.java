@@ -35,8 +35,7 @@ public class ModifyInfo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("./zoneclient.jsp");
 	}
 
 	/**
@@ -61,13 +60,15 @@ public class ModifyInfo extends HttpServlet {
         int m= Integer.parseInt(mois);
         int a= Integer.parseInt(annee);
 
-		PasswordAuthentication pa = new PasswordAuthentication();
-		password = pa.hash(password.toCharArray());
+		Client c= (Client)request.getSession(true).getAttribute("client");
+        
+        if((!password.isEmpty()) & password != null) {
+			PasswordAuthentication pa = new PasswordAuthentication();
+			password = pa.hash(password.toCharArray());
+			c.setClt_password(password);
+        }
         
 		//On doit reprendre le login precedent
-		String login = DaoClient.getNextClientLogin();
-		String acc_number = DaoAccount.getNextAccountNumber();
-		Client c= (Client)request.getSession(true).getAttribute("client");
 		c.setClt_lname(nom);
 		c.setClt_fname(prenom);
 		c.setClt_nationality(nationalite);
@@ -76,7 +77,6 @@ public class ModifyInfo extends HttpServlet {
 		c.setClt_postalcode(codepostal);
 		c.setClt_city(ville);
 		c.setClt_email(email);
-		c.setClt_password(password);
 		c.setClt_status(statut);
 		c.setClt_telephonenumber(tel);
 		DateTime date= new DateTime (a,m,j,0,0,0,0);

@@ -1,5 +1,5 @@
 <%@ page
-	import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
+	import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList, org.joda.time.format.DateTimeFormat"%>
 <%@ include file="./includes/sessionCheck.inc.jsp"%>
 <%
 	Client clt = (Client)session.getAttribute("client");
@@ -178,57 +178,57 @@
 								 
 								 <tr>	
 							    <td><label>Nom</label> : </td>
-								<td> <%=clt.getClt_lname()%></td>
+								<td><c:out value="${client.getClt_lname()}" /></td>
 								</tr>
 								 
 								 <tr>	
 							    <td><label>Prenom</label> : </td>
-								<td> <%=clt.getClt_fname()%></td>
+								<td> <c:out value="${client.getClt_fname()}" /></td>
 								</tr>
 								 
 								 <tr>
 							   <td> <label>Date de naissance</label> : </td>
-								<td> <%=clt.getClt_birthday()%></td>
+								<td><c:out value='<%=clt.getClt_birthday().toString(DateTimeFormat.forPattern("yyyy/MM/dd")) %>' /></td>
 							</tr>
 								 
 								 <tr>	 
 							    <td><label>Nationalite</label> : </td>
-								<td> <%=clt.getClt_nationality()%></td>
+								<td><c:out value="${client.getClt_nationality()}" /></td>
 								</tr>
 								 
 								 <tr>	
 							   <td> <label>Sexe</label> : </td>
-								<td> <%=clt.getClt_gender()%></td>
+								<td><c:out value="${client.getClt_gender()}" /></td>
 								</tr>
 								
 								<tr>	
 							    <td><label>Adresse</label> : </td>
-								<td> <%=clt.getClt_address()%></td>
+								<td><c:out value="${client.getClt_address()}" /></td>
 								</tr>
 								
 								<tr>	
 							   <td> <label>Code postal</label> : </td>
-								<td><%=clt.getClt_postalcode()%> </td>
+								<td><c:out value="${client.getClt_postalcode()}" /></td>
 								</tr>
 								
 								<tr>	
 							   <td> <label>Ville</label> : </td>
-								<td> <%=clt.getClt_city()%></td>
+								<td><c:out value="${client.getClt_city()}" /></td>
 								</tr>
 								
 								<tr>	
 							    <td><label>Numero de telephone</label> : </td>
-								<td> <%=clt.getClt_telephonenumber()%></td>
+								<td><c:out value="${client.getClt_telephonenumber()}" /></td>
 								</tr>
 								
 								<tr>
 							   <td> <label>E-mail</label> : </td>
-								<td> <%=clt.getClt_email()%><td>
+								<td><c:out value="${client.getClt_email()}" /><td>
 								 </tr>
 								
 								<tr>	
 							   <td> <label>Statut</label> : </td>
-								<td> <%=clt.getClt_status()%></td>
+								<td><c:out value="${client.getClt_status()}" /></td>
 								</tr>
 								
 								</table>

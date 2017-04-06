@@ -79,7 +79,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="Nom22">Nom</label>  
                           <div class="col-md-4">
-                          <input id="nom" name="nom" placeholder="Nom" class="form-control input-md" required="" type="text">
+                          <input id="nom" name="nom" placeholder="Nom" class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="Prénom">Prénom</label>  
                           <div class="col-md-4">
-                          <input id="prenom" name="prenom" placeholder="Prénom" class="form-control input-md" required="" type="text">
+                          <input id="prenom" name="prenom" placeholder="Prénom" class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -241,7 +241,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="rue">Adresse</label>  
                           <div class="col-md-4">
-                          <input id="adresse" name="adresse" placeholder="Adresse" class="form-control input-md" required="" type="text">
+                          <input id="adresse" name="adresse" placeholder="Adresse" class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -250,7 +250,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="CP">Code Postal</label>  
                           <div class="col-md-2">
-                          <input id="codepostal" name="codepostal" onchange="getCity()" placeholder="Code Postal" class="form-control input-md" required="" type="text">
+                          <input id="codepostal" name="codepostal" onchange="getCity()" placeholder="Code Postal" class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -259,7 +259,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="ville">Ville</label>  
                           <div class="col-md-4">
-                          <input id="ville" name="ville" placeholder="ville" class="form-control input-md" required="" type="text">
+                          <input id="ville" name="ville" placeholder="ville" class="form-control input-md" type="text">
                             
                           </div>
                         </div>
@@ -268,7 +268,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="mail">Adresse e-mail</label>  
                           <div class="col-md-4">
-                          <input id="email" name="email" placeholder="Adresse e-mail" class="form-control input-md" required="" type="text">
+                          <input id="email" name="email" placeholder="Adresse e-mail" class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -277,7 +277,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tel">Téléphone</label>  
                           <div class="col-md-4">
-                          <input id="tel" name="tel"  pattern="[0-9]{10}" placeholder="Téléphone" class="form-control input-md" required="" type="text">
+                          <input id="tel" name="tel"  pattern="[0-9]{10}" placeholder="Téléphone" class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -286,7 +286,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="revMensNet">Choisissez votre mot de passe </label>  
                           <div class="col-md-4">
-                          <input id="password" name="password" onchange="checkPw()" placeholder="password" class="form-control input-md" required="" type="password">
+                          <input id="password" name="password" onchange="checkPw()" placeholder="password" class="form-control input-md" required type="password">
                             
                           </div>
                         </div>
