@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.joda.time.DateTime;
 
 import model.Account;
+import model.Advisor;
 import model.Client;
 import model.ContactForm;
 import model.HoldingShare;
@@ -56,6 +57,7 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement(sql);
 			switch (type) {
+			case "Advisor":
 			case "Client":
 			case "Account":
 			case "HoldingShare":
@@ -65,7 +67,8 @@ abstract public class Dao {
 			case "ContactForm":
 				ps.setInt(1, (int) item);
 				break;
-				
+
+			case "FindAdvisorByLogin":
 			case "FindClientByLogin":
 				ps.setString(1, (String) item);
 				break;
@@ -78,6 +81,13 @@ abstract public class Dao {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				switch (type) {
+				case "FindAdvisorByLogin":
+				case "Advisor":
+					retour = new Advisor(rs.getInt("avs_id"), rs.getString("avs_name"), rs.getString("avs_login"),
+							rs.getString("avs_password"));
+					break;
+
+				case "FindClientByLogin":
 				case "Client":
 					retour = new Client(rs.getInt("clt_id"), rs.getString("clt_login"), rs.getString("clt_password"),
 							rs.getString("clt_fname"), rs.getString("clt_lname"),
@@ -114,18 +124,8 @@ abstract public class Dao {
 							rs.getBigDecimal("tsh_amount"));
 					break;
 
-				case "FindClientByLogin":
-					retour = new Client(rs.getInt("clt_id"), rs.getString("clt_login"), rs.getString("clt_password"),
-							rs.getString("clt_fname"), rs.getString("clt_lname"),
-							new DateTime(rs.getTimestamp("clt_birthday")), rs.getString("clt_nationality"),
-							rs.getString("clt_gender"), rs.getString("clt_address"), rs.getString("clt_postalcode"),
-							rs.getString("clt_city"), rs.getString("clt_telephonenumber"), rs.getString("clt_email"),
-							rs.getString("clt_status"), new DateTime(rs.getTimestamp("clt_lastlogin")),
-							new DateTime(rs.getTimestamp("clt_createdon")));
-					break;
-
 				case "ContactForm":
-					retour = new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"), rs.getString("ctf_email"), 
+					retour = new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"), rs.getString("ctf_email"),
 							rs.getString("ctf_tel"), rs.getString("ctf_message"));
 					break;
 
@@ -193,6 +193,13 @@ abstract public class Dao {
 
 			// we crosse all the line of the results
 			switch (type) {
+			case "Advisor":
+				while (rs.next()) {
+					returnList.add(new Advisor(rs.getInt("avs_id"), rs.getString("avs_name"), rs.getString("avs_login"),
+							rs.getString("avs_password")));
+				}
+				break;
+
 			case "Client":
 				while (rs.next()) {
 					returnList.add(new Client(rs.getInt("clt_id"), rs.getString("clt_login"),
@@ -272,12 +279,11 @@ abstract public class Dao {
 				}
 				break;
 
-
 			case "ContactForm":
 				while (rs.next()) {
-					returnList.add(new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"), rs.getString("ctf_email"), 
-						rs.getString("ctf_tel"), rs.getString("ctf_message")));
-			}
+					returnList.add(new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"),
+							rs.getString("ctf_email"), rs.getString("ctf_tel"), rs.getString("ctf_message")));
+				}
 				break;
 			default:
 				System.out.println("String type not correct!");
@@ -331,6 +337,14 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "Advisor":
+				Advisor advisor = (Advisor) item;
+				ps = con.prepareStatement("INSERT INTO advisor_avs VALUES(null, ?, ?, ?)");
+				ps.setString(1, advisor.getAvs_name());
+				ps.setString(2, advisor.getAvs_login());
+				ps.setString(3, advisor.getAvs_password());
+				break;
+
 			case "Client":
 				Client client = (Client) item;
 				ps = con.prepareStatement(
@@ -466,6 +480,11 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "Advisor":
+				ps = con.prepareStatement("DELETE FROM advisor_avs WHERE avs_id=?");
+				ps.setInt(1, (int) item);
+				break;
+
 			case "Client":
 				ps = con.prepareStatement("DELETE FROM client_clt WHERE clt_id=?");
 				ps.setInt(1, (int) item);
@@ -548,6 +567,15 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "Advisor":
+				Advisor advisor = (Advisor) item;
+				ps = con.prepareStatement("UPDATE advisor_avs SET avs_name=?, avs_login=?, avs_password=? WHERE avs_id=?");
+				ps.setString(1, advisor.getAvs_name());
+				ps.setString(2, advisor.getAvs_login());
+				ps.setString(3, advisor.getAvs_password());
+				ps.setInt(4, advisor.getAvs_id());
+				break;
+
 			case "Client":
 				Client clt = (Client) item;
 				ps = con.prepareStatement(

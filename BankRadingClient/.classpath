@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="/ProjetBanque/src/dao"/>
-	<classpathentry kind="lib" path="/ProjetBanque/src/servlet"/>
 	<classpathentry kind="lib" path="/ProjetBanque/lib/joda-time-2.9.9.jar"/>
 	<classpathentry kind="lib" path="/ProjetBanque/lib/mysql-connector-java-5.1.41-bin.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ProjetBanque"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

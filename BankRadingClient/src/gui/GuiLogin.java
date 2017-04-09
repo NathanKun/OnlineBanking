@@ -1,18 +1,22 @@
 package gui;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-
-import util.SetTheme;
-
 import javax.swing.JTextField;
-import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JButton;
+
+import dao.DaoAdvisor;
+import model.Advisor;
+import util.PasswordAuthentication;
+import util.SetTheme;
 
 /**
  * Login GUI
@@ -28,23 +32,54 @@ public class GuiLogin extends JFrame implements ActionListener {
 	 * default serial version UID
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * text field for input id
+	 */
 	private JTextField tfId;
+	/**
+	 * password field for input password
+	 */
 	private JPasswordField tfPw;
+	/**
+	 * label shows: Identifiant : 
+	 */
 	private JLabel lbId = new JLabel("Identifiant : ");
+	/**
+	 * label shows: Mot de passe : 
+	 */
 	private JLabel lbPw = new JLabel("Mot de passe : ");
+	/**
+	 * label shows: RadBanking
+	 */
 	private JLabel lbTitle = new JLabel("RadBanking");
+	/**
+	 * label shows: Front office advisor system
+	 */
 	private JLabel lbSubTitle = new JLabel("Front office advisor system");
+	/**
+	 * button for login action
+	 */
 	private JButton btnLogin = new JButton("Login");
 	
+	/**
+	 * consctuctor of jframe
+	 */
 	public GuiLogin() {
+		// exit on close
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// size
 		setSize(300, 250);
+		//title
 		setTitle("Login");
+		// not resizable
 		setResizable(false);
+		// center window to screen
 		setLocationRelativeTo(null);
+		// absolute layout
 		getContentPane().setLayout(null);
-		
+		// initiate components
 		initComponents();
-		
+		// show window
 		setVisible(true);
 	}
 
@@ -85,20 +120,45 @@ public class GuiLogin extends JFrame implements ActionListener {
 		getRootPane().setDefaultButton(btnLogin);
 	}
 
+	/**
+	 * Event that user click on login
+	 */
+	public void loginOnclick(){
+		if(!tfId.getText().isEmpty() && tfPw.getPassword().length != 0){
+			Advisor avs = DaoAdvisor.findAdvisorByLogin(tfId.getText());
+			
+			PasswordAuthentication pa = new PasswordAuthentication();
+			if(pa.authenticate(tfPw.getPassword(), avs.getAvs_password())){
+				dispose();
+				new GuiMain();
+			} else{
+				showMessageDialog(this, "L'identifiant ou le mot de passe est incorrect.");
+			}
+		} else {
+			showMessageDialog(this, "Veillez entrer l'identifiant et le mot de passe.");
+		}
+		
+	}
+	
+	/**
+	 * action perform
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLogin){
-			System.out.println("Clicked");
+			loginOnclick();
 		}
 	}
+	
+	/**
+	 * Main method for testing
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		SetTheme.setNimbus();
-		
-        JFrame frame = new JFrame("SwingApplication");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GuiLogin app = new GuiLogin();
+        new GuiLogin();
 
 	}
 }

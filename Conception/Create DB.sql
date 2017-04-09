@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS onlineBank;
 #DROP DATABASE onlinebank;
 USE onlinebank;
 
+DROP TABLE IF EXISTS advisor_avs;
 DROP TABLE IF EXISTS contactform_ctf;
 DROP TABLE IF EXISTS holdingshare_hds;
 DROP TABLE IF EXISTS stockhistoricalprice_shp;
@@ -11,6 +12,13 @@ DROP TABLE IF EXISTS account_acc;
 DROP TABLE IF EXISTS client_clt;
 DROP PROCEDURE IF EXISTS InsertRandToSHP;
     
+    
+CREATE TABLE IF NOT EXISTS advisor_avs (
+	avs_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    avs_name VARCHAR(60) NOT NULL,
+    avs_login VARCHAR(20) NOT NULL UNIQUE,
+    avs_password VARCHAR(178) NOT NULL
+);
     
 CREATE TABLE IF NOT EXISTS contactform_ctf (
 	ctf_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -256,4 +264,14 @@ CREATE PROCEDURE InsertRandToSHP(IN Seed INT)
     END$$
 DELIMITER ;
 
-CALL InsertRandToSHP(25);
+#CALL InsertRandToSHP(25);
+
+INSERT INTO advisor_avs VALUES(null, 'MrAdvisorA', 'a', 
+	"$31$16$dbPTfmG7Rsoc_404pj9xhSdcYfeSnRWUTpceh1k2Qf9WYXmEYdjU-kAf3Lo4wycfc2awxnRyCiMhDVPl4V-AX24NuC6dC2iXaMEVm_5p2D0Egbb6gR4M08o_w1oWEgk5zkH_Kkr8g7_JdCbxGngvPVwFL49KWXGfKvQXm353FdY"
+);
+INSERT INTO advisor_avs VALUES(null, 'MsAdvisorB', 'b', 
+	"$31$16$qcBh8ENZcSfpeStNzJnhpc0-uw6SIxwJUK6gAEaIn3hkb_Rg6BAhXcqw2EUWabPq3kz6e7eXMTKgOLpbSUTiCnEKlvvpOga2G760JqfQu7ljJbl1D-7vGEGKY-Z00XjC7jrD4BdKny4CI82dchPxQBWLbt7xEeAgeKfAYfzedG0"
+);
+INSERT INTO advisor_avs VALUES(null, 'MrsAdvisorC', 'c', 
+	"$31$16$BnYo6uJe7XrpkVWoOB0VQ3a_czDxDs0Y3K6JnhN-dTTGNgskiOsIFSywcuBgB_gR2JBuMFkLmus91-IaaRdl3ZAMLlnsaXIcJy0soYuTmdmo_VEJJbXG2FbsZ-iukUTvxnno0LUqokfwKpjI8qtcUkP_DsHSqNo7Gt8UaLmwLBQ"
+);
