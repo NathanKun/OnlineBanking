@@ -214,7 +214,10 @@ public class GuiMain extends JFrame {
 					boolean cellHasFocus) {
 				Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 				if(renderer instanceof JLabel && value instanceof Account) {
-					((JLabel) renderer).setText(((Account) value).getAcc_number());
+					((JLabel) renderer).setText(
+							((Account) value).getAcc_number()
+							+ "    Solde : "
+							+ ((Account) value).getAcc_balance());
 				}
 				return renderer;
 			}
