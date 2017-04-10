@@ -1,3 +1,4 @@
+package Launcher;
 import gui.GuiLogin;
 import util.SetTheme;
 

@@ -26,12 +26,10 @@ import util.SetTheme;
  */
 public class GuiLogin extends JFrame implements ActionListener {
 	
-
-
 	/**
-	 * default serial version UID
+	 * serialVersionUID
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8275872523267694997L;
 	/**
 	 * text field for input id
 	 */
@@ -152,7 +150,7 @@ public class GuiLogin extends JFrame implements ActionListener {
 	
 	/**
 	 * Main method for testing
-	 * @param args
+	 * @param args input arguments
 	 */
 	public static void main(String[] args) {
 		

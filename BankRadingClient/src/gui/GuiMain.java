@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListCellRenderer;
@@ -10,6 +8,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -17,17 +16,16 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import dao.DaoClient;
 import model.Account;
 import model.Client;
 import model.TransactionHistory;
-
-import javax.swing.JTextPane;
 
 /**
  * Gui of main page of the system
@@ -37,6 +35,10 @@ import javax.swing.JTextPane;
  */
 public class GuiMain extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -248822875737254279L;
 	/**
 	 * full client list
 	 */
@@ -93,6 +95,8 @@ public class GuiMain extends JFrame {
 	 * jlist contains all account of selected client
 	 */
 	private JList<Account> jlistAccount = new JList<Account>(modelJListAccount);
+	private final JScrollPane jspTSHTable = new JScrollPane();
+	private final JScrollPane jspClientList = new JScrollPane();
 	
 	/**
 	 * Constructor of jframe
@@ -126,18 +130,17 @@ public class GuiMain extends JFrame {
 		
 		lbTransactionHistory.setBounds(237, 355, 341, 18);
 		getContentPane().add(lbTransactionHistory);
+		jspClientList.setBounds(6, 68, 219, 654);
 		
-		
-		
-		// JList of client
-		jlistClient.setBounds(6, 68, 219, 654);
-		getContentPane().add(jlistClient);
+		getContentPane().add(jspClientList);
+		jspClientList.setViewportView(jlistClient);
 		// set a custom renderer to jlist which show client's full name when it contains a list of Client objects
 		jlistClient.setCellRenderer(new DefaultListCellRenderer() {
+
 			/**
-			 * default serialVersionUID
+			 * serialVersionUID
 			 */
-			private static final long serialVersionUID = 1L;
+			private static final long serialVersionUID = -1766659322866433816L;
 
 			/**
 			 * Custom renderer baesd on the Default ListCellRenderer
@@ -157,7 +160,7 @@ public class GuiMain extends JFrame {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				updateJTable();
+				updateJTableClientInfo();
 				updateJListAccount();
 				clearJTableTSH();
 			}
@@ -225,10 +228,10 @@ public class GuiMain extends JFrame {
 			}
 			
 		});
+		jspTSHTable.setBounds(237, 374, 775, 348);
 		
-		// jtable of transaction history
-		jtableTransactionHistory.setBounds(237, 385, 775, 337);
-		getContentPane().add(jtableTransactionHistory);
+		getContentPane().add(jspTSHTable);
+		jspTSHTable.setViewportView(jtableTransactionHistory);
 
 		// add clients in jlist
 		for(Client clt : clientList){
@@ -270,6 +273,7 @@ public class GuiMain extends JFrame {
 				modelJTableTSH.addRow(new Object[]{tsh.getTsh_transactionOn().toString(DateTimeFormat.forPattern("yyyy/MM/dd")),
 						tsh.getTsh_description(), tsh.getTsh_amount()});
 			}
+			resizeColumnWidth(jtableTransactionHistory);
 		}
 	}
 	
@@ -307,7 +311,7 @@ public class GuiMain extends JFrame {
 	/**
 	 * update client's data in jtable when select client change
 	 */
-	private void updateJTable() {
+	private void updateJTableClientInfo() {
 		if(!jlistClient.isSelectionEmpty()){ // avoid event generate by reset client list
 			Client clt = jlistClient.getSelectedValue();
 			for (int i = modelJTableClientInfo.getRowCount() - 1; i >= 0; i--) {
@@ -330,12 +334,32 @@ public class GuiMain extends JFrame {
 					clt.getClt_createdon().toString(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")) });
 			modelJTableClientInfo.addRow(new Object[] { "Derni¨¨re connexion",
 					clt.getClt_lastlogin().toString(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")) });
+			resizeColumnWidth(jtableClientInfo);
 		}
+	}
+	
+	/**
+	 * Resize table to fit content
+	 * @param table	the table to resize column width
+	 */
+	public void resizeColumnWidth(JTable table) {
+	    final TableColumnModel columnModel = table.getColumnModel();
+	    for (int column = 0; column < table.getColumnCount(); column++) {
+	        int width = 5; // Min width
+	        for (int row = 0; row < table.getRowCount(); row++) {
+	            TableCellRenderer renderer = table.getCellRenderer(row, column);
+	            Component comp = table.prepareRenderer(renderer, row, column);
+	            width = Math.max(comp.getPreferredSize().width +1 , width);
+	        }
+	        if(width > 700)
+	            width=300;
+	        columnModel.getColumn(column).setPreferredWidth(width);
+	    }
 	}
 
 	/**
 	 * Main for testing
-	 * @param args
+	 * @param args inputs arguments
 	 */
 	public static void main(String[] args) {
 		new GuiMain();
