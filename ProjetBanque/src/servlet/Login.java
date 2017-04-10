@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.joda.time.DateTime;
+
 import dao.DaoClient;
 import model.Client;
 import util.PasswordAuthentication;
@@ -54,6 +56,8 @@ public class Login extends HttpServlet {
 		}
 
 		if (isFound) {
+			cltFound.setClt_lastlogin(new DateTime());
+			DaoClient.updateClient(cltFound);
 			// redirection
 			request.getSession(true).setAttribute("client", cltFound);
 			System.out.println("clt found");

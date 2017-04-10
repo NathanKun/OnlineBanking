@@ -29,8 +29,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter(filterName="SqlInjectFilter", 
 	initParams={
-    @WebInitParam(name="invalidsql", value="select insert delete update create destory drop "
-    		+ "alter exec count chr master truncate char declare ; % < >"), 
+    /*@WebInitParam(name="invalidsql", value="select insert delete update create destory drop "
+    		+ "alter exec chr master truncate char declare ; % < >"), */
+    @WebInitParam(name="invalidsql", value="< >"), 
     @WebInitParam(name="error", value="/error.jsp"), 
     @WebInitParam(name="debug", value="true"),
 	}, 
@@ -51,6 +52,9 @@ public class SqlInjectFilter implements Filter {
      */
     public void doFilter(ServletRequest req, ServletResponse res, 
             FilterChain fc) throws IOException, ServletException { 
+
+    	req.setCharacterEncoding("UTF-8");
+    	
         if(debug){ 
             System.out.println("prevent sql inject filter works"); 
         } 

@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS client_clt (
     clt_nationality VARCHAR(30) NOT NULL,
     clt_gender CHAR(1) NOT NULL, 	# m/f
     clt_address VARCHAR(255) NOT NULL,
-    clt_postalcode CHAR(10) NOT NULL,
+    clt_postalcode CHAR(10),
     clt_city VARCHAR(30) NOT NULL,
     clt_telephonenumber VARCHAR(14) NOT NULL,
     clt_email VARCHAR(254) NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS holdingshare_hds(
 INSERT INTO client_clt VALUES(null, "login", 
 	"$31$16$-uVazABmj_zVigoaLAUSoXxH8J9lmy4yODXNHijAuJAqd-KK7-6J3Mxl4mPNxIe5B5hfqdswHa5KXlMLwW4JqPP27cvaZFNjQ1yvrW6aLfns_7PcrF72o4f7gSyj8oLTCxnTAq8Pf5dH_zkklWcJiTnXXcpjapxydXSE_GdHQR0", 
     "firstName", "lastName", STR_TO_DATE('1994-07-10','%Y-%d-%m'),
-	"Chinese", "M", "1 rue Abc", "76000", "Rouen", "01234567", "e@mail.com", "Celebataire", NOW(), 
+	"Chinese", "M", "1 rue Abc", "76000", "Rouen", "01234567", "e@mail.com", "Marié(e)", NOW(), 
 	('2009-06-08 23:53:17'));
 INSERT INTO account_acc VALUES(null, "4444555566660001", 1, 987.65, 0, 1);
 INSERT INTO account_acc VALUES(null, "4444555566660002", 1, 23333.33, 2.5, 2);
@@ -129,7 +129,7 @@ INSERT INTO client_clt VALUES(null, "a",
 	"$31$16$dbPTfmG7Rsoc_404pj9xhSdcYfeSnRWUTpceh1k2Qf9WYXmEYdjU-kAf3Lo4wycfc2awxnRyCiMhDVPl4V-AX24NuC6dC2iXaMEVm_5p2D0Egbb6gR4M08o_w1oWEgk5zkH_Kkr8g7_JdCbxGngvPVwFL49KWXGfKvQXm353FdY", 
 	"Haoran", "Wang", STR_TO_DATE('1999-09-09','%Y-%d-%m'),
 	"Chinese", "M", "233 rue de Rouen", "76800", "St du Ry", "0607080910", "wanghaoran@gmail.com", 
-	"Celebataire", NOW(), ('2017-03-29 10:05:21'));
+	"Divorcé(e)", NOW(), ('2017-03-29 10:05:21'));
 INSERT INTO account_acc VALUES(null, "2222333322220001", 2, 1643.68, 0, 1);
 INSERT INTO account_acc VALUES(null, "2222333322220002", 2, 2500.00, 2.5, 2);
 
@@ -171,7 +171,7 @@ INSERT INTO client_clt VALUES(null, "b",
 	"$31$16$qcBh8ENZcSfpeStNzJnhpc0-uw6SIxwJUK6gAEaIn3hkb_Rg6BAhXcqw2EUWabPq3kz6e7eXMTKgOLpbSUTiCnEKlvvpOga2G760JqfQu7ljJbl1D-7vGEGKY-Z00XjC7jrD4BdKny4CI82dchPxQBWLbt7xEeAgeKfAYfzedG0", 
 	"Onepunch", "Man", STR_TO_DATE('1888-08-08','%Y-%d-%m'),
 	"Chinese", "M", "321 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee", "33445", "Fukuchima", "0607080910", "wanghaoran@gmail.com", 
-	"Celebataire", NOW(), ('2015-01-02 20:33:45'));
+	"Séparé(e)", NOW(), ('2015-01-02 20:33:45'));
 INSERT INTO account_acc VALUES(null, "3333666699990001", 3, 65535.00, 0, 1);
 INSERT INTO account_acc VALUES(null, "3333666699990003", 3, 1200.00, 0, 3);
 
@@ -189,7 +189,7 @@ INSERT INTO client_clt VALUES(null, "1236784567",
 	"$31$16$BnYo6uJe7XrpkVWoOB0VQ3a_czDxDs0Y3K6JnhN-dTTGNgskiOsIFSywcuBgB_gR2JBuMFkLmus91-IaaRdl3ZAMLlnsaXIcJy0soYuTmdmo_VEJJbXG2FbsZ-iukUTvxnno0LUqokfwKpjI8qtcUkP_DsHSqNo7Gt8UaLmwLBQ", 
 	"Bill", "Gate", STR_TO_DATE('1960-03-11','%Y-%d-%m'),
 	"American", "M", "some rode", "01234", "SomeCity", "0607080910", "billgate@gmail.com", 
-	"Married", NOW(), ('2016-07-08 07:20:11'));
+	"Célibataire", NOW(), ('2016-07-08 07:20:11'));
 INSERT INTO account_acc VALUES(null, "4444888844440001", 4, 10086, 0, 1);
 
 

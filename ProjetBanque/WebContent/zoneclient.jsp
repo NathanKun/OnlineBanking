@@ -91,7 +91,17 @@
 								<td>${ client.getSecuritiesAccount().getAcc_interest() }</td>
 								<td id="securitiesBalance"><button onclick="showBalance('securitiesBalance');">Show</button></td>
 							</tr>
-							<%} %>
+							<% }if(clt.getSavingAccount() == null){ %>
+							<tr>
+								<td>Créer un compte d'épargne</td>
+								<td><button onclick="createAccount('savingAccount');">Créer</button></td>
+							</tr>
+							<% } if(clt.getSecuritiesAccount() == null){ %>
+							<tr>
+								<td>Créer un compte de titre:</td>
+								<td><button onclick="createAccount('securitiesAccount');">Créer</button></td>
+							</tr>
+							<% } %>
 						</table>
 					</div>
 					<!-- Généralités comptes -->
@@ -99,17 +109,17 @@
 					<div class="tab-pane fade" id="comptes">
 							<h3>Historique des transactions</h3>
 							<p>Compte courant: ${ client.getCurrentAccount().getAcc_number() }</p>
-							<button onclick="showTsh('currentHistory')";>show</button>
+							<button onclick="showTsh('currentHistory')">show</button>
 							<table id="currentHistory">
 							</table>
 						<%if(clt.getSavingAccount() != null){ %>
 							<p>Compte d'épargne: ${ client.getSavingAccount().getAcc_number() }</p>
-							<button onclick="showTsh('savingHistory')";>show</button>
+							<button onclick="showTsh('savingHistory')">show</button>
 							<table id="savingHistory">
 							</table>
 						<%} if(clt.getSecuritiesAccount() != null){ %>
 							<p>Compte de titre: ${ client.getSecuritiesAccount().getAcc_number() }</p>
-							<button onclick="showTsh('securitiesHistory')";>show</button>
+							<button onclick="showTsh('securitiesHistory')">show</button>
 							<table id="securitiesHistory">
 							</table>
 						<%} %>
@@ -120,29 +130,35 @@
 					<div class="tab-pane fade" id="virement">
 						<h3>Effectuer un virement :</h3>
 						<div class="form-group">
-							<p>
-								<label class="col-md-4 control-label" for="compte">Compte
-									émetteur: </label> <label for="courant"> <input type="checkbox"
-									id="courant" value="courant"> Compte courant
-								</label> <label for="epargne"> <input type="checkbox"
-									id="epargne" value="epargne"> Compte épargne
-								</label> <input type="checkbox" id="titre" value="checkbox1"> <label
-									for="titre"> Compte titre. </label>
-							</p>
-
-						</div>
-
-						<div class="form-group">
-							<p>
-								<label class="col-md-4 control-label" for="compte">Compte
-									bénéficiaire: </label> <label for="courant"> <input
-									type="checkbox" id="courant" value="courant"> Compte
-									courant
-								</label> <label for="epargne"> <input type="checkbox"
-									id="epargne" value="epargne"> Compte épargne
-								</label> <input type="checkbox" id="titre" value="checkbox1"> <label
-									for="titre"> Compte titre. </label>
-							</p>
+							<form id="transferForm" action="./TransferMoney" method="post">
+							  <input id="radioCourant1" type="radio" name="emetteur" value="courant"> 
+							  <label for="radioCourant1"> Compte courant</label><br>
+							  <% if(clt.getSavingAccount() != null) { %>
+							  <input id="radioEpargne1" type="radio" name="emetteur" value="epargne"> 
+							  <label for="radioEpargne1"> Compte d'epargne</label><br>
+							  <% } if(clt.getSecuritiesAccount() != null) { %>
+							  <input id="radioTitre1" type="radio" name="emetteur" value="titre"> 
+							  <label for="radioTitre1"> Compte de titre</label><br>
+							  <% } %>
+							  
+							  <input id="radioCourant2" type="radio" name="beneficiaire" value="courant">
+							  <label for="radioCourant2"> Compte courant</label><br>
+							  <% if(clt.getSavingAccount() != null) { %>
+							  <input id="radioEpargne2" type="radio" name="beneficiaire" value="epargne">
+							  <label for="radioEpargne2"> Compte d'epargne</label><br>
+							  <% } if(clt.getSecuritiesAccount() != null) { %>
+							  <input id="radioTitre2" type="radio" name="beneficiaire" value="titre">
+							  <label for="radioTitre2"> Compte de titre</label><br>
+							  <% } %>
+							  
+							  <label for="transferAmount">Somme : </label>
+							  <input id="transferAmount" name="transactionAmount" type="number" min="0" 
+							  	onchange="transferCheck();"/><br>
+							  
+							  
+							  <label id="transferHint"></label><br>
+							  <input id="transferSubmit" type="submit" value="Effectuer" disabled />
+							</form>
 
 						</div>
 					</div>
@@ -274,10 +290,9 @@
 	<script>
 		window.onload = function() {
 			document.getElementById("customerarea").className = "dropdown active";
-		}
+		};
 		
 		// show balance
-		// TODO: use Ajax to be more security
 		function showBalance(type){
 			switch(type){
 				case "currentBalance":
@@ -295,10 +310,23 @@
 			}
 		}
 		
+		// create account and refresh page
+		function createAccount(type) {
+			switch(type){
+			case "savingAccount":
+				if(confirm("Vous voulez créer un compte d'épargne ?")){
+					$.get("./CreateAccount", { type: 'SavingAccount' }, window.location.reload());
+				}
+				break;
+			case "securitiesAccount":
+				if(confirm("Vous voulez créer un compte de titre ?")){
+					$.get("./CreateAccount", { type: 'SecuritiesAccount' }, window.location.reload());
+				}
+				break;
+			}
+		}
+		
 		// Ajax show transaction history
-		
-		
-		
 		function showTsh(type) {
 			switch(type){
 			case "currentHistory":
@@ -324,6 +352,68 @@
 				break;
 			}
 		}
+		
+		// Transfer money's inputs control
+		function transferCheck() {
+		    var emetteur=$('[name="emetteur"]:checked').val();
+		    var beneficiaire=$('[name="beneficiaire"]:checked').val();
+
+		    if(emetteur == "courant"){
+		    	$("#radioCourant2").prop('disabled', true);
+		    } else {
+		    	$("#radioCourant2").prop('disabled', false);
+		    }
+		    if(emetteur == "epargne"){
+		    	$("#radioEpargne2").prop('disabled', true);
+		    } else {
+		    	$("#radioEpargne2").prop('disabled', false);
+		    }
+		    if(emetteur == "titre"){
+		    	$("#radioTitre2").prop('disabled', true);
+		    } else {
+		    	$("#radioTitre2").prop('disabled', false);
+		    }
+		    
+		    if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre" && 
+		    		beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre") {
+		    	$("#transferSubmit").prop('disabled', true); // initial stat
+	    	} else if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre") {
+		    	$("#transferSubmit").prop('disabled', true);
+		    	$("#transferHint").text("Veuillez choisir un émetteur.");
+	    	} else if(beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre") {
+		    	$("#transferSubmit").prop('disabled', true);
+		    	$("#transferHint").text("Veuillez choisir un bénéficiaire.");
+		    } else if(emetteur == beneficiaire){
+		    	$("#transferSubmit").prop('disabled', true);
+		    	$("#transferHint").text("L'émetteur et le bénéficiaire est le même.");
+		    } else if(!$("#transferAmount").val()){
+		    	$("#transferSubmit").prop('disabled', true);
+		    	$("#transferHint").text("Veuillez entrer un somme de virement.");
+	    	} else {
+			    $("#transferSubmit").prop('disabled', false);
+			    $("#transferHint").text("");
+		    }
+		}
+
+		
+		// transfer radio button on change event
+		$(document).on("change", "input[type=radio]", transferCheck);
+		
+		
+		// Ajax transfer money and get result
+		$(document).on("submit", "#transferForm", function() {
+            var $form = $(this);
+            $.post($form.attr("action"), $form.serialize(), function(responseText) {
+            	alert(responseText);
+            	if(responseText == "No enough money")
+                	$("#hint").text("L'argent insuffisant dans le compte émetteur");
+            	else{
+            		alert("Virement effectué.");
+            		window.location.reload();
+            	}
+            });
+            event.preventDefault(); // Important! Prevents submitting the form.
+        });
 	</script>
 </body>
 
