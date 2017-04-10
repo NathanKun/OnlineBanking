@@ -170,6 +170,10 @@ public class Client {
 		}
 	}
 
+	public String getFullName() {
+		return clt_lname + " " + clt_fname;
+	}
+	
 	public Account getCurrentAccount() {
 		return currentAccount;
 	}
