@@ -1,4 +1,4 @@
-<%@ page
+﻿<%@ page
 	import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="./includes/sessionCheck.inc.jsp"%>

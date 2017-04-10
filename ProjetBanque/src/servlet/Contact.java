@@ -12,6 +12,7 @@ import dao.DaoContactForm;
 import model.ContactForm;
 /**
  * Servlet implementation class Contact
+ * @author DJAMEN Yann, HE Junyang
  */
 @WebServlet("/Contact")
 public class Contact extends HttpServlet {

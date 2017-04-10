@@ -18,10 +18,19 @@ import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse; 
 
+/**
+ * Sql Inject and XSS Filter
+ * 
+ * Reference :http://www.2cto.com/article/201207/140313.html
+ * 
+ * @author Junyang HE
+ *
+ */
+
 @WebFilter(filterName="SqlInjectFilter", 
 	initParams={
-    @WebInitParam(name="invalidsql", value="select insert delete from update create destory drop "
-    		+ "alter like exec count chr mid master truncate char declare ; % < >"), 
+    @WebInitParam(name="invalidsql", value="select insert delete update create destory drop "
+    		+ "alter exec count chr master truncate char declare ; % < >"), 
     @WebInitParam(name="error", value="/error.jsp"), 
     @WebInitParam(name="debug", value="true"),
 	}, 
@@ -36,6 +45,10 @@ public class SqlInjectFilter implements Filter {
     public void destroy() { 
          
     } 
+    
+    /**
+     * filter action
+     */
     public void doFilter(ServletRequest req, ServletResponse res, 
             FilterChain fc) throws IOException, ServletException { 
         if(debug){ 
@@ -66,6 +79,10 @@ public class SqlInjectFilter implements Filter {
         } 
         fc.doFilter(req, res); 
     } 
+    
+    /**
+     * Initial the filter
+     */
     public void init(FilterConfig conf) throws ServletException { 
         String sql = conf.getInitParameter("invalidsql"); 
         String errorpage = conf.getInitParameter("error"); 

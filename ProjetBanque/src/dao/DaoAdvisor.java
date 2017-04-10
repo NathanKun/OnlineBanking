@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 import model.Advisor;
 
+
+/**
+ * Data access object of Advisor.
+ * Connecting class Advisor and table advisor_avs
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoAdvisor extends Dao{
 
 
@@ -34,7 +42,7 @@ public class DaoAdvisor extends Dao{
 	/**
 	 * add Advisor in the date base.
 	 * 
-	 * @param Advisor
+	 * @param avs
 	 *            - Advisor to add
 	 * @return the number of line add in the Advisor list
 	 */
@@ -56,7 +64,7 @@ public class DaoAdvisor extends Dao{
 	/**
 	 * update a Advisor.
 	 * 
-	 * @param Advisor
+	 * @param avs
 	 *            the Advisor for update
 	 * @return numbers of line updated
 	 */

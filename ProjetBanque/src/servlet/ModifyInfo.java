@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,25 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.joda.time.DateTime;
 
-import dao.DaoAccount;
 import dao.DaoClient;
 import model.Client;
 import util.PasswordAuthentication;
 
 /**
  * Servlet implementation class ModifyInfo
+ * @author  DJAMEN Yann, HE Junyang
  */
 @WebServlet("/ModifyInfo")
 public class ModifyInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ModifyInfo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

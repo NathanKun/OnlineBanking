@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 import model.HoldingShare;
 
+
+/**
+ * Data access object of HoldingShare.
+ * Connecting class HoldingShare and table holdingshare_hds
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoHoldingShare extends Dao {
 	/**
 	 * return a specific HoldingShare by it's id.
@@ -32,7 +40,7 @@ public class DaoHoldingShare extends Dao {
 	/**
 	 * add HoldingShare in the date base.
 	 * 
-	 * @param HoldingShare
+	 * @param hds
 	 *            - HoldingShare to add
 	 * @return the number of line add in the HoldingShare list
 	 */
@@ -55,7 +63,7 @@ public class DaoHoldingShare extends Dao {
 	 * update a HoldingShare.
 	 * ONLY Balance and Interest are modifiable.
 	 * HoldingShare Number and HoldingShare type NOT MODIFIABLE
-	 * @param HoldingShare
+	 * @param hds
 	 *            the HoldingShare for update
 	 * @return numbers of line updated
 	 */

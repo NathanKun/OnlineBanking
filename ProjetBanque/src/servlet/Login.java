@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +14,7 @@ import util.PasswordAuthentication;
 
 /**
  * Servlet implementation class Login
+ * @author DJAMEN Yann, HE Junyang
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {

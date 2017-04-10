@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 
 import javax.servlet.ServletException;
@@ -20,7 +19,7 @@ import util.PasswordAuthentication;
 
 /**
  * Servlet implementation class Inscription
- *@author 
+ *@author DJAMEN Yann, HE Junyang
  */
 @WebServlet("/Subscribe")
 public class Subscribe extends HttpServlet {
@@ -33,6 +32,9 @@ public class Subscribe extends HttpServlet {
 		response.sendRedirect("./subscribe.jsp");
 	}
 	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// On recupere les parametres entr�s dans le formulaire HTML
 		String nom = request.getParameter("nom");

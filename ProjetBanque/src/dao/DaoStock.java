@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import model.Stock;
 
+/**
+ * Data access object of Stock.
+ * Connecting class StockHistoricalPrice and table stock_stk
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoStock extends Dao {
 	/**
 	 * return a specific Stock by it's id.
@@ -32,7 +39,7 @@ public class DaoStock extends Dao {
 	/**
 	 * add Stock in the date base.
 	 * 
-	 * @param Stock
+	 * @param stk
 	 *            - Stock to add
 	 * @return the number of line add in the Stock list
 	 */
@@ -54,7 +61,7 @@ public class DaoStock extends Dao {
 	/**
 	 * update a Stock.
 	 * ONLY Name, Description and Price are modifiable.
-	 * @param Stock
+	 * @param stk
 	 *            the Stock for update
 	 * @return numbers of line updated
 	 */

@@ -17,6 +17,7 @@ import model.TransactionHistory;
 
 /**
  * Servlet implementation class GetBalance
+ * @author HE Junyang
  */
 @WebServlet("/GetTransactionHistories")
 public class GetTransactionHistories extends HttpServlet {

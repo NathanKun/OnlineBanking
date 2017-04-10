@@ -18,12 +18,21 @@ import model.Stock;
 import model.StockHistoricalPrice;
 import model.TransactionHistory;
 
+/**
+ * Parent class of all Daos.
+ * 
+ * @author Junyang HE
+ *
+ */
 abstract public class Dao {
 
 	static String URL = "jdbc:mysql://localhost/onlinebank?autoReconnect=true&useSSL=false";
 	static String LOGIN = "root";
 	static String PASS = "root";
 
+	/**
+	 * load jdbc driver
+	 */
 	public Dao() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -667,6 +676,12 @@ abstract public class Dao {
 		return retour;
 	}
 
+	/**
+	 * get next auto-increment item from a table of database
+	 * @param type	String that contains the type of item
+	 * @param sql	SQL request
+	 * @return	the next auto-increment item
+	 */
 	public static String getNextItem(String type, String sql) {
 		Connection con = null;
 		PreparedStatement ps = null;

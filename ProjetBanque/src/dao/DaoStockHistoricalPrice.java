@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import model.StockHistoricalPrice;
 
+/**
+ * Data access object of Stock Historical Price.
+ * Connecting class StockHistoricalPrice and table stockhistoricalprice_shp
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoStockHistoricalPrice extends Dao {
 	/**
 	 * return a specific StockHistoricalPrice by it's id.
@@ -32,7 +39,7 @@ public class DaoStockHistoricalPrice extends Dao {
 	/**
 	 * add StockHistoricalPrice in the date base.
 	 * 
-	 * @param StockHistoricalPrice
+	 * @param shp
 	 *            - StockHistoricalPrice to add
 	 * @return the number of line add in the StockHistoricalPrice list
 	 */
@@ -54,7 +61,7 @@ public class DaoStockHistoricalPrice extends Dao {
 	/**
 	 * update a StockHistoricalPrice.
 	 * ONLY Price and Date are modifiable.
-	 * @param StockHistoricalPrice
+	 * @param shp
 	 *            the StockHistoricalPrice for update
 	 * @return numbers of line updated
 	 */
@@ -65,7 +72,7 @@ public class DaoStockHistoricalPrice extends Dao {
 	/**
 	 * Get list of HoldingShare for a client
 	 * 
-	 * @param cltId	client's ID
+	 * @param stkId	client's ID
 	 * @return	list of HoldingShare for this client
 	 */
 	@SuppressWarnings("unchecked")

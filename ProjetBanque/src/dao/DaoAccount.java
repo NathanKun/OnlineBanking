@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 import model.Account;
 
+
+/**
+ * Data access object of Account.
+ * Connecting class Account and table account_acc
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoAccount extends Dao {
 
 	/**
@@ -33,7 +41,7 @@ public class DaoAccount extends Dao {
 	/**
 	 * add Account in the date base.
 	 * 
-	 * @param Account
+	 * @param acc
 	 *            - Account to add
 	 * @return the number of line add in the Account list
 	 */
@@ -56,7 +64,7 @@ public class DaoAccount extends Dao {
 	 * update a Account. ONLY Balance and Interest are modifiable. Account
 	 * Number and Account type NOT MODIFIABLE
 	 * 
-	 * @param Account
+	 * @param acc
 	 *            the Account for update
 	 * @return numbers of line updated
 	 */

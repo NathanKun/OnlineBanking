@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class Logout
+ * @author HE Junyang
  */
 @WebServlet(description = "logout, clear session and go to index", urlPatterns = { "/Logout" })
 public class Logout extends HttpServlet {
