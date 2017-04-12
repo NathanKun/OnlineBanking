@@ -36,7 +36,7 @@ public class Subscribe extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// On recupere les parametres entr�s dans le formulaire HTML
+		// On recupere les parametres entre dans le formulaire HTML
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String nationalite = request.getParameter("nationalite");

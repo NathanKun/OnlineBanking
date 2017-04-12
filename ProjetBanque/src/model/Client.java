@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.joda.time.DateTime;
 
 import dao.DaoAccount;
+import dao.DaoClient;
 import dao.DaoHoldingShare;
 
 /**
@@ -174,6 +175,59 @@ public class Client {
 				break;
 			}
 		}
+	}
+	
+	
+	/**
+	 * Pull Client from database to cover it sell
+	 */
+	public void pull(){
+		Client clt = DaoClient.getClient(this.clt_id);
+
+		this.clt_id = clt.clt_id;
+		this.clt_fname = clt.clt_fname;
+		this.clt_lname = clt.clt_lname;
+		this.clt_nationality = clt.clt_nationality;
+		this.clt_gender = clt.clt_gender;
+		this.clt_address = clt.clt_address;
+		this.clt_postalcode = clt.clt_postalcode;
+		this.clt_city = clt.clt_city;
+		this.clt_telephonenumber = clt.clt_telephonenumber;
+		this.clt_email = clt.clt_email;
+		this.clt_status = clt.clt_status;
+		this.clt_password = clt.clt_password;
+		this.clt_login = clt.clt_login;
+		this.clt_birthday = clt.clt_birthday;
+		this.clt_lastlogin = clt.clt_lastlogin;
+		this.clt_createdon = clt.clt_createdon;
+		this.currentAccount = null;
+		this.savingAccount = null;
+		this.securitiesAccount = null;
+
+		// set accounts
+		ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt_id);
+		for (Account acc : accList) {
+			switch (acc.getAcc_type()) {
+			case "Compte de courant":
+				this.currentAccount = acc;
+				break;
+			case "Compte d'epargne":
+				this.savingAccount = acc;
+				break;
+			case "Compte de titre":
+				this.securitiesAccount = acc;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	
+	/**
+	 * Push modification to database.
+	 */
+	public void push(){
+		DaoClient.updateClient(this);
 	}
 
 	/**
@@ -494,5 +548,6 @@ public class Client {
 				+ clt_lastlogin + ", clt_createdon=" + clt_createdon + ", currentAccount=" + currentAccount
 				+ ", savingAccount=" + savingAccount + ", securitiesAccount=" + securitiesAccount + "]";
 	}
+	
 
 }

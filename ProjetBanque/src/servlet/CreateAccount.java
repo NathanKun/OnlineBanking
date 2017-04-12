@@ -30,10 +30,14 @@ public class CreateAccount extends HttpServlet {
 			if(request.getParameter("type").equals("SavingAccount") && clt.getSavingAccount() == null){
 				DaoAccount.addAccount(new Account(0, DaoAccount.getNextAccountNumber(), clt.getClt_id(), new BigDecimal(0), 
 						new BigDecimal(2.5), 2));
-			}
+				response.getWriter().print("Done");
+			} else 
 			if(request.getParameter("type").equals("SecuritiesAccount") && clt.getSecuritiesAccount() == null){
 				DaoAccount.addAccount(new Account(0, DaoAccount.getNextAccountNumber(), clt.getClt_id(), new BigDecimal(0), 
 						new BigDecimal(0), 3));
+				response.getWriter().print("Done");
+			} else{
+				response.sendRedirect("./Login");
 			}
 			request.getSession().removeAttribute("client");
 			request.getSession().setAttribute("client", DaoClient.getClient(clt.getClt_id()));

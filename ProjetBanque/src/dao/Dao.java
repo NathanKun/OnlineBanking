@@ -70,7 +70,6 @@ abstract public class Dao {
 			case "Client":
 			case "Account":
 			case "HoldingShare":
-			case "Stock":
 			case "TransactionHistory":
 			case "StockHistoricalPrice":
 			case "ContactForm":
@@ -79,6 +78,7 @@ abstract public class Dao {
 
 			case "FindAdvisorByLogin":
 			case "FindClientByLogin":
+			case "Stock":
 				ps.setString(1, (String) item);
 				break;
 
@@ -113,13 +113,12 @@ abstract public class Dao {
 					break;
 
 				case "HoldingShare":
-					retour = new HoldingShare(rs.getInt("hds_id"), rs.getInt("hds_stk_id"), rs.getInt("hds_acc_id"),
+					retour = new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
 							rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton")));
 					break;
 
 				case "Stock":
-					retour = new Stock(rs.getInt("stk_id"), rs.getString("stk_name"), rs.getString("stk_description"),
-							rs.getBigDecimal("stk_price"));
+					retour = new Stock(rs.getString("stk_ticker"), rs.getString("stk_name"), rs.getString("stk_description"));
 					break;
 
 				case "StockHistoricalPrice":
@@ -231,15 +230,15 @@ abstract public class Dao {
 			case "HoldingShare":
 				while (rs.next()) {
 					returnList
-							.add(new HoldingShare(rs.getInt("hds_id"), rs.getInt("hds_stk_id"), rs.getInt("hds_acc_id"),
+							.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
 									rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton"))));
 				}
 				break;
 
 			case "Stock":
 				while (rs.next()) {
-					returnList.add(new Stock(rs.getInt("stk_id"), rs.getString("stk_name"),
-							rs.getString("stk_description"), rs.getBigDecimal("stk_price")));
+					returnList.add(new Stock(rs.getString("stk_ticker"), rs.getString("stk_name"),
+							rs.getString("stk_description")));
 				}
 				break;
 
@@ -276,7 +275,7 @@ abstract public class Dao {
 			case "FindHdsByCltId":
 				while (rs.next()) {
 					returnList
-							.add(new HoldingShare(rs.getInt("hds_id"), rs.getInt("hds_stk_id"), rs.getInt("hds_acc_id"),
+							.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
 									rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton"))));
 				}
 				break;
@@ -401,7 +400,7 @@ abstract public class Dao {
 			case "HoldingShare":
 				HoldingShare hds = (HoldingShare) item;
 				ps = con.prepareStatement("INSERT INTO holdingshare_hds VALUES(null, ?, ?, ?, ?)");
-				ps.setInt(1, hds.getHds_stk_id());
+				ps.setString(1, hds.getHds_stk_ticker());
 				ps.setInt(2, hds.getHds_acc_id());
 				ps.setInt(3, hds.getHds_numberOfShares());
 				ps.setDate(4, new java.sql.Date(hds.getHds_boughtOn().getMillis()));
@@ -409,10 +408,10 @@ abstract public class Dao {
 
 			case "Stock":
 				Stock stk = (Stock) item;
-				ps = con.prepareStatement("INSERT INTO stock_stk VALUES(null, ?, ?, ?)");
-				ps.setString(1, stk.getStk_name());
-				ps.setString(2, stk.getStk_description());
-				ps.setBigDecimal(3, stk.getStk_price());
+				ps = con.prepareStatement("INSERT INTO stock_stk VALUES(?, ?, ?)");
+				ps.setString(1, stk.getStk_ticker());
+				ps.setString(2, stk.getStk_name());
+				ps.setString(3, stk.getStk_description());
 				break;
 
 			case "StockHistoricalPrice":
@@ -511,7 +510,7 @@ abstract public class Dao {
 
 			case "Stock":
 				ps = con.prepareStatement("DELETE FROM stock_stk WHERE stk_id=?");
-				ps.setInt(1, (int) item);
+				ps.setString(1, (String) item);
 				break;
 
 			case "StockHistoricalPrice":
@@ -624,11 +623,10 @@ abstract public class Dao {
 			case "Stock":
 				Stock stk = (Stock) item;
 				ps = con.prepareStatement(
-						"UPDATE stock_stk SET " + "stk_name=?, stk_description=?, stk_price=? WHERE stk_id=?");
+						"UPDATE stock_stk SET " + "stk_name=?, stk_description=? WHERE stk_ticker=?");
 				ps.setString(1, stk.getStk_name());
 				ps.setString(2, stk.getStk_description());
-				ps.setBigDecimal(3, stk.getStk_price());
-				ps.setInt(4, stk.getStk_id());
+				ps.setString(3, stk.getStk_ticker());
 				break;
 
 			case "StockHistoricalPrice":

@@ -5,7 +5,7 @@
 	Client clt = (Client)session.getAttribute("client");
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
@@ -315,12 +315,24 @@
 			switch(type){
 			case "savingAccount":
 				if(confirm("Vous voulez créer un compte d'épargne ?")){
-					$.get("./CreateAccount", { type: 'SavingAccount' }, window.location.reload());
+					$.get("./CreateAccount", { type: 'SavingAccount' }, function(responseText){
+						if(responseText == "Done"){
+							window.location.reload();
+						} else {
+							alert("Error");
+						}
+					});
 				}
 				break;
 			case "securitiesAccount":
 				if(confirm("Vous voulez créer un compte de titre ?")){
-					$.get("./CreateAccount", { type: 'SecuritiesAccount' }, window.location.reload());
+					$.get("./CreateAccount", { type: 'SecuritiesAccount' }, function(responseText){
+						if(responseText == "Done"){
+							window.location.reload();
+						} else {
+							alert("Error");
+						}
+					});
 				}
 				break;
 			}

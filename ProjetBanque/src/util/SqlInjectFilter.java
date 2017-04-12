@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
     		+ "alter exec chr master truncate char declare ; % < >"), */
     @WebInitParam(name="invalidsql", value="< >"), 
     @WebInitParam(name="error", value="/error.jsp"), 
-    @WebInitParam(name="debug", value="true"),
+    @WebInitParam(name="debug", value="false"),
 	}, 
 	urlPatterns="/*"
 )

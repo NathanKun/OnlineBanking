@@ -15,13 +15,13 @@ public class DaoStock extends Dao {
 	/**
 	 * return a specific Stock by it's id.
 	 * 
-	 * @param id
-	 *            id of the Stock
+	 * @param ticker
+	 *            ticker of the Stock
 	 * @return stk - the Stock
 	 */
-	public static Stock getStock(int id) {
-		String sql = "SELECT * FROM Stock_stk WHERE stk_id = ?";
-		Stock stk = (Stock) getOne("Stock", sql, id);
+	public static Stock getStock(String ticker) {
+		String sql = "SELECT * FROM Stock_stk WHERE stk_ticker = ?";
+		Stock stk = (Stock) getOne("Stock", sql, ticker);
 		return stk;
 	}
 
@@ -50,12 +50,12 @@ public class DaoStock extends Dao {
 	/**
 	 * delete a Stock in the data base Stock table.
 	 * 
-	 * @param id
+	 * @param ticker
 	 *            contain the id of the Stock we want to delete
 	 * @return the number of line delete
 	 */
-	public static int deleteStock(int id) {
-		return Dao.deleteLine("Stock", id);
+	public static int deleteStock(String ticker) {
+		return Dao.deleteLine("Stock", ticker);
 	}
 
 	/**

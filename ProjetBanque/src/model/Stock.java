@@ -1,9 +1,6 @@
 package model;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-
-import dao.DaoStockHistoricalPrice;
+import dao.DaoStock;
 
 /**
  * Data transfer object of stock
@@ -14,9 +11,9 @@ import dao.DaoStockHistoricalPrice;
 public class Stock {
 
 	/**
-	 * l'identifiant de l'action
+	 * ticker symbol de l'action
 	 */
-	private int stk_id;
+	private String stk_ticker;
 
 	/**
 	 * le nom de l'action
@@ -27,52 +24,51 @@ public class Stock {
 	 * la description de l'action
 	 */
 	private String stk_description;
-
-	/**
-	 * le prix de l'action
-	 */
-	private BigDecimal stk_price;
-
+	
 	/**
 	 * 
-	 * @param id
-	 *            id of the stock
+	 * @param ticker
+	 *            ticker symbol of the stock
 	 * @param name
 	 *            name of the stock
 	 * @param description
 	 *            description of the stock
-	 * @param price
-	 *            price of the stock
 	 */
-	public Stock(int id, String name, String description, BigDecimal price) {
-		this.stk_id = id;
+	public Stock(String ticker, String name, String description) {
+		this.stk_ticker = ticker;
 		this.stk_name = name;
 		this.stk_description = description;
-		this.stk_price = price;
 	}
 
 	/**
-	 * Get the historical price list of this stock
-	 * 
-	 * @return List of StockHistoricalPrice
+	 * Pull stock from database to cover it sell
 	 */
-	public ArrayList<StockHistoricalPrice> getHistoricalPrice() {
-		return DaoStockHistoricalPrice.findShpByStkId(stk_id);
+	public void pull(){
+		Stock stk = DaoStock.getStock(this.stk_ticker);
+		this.stk_ticker = stk.stk_ticker;
+		this.stk_name = stk.stk_name;
+		this.stk_description = stk.stk_description;
+	}
+	
+	/**
+	 * Push modification to database.
+	 */
+	public void push(){
+		DaoStock.updateStock(this);
 	}
 
 	/**
-	 * @return the stk_id
+	 * @return the stk_ticker
 	 */
-	public int getStk_id() {
-		return stk_id;
+	public String getStk_ticker() {
+		return stk_ticker;
 	}
 
 	/**
-	 * @param stk_id
-	 *            the stk_id to set
+	 * @param stk_ticker the stk_ticker to set
 	 */
-	public void setStk_id(int stk_id) {
-		this.stk_id = stk_id;
+	public void setStk_ticker(String stk_ticker) {
+		this.stk_ticker = stk_ticker;
 	}
 
 	/**
@@ -105,21 +101,6 @@ public class Stock {
 		this.stk_description = stk_description;
 	}
 
-	/**
-	 * @return the stk_price
-	 */
-	public BigDecimal getStk_price() {
-		return stk_price;
-	}
-
-	/**
-	 * @param stk_price
-	 *            the stk_price to set
-	 */
-	public void setStk_price(BigDecimal stk_price) {
-		this.stk_price = stk_price;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -127,8 +108,7 @@ public class Stock {
 	 */
 	@Override
 	public String toString() {
-		return "Stock [stk_id=" + stk_id + ", stk_name=" + stk_name + ", stk_description=" + stk_description
-				+ ", stk_price=" + stk_price + "]";
+		return "Stock [stk_ticker=" + stk_ticker + ", stk_name=" + stk_name + ", stk_description=" + stk_description + "]";
 	}
 
 }

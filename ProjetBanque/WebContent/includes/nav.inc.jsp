@@ -34,6 +34,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li id="bourse">
+                        <a href="<%=request.getContextPath()%>/stock.jsp">Bourse</a>
+                    </li>
                     <li id="contact">
                         <a href="<%=request.getContextPath()%>/contact.jsp">Nous contacter</a>
                     </li>

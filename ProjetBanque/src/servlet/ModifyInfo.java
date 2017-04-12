@@ -76,6 +76,9 @@ public class ModifyInfo extends HttpServlet {
 
 		
 		DaoClient.updateClient(c);
+		
+		request.getSession().removeAttribute("client");
+		request.getSession().setAttribute("client", DaoClient.getClient(c.getClt_id()));
 
 		response.sendRedirect("./zoneclient.jsp");
 	}

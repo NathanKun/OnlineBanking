@@ -86,6 +86,10 @@ public class DaoAccount extends Dao {
 		return accList;
 	}
 
+	/**
+	 * get next not used account number
+	 * @return
+	 */
 	public static String getNextAccountNumber() {
 		String sql = "SELECT acc_number FROM account_acc WHERE acc_id = (( " 
 				+ "SELECT AUTO_INCREMENT "

@@ -16,9 +16,9 @@ public class HoldingShare {
 	private int hds_id;
 
 	/**
-	 * l'identifiant de l'action achet�e
+	 * ticker symbol de l'action achete
 	 */
-	private int hds_stk_id;
+	private String hds_stk_ticker;
 
 	/**
 	 * l'identifiant du compte du HoldingShare
@@ -39,8 +39,8 @@ public class HoldingShare {
 	 * 
 	 * @param id
 	 *            id of HoldingShare
-	 * @param stk_id
-	 *            stock id of HoldingShare
+	 * @param stk_ticker
+	 *            stock ticker of HoldingShare
 	 * @param acc_id
 	 *            account id that hold the share
 	 * @param nb
@@ -48,13 +48,14 @@ public class HoldingShare {
 	 * @param boughtOn
 	 *            date of buying the stock
 	 */
-	public HoldingShare(int id, int stk_id, int acc_id, int nb, DateTime boughtOn) {
+	public HoldingShare(int id, String stk_ticker, int acc_id, int nb, DateTime boughtOn) {
 		this.hds_id = id;
-		this.hds_stk_id = stk_id;
+		this.hds_stk_ticker = stk_ticker;
 		this.hds_acc_id = acc_id;
 		this.hds_numberOfShares = nb;
 		this.hds_boughtOn = boughtOn;
 	}
+	
 
 	/**
 	 * @return the hds_id
@@ -72,18 +73,18 @@ public class HoldingShare {
 	}
 
 	/**
-	 * @return the hds_stk_id
+	 * @return the hds_stk_ticker
 	 */
-	public int getHds_stk_id() {
-		return hds_stk_id;
+	public String getHds_stk_ticker() {
+		return hds_stk_ticker;
 	}
 
 	/**
-	 * @param hds_stk_id
-	 *            the hds_stk_id to set
+	 * @param hds_stk_ticker
+	 *            the hds_stk_ticker to set
 	 */
-	public void setHds_stk_id(int hds_stk_id) {
-		this.hds_stk_id = hds_stk_id;
+	public void setHds_stk_ticker(String hds_stk_ticker) {
+		this.hds_stk_ticker = hds_stk_ticker;
 	}
 
 	/**
@@ -138,7 +139,7 @@ public class HoldingShare {
 	 */
 	@Override
 	public String toString() {
-		return "HoldingShare [hds_id=" + hds_id + ", hds_stk_id=" + hds_stk_id + ", hds_acc_id=" + hds_acc_id
+		return "HoldingShare [hds_id=" + hds_id + ", hds_stk_ticker=" + hds_stk_ticker + ", hds_acc_id=" + hds_acc_id
 				+ ", hds_numberOfShares=" + hds_numberOfShares + ", hds_boughtOn=" + hds_boughtOn + "]";
 	}
 

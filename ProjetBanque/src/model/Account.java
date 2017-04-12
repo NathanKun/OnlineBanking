@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import dao.DaoHoldingShare;
+import dao.DaoAccount;
 import dao.DaoTransactionHistory;
 
 /**
@@ -82,6 +83,26 @@ public class Account {
 		}
 	}
 
+	/**
+	 * Pull Account from database to cover it sell
+	 */
+	public void pull(){
+		Account acc = DaoAccount.getAccount(this.acc_id);
+		this.acc_id = acc.acc_id;
+		this.acc_number = acc.acc_number;
+		this.acc_clt_id = acc.acc_clt_id;
+		this.acc_balance = acc.acc_balance;
+		this.acc_interest = acc.acc_interest;
+	}
+	
+	/**
+	 * Push modification to database.
+	 */
+	public void push(){
+		DaoAccount.updateAccount(this);
+	}
+
+	
 	/**
 	 * Get the Transaction history list of this account
 	 * 

@@ -83,29 +83,29 @@ CREATE TABLE IF NOT EXISTS transactionhistory_tsh (
 ) ENGINE = Innodb;
 
 CREATE TABLE IF NOT EXISTS stock_stk (
-	stk_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    #stk_ticker VARCHAR(10) NOT NULL UNIQUE,
+    stk_ticker VARCHAR(10) NOT NULL PRIMARY KEY,
     stk_name VARCHAR(254) NOT NULL,
-    stk_description TEXT(65534),
-    stk_price NUMERIC(10,2) NOT NULL
+    stk_description TEXT(65534)
 ) ENGINE = Innodb;
 
+/*
 CREATE TABLE IF NOT EXISTS stockhistoricalprice_shp (
 	shp_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    shp_stk_id INT(10) NOT NULL,
+    shp_stk_ticker VARCHAR(10) NOT NULL,
     shp_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     shp_price NUMERIC(10,2) NOT NULL,
-    FOREIGN KEY(shp_stk_id) REFERENCES stock_stk(stk_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY(shp_stk_ticker) REFERENCES stock_stk(stk_ticker) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = Innodb;
+*/
 
 CREATE TABLE IF NOT EXISTS holdingshare_hds(
 	hds_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    hds_stk_id INT(10) NOT NULL,
+    hds_stk_ticker VARCHAR(10) NOT NULL,
     hds_acc_id INT(10) NOT NULL,
     hds_numberofshares INT(10) NOT NULL,
     hds_boughton DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     #hds_total NUMERIC(17,2) NOT NULL,
-    FOREIGN KEY(hds_stk_id) REFERENCES stock_stk(stk_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(hds_stk_ticker) REFERENCES stock_stk(stk_ticker) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(hds_acc_id) REFERENCES account_acc(acc_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = Innodb;
 
@@ -193,47 +193,48 @@ INSERT INTO client_clt VALUES(null, "1236784567",
 INSERT INTO account_acc VALUES(null, "4444888844440001", 4, 10086, 0, 1);
 
 
-INSERT INTO stock_stk VALUES(null, 'Accor', 'FR0000120404', 46.42);
-INSERT INTO stock_stk VALUES(null, 'Air Liquide', 'FR0000120073', 10);
-INSERT INTO stock_stk VALUES(null, 'Airbus', 'NL0000235190', 10);
-INSERT INTO stock_stk VALUES(null, 'ArcelorMittal', 'LU0323134006', 10);
-INSERT INTO stock_stk VALUES(null, 'Atos', 'FR0000051732', 10);
-INSERT INTO stock_stk VALUES(null, 'AXA', 'FR0000120628', 10);
-INSERT INTO stock_stk VALUES(null, 'BNP Paribas', 'FR0000131104', 10);
-INSERT INTO stock_stk VALUES(null, 'Bouygues', 'FR0000120503', 10);
-INSERT INTO stock_stk VALUES(null, 'Cap Gemini', 'FR0000125338', 10);
-INSERT INTO stock_stk VALUES(null, 'Carrefour', 'FR0000120172', 10);
-INSERT INTO stock_stk VALUES(null, 'Compagnie de Saint-Gobain', 'FR0000125007', 10);
-INSERT INTO stock_stk VALUES(null, 'Crédit Agricole', 'FR0000045072', 10);
-INSERT INTO stock_stk VALUES(null, 'Engie SA', 'FR0010208488', 10);
-INSERT INTO stock_stk VALUES(null, 'Essilor International', 'FR0000121667', 10);
-INSERT INTO stock_stk VALUES(null, 'Groupe Danone', 'FR0000120644', 10);
-INSERT INTO stock_stk VALUES(null, 'Kering', 'FR0000121485', 10);
-INSERT INTO stock_stk VALUES(null, 'LafargeHolcim', 'CH0012214059', 10);
-INSERT INTO stock_stk VALUES(null, 'LEGRAND', 'FR0010307819', 10);
-INSERT INTO stock_stk VALUES(null, 'LOréal', 'FR0000120321', 10);
-INSERT INTO stock_stk VALUES(null, 'LVMH Moet Hennessy Louis Vuitton', 'FR0000121014', 10);
-INSERT INTO stock_stk VALUES(null, 'Michelin (Compagnie Générale d Etablissements Michelin SCPA)', 'FR0000121261', 10);
-INSERT INTO stock_stk VALUES(null, 'Nokia', 'FI0009000681', 10);
-INSERT INTO stock_stk VALUES(null, 'Orange', 'FR0000133308', 10);
-INSERT INTO stock_stk VALUES(null, 'Pernod Ricard', 'FR0000120693', 10);
-INSERT INTO stock_stk VALUES(null, 'Peugeot', 'FR0000121501', 10);
-INSERT INTO stock_stk VALUES(null, 'Publicis Groupe', 'FR0000130577', 10);
-INSERT INTO stock_stk VALUES(null, 'Renault', 'FR0000131906', 10);
-INSERT INTO stock_stk VALUES(null, 'SAFRAN', 'FR0000073272', 10);
-INSERT INTO stock_stk VALUES(null, 'Saint-Gobain', 'FR0000125007', 10);
-INSERT INTO stock_stk VALUES(null, 'Sanofi', 'FR0000120578', 10);
-INSERT INTO stock_stk VALUES(null, 'Schneider Electric', 'FR0000121972', 10);
-INSERT INTO stock_stk VALUES(null, 'Société Générale SA', 'FR0000130809', 10);
-INSERT INTO stock_stk VALUES(null, 'Sodexo', 'FR0000121220', 10);
-INSERT INTO stock_stk VALUES(null, 'Solvay', 'BE0003470755', 10);
-INSERT INTO stock_stk VALUES(null, 'Technip', 'FR0000131708', 10);
-INSERT INTO stock_stk VALUES(null, 'TOTAL', 'FR0000120271', 10);
-INSERT INTO stock_stk VALUES(null, 'Unibail-Rodamco', 'FR0000124711', 10);
-INSERT INTO stock_stk VALUES(null, 'Valeo', 'FR0000130338', 10);
-INSERT INTO stock_stk VALUES(null, 'Veolia Environnement', 'FR0000124141', 10);
-INSERT INTO stock_stk VALUES(null, 'Vinci', 'FR0000125486', 10);
-INSERT INTO stock_stk VALUES(null, 'Vivendi', 'FR0000127771', 10);
+INSERT INTO stock_stk VALUES('^FCHI', 'CAC 40', '');
+INSERT INTO stock_stk VALUES('%5EFCHI', 'CAC 40', '');
+INSERT INTO stock_stk VALUES('AC.PA', 'Accor', 'FR0000120404');
+INSERT INTO stock_stk VALUES('AI.PA', 'Air Liquide', 'FR0000120073');
+INSERT INTO stock_stk VALUES('ALO.PA', 'Alstom', '');
+INSERT INTO stock_stk VALUES('MT.PA', 'ArcelorMittal', 'LU0323134006');
+INSERT INTO stock_stk VALUES('CS.PA', 'AXA', 'FR0000120628');
+INSERT INTO stock_stk VALUES('BNP.PA', 'BNP Paribas', 'FR0000131104');
+INSERT INTO stock_stk VALUES('EN.PA', 'Bouygues', 'FR0000120503');
+INSERT INTO stock_stk VALUES('CAP.PA', 'Cap Gemini', 'FR0000125338');
+INSERT INTO stock_stk VALUES('CA.PA', 'Carrefour', 'FR0000120172');
+INSERT INTO stock_stk VALUES('SGO.PA', 'Compagnie de Saint-Gobain', 'FR0000125007');
+INSERT INTO stock_stk VALUES('ACA.PA', 'Crédit Agricole', 'FR0000045072');
+INSERT INTO stock_stk VALUES('EDF.PA', 'EDF', '');
+INSERT INTO stock_stk VALUES('AIR.PA', 'EADS - Airbus', '');
+INSERT INTO stock_stk VALUES('EI.PA', 'Essilor International', 'FR0000121667');
+INSERT INTO stock_stk VALUES('ORA.PA', 'France Télécom(Orange)', '');
+INSERT INTO stock_stk VALUES('ENGI.PA', 'GDF Suez', '');
+INSERT INTO stock_stk VALUES('GTO.AS', 'Gemalto', '');
+INSERT INTO stock_stk VALUES('BN.PA', 'Groupe Danone', 'FR0000120644');
+INSERT INTO stock_stk VALUES('KER.PA', 'Kering', 'FR0000121485');
+INSERT INTO stock_stk VALUES('LHN.PA', 'LafargeHolcim', 'CH0012214059');
+INSERT INTO stock_stk VALUES('LR.PA', 'LEGRAND', 'FR0010307819');
+INSERT INTO stock_stk VALUES('OR.PA', 'LOréal', 'FR0000120321');
+INSERT INTO stock_stk VALUES('MCNV.PA', 'LVMH Moet Hennessy Louis Vuitton', 'FR0000121014');
+INSERT INTO stock_stk VALUES('ML.PA', 'Michelin (Compagnie Générale d Etablissements Michelin SCPA)', 'FR0000121261');
+INSERT INTO stock_stk VALUES('RI.PA', 'Pernod Ricard', 'FR0000120693');
+INSERT INTO stock_stk VALUES('PUB.PA', 'Publicis Groupe', 'FR0000130577');
+INSERT INTO stock_stk VALUES('RNO.PA', 'Renault', 'FR0000131906');
+INSERT INTO stock_stk VALUES('SAF.PA', 'SAFRAN', 'FR0000073272');
+INSERT INTO stock_stk VALUES('SANNV.PA', 'Sanofi', 'FR0000120578');
+INSERT INTO stock_stk VALUES('SU.PA', 'Schneider Electric', 'FR0000121972');
+INSERT INTO stock_stk VALUES('GLE.PA', 'Société Générale SA', 'FR0000130809');
+INSERT INTO stock_stk VALUES('STM.PA', 'STMicroelectronics', '');
+INSERT INTO stock_stk VALUES('SOLB.BR', 'Solvay', 'BE0003470755');
+INSERT INTO stock_stk VALUES('TEC.PA', 'Technip', 'FR0000131708');
+INSERT INTO stock_stk VALUES('FP.PA', 'TOTAL', 'FR0000120271');
+INSERT INTO stock_stk VALUES('UL.PA', 'Unibail-Rodamco', 'FR0000124711');
+INSERT INTO stock_stk VALUES('FR.PA', 'Valeo', 'FR0000130338');
+INSERT INTO stock_stk VALUES('VIE.PA', 'Veolia Environnement', 'FR0000124141');
+INSERT INTO stock_stk VALUES('DG.PA', 'Vinci', 'FR0000125486');
+INSERT INTO stock_stk VALUES('VIV.PA', 'Vivendi', 'FR0000127771');
 
 # gauss distribution generator
 DROP FUNCTION IF EXISTS gauss;
