@@ -19,6 +19,8 @@
 	
 	<link href="css/accountsInfo.css" rel="stylesheet">
 	
+	<link href="css/zoneclient.css" rel="stylesheet">
+	
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	
@@ -129,46 +131,139 @@
 
 					<div class="tab-pane fade" id="virement">
 						<h3>Effectuer un virement :</h3>
-						<div class="form-group">
-							<form id="transferForm" action="./TransferMoney" method="post">
-							  <input id="radioCourant1" type="radio" name="emetteur" value="courant"> 
-							  <label for="radioCourant1"> Compte courant</label><br>
-							  <% if(clt.getSavingAccount() != null) { %>
-							  <input id="radioEpargne1" type="radio" name="emetteur" value="epargne"> 
-							  <label for="radioEpargne1"> Compte d'epargne</label><br>
-							  <% } if(clt.getSecuritiesAccount() != null) { %>
-							  <input id="radioTitre1" type="radio" name="emetteur" value="titre"> 
-							  <label for="radioTitre1"> Compte de titre</label><br>
-							  <% } %>
-							  
-							  <input id="radioCourant2" type="radio" name="beneficiaire" value="courant">
-							  <label for="radioCourant2"> Compte courant</label><br>
-							  <% if(clt.getSavingAccount() != null) { %>
-							  <input id="radioEpargne2" type="radio" name="beneficiaire" value="epargne">
-							  <label for="radioEpargne2"> Compte d'epargne</label><br>
-							  <% } if(clt.getSecuritiesAccount() != null) { %>
-							  <input id="radioTitre2" type="radio" name="beneficiaire" value="titre">
-							  <label for="radioTitre2"> Compte de titre</label><br>
-							  <% } %>
-							  
-							  <label for="transferAmount">Somme : </label>
-							  <input id="transferAmount" name="transactionAmount" type="number" min="0" 
-							  	onchange="transferCheck();"/><br>
-							  
-							  
-							  <label id="transferHint"></label><br>
-							  <input id="transferSubmit" type="submit" value="Effectuer" disabled />
-							</form>
-
-						</div>
+						<form id="transferForm" action="./TransferMoney" method="post">
+	                        <div class="form-group">
+	                        	<label class="col-md-4 control-label">Compte à Débiter :</label>
+                    			<div class="col-md-8">
+								  	<input id="radioCourant1" type="radio" name="emetteur" value="courant"> 
+								  	<label for="radioCourant1"> Compte courant</label>
+								  	<% if(clt.getSavingAccount() != null) { %>
+								  	<input id="radioEpargne1" type="radio" name="emetteur" value="epargne"> 
+								  	<label for="radioEpargne1"> Compte d'epargne</label>
+								  	<% } if(clt.getSecuritiesAccount() != null) { %>
+								  	<input id="radioTitre1" type="radio" name="emetteur" value="titre"> 
+								  	<label for="radioTitre1"> Compte de titre</label>
+								  	<% } %>
+								</div>
+							</div>
+	                        <div class="form-group">
+	                        	<label class="col-md-4 control-label">Compte à Créditer :</label>
+                    			<div class="col-md-8">
+								  	<input id="radioCourant2" type="radio" name="beneficiaire" value="courant">
+								  	<label for="radioCourant2"> Compte courant</label>
+								  	<% if(clt.getSavingAccount() != null) { %>
+								  	<input id="radioEpargne2" type="radio" name="beneficiaire" value="epargne">
+								  	<label for="radioEpargne2"> Compte d'epargne</label>
+								  	<% } if(clt.getSecuritiesAccount() != null) { %>
+								  	<input id="radioTitre2" type="radio" name="beneficiaire" value="titre">
+								  	<label for="radioTitre2"> Compte de titre</label>
+								  	<% } %>
+								</div>
+							</div>
+	                        <div class="form-group">
+							  	<label class="col-md-4 control-label" for="transferAmount">Montant : </label>
+                    			<div class="col-md-8">
+								  	<input id="transferAmount" name="transactionAmount" type="number" min="0" 
+								  		onchange="transferCheck();"/>
+								</div>
+							</div>
+	                        <div class="form-group">
+							  	<label class="col-md-12 control-label" id="transferHint"></label>
+							</div>
+	                        <div class="form-group">
+                    			<div class="col-md-12">
+								  	<input id="transferSubmit" type="submit" value="Effectuer" disabled />
+								</div>
+							</div>
+						</form>
 					</div>
 					<!-- virement -->
 
 
 					<div class="tab-pane fade" id="creditercompte">
-						<h3>Alimenter mon compte</h3>
-
-					</div>
+                        <h4>Alimenter mon compte</h4>
+					    <form class="form-horizontal" method="post" action="">
+	                        <div class="form-group">
+	                        	<label class="col-md-4 control-label">Compte à créditer: </label>
+                    			<div class="col-md-8">
+				                    <input type="radio" id="alimenterCourant" name="alimenterCompte" value="alimenterCourant" required>
+						           	<label for="alimenterCourant">Compte courant</label>
+				                    <input type="radio" id="alimenterEpargne" name="alimenterCompte" value="alimenterEpargne">
+				                    <label for="alimenterEpargne">Compte épargne</label>
+				                    <input type="radio" id="alimenterTitre" name="alimenterCompte" value="alimenterTitre"> 
+				                    <label for="alimenterTitre">Compte titre</label>
+	                        	</div>
+                        	</div>
+	                        <div class="form-group">
+								<label class="col-md-4 control-label" for="montant">Montant:</label>
+	                    		<div class="col-md-4">
+									<input type="text" class="form-control" id="alimenterMontant" required 
+										onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		                        </div>
+                        	</div>
+                        	
+	                        <div class="form-group">
+	                    		<div class="col-md-8">
+	                    			<h4>Saisir votre carte de paiement :</h4>
+	                        	</div>
+	                        </div>
+	                        
+				            <!-- Select Basic -->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="selectbasic">Selectionnez votre carte</label>
+	                          	<div class="col-md-4">
+		                            <select id="alimenterCardType" name="alimenterCardType" class="form-control" required>
+			                            <option value="alimenterVisa">Visa</option>
+			                            <option value="alimenterMasterCard">MasterCard</option>
+			                            <option value="alimenterMasterPass">MasterPass</option>
+		                            </select>
+		                        </div>
+	                        </div>
+						  	<!-- Text input-->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="nom">Titulaire de la carte :</label>  
+	                          	<div class="col-md-4">
+	                          		<input id="alimenterName" name="alimenterName" placeholder="Nom" class="form-control input-md" required type="text">
+	                            </div>
+	                        </div>
+							<!-- Text input-->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="nom">N° de carte : </label>  
+	                          	<div class="col-md-4">
+	                          		<input id="alimenterCardNumber" name="alimenterCardNumber" placeholder="" class="form-control input-md"
+	                          			 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="16" required type="text">
+	                          	</div>
+	                        </div>
+							 <!-- Text input-->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="nom">Date d'expiration: </label>  
+	                          	<div class="col-md-2">
+	                          		<input id="alimenterMonth" name="alimenterMonth" class="form-control input-md" 
+	                          			placeholder="MM" required min="01" max="12" type="number">
+	                        	</div>
+	                          	<div class="col-md-2">
+	                          		<input id="alimenterYear" name="alimenterYear" class="form-control input-md" 
+	                          			placeholder="YYYY" required min="2017" max="2099" type="number">
+	                        	</div>
+	                        </div>
+							<!-- Text input-->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="cvc">Cryptogramme visuel :</label>  
+	                          	<div class="col-md-4">
+	                          		<input id="cvc" name="cvc" placeholder="" class="form-control input-md" required type="text"
+	                          			onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3">
+	                            	<span class="help-block">Veuillez saisir votre cryptogramme visuel,les trois derniers chiffres apparaissant sur le panneau signature au verso de votre carte bancaire </span>  
+	                          	</div>
+	                        </div>
+					        <!-- Button -->
+	                        <div class="form-group">
+	                         	<label class="col-md-4 control-label" for="send">                                   </label>
+	                          	<div class="col-md-4">
+	                            		<button id="send" name="send" class="btn btn-primary"> Je valide </button>
+	                          	</div>
+	                        </div>
+				  		</form>
+        			</div>	   
 					<!-- creditercompte -->
 
 
