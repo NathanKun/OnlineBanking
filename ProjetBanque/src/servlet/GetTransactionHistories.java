@@ -30,7 +30,7 @@ public class GetTransactionHistories extends HttpServlet {
 		if(request.getSession().getAttribute("client") != null){
 			String type = (String) request.getParameter("type");
 			Client clt = (Client)request.getSession().getAttribute("client");
-			System.out.println(clt.getCurrentAccount());
+			//System.out.println(clt.getCurrentAccount());
 			ArrayList<TransactionHistory> tshList = null;
 			switch(type){
 				case "currentHistory":
@@ -51,7 +51,7 @@ public class GetTransactionHistories extends HttpServlet {
 				out.print("<td>" + tsh.getTsh_description() + "</td>");
 				out.print("<td>" + tsh.getTsh_amount() + "</td>");
 				out.print("</tr>");
-				System.out.println(tsh);
+				//System.out.println(tsh);
 			}
 		} else {
 			response.getWriter().print("<h1>Login please</h1>");

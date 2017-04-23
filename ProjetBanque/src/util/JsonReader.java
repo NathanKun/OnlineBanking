@@ -1,3 +1,8 @@
+/**
+ * Source: http://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java
+ * @author Roland Illig
+ *
+ */
 package util;
 
 import java.io.BufferedReader;
@@ -11,6 +16,12 @@ import java.nio.charset.Charset;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+/**
+ * JsonReader
+ * @author Roland Illig
+ *
+ */
 public class JsonReader {
 
 	private static String readAll(Reader rd) throws IOException {
@@ -22,6 +33,13 @@ public class JsonReader {
 		return sb.toString();
 	}
 
+	/**
+	 * read JSON object from Url
+	 * @param url	url to read
+	 * @return	The JSON Object
+	 * @throws IOException
+	 * @throws JSONException
+	 */
 	public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
 		InputStream is = new URL(url).openStream();
 		try {

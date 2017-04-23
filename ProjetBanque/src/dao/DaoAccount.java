@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Account;
 
+import static org.apache.commons.lang3.StringEscapeUtils.escapeHtml4;
 
 /**
  * Data access object of Account.
@@ -84,6 +85,19 @@ public class DaoAccount extends Dao {
 		String sql = "SELECT * FROM Account_acc WHERE acc_clt_id = " + String.valueOf(id);
 		ArrayList<Account> accList = (ArrayList<Account>) getList("FindAccountByClientId", sql);
 		return accList;
+	}
+
+	/**
+	 * Find Account by a specified iban.
+	 * 
+	 * @param iban
+	 *            iban of an account
+	 * @return tsh - the list of Account
+	 */
+	@SuppressWarnings("unchecked")
+	public static Account findAccountByIban(String iban) {
+		String sql = "SELECT * FROM Account_acc WHERE acc_iban = ?";
+		return (Account) getOne("FindAccountByIban", sql, iban);
 	}
 
 	/**

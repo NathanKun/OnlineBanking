@@ -78,6 +78,7 @@ abstract public class Dao {
 				ps.setInt(1, (int) item);
 				break;
 
+			case "FindAccountByIban":
 			case "FindAdvisorByLogin":
 			case "FindClientByLogin":
 			case "Stock":
@@ -95,7 +96,7 @@ abstract public class Dao {
 				case "News":
 					retour = new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text"));
 					break;
-				
+
 				case "FindAdvisorByLogin":
 				case "Advisor":
 					retour = new Advisor(rs.getInt("avs_id"), rs.getString("avs_name"), rs.getString("avs_login"),
@@ -114,17 +115,20 @@ abstract public class Dao {
 					break;
 
 				case "Account":
-					retour = new Account(rs.getInt("acc_id"), rs.getString("acc_number"), rs.getInt("acc_clt_id"),
-							rs.getBigDecimal("acc_balance"), rs.getBigDecimal("acc_interest"), rs.getInt("acc_type"));
+					retour = new Account(rs.getInt("acc_id"), rs.getString("acc_number"), rs.getString("acc_iban"),
+							rs.getInt("acc_clt_id"), rs.getBigDecimal("acc_balance"), rs.getBigDecimal("acc_interest"),
+							rs.getInt("acc_type"));
 					break;
 
 				case "HoldingShare":
-					retour = new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
-							rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton")));
+					retour = new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"),
+							rs.getInt("hds_acc_id"), rs.getInt("hds_numberofshares"),
+							new DateTime(rs.getDate("hds_boughton")));
 					break;
 
 				case "Stock":
-					retour = new Stock(rs.getString("stk_ticker"), rs.getString("stk_name"), rs.getString("stk_description"));
+					retour = new Stock(rs.getString("stk_ticker"), rs.getString("stk_name"),
+							rs.getString("stk_description"));
 					break;
 
 				case "StockHistoricalPrice":
@@ -208,11 +212,11 @@ abstract public class Dao {
 			// we crosse all the line of the results
 			switch (type) {
 			case "News":
-				while(rs.next()) {
+				while (rs.next()) {
 					returnList.add(new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text")));
 				}
 				break;
-			
+
 			case "Advisor":
 				while (rs.next()) {
 					returnList.add(new Advisor(rs.getInt("avs_id"), rs.getString("avs_name"), rs.getString("avs_login"),
@@ -234,16 +238,17 @@ abstract public class Dao {
 
 			case "Account":
 				while (rs.next()) {
-					returnList.add(new Account(rs.getInt("acc_id"), rs.getString("acc_number"), rs.getInt("acc_clt_id"),
-							rs.getBigDecimal("acc_balance"), rs.getBigDecimal("acc_interest"), rs.getInt("acc_type")));
+					returnList.add(new Account(rs.getInt("acc_id"), rs.getString("acc_number"),
+							rs.getString("acc_iban"), rs.getInt("acc_clt_id"), rs.getBigDecimal("acc_balance"),
+							rs.getBigDecimal("acc_interest"), rs.getInt("acc_type")));
 				}
 				break;
 
 			case "HoldingShare":
 				while (rs.next()) {
-					returnList
-							.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
-									rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton"))));
+					returnList.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"),
+							rs.getInt("hds_acc_id"), rs.getInt("hds_numberofshares"),
+							new DateTime(rs.getDate("hds_boughton"))));
 				}
 				break;
 
@@ -271,8 +276,9 @@ abstract public class Dao {
 
 			case "FindAccountByClientId":
 				while (rs.next()) {
-					returnList.add(new Account(rs.getInt("acc_id"), rs.getString("acc_number"), rs.getInt("acc_clt_id"),
-							rs.getBigDecimal("acc_balance"), rs.getBigDecimal("acc_interest"), rs.getInt("acc_type")));
+					returnList.add(new Account(rs.getInt("acc_id"), rs.getString("acc_number"),
+							rs.getString("acc_iban"), rs.getInt("acc_clt_id"), rs.getBigDecimal("acc_balance"),
+							rs.getBigDecimal("acc_interest"), rs.getInt("acc_type")));
 				}
 				break;
 
@@ -286,9 +292,9 @@ abstract public class Dao {
 
 			case "FindHdsByCltId":
 				while (rs.next()) {
-					returnList
-							.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
-									rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton"))));
+					returnList.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"),
+							rs.getInt("hds_acc_id"), rs.getInt("hds_numberofshares"),
+							new DateTime(rs.getDate("hds_boughton"))));
 				}
 				break;
 
@@ -363,7 +369,7 @@ abstract public class Dao {
 				ps.setString(1, nws.getNws_title());
 				ps.setString(2, nws.getNws_text());
 				break;
-			
+
 			case "Advisor":
 				Advisor advisor = (Advisor) item;
 				ps = con.prepareStatement("INSERT INTO advisor_avs VALUES(null, ?, ?, ?)");
@@ -394,11 +400,12 @@ abstract public class Dao {
 
 			case "Account":
 				Account acc = (Account) item;
-				ps = con.prepareStatement("INSERT INTO account_acc VALUES(null, ?, ?, ?, ?, ?)");
+				ps = con.prepareStatement("INSERT INTO account_acc VALUES(null, ?, ?, ?, ?, ?, ?)");
 				ps.setString(1, acc.getAcc_number());
-				ps.setInt(2, acc.getAcc_clt_id());
-				ps.setBigDecimal(3, acc.getAcc_balance());
-				ps.setBigDecimal(4, acc.getAcc_interest());
+				ps.setString(2, acc.getAcc_iban());
+				ps.setInt(3, acc.getAcc_clt_id());
+				ps.setBigDecimal(4, acc.getAcc_balance());
+				ps.setBigDecimal(5, acc.getAcc_interest());
 
 				switch (acc.getAcc_type()) {
 				case "Compte de courant":
@@ -506,12 +513,12 @@ abstract public class Dao {
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			boolean isStringTypeCorrect = true;
-			
+
 			switch (type) {
 			case "News":
 				ps = con.prepareStatement("DELETE FROM news_nws WHERE nws_id=?");
 				break;
-				
+
 			case "Advisor":
 				ps = con.prepareStatement("DELETE FROM advisor_avs WHERE avs_id=?");
 				break;
@@ -549,9 +556,9 @@ abstract public class Dao {
 				System.out.println("String type error!!!");
 				break;
 			}
-			
-			if(isStringTypeCorrect){
-				if(type.equals("Stock")){
+
+			if (isStringTypeCorrect) {
+				if (type.equals("Stock")) {
 					ps.setString(1, (String) item);
 				} else {
 					ps.setInt(1, (int) item);
@@ -559,7 +566,7 @@ abstract public class Dao {
 				// Execution of the require
 				retour = ps.executeUpdate();
 			}
-			
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -603,7 +610,8 @@ abstract public class Dao {
 			switch (type) {
 			case "Advisor":
 				Advisor advisor = (Advisor) item;
-				ps = con.prepareStatement("UPDATE advisor_avs SET avs_name=?, avs_login=?, avs_password=? WHERE avs_id=?");
+				ps = con.prepareStatement(
+						"UPDATE advisor_avs SET avs_name=?, avs_login=?, avs_password=? WHERE avs_id=?");
 				ps.setString(1, advisor.getAvs_name());
 				ps.setString(2, advisor.getAvs_login());
 				ps.setString(3, advisor.getAvs_password());
@@ -648,8 +656,7 @@ abstract public class Dao {
 
 			case "Stock":
 				Stock stk = (Stock) item;
-				ps = con.prepareStatement(
-						"UPDATE stock_stk SET " + "stk_name=?, stk_description=? WHERE stk_ticker=?");
+				ps = con.prepareStatement("UPDATE stock_stk SET " + "stk_name=?, stk_description=? WHERE stk_ticker=?");
 				ps.setString(1, stk.getStk_name());
 				ps.setString(2, stk.getStk_description());
 				ps.setString(3, stk.getStk_ticker());
@@ -702,9 +709,12 @@ abstract public class Dao {
 
 	/**
 	 * get next auto-increment item from a table of database
-	 * @param type	String that contains the type of item
-	 * @param sql	SQL request
-	 * @return	the next auto-increment item
+	 * 
+	 * @param type
+	 *            String that contains the type of item
+	 * @param sql
+	 *            SQL request
+	 * @return the next auto-increment item
 	 */
 	public static String getNextItem(String type, String sql) {
 		Connection con = null;

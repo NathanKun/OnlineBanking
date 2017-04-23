@@ -6,12 +6,12 @@ DROP TABLE IF EXISTS news_nws;
 DROP TABLE IF EXISTS advisor_avs;
 DROP TABLE IF EXISTS contactform_ctf;
 DROP TABLE IF EXISTS holdingshare_hds;
-DROP TABLE IF EXISTS stockhistoricalprice_shp;
+#DROP TABLE IF EXISTS stockhistoricalprice_shp;
 DROP TABLE IF EXISTS stock_stk;
 DROP TABLE IF EXISTS transactionhistory_tsh;
 DROP TABLE IF EXISTS account_acc;
 DROP TABLE IF EXISTS client_clt;
-DROP PROCEDURE IF EXISTS InsertRandToSHP;
+#DROP PROCEDURE IF EXISTS InsertRandToSHP;
     
     
 CREATE TABLE IF NOT EXISTS advisor_avs (
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS contactform_ctf (
 CREATE TABLE IF NOT EXISTS client_clt (
 	clt_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	clt_login CHAR(10) NOT NULL UNIQUE,
-	clt_password CHAR(178) NOT NULL, # Hashed by PasswordAuthentication Class
+	clt_password CHAR(178) NOT NULL, # Hashed by Class PasswordAuthentication
     clt_fname VARCHAR(30) NOT NULL,
     clt_lname VARCHAR(30) NOT NULL,
     clt_birthday DATE NOT NULL,
@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS client_clt (
 CREATE TABLE IF NOT EXISTS account_acc (
 	acc_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     acc_number CHAR(16) NOT NULL UNIQUE,
+    acc_iban VARCHAR(34) NOT NULL UNIQUE,
     acc_clt_id INT(10) NOT NULL,
     acc_balance NUMERIC(17,2) DEFAULT 0, # + if add funds, - if payment
     acc_interest NUMERIC(5,2) NOT NULL DEFAULT 0,
@@ -124,9 +125,9 @@ INSERT INTO client_clt VALUES(null, "login",
     "firstName", "lastName", STR_TO_DATE('1994-07-10','%Y-%d-%m'),
 	"Chinese", "M", "1 rue Abc", "76000", "Rouen", "01234567", "e@mail.com", "Marié(e)", NOW(), 
 	('2009-06-08 23:53:17'));
-INSERT INTO account_acc VALUES(null, "4444555566660001", 1, 987.65, 0, 1);
-INSERT INTO account_acc VALUES(null, "4444555566660002", 1, 23333.33, 2.5, 2);
-INSERT INTO account_acc VALUES(null, "4444555566660003", 1, 1200.00, 0, 3);
+INSERT INTO account_acc VALUES(null, "4444555566660001", "AL47212110090000000235698741", 1, 987.65, 0, 1);
+INSERT INTO account_acc VALUES(null, "4444555566660002", "BG80BNBG96611020345678", 1, 23333.33, 2.5, 2);
+INSERT INTO account_acc VALUES(null, "4444555566660003", "BA391290079401028494", 1, 1200.00, 0, 3);
 
 
 INSERT INTO client_clt VALUES(null, "a", 
@@ -134,8 +135,8 @@ INSERT INTO client_clt VALUES(null, "a",
 	"Haoran", "Wang", STR_TO_DATE('1999-09-09','%Y-%d-%m'),
 	"Chinese", "M", "233 rue de Rouen", "76800", "St du Ry", "0607080910", "wanghaoran@gmail.com", 
 	"Divorcé(e)", NOW(), ('2017-03-29 10:05:21'));
-INSERT INTO account_acc VALUES(null, "2222333322220001", 2, 1643.68, 0, 1);
-INSERT INTO account_acc VALUES(null, "2222333322220002", 2, 2500.00, 2.5, 2);
+INSERT INTO account_acc VALUES(null, "2222333322220001", "BE62510007547061", 2, 1643.68, 0, 1);
+INSERT INTO account_acc VALUES(null, "2222333322220002", "BH67BMAG00001299123456", 2, 2500.00, 2.5, 2);
 
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1", "2222333322220001", NOW(), 33.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
@@ -176,8 +177,8 @@ INSERT INTO client_clt VALUES(null, "b",
 	"Onepunch", "Man", STR_TO_DATE('1888-08-08','%Y-%d-%m'),
 	"Chinese", "M", "321 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee", "33445", "Fukuchima", "0607080910", "wanghaoran@gmail.com", 
 	"Séparé(e)", NOW(), ('2015-01-02 20:33:45'));
-INSERT INTO account_acc VALUES(null, "3333666699990001", 3, 65535.00, 0, 1);
-INSERT INTO account_acc VALUES(null, "3333666699990003", 3, 1200.00, 0, 3);
+INSERT INTO account_acc VALUES(null, "3333666699990001", "AZ21NABZ00000000137010001944", 3, 65535.00, 0, 1);
+INSERT INTO account_acc VALUES(null, "3333666699990003", "AD1200012030200359100100", 3, 1200.00, 0, 3);
 
 INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 1", "3333666699990001", NOW(), -733.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 2", "3333666699990001", NOW(), -723.33);
@@ -194,7 +195,7 @@ INSERT INTO client_clt VALUES(null, "1236784567",
 	"Bill", "Gate", STR_TO_DATE('1960-03-11','%Y-%d-%m'),
 	"American", "M", "some rode", "01234", "SomeCity", "0607080910", "billgate@gmail.com", 
 	"Célibataire", NOW(), ('2016-07-08 07:20:11'));
-INSERT INTO account_acc VALUES(null, "4444888844440001", 4, 10086, 0, 1);
+INSERT INTO account_acc VALUES(null, "4444888844440001", "HR1210010051863000160", 4, 10086, 0, 1);
 
 
 INSERT INTO stock_stk VALUES('^FCHI', 'CAC 40', '');

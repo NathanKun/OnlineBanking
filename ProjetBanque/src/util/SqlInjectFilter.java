@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * Reference :http://www.2cto.com/article/201207/140313.html
  * 
- * @author Junyang HE
  *
  */
 

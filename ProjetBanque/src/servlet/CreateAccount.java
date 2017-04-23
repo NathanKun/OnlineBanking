@@ -13,6 +13,7 @@ import dao.DaoAccount;
 import dao.DaoClient;
 import model.Account;
 import model.Client;
+import util.IbanUtil;
 
 /**
  * Servlet implementation class CreateAccount
@@ -22,21 +23,24 @@ public class CreateAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Client clt = (Client) request.getSession().getAttribute("client");
-		if(clt != null){
-			if(request.getParameter("type").equals("SavingAccount") && clt.getSavingAccount() == null){
-				DaoAccount.addAccount(new Account(0, DaoAccount.getNextAccountNumber(), clt.getClt_id(), new BigDecimal(0), 
-						new BigDecimal(2.5), 2));
+		if (clt != null) {
+			if (request.getParameter("type").equals("SavingAccount") && clt.getSavingAccount() == null) {
+				DaoAccount.addAccount(
+						new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(clt.getClt_id(), 2),
+								clt.getClt_id(), new BigDecimal(0), new BigDecimal(2.5), 2));
 				response.getWriter().print("Done");
-			} else 
-			if(request.getParameter("type").equals("SecuritiesAccount") && clt.getSecuritiesAccount() == null){
-				DaoAccount.addAccount(new Account(0, DaoAccount.getNextAccountNumber(), clt.getClt_id(), new BigDecimal(0), 
-						new BigDecimal(0), 3));
+			} else if (request.getParameter("type").equals("SecuritiesAccount") && clt.getSecuritiesAccount() == null) {
+				DaoAccount.addAccount(
+						new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(clt.getClt_id(), 3),
+								clt.getClt_id(), new BigDecimal(0), new BigDecimal(0), 3));
 				response.getWriter().print("Done");
-			} else{
+			} else {
 				response.sendRedirect("./Login");
 			}
 			request.getSession().removeAttribute("client");
