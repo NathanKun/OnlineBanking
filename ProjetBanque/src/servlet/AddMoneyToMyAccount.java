@@ -8,13 +8,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class TransferMoney
- * @author 
+ * Servlet implementation class AddMoneyToMyAccount
  */
-@WebServlet("/TransferMoney")
-public class TransferMoney extends HttpServlet {
+@WebServlet("/AddMoneyToMyAccount")
+public class AddMoneyToMyAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+    /**
+     * Default constructor. 
+     */
+    public AddMoneyToMyAccount() {
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -24,9 +37,14 @@ public class TransferMoney extends HttpServlet {
 		
 		// emetteur and beneficiare send in will be one of these: courant, epargne, titre
 		String emetteur = request.getParameter("emetteur");
-		String beneficiare = request.getParameter("beneficiaire");
-		String montant = request.getParameter("montant");
-		String  motif = request.getParameter("motif");
+		String montant= request.getParameter("");
+		String typeCarte = request.getParameter("type");
+		String numCarte= request.getParameter("numcarte");
+		String mois= request.getParameter("mois");
+		String annee= request.getParameter("annee");
+		String crypto= request.getParameter("crypto");
+		
+	
 		
 		// check if emetteur account has enough money, if no reponse "No enough money"
 		response.getWriter().print("No enough money");
