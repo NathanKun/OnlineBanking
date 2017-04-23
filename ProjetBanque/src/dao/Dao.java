@@ -14,6 +14,7 @@ import model.Advisor;
 import model.Client;
 import model.ContactForm;
 import model.HoldingShare;
+import model.News;
 import model.Stock;
 import model.StockHistoricalPrice;
 import model.TransactionHistory;
@@ -73,6 +74,7 @@ abstract public class Dao {
 			case "TransactionHistory":
 			case "StockHistoricalPrice":
 			case "ContactForm":
+			case "News":
 				ps.setInt(1, (int) item);
 				break;
 
@@ -90,6 +92,10 @@ abstract public class Dao {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				switch (type) {
+				case "News":
+					retour = new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text"));
+					break;
+				
 				case "FindAdvisorByLogin":
 				case "Advisor":
 					retour = new Advisor(rs.getInt("avs_id"), rs.getString("avs_name"), rs.getString("avs_login"),
@@ -201,6 +207,12 @@ abstract public class Dao {
 
 			// we crosse all the line of the results
 			switch (type) {
+			case "News":
+				while(rs.next()) {
+					returnList.add(new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text")));
+				}
+				break;
+			
 			case "Advisor":
 				while (rs.next()) {
 					returnList.add(new Advisor(rs.getInt("avs_id"), rs.getString("avs_name"), rs.getString("avs_login"),
@@ -345,6 +357,13 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "News":
+				News nws = (News) item;
+				ps = con.prepareStatement("INSERT INTO news_nws VALUES(null, ?, ?)");
+				ps.setString(1, nws.getNws_title());
+				ps.setString(2, nws.getNws_text());
+				break;
+			
 			case "Advisor":
 				Advisor advisor = (Advisor) item;
 				ps = con.prepareStatement("INSERT INTO advisor_avs VALUES(null, ?, ?, ?)");
@@ -486,54 +505,61 @@ abstract public class Dao {
 		// connection to date base
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
-
+			boolean isStringTypeCorrect = true;
+			
 			switch (type) {
+			case "News":
+				ps = con.prepareStatement("DELETE FROM news_nws WHERE nws_id=?");
+				break;
+				
 			case "Advisor":
 				ps = con.prepareStatement("DELETE FROM advisor_avs WHERE avs_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "Client":
 				ps = con.prepareStatement("DELETE FROM client_clt WHERE clt_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "Account":
 				ps = con.prepareStatement("DELETE FROM account_acc WHERE acc_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "HoldingShare":
 				ps = con.prepareStatement("DELETE FROM holdingshare_hds WHERE hds_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "Stock":
 				ps = con.prepareStatement("DELETE FROM stock_stk WHERE stk_id=?");
-				ps.setString(1, (String) item);
 				break;
 
 			case "StockHistoricalPrice":
 				ps = con.prepareStatement("DELETE FROM stockhistoricalprice_shp WHERE shp_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "TransactionHistory":
 				ps = con.prepareStatement("DELETE FROM transactionhistory_tsh WHERE tsh_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "ContactForm":
 				ps = con.prepareStatement("DELETE FROM contactform_ctf WHERE ctf_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			default:
+				isStringTypeCorrect = false;
 				System.out.println("String type error!!!");
 				break;
 			}
-			// Execution of the require
-			retour = ps.executeUpdate();
+			
+			if(isStringTypeCorrect){
+				if(type.equals("Stock")){
+					ps.setString(1, (String) item);
+				} else {
+					ps.setInt(1, (int) item);
+				}
+				// Execution of the require
+				retour = ps.executeUpdate();
+			}
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {

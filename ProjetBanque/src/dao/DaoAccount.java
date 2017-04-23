@@ -118,13 +118,13 @@ public class DaoAccount extends Dao {
 		// System.out.println(DaoAccount.getAccount(7).toString());
 
 		// get all test
-		/*
-		 * for (Account acc : DaoAccount.getAccountList()){
-		 * System.out.println(acc); }
-		 */
+		
+//		 for (Account acc : DaoAccount.getAccountList()){
+//		 System.out.println(acc); }
+		 
 
 		// delete test
-		// DaoAccount.deleteAccount(9);
+//		DaoAccount.deleteAccount(3);
 
 		// Update test
 		// Account acc = DaoAccount.getAccount(1);

@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS onlineBank;
 #DROP DATABASE onlinebank;
 USE onlinebank;
 
+DROP TABLE IF EXISTS news_nws;
 DROP TABLE IF EXISTS advisor_avs;
 DROP TABLE IF EXISTS contactform_ctf;
 DROP TABLE IF EXISTS holdingshare_hds;
@@ -23,7 +24,7 @@ CREATE TABLE IF NOT EXISTS advisor_avs (
 CREATE TABLE IF NOT EXISTS contactform_ctf (
 	ctf_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ctf_name VARCHAR(60) NOT NULL,
-    ctf_email VARCHAR(254) NOT NULL,
+    ctf_email VARCHAR(255) NOT NULL,
     ctf_tel VARCHAR(10),
     ctf_message TEXT
 ) ENGINE = Innodb;
@@ -41,7 +42,7 @@ CREATE TABLE IF NOT EXISTS client_clt (
     clt_postalcode CHAR(10),
     clt_city VARCHAR(30) NOT NULL,
     clt_telephonenumber VARCHAR(14) NOT NULL,
-    clt_email VARCHAR(254) NOT NULL,
+    clt_email VARCHAR(255) NOT NULL,
     clt_status VARCHAR(30) NOT NULL,
     clt_lastlogin DATETIME,
     clt_createdon DATETIME NOT NULL
@@ -51,7 +52,7 @@ CREATE TABLE IF NOT EXISTS account_acc (
 	acc_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     acc_number CHAR(16) NOT NULL UNIQUE,
     acc_clt_id INT(10) NOT NULL,
-    acc_balance NUMERIC(17,2) DEFAULT 0,
+    acc_balance NUMERIC(17,2) DEFAULT 0, # + if add funds, - if payment
     acc_interest NUMERIC(5,2) NOT NULL DEFAULT 0,
     acc_type TINYINT(1) NOT NULL, # 1 for transaction account, 2 for savings account, 3 for securities account
     FOREIGN KEY(acc_clt_id) REFERENCES client_clt(clt_id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -74,7 +75,7 @@ CREATE TABLE IF NOT EXISTS securitiesaccount_sca (
 CREATE TABLE IF NOT EXISTS transactionhistory_tsh (
 	tsh_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     #tsh_clt_id INT(10) NOT NULL,	# optional
-	tsh_description VARCHAR(254),
+	tsh_description VARCHAR(255),
     tsh_acc_number CHAR(16) CHARACTER SET utf8 NOT NULL,
     tsh_transactionon DATETIME NOT NULL,
     tsh_amount NUMERIC(17,2) NOT NULL,
@@ -84,8 +85,8 @@ CREATE TABLE IF NOT EXISTS transactionhistory_tsh (
 
 CREATE TABLE IF NOT EXISTS stock_stk (
     stk_ticker VARCHAR(10) NOT NULL PRIMARY KEY,
-    stk_name VARCHAR(254) NOT NULL,
-    stk_description TEXT(65534)
+    stk_name VARCHAR(255) NOT NULL,
+    stk_description MEDIUMTEXT
 ) ENGINE = Innodb;
 
 /*
@@ -109,8 +110,11 @@ CREATE TABLE IF NOT EXISTS holdingshare_hds(
     FOREIGN KEY(hds_acc_id) REFERENCES account_acc(acc_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = Innodb;
 
-
-
+CREATE TABLE IF NOT EXISTS news_nws (
+	nws_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nws_title VARCHAR(255),
+    nws_text LONGTEXT
+);
 
 
 # insert data
@@ -134,37 +138,37 @@ INSERT INTO account_acc VALUES(null, "2222333322220001", 2, 1643.68, 0, 1);
 INSERT INTO account_acc VALUES(null, "2222333322220002", 2, 2500.00, 2.5, 2);
 
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1", "2222333322220001", NOW(), 33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), 23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), 13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), 3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), 33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), 23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), 13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), 3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), 33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), 23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), 13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), 3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), 33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), 23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), 13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), 3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), 33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), 23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), 13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), 3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), 33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), 23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), 13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), 3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), 33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), 23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), 13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), 3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
 
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 1", "2222333322220002", NOW(), 333.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 2", "2222333322220002", NOW(), 323.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 3", "2222333322220002", NOW(), 313.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 1", "2222333322220002", NOW(), -333.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 2", "2222333322220002", NOW(), -323.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 3", "2222333322220002", NOW(), -313.33);
 
 
 INSERT INTO client_clt VALUES(null, "b", 
@@ -175,14 +179,14 @@ INSERT INTO client_clt VALUES(null, "b",
 INSERT INTO account_acc VALUES(null, "3333666699990001", 3, 65535.00, 0, 1);
 INSERT INTO account_acc VALUES(null, "3333666699990003", 3, 1200.00, 0, 3);
 
-INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 1", "3333666699990001", NOW(), 733.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 2", "3333666699990001", NOW(), 723.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 3", "3333666699990001", NOW(), 713.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 4", "3333666699990001", NOW(), 73.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 1", "3333666699990001", NOW(), -733.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 2", "3333666699990001", NOW(), -723.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 3", "3333666699990001", NOW(), -713.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 4", "3333666699990001", NOW(), -73.33);
 
-INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 1", "3333666699990003", NOW(), 433.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 2", "3333666699990003", NOW(), 423.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 3", "3333666699990003", NOW(), 413.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 1", "3333666699990003", NOW(), -433.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 2", "3333666699990003", NOW(), -423.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 3", "3333666699990003", NOW(), -413.33);
 
 
 INSERT INTO client_clt VALUES(null, "1236784567", 
@@ -233,7 +237,7 @@ INSERT INTO stock_stk VALUES('FP.PA', 'TOTAL', 'FR0000120271');
 INSERT INTO stock_stk VALUES('UL.PA', 'Unibail-Rodamco', 'FR0000124711');
 INSERT INTO stock_stk VALUES('FR.PA', 'Valeo', 'FR0000130338');
 INSERT INTO stock_stk VALUES('VIE.PA', 'Veolia Environnement', 'FR0000124141');
-INSERT INTO stock_stk VALUES('DG.PA', 'Vinci', 'FR0000125486');
+INSERT INTO stock_stk VALUES('DG.PA', 'Vinci', 'FR0000125586');
 INSERT INTO stock_stk VALUES('VIV.PA', 'Vivendi', 'FR0000127771');
 
 # gauss distribution generator
