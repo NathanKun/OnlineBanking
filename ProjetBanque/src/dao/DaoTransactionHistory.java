@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import model.TransactionHistory;
 
+/**
+ * Data access object of Transaction History.
+ * Connecting class TransactionHistory and table transactionhistory_tsh
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoTransactionHistory extends Dao {
 	/**
 	 * return a specific TransactionHistory by it's id.
@@ -32,7 +39,7 @@ public class DaoTransactionHistory extends Dao {
 	/**
 	 * add TransactionHistory in the date base.
 	 * 
-	 * @param TransactionHistory
+	 * @param tsh
 	 *            - TransactionHistory to add
 	 * @return the number of line add in the TransactionHistory list
 	 */
@@ -55,7 +62,7 @@ public class DaoTransactionHistory extends Dao {
 	 * update a TransactionHistory.
 	 * ONLY Description is modifiable.
 	 * Amount, Date and AccountNumber are NOT MODIFIABLE
-	 * @param TransactionHistory
+	 * @param tsh
 	 *            the TransactionHistory for update
 	 * @return numbers of line updated
 	 */

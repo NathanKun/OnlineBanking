@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class Logout
+ * @author HE Junyang
  */
 @WebServlet(description = "logout, clear session and go to index", urlPatterns = { "/Logout" })
 public class Logout extends HttpServlet {
@@ -19,6 +20,8 @@ public class Logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().removeAttribute("client");
+		request.removeAttribute("ticker");
+		request.removeAttribute("width");
 		response.sendRedirect("./index.jsp");
 	}
 

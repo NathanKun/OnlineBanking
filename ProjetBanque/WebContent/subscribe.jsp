@@ -1,15 +1,15 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
-    <meta charset="utf-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
     
     <link rel="stylesheet" href="./css/subscribe.css" type="text/css">
 
@@ -24,12 +24,7 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	
 
 </head>
 
@@ -57,7 +52,8 @@
         <div class="row">
             <div class="col-md-8">
                 <h3>Veuillez remplir le formulaire d'inscription svp :</h3>
-                <form id="form" class="form-horizontal" action="./Subscribe" onsubmit="return checkInputs()" method="post">
+                <form id="form" class="form-horizontal" action="./Subscribe" onsubmit="return checkInputs()" 
+                	method="post" accept-charset="UTF-8">
                         <fieldset>
 
                         <!-- Form Name -->
@@ -68,7 +64,6 @@
                           <label class="col-md-4 control-label" for="selectbasic">Titre</label>
                           <div class="col-md-4">
                             <select id="selectbasic" name="sexe" class="form-control">
-                              <option value="F">Mademoiselle</option>
                               <option value="F">Madame</option>
                               <option value="M">Monsieur</option>
                             </select>
@@ -108,11 +103,11 @@
                           <label class="col-md-4 control-label" for="EtatC">Etat Civil</label>
                           <div class="col-md-4">
                             <select id="EtatC" name="statut" class="form-control">
-                              <option value="1">Marié(e)</option>
-                              <option value="2">Divorcé(e)</option>
-                              <option value="3">Séparé(e)</option>
-                              <option value="4">Célibataire</option>
-                              <option value="5">Veuf(ve)</option>
+                              <option value="Marié(e)">Marié(e)</option>
+                              <option value="Divorcé(e)">Divorcé(e)</option>
+                              <option value="Séparé(e)">Séparé(e)</option>
+                              <option value="Célibataire">Célibataire</option>
+                              <option value="Veuf(ve)">Veuf(ve)</option>
                             </select>
                           </div>
                         </div>
@@ -237,11 +232,19 @@
                           </div>
                         </div>
 
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="address-input">Votre Adresse</label>  
+                          <div class="col-md-4">
+                          <input id="address-input" placeholder="Votre Adresse" class="form-control input-md" required type="text">
+                            
+                          </div>
+                        </div>
+                        
                         <!-- Text input-->
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="rue">Adresse</label>  
+                          <label class="col-md-4 control-label" for="rue">Rue</label>  
                           <div class="col-md-4">
-                          <input id="adresse" name="adresse" placeholder="Adresse" class="form-control input-md" required type="text">
+                          <input id="adresse" name="adresse" readonly placeholder="Adresse" class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -250,7 +253,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="CP">Code Postal</label>  
                           <div class="col-md-2">
-                          <input id="codepostal" name="codepostal" onchange="getCity()" placeholder="Code Postal" class="form-control input-md" required type="text">
+                          <input id="codepostal" name="codepostal" readonly placeholder="Code Postal" class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -259,7 +262,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="ville">Ville</label>  
                           <div class="col-md-4">
-                          <input id="ville" name="ville" placeholder="ville" class="form-control input-md" type="text">
+                          <input id="ville" name="ville" readonly placeholder="ville" class="form-control input-md" type="text">
                             
                           </div>
                         </div>
@@ -277,7 +280,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tel">Téléphone</label>  
                           <div class="col-md-4">
-                          <input id="tel" name="tel"  pattern="[0-9]{10}" placeholder="Ex:0XXXXXXXXXX " class="form-control input-md" required="" type="text">
+                          <input id="tel" name="tel" placeholder="Ex:0123456789 " class="form-control input-md" required type="text">
                             
                           </div>
                         </div>
@@ -295,7 +298,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="cpassword">Confirmez mot de passe</label>  
                           <div class="col-md-4">
-                          <input id="password2" name="password2" onchange="checkPw()" placeholder="cpassword" class="form-control input-md" type="password">
+                          <input id="password2" name="password2" onchange="checkPw()" placeholder="Confirmation depassword" class="form-control input-md" type="password">
                             
                           </div>
                         </div>
@@ -357,10 +360,12 @@
 
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
     
-	<script src="./js/subscribe.js"></script>
-    
     <script> window.onload = function(){document.getElementById("customerarea").className = "dropdown active"; }</script>
 
+	<!-- algolia/places api -->
+	<script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
+    
+	<script src="./js/subscribe.js"></script>
 </body>
 
 </html>

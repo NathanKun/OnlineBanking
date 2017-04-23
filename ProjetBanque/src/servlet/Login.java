@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.joda.time.DateTime;
+
 import dao.DaoClient;
 import model.Client;
 import util.PasswordAuthentication;
 
 /**
  * Servlet implementation class Login
+ * @author DJAMEN Yann, HE Junyang
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -54,6 +56,8 @@ public class Login extends HttpServlet {
 		}
 
 		if (isFound) {
+			cltFound.setClt_lastlogin(new DateTime());
+			DaoClient.updateClient(cltFound);
 			// redirection
 			request.getSession(true).setAttribute("client", cltFound);
 			System.out.println("clt found");

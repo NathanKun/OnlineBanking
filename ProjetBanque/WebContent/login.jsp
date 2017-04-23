@@ -13,7 +13,7 @@
 %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
@@ -56,7 +56,7 @@
 		</div>
 		<!-- /.row -->
 
-		</br>
+		<br>
 		<div id="login" class="panel panel-primary container">
 			<div class="panel-heading">
 				<h3 class="panel-title">
@@ -76,7 +76,7 @@
 							<div>
 								<input id="nomUtilisateur" name="login" type="text"
 									placeholder="Entrez votre nom d'utilisateur"
-									class="form-control input-md" required="">
+									class="form-control input-md" required />
 							</div>
 						</div>
 
@@ -88,7 +88,7 @@
 							<div>
 								<input id="password" name="password" type="password"
 									placeholder="Entrez votre mot de passe"
-									class="form-control input-md" required="">
+									class="form-control input-md" required />
 							</div>
 						</div>
 						<!-- Button -->
@@ -101,6 +101,7 @@
 							<label id="hint"><%=hint%></label>
 
 
+						</div>
 							<!--</div> -->
 					</fieldset>
 				</form>

@@ -10,19 +10,30 @@ import java.util.ArrayList;
 import org.joda.time.DateTime;
 
 import model.Account;
+import model.Advisor;
 import model.Client;
 import model.ContactForm;
 import model.HoldingShare;
+import model.News;
 import model.Stock;
 import model.StockHistoricalPrice;
 import model.TransactionHistory;
 
+/**
+ * Parent class of all Daos.
+ * 
+ * @author Junyang HE
+ *
+ */
 abstract public class Dao {
 
 	static String URL = "jdbc:mysql://localhost/onlinebank?autoReconnect=true&useSSL=false";
 	static String LOGIN = "root";
 	static String PASS = "root";
 
+	/**
+	 * load jdbc driver
+	 */
 	public Dao() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -56,17 +67,20 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement(sql);
 			switch (type) {
+			case "Advisor":
 			case "Client":
 			case "Account":
 			case "HoldingShare":
-			case "Stock":
 			case "TransactionHistory":
 			case "StockHistoricalPrice":
 			case "ContactForm":
+			case "News":
 				ps.setInt(1, (int) item);
 				break;
-				
+
+			case "FindAdvisorByLogin":
 			case "FindClientByLogin":
+			case "Stock":
 				ps.setString(1, (String) item);
 				break;
 
@@ -78,6 +92,17 @@ abstract public class Dao {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				switch (type) {
+				case "News":
+					retour = new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text"));
+					break;
+				
+				case "FindAdvisorByLogin":
+				case "Advisor":
+					retour = new Advisor(rs.getInt("avs_id"), rs.getString("avs_name"), rs.getString("avs_login"),
+							rs.getString("avs_password"));
+					break;
+
+				case "FindClientByLogin":
 				case "Client":
 					retour = new Client(rs.getInt("clt_id"), rs.getString("clt_login"), rs.getString("clt_password"),
 							rs.getString("clt_fname"), rs.getString("clt_lname"),
@@ -94,13 +119,12 @@ abstract public class Dao {
 					break;
 
 				case "HoldingShare":
-					retour = new HoldingShare(rs.getInt("hds_id"), rs.getInt("hds_stk_id"), rs.getInt("hds_acc_id"),
+					retour = new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
 							rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton")));
 					break;
 
 				case "Stock":
-					retour = new Stock(rs.getInt("stk_id"), rs.getString("stk_name"), rs.getString("stk_description"),
-							rs.getBigDecimal("stk_price"));
+					retour = new Stock(rs.getString("stk_ticker"), rs.getString("stk_name"), rs.getString("stk_description"));
 					break;
 
 				case "StockHistoricalPrice":
@@ -114,18 +138,8 @@ abstract public class Dao {
 							rs.getBigDecimal("tsh_amount"));
 					break;
 
-				case "FindClientByLogin":
-					retour = new Client(rs.getInt("clt_id"), rs.getString("clt_login"), rs.getString("clt_password"),
-							rs.getString("clt_fname"), rs.getString("clt_lname"),
-							new DateTime(rs.getTimestamp("clt_birthday")), rs.getString("clt_nationality"),
-							rs.getString("clt_gender"), rs.getString("clt_address"), rs.getString("clt_postalcode"),
-							rs.getString("clt_city"), rs.getString("clt_telephonenumber"), rs.getString("clt_email"),
-							rs.getString("clt_status"), new DateTime(rs.getTimestamp("clt_lastlogin")),
-							new DateTime(rs.getTimestamp("clt_createdon")));
-					break;
-
 				case "ContactForm":
-					retour = new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"), rs.getString("ctf_email"), 
+					retour = new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"), rs.getString("ctf_email"),
 							rs.getString("ctf_tel"), rs.getString("ctf_message"));
 					break;
 
@@ -193,6 +207,19 @@ abstract public class Dao {
 
 			// we crosse all the line of the results
 			switch (type) {
+			case "News":
+				while(rs.next()) {
+					returnList.add(new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text")));
+				}
+				break;
+			
+			case "Advisor":
+				while (rs.next()) {
+					returnList.add(new Advisor(rs.getInt("avs_id"), rs.getString("avs_name"), rs.getString("avs_login"),
+							rs.getString("avs_password")));
+				}
+				break;
+
 			case "Client":
 				while (rs.next()) {
 					returnList.add(new Client(rs.getInt("clt_id"), rs.getString("clt_login"),
@@ -215,15 +242,15 @@ abstract public class Dao {
 			case "HoldingShare":
 				while (rs.next()) {
 					returnList
-							.add(new HoldingShare(rs.getInt("hds_id"), rs.getInt("hds_stk_id"), rs.getInt("hds_acc_id"),
+							.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
 									rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton"))));
 				}
 				break;
 
 			case "Stock":
 				while (rs.next()) {
-					returnList.add(new Stock(rs.getInt("stk_id"), rs.getString("stk_name"),
-							rs.getString("stk_description"), rs.getBigDecimal("stk_price")));
+					returnList.add(new Stock(rs.getString("stk_ticker"), rs.getString("stk_name"),
+							rs.getString("stk_description")));
 				}
 				break;
 
@@ -260,7 +287,7 @@ abstract public class Dao {
 			case "FindHdsByCltId":
 				while (rs.next()) {
 					returnList
-							.add(new HoldingShare(rs.getInt("hds_id"), rs.getInt("hds_stk_id"), rs.getInt("hds_acc_id"),
+							.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"), rs.getInt("hds_acc_id"),
 									rs.getInt("hds_numberofshares"), new DateTime(rs.getDate("hds_boughton"))));
 				}
 				break;
@@ -272,12 +299,11 @@ abstract public class Dao {
 				}
 				break;
 
-
 			case "ContactForm":
 				while (rs.next()) {
-					returnList.add(new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"), rs.getString("ctf_email"), 
-						rs.getString("ctf_tel"), rs.getString("ctf_message")));
-			}
+					returnList.add(new ContactForm(rs.getInt("ctf_id"), rs.getString("ctf_tel"),
+							rs.getString("ctf_email"), rs.getString("ctf_tel"), rs.getString("ctf_message")));
+				}
 				break;
 			default:
 				System.out.println("String type not correct!");
@@ -331,6 +357,21 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "News":
+				News nws = (News) item;
+				ps = con.prepareStatement("INSERT INTO news_nws VALUES(null, ?, ?)");
+				ps.setString(1, nws.getNws_title());
+				ps.setString(2, nws.getNws_text());
+				break;
+			
+			case "Advisor":
+				Advisor advisor = (Advisor) item;
+				ps = con.prepareStatement("INSERT INTO advisor_avs VALUES(null, ?, ?, ?)");
+				ps.setString(1, advisor.getAvs_name());
+				ps.setString(2, advisor.getAvs_login());
+				ps.setString(3, advisor.getAvs_password());
+				break;
+
 			case "Client":
 				Client client = (Client) item;
 				ps = con.prepareStatement(
@@ -378,7 +419,7 @@ abstract public class Dao {
 			case "HoldingShare":
 				HoldingShare hds = (HoldingShare) item;
 				ps = con.prepareStatement("INSERT INTO holdingshare_hds VALUES(null, ?, ?, ?, ?)");
-				ps.setInt(1, hds.getHds_stk_id());
+				ps.setString(1, hds.getHds_stk_ticker());
 				ps.setInt(2, hds.getHds_acc_id());
 				ps.setInt(3, hds.getHds_numberOfShares());
 				ps.setDate(4, new java.sql.Date(hds.getHds_boughtOn().getMillis()));
@@ -386,10 +427,10 @@ abstract public class Dao {
 
 			case "Stock":
 				Stock stk = (Stock) item;
-				ps = con.prepareStatement("INSERT INTO stock_stk VALUES(null, ?, ?, ?)");
-				ps.setString(1, stk.getStk_name());
-				ps.setString(2, stk.getStk_description());
-				ps.setBigDecimal(3, stk.getStk_price());
+				ps = con.prepareStatement("INSERT INTO stock_stk VALUES(?, ?, ?)");
+				ps.setString(1, stk.getStk_ticker());
+				ps.setString(2, stk.getStk_name());
+				ps.setString(3, stk.getStk_description());
 				break;
 
 			case "StockHistoricalPrice":
@@ -464,49 +505,61 @@ abstract public class Dao {
 		// connection to date base
 		try {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
-
+			boolean isStringTypeCorrect = true;
+			
 			switch (type) {
+			case "News":
+				ps = con.prepareStatement("DELETE FROM news_nws WHERE nws_id=?");
+				break;
+				
+			case "Advisor":
+				ps = con.prepareStatement("DELETE FROM advisor_avs WHERE avs_id=?");
+				break;
+
 			case "Client":
 				ps = con.prepareStatement("DELETE FROM client_clt WHERE clt_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "Account":
 				ps = con.prepareStatement("DELETE FROM account_acc WHERE acc_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "HoldingShare":
 				ps = con.prepareStatement("DELETE FROM holdingshare_hds WHERE hds_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "Stock":
 				ps = con.prepareStatement("DELETE FROM stock_stk WHERE stk_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "StockHistoricalPrice":
 				ps = con.prepareStatement("DELETE FROM stockhistoricalprice_shp WHERE shp_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "TransactionHistory":
 				ps = con.prepareStatement("DELETE FROM transactionhistory_tsh WHERE tsh_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			case "ContactForm":
 				ps = con.prepareStatement("DELETE FROM contactform_ctf WHERE ctf_id=?");
-				ps.setInt(1, (int) item);
 				break;
 
 			default:
+				isStringTypeCorrect = false;
 				System.out.println("String type error!!!");
 				break;
 			}
-			// Execution of the require
-			retour = ps.executeUpdate();
+			
+			if(isStringTypeCorrect){
+				if(type.equals("Stock")){
+					ps.setString(1, (String) item);
+				} else {
+					ps.setInt(1, (int) item);
+				}
+				// Execution of the require
+				retour = ps.executeUpdate();
+			}
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -548,6 +601,15 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "Advisor":
+				Advisor advisor = (Advisor) item;
+				ps = con.prepareStatement("UPDATE advisor_avs SET avs_name=?, avs_login=?, avs_password=? WHERE avs_id=?");
+				ps.setString(1, advisor.getAvs_name());
+				ps.setString(2, advisor.getAvs_login());
+				ps.setString(3, advisor.getAvs_password());
+				ps.setInt(4, advisor.getAvs_id());
+				break;
+
 			case "Client":
 				Client clt = (Client) item;
 				ps = con.prepareStatement(
@@ -587,11 +649,10 @@ abstract public class Dao {
 			case "Stock":
 				Stock stk = (Stock) item;
 				ps = con.prepareStatement(
-						"UPDATE stock_stk SET " + "stk_name=?, stk_description=?, stk_price=? WHERE stk_id=?");
+						"UPDATE stock_stk SET " + "stk_name=?, stk_description=? WHERE stk_ticker=?");
 				ps.setString(1, stk.getStk_name());
 				ps.setString(2, stk.getStk_description());
-				ps.setBigDecimal(3, stk.getStk_price());
-				ps.setInt(4, stk.getStk_id());
+				ps.setString(3, stk.getStk_ticker());
 				break;
 
 			case "StockHistoricalPrice":
@@ -639,6 +700,12 @@ abstract public class Dao {
 		return retour;
 	}
 
+	/**
+	 * get next auto-increment item from a table of database
+	 * @param type	String that contains the type of item
+	 * @param sql	SQL request
+	 * @return	the next auto-increment item
+	 */
 	public static String getNextItem(String type, String sql) {
 		Connection con = null;
 		PreparedStatement ps = null;

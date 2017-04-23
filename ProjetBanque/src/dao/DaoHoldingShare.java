@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 import model.HoldingShare;
 
+
+/**
+ * Data access object of HoldingShare.
+ * Connecting class HoldingShare and table holdingshare_hds
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoHoldingShare extends Dao {
 	/**
 	 * return a specific HoldingShare by it's id.
@@ -32,7 +40,7 @@ public class DaoHoldingShare extends Dao {
 	/**
 	 * add HoldingShare in the date base.
 	 * 
-	 * @param HoldingShare
+	 * @param hds
 	 *            - HoldingShare to add
 	 * @return the number of line add in the HoldingShare list
 	 */
@@ -55,7 +63,7 @@ public class DaoHoldingShare extends Dao {
 	 * update a HoldingShare.
 	 * ONLY Balance and Interest are modifiable.
 	 * HoldingShare Number and HoldingShare type NOT MODIFIABLE
-	 * @param HoldingShare
+	 * @param hds
 	 *            the HoldingShare for update
 	 * @return numbers of line updated
 	 */
@@ -73,9 +81,9 @@ public class DaoHoldingShare extends Dao {
 	// TODO : NOT TESTED
 	public static ArrayList<HoldingShare> findHdsByCltId(int cltId) {
 		String sql = "SELECT * FROM holdingshare_hds "
-				+ "INNER JOINT account_acc ON hds_acc_id = acc_id "
-				+ "INNER JOINT client_clt ON acc_clt_id = clt_id "
-				+ "WHERE clt_id = " + String.valueOf(cltId);
+				+ "INNER JOIN account_acc ON holdingshare_hds.hds_acc_id = account_acc.acc_id "
+				+ "INNER JOIN client_clt ON account_acc.acc_clt_id = client_clt.clt_id "
+				+ "WHERE client_clt.clt_id = " + String.valueOf(cltId);
 		ArrayList<HoldingShare> hdsList = (ArrayList<HoldingShare>)Dao.getList("FindHdsByCltId", sql);
 		return hdsList;
 	}
@@ -126,6 +134,7 @@ public class DaoHoldingShare extends Dao {
 //		hds.setHds_numberOfShares(3333);
 //		DaoHoldingShare.updateHoldingShare(hds);
 //		System.out.println(DaoHoldingShare.getHoldingShare(2).toString());
-		
+
+		System.out.println(DaoClient.getClient(3).getHoldingShare());
 	}
 }

@@ -5,7 +5,7 @@
 	Client clt = (Client)session.getAttribute("client");
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
@@ -18,6 +18,8 @@
 	<title>Modern Business - Start Bootstrap Template</title>
 	
 	<link href="css/accountsInfo.css" rel="stylesheet">
+	
+	<link href="css/zoneclient.css" rel="stylesheet">
 	
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -91,7 +93,17 @@
 								<td>${ client.getSecuritiesAccount().getAcc_interest() }</td>
 								<td id="securitiesBalance"><button onclick="showBalance('securitiesBalance');">Show</button></td>
 							</tr>
-							<%} %>
+							<% }if(clt.getSavingAccount() == null){ %>
+							<tr>
+								<td>Créer un compte d'épargne</td>
+								<td><button onclick="createAccount('savingAccount');">Créer</button></td>
+							</tr>
+							<% } if(clt.getSecuritiesAccount() == null){ %>
+							<tr>
+								<td>Créer un compte de titre:</td>
+								<td><button onclick="createAccount('securitiesAccount');">Créer</button></td>
+							</tr>
+							<% } %>
 						</table>
 					</div>
 					<!-- Généralités comptes -->
@@ -99,17 +111,17 @@
 					<div class="tab-pane fade" id="comptes">
 							<h3>Historique des transactions</h3>
 							<p>Compte courant: ${ client.getCurrentAccount().getAcc_number() }</p>
-							<button onclick="showTsh('currentHistory')";>show</button>
+							<button onclick="showTsh('currentHistory')">show</button>
 							<table id="currentHistory">
 							</table>
 						<%if(clt.getSavingAccount() != null){ %>
 							<p>Compte d'épargne: ${ client.getSavingAccount().getAcc_number() }</p>
-							<button onclick="showTsh('savingHistory')";>show</button>
+							<button onclick="showTsh('savingHistory')">show</button>
 							<table id="savingHistory">
 							</table>
 						<%} if(clt.getSecuritiesAccount() != null){ %>
 							<p>Compte de titre: ${ client.getSecuritiesAccount().getAcc_number() }</p>
-							<button onclick="showTsh('securitiesHistory')";>show</button>
+							<button onclick="showTsh('securitiesHistory')">show</button>
 							<table id="securitiesHistory">
 							</table>
 						<%} %>
@@ -119,40 +131,139 @@
 
 					<div class="tab-pane fade" id="virement">
 						<h3>Effectuer un virement :</h3>
-						<div class="form-group">
-							<p>
-								<label class="col-md-4 control-label" for="compte">Compte
-									émetteur: </label> <label for="courant"> <input type="checkbox"
-									id="courant" value="courant"> Compte courant
-								</label> <label for="epargne"> <input type="checkbox"
-									id="epargne" value="epargne"> Compte épargne
-								</label> <input type="checkbox" id="titre" value="checkbox1"> <label
-									for="titre"> Compte titre. </label>
-							</p>
-
-						</div>
-
-						<div class="form-group">
-							<p>
-								<label class="col-md-4 control-label" for="compte">Compte
-									bénéficiaire: </label> <label for="courant"> <input
-									type="checkbox" id="courant" value="courant"> Compte
-									courant
-								</label> <label for="epargne"> <input type="checkbox"
-									id="epargne" value="epargne"> Compte épargne
-								</label> <input type="checkbox" id="titre" value="checkbox1"> <label
-									for="titre"> Compte titre. </label>
-							</p>
-
-						</div>
+						<form id="transferForm" action="./TransferMoney" method="post">
+	                        <div class="form-group">
+	                        	<label class="col-md-4 control-label">Compte à Débiter :</label>
+                    			<div class="col-md-8">
+								  	<input id="radioCourant1" type="radio" name="emetteur" value="courant"> 
+								  	<label for="radioCourant1"> Compte courant</label>
+								  	<% if(clt.getSavingAccount() != null) { %>
+								  	<input id="radioEpargne1" type="radio" name="emetteur" value="epargne"> 
+								  	<label for="radioEpargne1"> Compte d'epargne</label>
+								  	<% } if(clt.getSecuritiesAccount() != null) { %>
+								  	<input id="radioTitre1" type="radio" name="emetteur" value="titre"> 
+								  	<label for="radioTitre1"> Compte de titre</label>
+								  	<% } %>
+								</div>
+							</div>
+	                        <div class="form-group">
+	                        	<label class="col-md-4 control-label">Compte à Créditer :</label>
+                    			<div class="col-md-8">
+								  	<input id="radioCourant2" type="radio" name="beneficiaire" value="courant">
+								  	<label for="radioCourant2"> Compte courant</label>
+								  	<% if(clt.getSavingAccount() != null) { %>
+								  	<input id="radioEpargne2" type="radio" name="beneficiaire" value="epargne">
+								  	<label for="radioEpargne2"> Compte d'epargne</label>
+								  	<% } if(clt.getSecuritiesAccount() != null) { %>
+								  	<input id="radioTitre2" type="radio" name="beneficiaire" value="titre">
+								  	<label for="radioTitre2"> Compte de titre</label>
+								  	<% } %>
+								</div>
+							</div>
+	                        <div class="form-group">
+							  	<label class="col-md-4 control-label" for="transferAmount">Montant : </label>
+                    			<div class="col-md-8">
+								  	<input id="transferAmount" name="transactionAmount" type="number" min="0" 
+								  		onchange="transferCheck();"/>
+								</div>
+							</div>
+	                        <div class="form-group">
+							  	<label class="col-md-12 control-label" id="transferHint"></label>
+							</div>
+	                        <div class="form-group">
+                    			<div class="col-md-12">
+								  	<input id="transferSubmit" type="submit" value="Effectuer" disabled />
+								</div>
+							</div>
+						</form>
 					</div>
 					<!-- virement -->
 
 
 					<div class="tab-pane fade" id="creditercompte">
-						<h3>Alimenter mon compte</h3>
-
-					</div>
+                        <h4>Alimenter mon compte</h4>
+					    <form class="form-horizontal" method="post" action="">
+	                        <div class="form-group">
+	                        	<label class="col-md-4 control-label">Compte à créditer: </label>
+                    			<div class="col-md-8">
+				                    <input type="radio" id="alimenterCourant" name="alimenterCompte" value="alimenterCourant" required>
+						           	<label for="alimenterCourant">Compte courant</label>
+				                    <input type="radio" id="alimenterEpargne" name="alimenterCompte" value="alimenterEpargne">
+				                    <label for="alimenterEpargne">Compte épargne</label>
+				                    <input type="radio" id="alimenterTitre" name="alimenterCompte" value="alimenterTitre"> 
+				                    <label for="alimenterTitre">Compte titre</label>
+	                        	</div>
+                        	</div>
+	                        <div class="form-group">
+								<label class="col-md-4 control-label" for="montant">Montant:</label>
+	                    		<div class="col-md-4">
+									<input type="text" class="form-control" id="alimenterMontant" required 
+										onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+		                        </div>
+                        	</div>
+                        	
+	                        <div class="form-group">
+	                    		<div class="col-md-8">
+	                    			<h4>Saisir votre carte de paiement :</h4>
+	                        	</div>
+	                        </div>
+	                        
+				            <!-- Select Basic -->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="selectbasic">Selectionnez votre carte</label>
+	                          	<div class="col-md-4">
+		                            <select id="alimenterCardType" name="alimenterCardType" class="form-control" required>
+			                            <option value="alimenterVisa">Visa</option>
+			                            <option value="alimenterMasterCard">MasterCard</option>
+			                            <option value="alimenterMasterPass">MasterPass</option>
+		                            </select>
+		                        </div>
+	                        </div>
+						  	<!-- Text input-->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="nom">Titulaire de la carte :</label>  
+	                          	<div class="col-md-4">
+	                          		<input id="alimenterName" name="alimenterName" placeholder="Nom" class="form-control input-md" required type="text">
+	                            </div>
+	                        </div>
+							<!-- Text input-->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="nom">N° de carte : </label>  
+	                          	<div class="col-md-4">
+	                          		<input id="alimenterCardNumber" name="alimenterCardNumber" placeholder="" class="form-control input-md"
+	                          			 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="16" required type="text">
+	                          	</div>
+	                        </div>
+							 <!-- Text input-->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="nom">Date d'expiration: </label>  
+	                          	<div class="col-md-2">
+	                          		<input id="alimenterMonth" name="alimenterMonth" class="form-control input-md" 
+	                          			placeholder="MM" required min="01" max="12" type="number">
+	                        	</div>
+	                          	<div class="col-md-2">
+	                          		<input id="alimenterYear" name="alimenterYear" class="form-control input-md" 
+	                          			placeholder="YYYY" required min="2017" max="2099" type="number">
+	                        	</div>
+	                        </div>
+							<!-- Text input-->
+	                        <div class="form-group">
+	                          	<label class="col-md-4 control-label" for="cvc">Cryptogramme visuel :</label>  
+	                          	<div class="col-md-4">
+	                          		<input id="cvc" name="cvc" placeholder="" class="form-control input-md" required type="text"
+	                          			onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3">
+	                            	<span class="help-block">Veuillez saisir votre cryptogramme visuel,les trois derniers chiffres apparaissant sur le panneau signature au verso de votre carte bancaire </span>  
+	                          	</div>
+	                        </div>
+					        <!-- Button -->
+	                        <div class="form-group">
+	                         	<label class="col-md-4 control-label" for="send">                                   </label>
+	                          	<div class="col-md-4">
+	                            		<button id="send" name="send" class="btn btn-primary"> Je valide </button>
+	                          	</div>
+	                        </div>
+				  		</form>
+        			</div>	   
 					<!-- creditercompte -->
 
 
@@ -274,10 +385,9 @@
 	<script>
 		window.onload = function() {
 			document.getElementById("customerarea").className = "dropdown active";
-		}
+		};
 		
 		// show balance
-		// TODO: use Ajax to be more security
 		function showBalance(type){
 			switch(type){
 				case "currentBalance":
@@ -295,10 +405,35 @@
 			}
 		}
 		
+		// create account and refresh page
+		function createAccount(type) {
+			switch(type){
+			case "savingAccount":
+				if(confirm("Vous voulez créer un compte d'épargne ?")){
+					$.get("./CreateAccount", { type: 'SavingAccount' }, function(responseText){
+						if(responseText == "Done"){
+							window.location.reload();
+						} else {
+							alert("Error");
+						}
+					});
+				}
+				break;
+			case "securitiesAccount":
+				if(confirm("Vous voulez créer un compte de titre ?")){
+					$.get("./CreateAccount", { type: 'SecuritiesAccount' }, function(responseText){
+						if(responseText == "Done"){
+							window.location.reload();
+						} else {
+							alert("Error");
+						}
+					});
+				}
+				break;
+			}
+		}
+		
 		// Ajax show transaction history
-		
-		
-		
 		function showTsh(type) {
 			switch(type){
 			case "currentHistory":
@@ -324,6 +459,68 @@
 				break;
 			}
 		}
+		
+		// Transfer money's inputs control
+		function transferCheck() {
+		    var emetteur=$('[name="emetteur"]:checked').val();
+		    var beneficiaire=$('[name="beneficiaire"]:checked').val();
+
+		    if(emetteur == "courant"){
+		    	$("#radioCourant2").prop('disabled', true);
+		    } else {
+		    	$("#radioCourant2").prop('disabled', false);
+		    }
+		    if(emetteur == "epargne"){
+		    	$("#radioEpargne2").prop('disabled', true);
+		    } else {
+		    	$("#radioEpargne2").prop('disabled', false);
+		    }
+		    if(emetteur == "titre"){
+		    	$("#radioTitre2").prop('disabled', true);
+		    } else {
+		    	$("#radioTitre2").prop('disabled', false);
+		    }
+		    
+		    if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre" && 
+		    		beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre") {
+		    	$("#transferSubmit").prop('disabled', true); // initial stat
+	    	} else if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre") {
+		    	$("#transferSubmit").prop('disabled', true);
+		    	$("#transferHint").text("Veuillez choisir un émetteur.");
+	    	} else if(beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre") {
+		    	$("#transferSubmit").prop('disabled', true);
+		    	$("#transferHint").text("Veuillez choisir un bénéficiaire.");
+		    } else if(emetteur == beneficiaire){
+		    	$("#transferSubmit").prop('disabled', true);
+		    	$("#transferHint").text("L'émetteur et le bénéficiaire est le même.");
+		    } else if(!$("#transferAmount").val()){
+		    	$("#transferSubmit").prop('disabled', true);
+		    	$("#transferHint").text("Veuillez entrer un somme de virement.");
+	    	} else {
+			    $("#transferSubmit").prop('disabled', false);
+			    $("#transferHint").text("");
+		    }
+		}
+
+		
+		// transfer radio button on change event
+		$(document).on("change", "input[type=radio]", transferCheck);
+		
+		
+		// Ajax transfer money and get result
+		$(document).on("submit", "#transferForm", function() {
+            var $form = $(this);
+            $.post($form.attr("action"), $form.serialize(), function(responseText) {
+            	alert(responseText);
+            	if(responseText == "No enough money")
+                	$("#hint").text("L'argent insuffisant dans le compte émetteur");
+            	else{
+            		alert("Virement effectué.");
+            		window.location.reload();
+            	}
+            });
+            event.preventDefault(); // Important! Prevents submitting the form.
+        });
 	</script>
 </body>
 

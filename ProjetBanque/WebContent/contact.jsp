@@ -3,9 +3,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
+<html>
 <head>
 
     <meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -51,7 +53,7 @@
             <div class="col-md-8">
                 <!-- Embedded Google Map -->
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2596.887202679294!2d1.0585573160435044!3d49.392125679343394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e0dfd7401611f5%3A0x9fb4bf974015e3b0!2s1+Avenue+Maryse+Basti%C3%A9%2C+76800+Saint-%C3%89tienne-du-Rouvray!5e0!3m2!1szh-CN!2sfr!4v1491409782330"
- 					width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+ 					width="100%" height="400" style="border:0" ></iframe>
                 </div>
             <!-- Contact Details Column -->
             <div class="col-md-4">
@@ -117,7 +119,7 @@
                     </div>
                     <div id="success"></div>
                     <!-- For success/fail messages -->
-                    <input type="submit" class="btn btn-primary" value="Envoyez le message"></button>
+                    <input type="submit" class="btn btn-primary" value="Envoyez le message">
                
 					<br> <br>
 					<label id="hint"></label>

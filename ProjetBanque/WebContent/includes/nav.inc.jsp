@@ -24,15 +24,18 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nos offres <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="<%=request.getContextPath()%>/offres/offre1.jsp">Offre 1</a>
+                                <a href="<%=request.getContextPath()%>/offres/offre1.jsp">Compte sans frais</a>
                             </li>
                             <li >
-                                <a href="<%=request.getContextPath()%>/offres/offre2.jsp">Offre 2</a>
+                                <a href="<%=request.getContextPath()%>/offres/offre2.jsp">Carte VISA graduite</a>
                             </li>
                             <li>
-                                <a href="<%=request.getContextPath()%>/offres/offre3.jsp">Offre 3</a>
+                                <a href="<%=request.getContextPath()%>/offres/offre3.jsp">Offre compte bancaire</a>
                             </li>
                         </ul>
+                    </li>
+                    <li id="bourse">
+                        <a href="<%=request.getContextPath()%>/stock.jsp">Bourse</a>
                     </li>
                     <li id="contact">
                         <a href="<%=request.getContextPath()%>/contact.jsp">Nous contacter</a>

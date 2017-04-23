@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 import model.Client;
 
+
+/**
+ * Data access object of Client.
+ * Connecting class Client and table client_clt
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoClient extends Dao{
 
 
@@ -34,7 +42,7 @@ public class DaoClient extends Dao{
 	/**
 	 * add Client in the date base.
 	 * 
-	 * @param Client
+	 * @param clt
 	 *            - Client to add
 	 * @return the number of line add in the Client list
 	 */
@@ -56,7 +64,7 @@ public class DaoClient extends Dao{
 	/**
 	 * update a Client.
 	 * 
-	 * @param Client
+	 * @param clt
 	 *            the Client for update
 	 * @return numbers of line updated
 	 */

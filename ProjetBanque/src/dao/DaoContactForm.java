@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 import model.ContactForm;
 
+
+/**
+ * Data access object of ContactForm.
+ * Connecting class ContactForm and table contactform_ctf
+ * 
+ * @author Junyang HE
+ *
+ */
 public class DaoContactForm extends Dao {
 
 	/**
@@ -33,7 +41,7 @@ public class DaoContactForm extends Dao {
 	/**
 	 * add ContactForm in the date base.
 	 * 
-	 * @param ContactForm
+	 * @param ctf
 	 *            - ContactForm to add
 	 * @return the number of line add in the ContactForm list
 	 */
@@ -55,7 +63,7 @@ public class DaoContactForm extends Dao {
 	/**
 	 * update a ContactForm.
 	 * 
-	 * @param ContactForm
+	 * @param ctf
 	 *            the ContactForm for update
 	 * @return numbers of line updated
 	 */

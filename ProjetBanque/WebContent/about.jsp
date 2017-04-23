@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 
     <meta charset="utf-8">
@@ -48,7 +46,7 @@
         <!-- Intro Content -->
         <div class="row">
             <div class="col-md-6">
-                <img  src="./banque.jpg" alt="">
+                <img  src="./images/quisommesnous.jpg" alt="">
             </div>
             <div class="col-md-6">
                 <h2>BanKrading, la banque de proximité</h2>
