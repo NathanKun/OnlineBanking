@@ -268,7 +268,7 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="mail">Adresse e-mail</label>  
                           <div class="col-md-4">
-                          <input id="email" name="email" placeholder="Adresse e-mail" class="form-control input-md" required type="text">
+                          <input id="email" name="email" placeholder="Adresse e-mail" class="form-control input-md" required type="email">
                             
                           </div>
                         </div>

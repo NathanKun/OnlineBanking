@@ -267,9 +267,9 @@
 
 
 				<p>
-					<input type="submit" id="submit" value="Enregistrer les modifications" /> <input
-						type="button" value="Annuler"
-						OnClick="location.href='zoneclient.html'" /> <input type="reset"
+					<input type="submit" id="submit" value="Enregistrer les modifications" /> 
+					<input type="button" value="Annuler"
+						OnClick="location.href='zoneclient.jsp'" /> <input type="reset"
 						value="Recommencer" />
 				</p>
 				<label id="hint"></label>
