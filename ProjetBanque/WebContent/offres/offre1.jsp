@@ -46,16 +46,13 @@
         </div>
         <!-- /.row -->
 
-		<section id="main">
-			<section id="content">
-				<!-- #content -->
+        <div class="row">
+            <div class="col-lg-8">
 				<img src="../images/offre_1.png" width="600" height="322" alt="offre1" />
 				<h2>*Mentions legales</h2>
 				<img src="../images/mentions.png" alt="Mentions legals" />
-			</section>
-			<!-- end of #content -->
-	
-		</section>
+            </div>
+        </div>
 
         <hr>
 

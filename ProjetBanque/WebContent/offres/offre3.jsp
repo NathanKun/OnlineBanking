@@ -45,8 +45,8 @@
         </div>
         <!-- /.row -->
 	
-		<section id="main"><!-- #main content and sidebar area -->
-				<section id="content"><!-- #content -->
+        <div class="row">
+            <div class="col-lg-8">
 					<img src="../images/offre3.png" width="600" height="322" alt="image">
 					<h2>Conditions de l'offre :</h2>
 					<p>-Prime de 80€ offerte pour une première ouverture d'un Compte Bancaire BankRading 
@@ -57,9 +57,8 @@
 					ouvert concomitamment au compte bancaire, et 3% annuels brut garantis pendant 2 mois pour un montant de 75 000€ maximum.
 					Au-delà de cette période et de ce montant, le taux standard du Livret d'épargne est appliqué. 
 					Le taux standard du Livret d’épargne BforBank est actuellement de 0,30% annuel brut et est susceptible d’être révisé à tout moment par la banque.</p>
-				</section><!-- end of #content -->
-		
-		</section>
+            </div>
+        </div>
 
         <hr>
 

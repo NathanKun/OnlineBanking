@@ -1,36 +1,41 @@
 /**
  * js file to handle subscribe events
  */
-/*
- * window.onload = function() { // set max date var today = new Date(); var dd =
- * today.getDate(); var mm = today.getMonth() + 1; //January is 0! var yyyy =
- * today.getFullYear(); if (dd < 10) { dd = '0' + dd } if (mm < 10) { mm = '0' +
- * mm }
- * 
- * today = yyyy + '-' + mm + '-' + dd;
- * 
- * document.getElementById("naissance").setAttribute("max", today); }
- */
+String.prototype.removeAccents = function() {
+	return this.replace(/[áàãâä]/gi, "a")
+			.replace(/[éè¨ê]/gi, "e")
+			.replace(/[íìïî]/gi, "i")
+			.replace(/[óòöôõ]/gi, "o")
+			.replace(/[úùüû]/gi, "u")
+			.replace(/[ç]/gi, "c")
+			.replace(/[ñ]/gi, "n")
+			.replace(/[^a-zA-Z0-9]/g, " ");
+}
 
-// address auto completation
-(function() {
-	var placesAutocomplete = places({
-		container : document.querySelector('#address-input'),
-		type : 'address',
-		countries : [ 'fr' ],
-		templates : {
-			value : function(suggestion) {
-				return suggestion.name;
-			}
-		}
+function addressChange() {
+	var inputText = $('#inputAddress').val();
+	var addList = $('#addressList');
+
+	// Ajax get options
+	$.get("./SearchAddress", {
+		q : inputText
+	}, function(responseText) {
+		addList.empty();
+		addList.append(responseText);
 	});
-	placesAutocomplete.on('change', function resultSelected(e) {
-		document.querySelector('#adresse').value = e.suggestion.name || '';
-		document.querySelector('#ville').value = e.suggestion.city || '';
-		document.querySelector('#codepostal').value = e.suggestion.postcode
-				|| '';
-	});
-})();
+
+	// if input text match option(User selected a option)
+	if ($('#addressList').find('option').filter(
+			function() {
+				return this.value.removeAccents().toUpperCase() === inputText
+						.removeAccents().toUpperCase();
+			}).length) {
+		var array = inputText.split(', ');
+		$('#adresse').val(array[0]);
+		$('#codepostal').val(array[1]);
+		$('#ville').val(array[2]);
+	}
+}
 
 // XSS special characters check
 function checkXSS(input) {

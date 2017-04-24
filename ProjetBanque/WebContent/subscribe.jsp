@@ -62,7 +62,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="selectbasic">Titre</label>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <select id="selectbasic" name="sexe" class="form-control">
                               <option value="F">Madame</option>
                               <option value="M">Monsieur</option>
@@ -73,7 +73,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="Nom22">Nom</label>  
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                           <input id="nom" name="nom" placeholder="Nom" class="form-control input-md" required type="text">
                             
                           </div>
@@ -82,7 +82,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="Prénom">Prénom</label>  
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                           <input id="prenom" name="prenom" placeholder="Prénom" class="form-control input-md" required type="text">
                             
                           </div>
@@ -91,17 +91,21 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="Ddn">Date de Naissance</label>  
-                          <div class="col-md-4">
-                          	<input type="number" name="jour" min="1" max="31" style="width: 3em;" required >
-				            <input type="number"  name="mois" min="1" max="12" style="width: 3em;"  required >
-				            <input type="number"  name="annee" min="1900" max="2000" style="width: 6em;" required >
+                          <div class="col-md-2">
+                          	<input class="form-control input-md" type="number" name="jour" min="1" max="31" required >
+                          </div>
+                          <div class="col-md-2">
+				            <input class="form-control input-md" type="number"  name="mois" min="1" max="12" required >
+                          </div>
+                          <div class="col-md-2">
+				            <input class="form-control input-md" type="number"  name="annee" min="1900" max="2000" required >
                           </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="EtatC">Etat Civil</label>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <select id="EtatC" name="statut" class="form-control">
                               <option value="Marié(e)">Marié(e)</option>
                               <option value="Divorcé(e)">Divorcé(e)</option>
@@ -114,7 +118,7 @@
 
                          <div class="form-group">
                           <label class="col-md-4 control-label" for="nationalite">Nationalité</label>  
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                           <select id="nationalite" name="nationalite" class="form-control input-md" required>
 								<option></option>
 
@@ -234,16 +238,17 @@
 
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="address-input">Votre Adresse</label>  
-                          <div class="col-md-4">
-                          <input id="address-input" placeholder="Votre Adresse" class="form-control input-md" required type="text">
-                            
+                          <div class="col-md-6">
+                          	<input id = "inputAddress" name="inputAddress" type="text" list="addressList" class="form-control input-md"
+								onchange="addressChange();" onkeydown="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+							<datalist id="addressList"></datalist>
                           </div>
                         </div>
                         
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="rue">Rue</label>  
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                           <input id="adresse" name="adresse" readonly placeholder="Adresse" class="form-control input-md" required type="text">
                             
                           </div>
@@ -252,7 +257,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="CP">Code Postal</label>  
-                          <div class="col-md-2">
+                          <div class="col-md-3">
                           <input id="codepostal" name="codepostal" readonly placeholder="Code Postal" class="form-control input-md" required type="text">
                             
                           </div>
@@ -261,7 +266,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="ville">Ville</label>  
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                           <input id="ville" name="ville" readonly placeholder="ville" class="form-control input-md" type="text">
                             
                           </div>
@@ -270,7 +275,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="mail">Adresse e-mail</label>  
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                           <input id="email" name="email" placeholder="Adresse e-mail" class="form-control input-md" required type="email">
                             
                           </div>
@@ -279,8 +284,9 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tel">Téléphone</label>  
-                          <div class="col-md-4">
-                          <input id="tel" name="tel" placeholder="Ex:0123456789 " class="form-control input-md" required type="text">
+                          <div class="col-md-6">
+                          <input id="tel" name="tel" placeholder="Ex:0123456789" class="form-control input-md" required type="text"
+                          	onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43'>
                             
                           </div>
                         </div>
@@ -288,8 +294,10 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="revMensNet">Choisissez votre mot de passe </label>  
-                          <div class="col-md-4">
-                          <input id="password" name="password" onchange="checkPw()" placeholder="password" class="form-control input-md" required type="password">
+                          <div class="col-md-6">
+                          <input id="password" name="password" onchange="checkPw()"
+                           	onkeydown="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"
+                           	placeholder="password" class="form-control input-md" required type="password">
                             
                           </div>
                         </div>
@@ -297,8 +305,10 @@
                         <!-- Text input-->
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="cpassword">Confirmez mot de passe</label>  
-                          <div class="col-md-4">
-                          <input id="password2" name="password2" onchange="checkPw()" placeholder="Confirmation depassword" class="form-control input-md" type="password">
+                          <div class="col-md-6">
+                          <input id="password2" name="password2" onchange="checkPw()" 
+                          	onkeydown="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"
+                          	placeholder="Confirmation depassword" class="form-control input-md" type="password">
                             
                           </div>
                         </div>
@@ -308,7 +318,7 @@
                           <div class="form-group">
                                 <label class="col-md-4 control-label" for="cpassword">Je crée également un: </label> 
             
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input type="checkbox" id="epargne" name="epargneCheckBox" >
                                 <label for="epargne">Compte épargne</label>
                                 
@@ -322,7 +332,7 @@
 
                         <div class="form-group">
                          <label class="col-md-4 control-label" for="send"></label>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
 			            <label id="hint"></label> <br /> 
                           </div>
                         </div>
@@ -330,7 +340,7 @@
                         <!-- Button -->
                         <div class="form-group">
                          <label class="col-md-4 control-label" for="send"></label>
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <input type="submit" value=" Je crée mon compte !" id="submit" name="send" class="btn btn-primary">
                           </div>
                         </div>
@@ -360,12 +370,9 @@
 
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
     
-    <script> window.onload = function(){document.getElementById("customerarea").className = "dropdown active"; }</script>
-
-	<!-- algolia/places api -->
-	<script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
-    
 	<script src="./js/subscribe.js"></script>
+    
+    <script> window.onload = function(){document.getElementById("customerarea").className = "dropdown active"; }</script>
 </body>
 
 </html>
