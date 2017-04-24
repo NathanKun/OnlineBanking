@@ -2,6 +2,9 @@
 	color: red;
 }
 
+#transferIbanDiv {
+	display: none;
+}
 
 .blogShort{ border-bottom:1px solid #ddd;}
 .add{background: #333; padding: 10%; height: 300px;}

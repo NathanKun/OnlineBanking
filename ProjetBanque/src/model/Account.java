@@ -21,12 +21,17 @@ public class Account {
 	private int acc_id;
 
 	/**
-	 * le num�ro du compte
+	 * le numero du compte
 	 */
 	private String acc_number;
 
 	/**
-	 * l'id du client poss�dant le compte
+	 * l'iban du compte
+	 */
+	private String acc_iban;
+
+	/**
+	 * l'id du client possedant le compte
 	 */
 	private int acc_clt_id;
 
@@ -36,7 +41,7 @@ public class Account {
 	private BigDecimal acc_balance;
 
 	/**
-	 * les int�rets du compte
+	 * les interets du compte
 	 */
 	private BigDecimal acc_interest;
 
@@ -50,6 +55,8 @@ public class Account {
 	 *            id of account
 	 * @param number
 	 *            number of account
+	 * @param iban
+	 * 			  iban of account
 	 * @param clt_id
 	 *            client who own the account
 	 * @param balance
@@ -59,9 +66,10 @@ public class Account {
 	 * @param type
 	 *            type of account
 	 */
-	public Account(int id, String number, int clt_id, BigDecimal balance, BigDecimal interest, int type) {
+	public Account(int id, String number, String iban, int clt_id, BigDecimal balance, BigDecimal interest, int type) {
 		this.acc_id = id;
 		this.acc_number = number;
+		this.acc_iban = iban;
 		this.acc_clt_id = clt_id;
 		this.acc_balance = balance;
 		this.acc_interest = interest;
@@ -211,15 +219,28 @@ public class Account {
 		this.acc_type = acc_type;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @return the acc_iban
+	 */
+	public String getAcc_iban() {
+		return acc_iban;
+	}
+
+	/**
+	 * @param acc_iban the acc_iban to set
+	 */
+	public void setAcc_iban(String acc_iban) {
+		this.acc_iban = acc_iban;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Account [acc_id=" + acc_id + ", acc_number=" + acc_number + ", acc_clt_id=" + acc_clt_id
-				+ ", acc_balance=" + acc_balance + ", acc_interest=" + acc_interest + ", acc_type=" + acc_type + "]";
+		return "Account [acc_id=" + acc_id + ", acc_number=" + acc_number + ", acc_iban=" + acc_iban + ", acc_clt_id="
+				+ acc_clt_id + ", acc_balance=" + acc_balance + ", acc_interest=" + acc_interest + ", acc_type="
+				+ acc_type + "]";
 	}
 
 }

@@ -60,7 +60,7 @@ public class Login extends HttpServlet {
 			DaoClient.updateClient(cltFound);
 			// redirection
 			request.getSession(true).setAttribute("client", cltFound);
-			System.out.println("clt found");
+			//System.out.println("clt found");
 			response.sendRedirect("./zoneclient.jsp");
 		} else {
 			// go back to login page

@@ -22,7 +22,7 @@ public class DaoNews extends Dao {
 	/**
 	 * allow to have the full list of News in the data base.
 	 * 
-	 * @return the list of all the Newss in the data base
+	 * @return the list of all the News in the data base
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<News> getNewsList() {
