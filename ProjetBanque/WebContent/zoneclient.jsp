@@ -182,22 +182,23 @@
 
 					<div class="tab-pane fade" id="creditercompte">
                         <h4>Alimenter mon compte</h4>
-					    <form class="form-horizontal" method="post" action="">
+					    <form class="form-horizontal" method="post" action="./AddMoneyToMyAccount" onsubmit="return checkInputs()">
+					    
 	                        <div class="form-group">
 	                        	<label class="col-md-4 control-label">Compte à créditer: </label>
                     			<div class="col-md-8">
-				                    <input type="radio" id="alimenterCourant" name="alimenterCompte" value="alimenterCourant" required>
-						           	<label for="alimenterCourant">Compte courant</label>
-				                    <input type="radio" id="alimenterEpargne" name="alimenterCompte" value="alimenterEpargne">
-				                    <label for="alimenterEpargne">Compte épargne</label>
-				                    <input type="radio" id="alimenterTitre" name="alimenterCompte" value="alimenterTitre"> 
-				                    <label for="alimenterTitre">Compte titre</label>
+				                    <input type="radio" id="recepteur" name="recepteur" value="1" required>
+						           	<label for="recepteur">Compte courant</label>
+				                    <input type="radio" id="recepteur" name="recepteur" value="2">
+				                    <label for="recepteur">Compte épargne</label>
+				                    <input type="radio" id="recepteur" name="recepteur" value="3"> 
+				                    <label for="recepteur">Compte titre</label>
 	                        	</div>
                         	</div>
 	                        <div class="form-group">
 								<label class="col-md-4 control-label" for="montant">Montant:</label>
 	                    		<div class="col-md-4">
-									<input type="text" class="form-control" id="alimenterMontant" required 
+									<input type="text" class="form-control" id="montant" name="montant" required 
 										onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
 		                        </div>
                         	</div>
@@ -212,25 +213,25 @@
 	                        <div class="form-group">
 	                          	<label class="col-md-4 control-label" for="selectbasic">Selectionnez votre carte</label>
 	                          	<div class="col-md-4">
-		                            <select id="alimenterCardType" name="alimenterCardType" class="form-control" required>
-			                            <option value="alimenterVisa">Visa</option>
-			                            <option value="alimenterMasterCard">MasterCard</option>
-			                            <option value="alimenterMasterPass">MasterPass</option>
+		                            <select id="type" name="type" class="form-control" required>
+			                            <option value="Visa">Visa</option>
+			                            <option value="MasterCard">MasterCard</option>
+			                            <option value="MasterPass">MasterPass</option>
 		                            </select>
 		                        </div>
 	                        </div>
 						  	<!-- Text input-->
 	                        <div class="form-group">
-	                          	<label class="col-md-4 control-label" for="nom">Titulaire de la carte :</label>  
+	                          	<label class="col-md-4 control-label" for="titulaire">Titulaire de la carte :</label>  
 	                          	<div class="col-md-4">
-	                          		<input id="alimenterName" name="alimenterName" placeholder="Nom" class="form-control input-md" required type="text">
+	                          		<input id="titulaire" name="titulaire" placeholder="Nom" class="form-control input-md" required type="text">
 	                            </div>
 	                        </div>
 							<!-- Text input-->
 	                        <div class="form-group">
-	                          	<label class="col-md-4 control-label" for="nom">N° de carte : </label>  
+	                          	<label class="col-md-4 control-label" for="numcarte">N° de carte : </label>  
 	                          	<div class="col-md-4">
-	                          		<input id="alimenterCardNumber" name="alimenterCardNumber" placeholder="" class="form-control input-md"
+	                          		<input id="numcarte" name="numcarte" placeholder="" class="form-control input-md"
 	                          			 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="16" required type="text">
 	                          	</div>
 	                        </div>
@@ -238,19 +239,20 @@
 	                        <div class="form-group">
 	                          	<label class="col-md-4 control-label" for="nom">Date d'expiration: </label>  
 	                          	<div class="col-md-2">
-	                          		<input id="alimenterMonth" name="alimenterMonth" class="form-control input-md" 
-	                          			placeholder="MM" required min="01" max="12" type="number">
+	           
+	                          		<input id="mois" name="mois" placeholder="MM" class="form-control input-md"
+	                          			 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2" min="01" max="12" required type="number">
 	                        	</div>
 	                          	<div class="col-md-2">
-	                          		<input id="alimenterYear" name="alimenterYear" class="form-control input-md" 
-	                          			placeholder="YYYY" required min="2017" max="2099" type="number">
+	                          		<input id="annee" name="annee" placeholder="AAAA" class="form-control input-md"
+	                          			 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="4" required min="2017" max="2099" type="number" type="number">
 	                        	</div>
 	                        </div>
 							<!-- Text input-->
 	                        <div class="form-group">
 	                          	<label class="col-md-4 control-label" for="cvc">Cryptogramme visuel :</label>  
 	                          	<div class="col-md-4">
-	                          		<input id="cvc" name="cvc" placeholder="" class="form-control input-md" required type="text"
+	                          		<input id="crypto" name="crypto" placeholder="" class="form-control input-md" required type="text"
 	                          			onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3">
 	                            	<span class="help-block">Veuillez saisir votre cryptogramme visuel,les trois derniers chiffres apparaissant sur le panneau signature au verso de votre carte bancaire </span>  
 	                          	</div>
@@ -259,7 +261,7 @@
 	                        <div class="form-group">
 	                         	<label class="col-md-4 control-label" for="send">                                   </label>
 	                          	<div class="col-md-4">
-	                            		<button id="send" name="send" class="btn btn-primary"> Je valide </button>
+	                            		<input type="submit" id="submit" value="Crediter" /> 
 	                          	</div>
 	                        </div>
 				  		</form>
@@ -277,7 +279,7 @@
                                 request.setAttribute("accList", accList);
                             %>
 
-							    <form method="post" action=".php">
+							    <form method="post" action="">
 							 <table>
 						
 							   <tr>
