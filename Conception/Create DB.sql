@@ -6,12 +6,12 @@ DROP TABLE IF EXISTS news_nws;
 DROP TABLE IF EXISTS advisor_avs;
 DROP TABLE IF EXISTS contactform_ctf;
 DROP TABLE IF EXISTS holdingshare_hds;
-#DROP TABLE IF EXISTS stockhistoricalprice_shp;
+DROP TABLE IF EXISTS stockhistoricalprice_shp;
 DROP TABLE IF EXISTS stock_stk;
 DROP TABLE IF EXISTS transactionhistory_tsh;
 DROP TABLE IF EXISTS account_acc;
 DROP TABLE IF EXISTS client_clt;
-#DROP PROCEDURE IF EXISTS InsertRandToSHP;
+DROP PROCEDURE IF EXISTS InsertRandToSHP;
     
     
 CREATE TABLE IF NOT EXISTS advisor_avs (
@@ -203,7 +203,7 @@ INSERT INTO stock_stk VALUES('%5EFCHI', 'CAC 40', '');
 INSERT INTO stock_stk VALUES('AC.PA', 'Accor', 'FR0000120404');
 INSERT INTO stock_stk VALUES('AI.PA', 'Air Liquide', 'FR0000120073');
 INSERT INTO stock_stk VALUES('ALO.PA', 'Alstom', '');
-INSERT INTO stock_stk VALUES('MT.PA', 'ArcelorMittal', 'LU0323134006');
+INSERT INTO stock_stk VALUES('MT.AS', 'ArcelorMittal', 'LU0323134006');
 INSERT INTO stock_stk VALUES('CS.PA', 'AXA', 'FR0000120628');
 INSERT INTO stock_stk VALUES('BNP.PA', 'BNP Paribas', 'FR0000131104');
 INSERT INTO stock_stk VALUES('EN.PA', 'Bouygues', 'FR0000120503');
@@ -222,20 +222,20 @@ INSERT INTO stock_stk VALUES('KER.PA', 'Kering', 'FR0000121485');
 INSERT INTO stock_stk VALUES('LHN.PA', 'LafargeHolcim', 'CH0012214059');
 INSERT INTO stock_stk VALUES('LR.PA', 'LEGRAND', 'FR0010307819');
 INSERT INTO stock_stk VALUES('OR.PA', 'LOréal', 'FR0000120321');
-INSERT INTO stock_stk VALUES('MCNV.PA', 'LVMH Moet Hennessy Louis Vuitton', 'FR0000121014');
+INSERT INTO stock_stk VALUES('MC.PA', 'LVMH Moet Hennessy Louis Vuitton', 'FR0000121014');
 INSERT INTO stock_stk VALUES('ML.PA', 'Michelin (Compagnie Générale d Etablissements Michelin SCPA)', 'FR0000121261');
 INSERT INTO stock_stk VALUES('RI.PA', 'Pernod Ricard', 'FR0000120693');
 INSERT INTO stock_stk VALUES('PUB.PA', 'Publicis Groupe', 'FR0000130577');
 INSERT INTO stock_stk VALUES('RNO.PA', 'Renault', 'FR0000131906');
 INSERT INTO stock_stk VALUES('SAF.PA', 'SAFRAN', 'FR0000073272');
-INSERT INTO stock_stk VALUES('SANNV.PA', 'Sanofi', 'FR0000120578');
+INSERT INTO stock_stk VALUES('SAN.PA', 'Sanofi', 'FR0000120578');
 INSERT INTO stock_stk VALUES('SU.PA', 'Schneider Electric', 'FR0000121972');
 INSERT INTO stock_stk VALUES('GLE.PA', 'Société Générale SA', 'FR0000130809');
 INSERT INTO stock_stk VALUES('STM.PA', 'STMicroelectronics', '');
 INSERT INTO stock_stk VALUES('SOLB.BR', 'Solvay', 'BE0003470755');
 INSERT INTO stock_stk VALUES('TEC.PA', 'Technip', 'FR0000131708');
 INSERT INTO stock_stk VALUES('FP.PA', 'TOTAL', 'FR0000120271');
-INSERT INTO stock_stk VALUES('UL.PA', 'Unibail-Rodamco', 'FR0000124711');
+INSERT INTO stock_stk VALUES('UL.MI', 'Unibail-Rodamco', 'FR0000124711');
 INSERT INTO stock_stk VALUES('FR.PA', 'Valeo', 'FR0000130338');
 INSERT INTO stock_stk VALUES('VIE.PA', 'Veolia Environnement', 'FR0000124141');
 INSERT INTO stock_stk VALUES('DG.PA', 'Vinci', 'FR0000125586');
@@ -254,7 +254,7 @@ END
 DELIMITER ;
 
 # procedure to generate random historical price
-DELIMITER $$
+/*DELIMITER $$
 CREATE PROCEDURE InsertRandToSHP(IN Seed INT)
     BEGIN
         DECLARE i INT;
@@ -292,7 +292,7 @@ CREATE PROCEDURE InsertRandToSHP(IN Seed INT)
         END WHILE;
         COMMIT;
     END$$
-DELIMITER ;
+DELIMITER ;*/
 
 #CALL InsertRandToSHP(25);
 

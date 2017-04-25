@@ -114,6 +114,7 @@ abstract public class Dao {
 							new DateTime(rs.getTimestamp("clt_createdon")));
 					break;
 
+				case "FindAccountByIban":
 				case "Account":
 					retour = new Account(rs.getInt("acc_id"), rs.getString("acc_number"), rs.getString("acc_iban"),
 							rs.getInt("acc_clt_id"), rs.getBigDecimal("acc_balance"), rs.getBigDecimal("acc_interest"),
@@ -409,16 +410,16 @@ abstract public class Dao {
 
 				switch (acc.getAcc_type()) {
 				case "Compte de courant":
-					ps.setInt(5, 1);
+					ps.setInt(6, 1);
 					break;
 				case "Compte d'epargne":
-					ps.setInt(5, 2);
+					ps.setInt(6, 2);
 					break;
 				case "Compte de titre":
-					ps.setInt(5, 3);
+					ps.setInt(6, 3);
 					break;
 				default:
-					ps.setInt(5, 0);
+					ps.setInt(6, 0);
 					break;
 				}
 				break;

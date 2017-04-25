@@ -46,9 +46,8 @@
         </div>
         <!-- /.row -->
 
-		<section id="main">
-			<!-- #main content and sidebar area -->
-			<section id="content">
+        <div class="row">
+            <div class="col-lg-8">
 				<!-- #content -->
 				<h1>
 					<img src="../images/offre2.png" width="600" height="322" alt="image">
@@ -66,10 +65,8 @@
 				<p>-Disposer du paiement sans contact</p>
 				<p>-Fixer les alertes sur vos opérations cartes depuis votre
 					Espace Client</p>
-			</section>
-			<!-- end of #content -->
-	
-		</section>
+            </div>
+        </div>
 
 
         <hr>
