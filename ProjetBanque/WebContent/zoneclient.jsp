@@ -38,13 +38,13 @@
             <div class="col-lg-12">
                <ul id="myTab" class="nav nav-tabs nav-justified">
                   <li class="active"><a href="#generalites" data-toggle="tab"><i
-                     class="fa fa-tree"></i> Généralités du compte</a></li>
+                     class="fa fa-tree"></i> Gï¿½nï¿½ralitï¿½s du compte</a></li>
                   <li class=""><a href="#comptes" data-toggle="tab"><i
                      class="fa fa-car"></i> Historique des transactions</a></li>
                   <li class=""><a href="#virement" data-toggle="tab"><i
                      class="fa fa-car"></i> Transferts et virement</a></li>
                   <li class=""><a href="#creditercompte" data-toggle="tab"><i
-                     class="fa fa-support"></i> Créditer mon compte</a></li>
+                     class="fa fa-support"></i> Crï¿½diter mon compte</a></li>
                   <li class=""><a href="#infosperso" data-toggle="tab"><i
                      class="fa fa-database"></i> Mes informations</a></li>
                </ul>
@@ -58,9 +58,9 @@
                      <table id="accountsInfo">
                         <tr>
                            <th>Type</th>
-                           <th>Numéro</th>
-                           <th>intêret</th>
-                           <th>Solde</th>
+                           <th>Numï¿½ro</th>
+                           <th>intï¿½ret</th>
+                           <th>Solde (â‚¬)</th>
                         </tr>
                         <tr>
                            <td>Compte courant:</td>
@@ -71,7 +71,7 @@
                         <tr>
                            <%if(clt.getSavingAccount() != null){ %>
                         <tr>
-                           <td>Compte d'épargne:</td>
+                           <td>Compte d'ï¿½pargne:</td>
                            <td>${ client.getSavingAccount().getAcc_number() }</td>
                            <td>${ client.getSavingAccount().getAcc_interest() }</td>
                            <td id="savingBalance"><button class="btn btn-primary" onclick="showBalance('savingBalance');">Show</button></td>
@@ -86,18 +86,18 @@
                         </tr>
                         <% }if(clt.getSavingAccount() == null){ %>
                         <tr>
-                           <td>Créer un compte d'épargne</td>
-                           <td><button class="btn btn-primary" onclick="createAccount('savingAccount');">Créer</button></td>
+                           <td>Crï¿½er un compte d'ï¿½pargne</td>
+                           <td><button class="btn btn-primary" onclick="createAccount('savingAccount');">Crï¿½er</button></td>
                         </tr>
                         <% } if(clt.getSecuritiesAccount() == null){ %>
                         <tr>
-                           <td>Créer un compte de titre:</td>
-                           <td><button class="btn btn-primary" onclick="createAccount('securitiesAccount');">Créer</button></td>
+                           <td>Crï¿½er un compte de titre:</td>
+                           <td><button class="btn btn-primary" onclick="createAccount('securitiesAccount');">Crï¿½er</button></td>
                         </tr>
                         <% } %>
                      </table>
                   </div>
-                  <!-- Généralités comptes -->
+                  <!-- Gï¿½nï¿½ralitï¿½s comptes -->
                   
                   
                   <div class="tab-pane fade" id="comptes">
@@ -108,7 +108,7 @@
                      <table id="currentHistory">
                      </table>
                      <%if(clt.getSavingAccount() != null){ %>
-                     <p>Compte d'épargne: ${ client.getSavingAccount().getAcc_number() }</p>
+                     <p>Compte d'ï¿½pargne: ${ client.getSavingAccount().getAcc_number() }</p>
                      <button class="btn btn-primary" onclick="showTsh('savingHistory')">show</button>
                      <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=savingHistory'">CSV</button>
                      <table id="savingHistory">
@@ -126,9 +126,9 @@
                   
                   <div class="tab-pane fade" id="virement">
                      <h3>Effectuer un virement :</h3>
-                     <form class="form-horizontal" id="transferForm" action="./TransferMoney" method="post">
+                     <form class="form-horizontal" id="transferForm" action="./TransferMoney" method="post" onsubmit="return checkInputs()" accept-charset="UTF-8">
                         <div class="form-group">
-                           <label class="col-md-4 control-label">Compte à Débiter :</label>
+                           <label class="col-md-4 control-label">Compte Ã  dÃ©biter :</label>
                            <div class="col-md-6">
                               <input id="radioCourant1" type="radio" name="emetteur" value="courant"> 
                               <label for="radioCourant1"> Compte courant</label>
@@ -142,7 +142,7 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <label class="col-md-4 control-label">Compte à Créditer :</label>
+                           <label class="col-md-4 control-label">Compte ï¿½ Crï¿½diter :</label>
                            <div class="col-md-6">
                               <input id="radioCourant2" type="radio" name="beneficiaire" value="courant">
                               <label for="radioCourant2"> Compte courant</label>
@@ -153,7 +153,7 @@
                               <input id="radioTitre2" type="radio" name="beneficiaire" value="titre">
                               <label for="radioTitre2"> Compte de titre</label>
                               <% } %>
-                              <input id="radioExternal" type="radio" name="beneficiaire" value="external">
+                            <input id="radioExternal" type="radio" name="beneficiaire" value="external">
                               <label for="radioExternal">Virement externe</label>
                            </div>
                         </div>
@@ -161,25 +161,31 @@
 	                        <div id="transferIbanDiv">
 	                           <label class="col-md-4 control-label" for="transferIban">IBAN : </label>  
 	                           <div class="col-md-6">
-	                              <input id="transferIban" name="transferIban" placeholder="IBAN" class="form-control input-md"
-	                                 maxlength="34" required type="text" onchange="transferCheck()">
+	                              <input id="transferIban" name="iban" placeholder="IBAN" class="form-control input-md"
+	                                 maxlength="34" type="text" onchange="transferCheck()">
 	                           </div>
                            </div>
                         </div>
                         <div class="form-group">
                            <label class="col-md-4 control-label" for="transferAmount">Montant : </label>
                            <div class="col-md-6">
-                              <input id="transferAmount" class="form-control input-md" name="transactionAmount" type="number" min="0" 
+                              <input id="transferAmount" class="form-control input-md" name="montant" type="number" min="0" 
                                  onchange="transferCheck();"/>
                            </div>
                         </div>
                         <div class="form-group">
                            <label class="col-md-6 control-label" id="transferHint"></label>
+                           <div class="col-md-6">
+	                              <input id="transferHint" name="motif" placeholder="motif" class="form-control input-md"
+	                                  type="text" onchange="transferCheck()">
+	                           </div>
                         </div>
+                        <!-- Button -->
                         <div class="form-group">
-                           <div class="col-md-12">
-                             <label class="col-md-6 control-label">                                   </label>
-                              <input class="btn btn-primary" id="transferSubmit" type="submit" value="Effectuer" disabled />
+                           <label class="col-md-4 control-label" for="send">                                   </label>
+                           <div class="col-md-4">
+                              <input type="submit" value=" Valider" id="submit" name="send"
+									class="btn btn-primary">
                            </div>
                         </div>
                      </form>
@@ -187,24 +193,26 @@
                   <!-- virement -->
                   
                   
-                  <div class="tab-pane fade" id="creditercompte">
+                 <div class="tab-pane fade" id="creditercompte">
                      <h4>Alimenter mon compte</h4>
-                     <form class="form-horizontal" method="post" action="">
+                     
+                     <form id="form" class="form-horizontal" action="./AddMoneyToMyAccount"
+					method="post" onsubmit="return checkInputs()" accept-charset="UTF-8">
                         <div class="form-group">
-                           <label class="col-md-4 control-label">Compte à créditer: </label>
+                           <label class="col-md-4 control-label">Compte Ã  crÃ©diter: </label>
                            <div class="col-md-8">
-                              <input type="radio" id="alimenterCourant" name="alimenterCompte" value="alimenterCourant" required>
-                              <label for="alimenterCourant">Compte courant</label>
-                              <input type="radio" id="alimenterEpargne" name="alimenterCompte" value="alimenterEpargne">
-                              <label for="alimenterEpargne">Compte épargne</label>
-                              <input type="radio" id="alimenterTitre" name="alimenterCompte" value="alimenterTitre"> 
-                              <label for="alimenterTitre">Compte titre</label>
+                              <input type="radio"  name="recepteur" value="courant" required>
+                              <label for="recepteur">Compte courant</label>
+                              <input type="radio"  name="recepteur" value="epargne">
+                              <label for="recepteur">Compte Ã©pargne</label>
+                              <input type="radio" name="recepteur" value="titre"> 
+                              <label for="recepteur">Compte titre</label>
                            </div>
                         </div>
                         <div class="form-group">
                            <label class="col-md-4 control-label" for="montant">Montant:</label>
                            <div class="col-md-4">
-                              <input type="text" class="form-control" id="alimenterMontant" required 
+                              <input type="text" class="form-control" name="montant" required 
                                  onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                            </div>
                         </div>
@@ -217,25 +225,25 @@
                         <div class="form-group">
                            <label class="col-md-4 control-label" for="selectbasic">Selectionnez votre carte</label>
                            <div class="col-md-4">
-                              <select id="alimenterCardType" name="alimenterCardType" class="form-control" required>
-                                 <option value="alimenterVisa">Visa</option>
-                                 <option value="alimenterMasterCard">MasterCard</option>
-                                 <option value="alimenterMasterPass">MasterPass</option>
+                              <select id="alimenterCardType" name="type" class="form-control" required>
+                                 <option value="Visa">Visa</option>
+                                 <option value="MasterCard">MasterCard</option>
+                                 <option value="MasterPass">MasterPass</option>
                               </select>
                            </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
-                           <label class="col-md-4 control-label" for="nom">Titulaire de la carte :</label>  
+                           <label class="col-md-4 control-label" for="titulaire">Titulaire de la carte :</label>  
                            <div class="col-md-4">
-                              <input id="alimenterName" name="alimenterName" placeholder="Nom" class="form-control input-md" required type="text">
+                              <input  name="titulaire" placeholder="Nom" class="form-control input-md" required type="text">
                            </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
-                           <label class="col-md-4 control-label" for="nom">N° de carte : </label>  
+                           <label class="col-md-4 control-label" for="numcarte">NÂ° de carte : </label>  
                            <div class="col-md-4">
-                              <input id="alimenterCardNumber" name="alimenterCardNumber" placeholder="" class="form-control input-md"
+                              <input name="numcarte" placeholder="" class="form-control input-md"
                                  onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="16" required type="text">
                            </div>
                         </div>
@@ -243,19 +251,19 @@
                         <div class="form-group">
                            <label class="col-md-4 control-label" for="nom">Date d'expiration: </label>  
                            <div class="col-md-2">
-                              <input id="alimenterMonth" name="alimenterMonth" class="form-control input-md" 
-                                 placeholder="MM" required min="01" max="12" type="number">
+                              <input name="mois" class="form-control input-md" 
+                                 placeholder="MM" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2" required min="01" max="12" type="number">
                            </div>
                            <div class="col-md-2">
-                              <input id="alimenterYear" name="alimenterYear" class="form-control input-md" 
-                                 placeholder="YYYY" required min="2017" max="2099" type="number">
+                              <input id="alimenterYear" name="annee" class="form-control input-md" 
+                                 placeholder="YYYY" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="4" required min="2017" max="2099" type="number">
                            </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
-                           <label class="col-md-4 control-label" for="cvc">Cryptogramme visuel :</label>  
+                           <label class="col-md-4 control-label" for="crypto">Cryptogramme visuel :</label>  
                            <div class="col-md-4">
-                              <input id="cvc" name="cvc" placeholder="" class="form-control input-md" required type="text"
+                              <input name="crypto" placeholder="" class="form-control input-md" required type="text"
                                  onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3">
                               <span class="help-block">Veuillez saisir votre cryptogramme visuel,les trois derniers chiffres apparaissant sur le panneau signature au verso de votre carte bancaire </span>  
                            </div>
@@ -264,7 +272,8 @@
                         <div class="form-group">
                            <label class="col-md-4 control-label" for="send">                                   </label>
                            <div class="col-md-4">
-                              <button id="send" name="send" class="btn btn-primary"> Je valide </button>
+                              <input type="submit" value=" Valider" id="submit" name="send"
+									class="btn btn-primary">
                            </div>
                         </div>
                      </form>
@@ -300,7 +309,7 @@
 	                              </td>
 	                           </tr>
 	                           <tr>
-	                              <td><label>Prénom</label></td>
+	                              <td><label>Prï¿½nom</label></td>
 	                              <td>
 	                                 <c:out value="${client.getClt_fname()}" />
 	                              </td>
@@ -312,7 +321,7 @@
 	                              </td>
 	                           </tr>
 	                           <tr>
-	                              <td><label>Nationalité : </label></td>
+	                              <td><label>Nationalitï¿½ : </label></td>
 	                              <td>
 	                                 <c:out value="${client.getClt_nationality()}" />
 	                              </td>
@@ -342,7 +351,7 @@
 	                              </td>
 	                           </tr>
 	                           <tr>
-	                              <td><label>Numéro de téléphone : </label></td>
+	                              <td><label>Numï¿½ro de tï¿½lï¿½phone : </label></td>
 	                              <td>
 	                                 <c:out value="${client.getClt_telephonenumber()}" />
 	                              </td>
@@ -417,7 +426,7 @@
          function createAccount(type) {
          	switch(type){
          	case "savingAccount":
-         		if(confirm("Vous voulez créer un compte d'épargne ?")){
+         		if(confirm("Vous voulez crï¿½er un compte d'ï¿½pargne ?")){
          			$.get("./CreateAccount", { type: 'SavingAccount' }, function(responseText){
          				if(responseText == "Done"){
          					window.location.reload();
@@ -428,7 +437,7 @@
          		}
          		break;
          	case "securitiesAccount":
-         		if(confirm("Vous voulez créer un compte de titre ?")){
+         		if(confirm("Vous voulez crï¿½er un compte de titre ?")){
          			$.get("./CreateAccount", { type: 'SecuritiesAccount' }, function(responseText){
          				if(responseText == "Done"){
          					window.location.reload();
@@ -447,7 +456,7 @@
          	case "currentHistory":
          		$.get("./GetTransactionHistories", { type: 'currentHistory' }, function(responseText) {
                            document.getElementById("currentHistory").innerHTML = 
-                           	"<tr><th>Date</th><th>Description</th><th>Montant</th></tr>" 
+                           	"<tr><th>Date</th><th>Description</th><th>Montant(â‚¬)</th></tr>" 
                            	+ responseText;
                        });
          		break;
@@ -496,19 +505,19 @@
              	$("#transferSubmit").prop('disabled', true); // initial stat
             } else if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre") {
              	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Veuillez choisir un compte à débiter.");
+             	$("#transferHint").text("Veuillez choisir un compte a debiter.");
             } else if(beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre" && beneficiaire != "external") {
              	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Veuillez choisir un bénéficiaire.");
+             	$("#transferHint").text("Veuillez choisir un bï¿½nï¿½ficiaire.");
             } else if(beneficiaire == "external" && !(IBAN.isValid($("#transferIban").val())) ) {
              	$("#transferSubmit").prop('disabled', true);
              	$("#transferHint").text("IBAN incorrect");
             } else if(emetteur == beneficiaire){
              	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Le compte à débiter et le bénéficiaire est le même.");
+             	$("#transferHint").text("Le compte a debiter et le beneficiaire est le mï¿½me.");
             } else if(!$("#transferAmount").val()){
              	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Veuillez entrer un somme de virement.");
+             	$("#transferHint").text("Veuillez entrer une somme de virement.");
 			} else {
          	    $("#transferSubmit").prop('disabled', false);
          	    $("#transferHint").text("");
@@ -532,9 +541,9 @@
                    $.post($form.attr("action"), $form.serialize(), function(responseText) {
                    	//alert(responseText);
                    	if(responseText == "No enough money")
-                       	$("#hint").text("L'argent insuffisant dans le compte à débiter");
+                       	$("#hint").text("L'argent insuffisant dans le compte a debiter");
                    	else{
-                   		alert("Virement effectué.");
+                   		alert("Virement effectue.");
                    		window.location.reload();
                    	}
                    });

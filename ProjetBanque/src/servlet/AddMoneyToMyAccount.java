@@ -9,8 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.joda.time.DateTime;
+
+import dao.DaoTransactionHistory;
 import model.Account;
 import model.Client;
+import model.TransactionHistory;
 
 /**
  * Servlet implementation class AddMoneyToMyAccount
@@ -48,38 +52,48 @@ public class AddMoneyToMyAccount extends HttpServlet {
 		String mois= request.getParameter("mois");
 		String annee= request.getParameter("annee");
 		String crypto= request.getParameter("crypto");
-		
+		String accnumber="";
+		String description = " Vous avez credite votre compte de: ";
 		Client c= (Client)request.getSession(true).getAttribute("client");
 		
-		if(recepteur.equals("1"))
+		if(recepteur.equals("courant"))
 		{
 			Account a= c.getCurrentAccount();
+			accnumber=a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-			response.sendRedirect("./zoneclient.jsp");
+			
 		}
 		
-		if ( recepteur.equals("2"))
+		if ( recepteur.equals("epargne"))
 		{
 			Account a= c.getSavingAccount();
+			accnumber=a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-			response.sendRedirect("./zoneclient.jsp");
+			
 		}
 		
-		if ( recepteur.equals("3"))
+		if ( recepteur.equals("titre"))
 		{
 			Account a= c.getSecuritiesAccount();
+			accnumber= a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-			response.sendRedirect("./zoneclient.jsp");
+			
 		}
 		
 		
 		// check if emetteur account has enough money, if no reponse "No enough money"
-		response.getWriter().print("No enough money");
+		
+			response.getWriter().print("No enough money");
 		
 		// if has enough money, transfer money, and reponse "ok"
-	}
+	
 
+	TransactionHistory t = new TransactionHistory(0,accnumber,description,new DateTime().toDateTimeISO() ,new BigDecimal(montant));
+	DaoTransactionHistory.addTransactionHistory(t);
+	response.sendRedirect("./zoneclient.jsp");
+	}
+	
 }
