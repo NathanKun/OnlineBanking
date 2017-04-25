@@ -40,7 +40,7 @@ public class AddMoneyToMyAccount extends HttpServlet {
 		String recepteur = request.getParameter("recepteur");
 		String montant= request.getParameter("montant");
 		String accnumber="";
-		String description = " Vous avez credite votre compte de: ";
+		String description = "Credité de " + montant + " euros dans l'espace client.";
 		
 		/*
 		String typeCarte = request.getParameter("type");

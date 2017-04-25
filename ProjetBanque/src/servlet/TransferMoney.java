@@ -68,7 +68,6 @@ public class TransferMoney extends HttpServlet {
 			} else {
 				a.setAcc_balance(a.getAcc_balance().subtract(new BigDecimal(montant)));
 				a.push();
-
 			}
 		}
 
@@ -81,7 +80,6 @@ public class TransferMoney extends HttpServlet {
 			} else {
 				a.setAcc_balance(a.getAcc_balance().subtract(new BigDecimal(montant)));
 				a.push();
-
 			}
 		}
 
@@ -94,7 +92,6 @@ public class TransferMoney extends HttpServlet {
 			} else {
 				a.setAcc_balance(a.getAcc_balance().subtract(new BigDecimal(montant)));
 				a.push();
-
 			}
 		}
 
@@ -111,7 +108,6 @@ public class TransferMoney extends HttpServlet {
 			accnumber2 = a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-
 		}
 
 		if (beneficiaire.equals("titre")) {
@@ -119,7 +115,6 @@ public class TransferMoney extends HttpServlet {
 			accnumber2 = a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-
 		}
 
 		if (beneficiaire.equals("external")) {
@@ -127,17 +122,18 @@ public class TransferMoney extends HttpServlet {
 			accnumber2 = a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-
 		}
+		
 		String description1 = "vous avez effectue un virement au compte " + accnumber2 + "le motif: " + motif;
 		TransactionHistory t1 = new TransactionHistory(0, accnumber1, description1, new DateTime().toDateTimeISO(),
-				new BigDecimal(montant));
+				new BigDecimal(montant).multiply(new BigDecimal(-1)));
 		String description2 = "vous avez recu un virement du compte " + accnumber1 + " le motif: " + motif;
 		TransactionHistory t2 = new TransactionHistory(0, accnumber2, description2, new DateTime().toDateTimeISO(),
 				new BigDecimal(montant));
 		DaoTransactionHistory.addTransactionHistory(t1);
 		DaoTransactionHistory.addTransactionHistory(t2);
-		// if has enough money, transfer money, and reponse "ok"
+		
+		response.getWriter().print("ok");
 	}
 
 }

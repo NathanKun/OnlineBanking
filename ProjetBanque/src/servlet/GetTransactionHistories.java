@@ -44,7 +44,11 @@ public class GetTransactionHistories extends HttpServlet {
 					break;
 			}
 			
+			// write in utf-8
+			response.setContentType("text/html; charset=UTF-8");
+			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
+			
 			for (TransactionHistory tsh : tshList){
 				out.print("<tr>");
 				out.print("<td>" + tsh.getTsh_transactionOn().toString(DateTimeFormat.forPattern("yyyy/MM/dd")) + "</td>");

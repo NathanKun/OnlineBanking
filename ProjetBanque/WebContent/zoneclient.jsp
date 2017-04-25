@@ -177,11 +177,14 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <label class="col-md-6 control-label" id="transferHint"></label>
+                           <label class="col-md-4 control-label" for="transferAmount">Motif : </label>
                            <div class="col-md-6">
-	                              <input id="transferHint" name="motif" placeholder="motif" class="form-control input-md"
+	                              <input name="motif" placeholder="motif" class="form-control input-md"
 	                                  type="text" onchange="transferCheck()">
-	                           </div>
+	                       </div>
+                        </div>
+                        <div class="form-group">
+                           <label class="col-md-6 control-label" id="transferHint"></label>
                         </div>
                         <!-- Button -->
                         <div class="form-group">
@@ -247,15 +250,17 @@
                            <label class="col-md-4 control-label" for="numcarte">N° de carte : </label>  
                            <div class="col-md-4">
                               <input name="numcarte" placeholder="" class="form-control input-md"
-                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="16" required type="text">
+                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="16" required type="text"
+                                 title="16 chiffres" pattern=".{16,16}">
                            </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                            <label class="col-md-4 control-label" for="nom">Date d'expiration: </label>  
                            <div class="col-md-2">
-                              <input name="mois" class="form-control input-md" 
-                                 placeholder="MM" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2" required min="01" max="12" type="number">
+                              <input id="creditMonth" name="mois" class="form-control input-md" 
+                                 placeholder="MM" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2" 
+                                 required min="1" max="12" type="number">
                            </div>
                            <div class="col-md-2">
                               <input id="alimenterYear" name="annee" class="form-control input-md" 
@@ -267,7 +272,8 @@
                            <label class="col-md-4 control-label" for="crypto">Cryptogramme visuel :</label>  
                            <div class="col-md-4">
                               <input name="crypto" placeholder="" class="form-control input-md" required type="text"
-                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3">
+                                 onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="3" 
+                                 title="3 chiffres" pattern=".{3,3}">
                               <span class="help-block">Veuillez saisir votre cryptogramme visuel,les trois derniers chiffres apparaissant sur le panneau signature au verso de votre carte bancaire </span>  
                            </div>
                         </div>
@@ -405,6 +411,12 @@
       <script>
          window.onload = function() {
          	document.getElementById("customerarea").className = "dropdown active";
+         	if((new Date).getMonth() <= 10){
+         		document.getElementById("creditMonth").min = (new Date).getMonth() + 1;
+         	} else {
+         		document.getElementById("creditMonth").min = 12;
+         	}
+         	
          };
          
          // show balance
