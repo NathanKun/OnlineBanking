@@ -54,7 +54,7 @@ public class GetTransactionHistories extends HttpServlet {
 				//System.out.println(tsh);
 			}
 		} else {
-			response.getWriter().print("<h1>Login please</h1>");
+			response.sendRedirect("./");
 		}
 		
 	}

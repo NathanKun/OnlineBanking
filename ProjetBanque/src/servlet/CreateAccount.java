@@ -46,7 +46,7 @@ public class CreateAccount extends HttpServlet {
 			request.getSession().removeAttribute("client");
 			request.getSession().setAttribute("client", DaoClient.getClient(clt.getClt_id()));
 		} else {
-			response.sendRedirect("./index.jsp");
+			response.sendRedirect("./");
 		}
 	}
 

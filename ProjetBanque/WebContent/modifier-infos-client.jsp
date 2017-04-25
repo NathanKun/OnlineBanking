@@ -27,7 +27,7 @@
 		type="text/css">
 	<link rel="stylesheet" href="./css/subscribe.css" type="text/css">
 
-
+	<link href="css/typeahead.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -437,6 +437,9 @@
 	
 	<!-- XSS checker -->
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+    
+    <!-- Typeahead auto complete -->
+    <script src="js/typeahead.bundle.js"></script>
 
 	<script src="./js/subscribe.js"></script>
 

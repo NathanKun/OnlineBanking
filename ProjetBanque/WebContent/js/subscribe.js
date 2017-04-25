@@ -1,40 +1,102 @@
 /**
  * js file to handle subscribe events
  */
-String.prototype.removeAccents = function() {
-	return this.replace(/[áàãâä]/gi, "a")
-			.replace(/[éè¨ê]/gi, "e")
-			.replace(/[íìïî]/gi, "i")
-			.replace(/[óòöôõ]/gi, "o")
-			.replace(/[úùüû]/gi, "u")
-			.replace(/[ç]/gi, "c")
-			.replace(/[ñ]/gi, "n")
-			.replace(/[^a-zA-Z0-9]/g, " ");
+
+// accent folding for typeahead
+var charMap = {
+	"à" : "a",
+	"á" : "a",
+	"â" : "a",
+	"ç" : "c",
+	"é" : "e",
+	"è" : "e",
+	"ê" : "e",
+	"ë" : "e",
+	"É" : "e",
+	"ï" : "i",
+	"î" : "i",
+	"ô" : "o",
+	"ö" : "o",
+	"û" : "u",
+	"ù" : "u",
+	"ü" : "u",
+	"ñ" : "n"
+};
+
+var normalize = function(input) {
+	$.each(charMap, function(unnormalizedChar, normalizedChar) {
+		var regex = new RegExp(unnormalizedChar, 'gi');
+		input = input.replace(regex, normalizedChar);
+	});
+	return input;
+};
+
+var queryTokenizer = function(q) {
+	var normalized = normalize(q);
+	return Bloodhound.tokenizers.whitespace(normalized);
+};
+
+// autocomplete suggestion
+var bloodHound = new Bloodhound({
+	datumTokenizer : Bloodhound.tokenizers.obj.whitespace('value'),
+	queryTokenizer : queryTokenizer,
+	local : []
+});
+
+bloodHound.initialize();
+
+$('#inputAddress').typeahead({
+	minLength : 1,
+	hint : false,
+	highlight : true
+}, {
+	displayKey : 'displayValue',
+	source : bloodHound.ttAdapter()
+});
+
+// user select suggestion or tab on tab key
+function onSelect(data){
+	array = $('#inputAddress').val().split(', ');
+	$('#adresse').val(array[0]);
+	$('#codepostal').val(array[1]);
+	$('#ville').val(array[2]);
 }
+$('#inputAddress').on('typeahead:selected', function (e, data) {
+	onSelect(data);
+}).on('typeahead:autocompleted', function (e, data) {
+	onSelect(data);
+});
+
+String.prototype.removeAccents = function() {
+	return this.replace(/[áàãâä]/gi, "a").replace(/[éè¨ê]/gi, "e").replace(
+			/[íìïî]/gi, "i").replace(/[óòöôõ]/gi, "o").replace(/[úùüû]/gi, "u")
+			.replace(/[ç]/gi, "c").replace(/[ñ]/gi, "n").replace(
+					/[^a-zA-Z0-9]/g, " ");
+}
+
+var addressList = [];
 
 function addressChange() {
 	var inputText = $('#inputAddress').val();
-	var addList = $('#addressList');
 
 	// Ajax get options
 	$.get("./SearchAddress", {
 		q : inputText
 	}, function(responseText) {
-		addList.empty();
-		addList.append(responseText);
+		addressList = responseText.split(';');
+		var bloodHountData = $.map(addressList, function(addressList) {
+			// Normalize the name - use this for searching
+			var normalized = normalize(addressList);
+			return {
+				value : normalized,
+				// Include the original addressList - use this for display
+				// purposes
+				displayValue : addressList
+			};
+		});
+		bloodHound.clear();
+		bloodHound.add(bloodHountData);
 	});
-
-	// if input text match option(User selected a option)
-	if ($('#addressList').find('option').filter(
-			function() {
-				return this.value.removeAccents().toUpperCase() === inputText
-						.removeAccents().toUpperCase();
-			}).length) {
-		var array = inputText.split(', ');
-		$('#adresse').val(array[0]);
-		$('#codepostal').val(array[1]);
-		$('#ville').val(array[2]);
-	}
 }
 
 // XSS special characters check

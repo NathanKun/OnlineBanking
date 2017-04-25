@@ -67,13 +67,12 @@ public class SearchAddress extends HttpServlet {
 			try {
 				for(int i = 0; i < addressList.length(); i++){
 					JSONObject obj = (JSONObject) addressList.get(i);
-					out.append("<option>");
 					out.append(obj.getString("name"));
 					out.append(", ");
 					out.append(obj.getString("postcode"));
 					out.append(", ");
 					out.append(obj.getString("city"));
-					out.append("</option>\n");
+					out.append(";");
 				}
 			} catch (JSONException e) {
 				System.out.println("Out String generation failed");
@@ -84,6 +83,8 @@ public class SearchAddress extends HttpServlet {
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().print(out.toString());
 			//System.out.println(out.toString());
+		} else {
+			response.sendRedirect("./");
 		}
 	}
 

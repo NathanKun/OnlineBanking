@@ -14,9 +14,12 @@ import org.joda.time.DateTime;
 
 import dao.DaoClient;
 import dao.DaoHoldingShare;
+import dao.DaoStock;
+import dao.DaoTransactionHistory;
 import model.Account;
 import model.Client;
 import model.HoldingShare;
+import model.TransactionHistory;
 
 /**
  * Servlet implementation class TradeStock
@@ -67,8 +70,13 @@ public class TradeStock extends HttpServlet {
 							acc.setAcc_balance(acc.getAcc_balance()
 									.add(new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
 							acc.push();
-
-							// delete(sell all) the holding share
+							
+							// add transaction history
+							DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(), 
+									"Vendre " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name(),
+									new DateTime(), new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
+							
+							// delete(sold all) the holding share
 							if (hds.getHds_numberOfShares() == nbShares) {
 								DaoHoldingShare.deleteHoldingShare(hds.getHds_id());
 							} else { // update(sell a part) hds
@@ -111,6 +119,12 @@ public class TradeStock extends HttpServlet {
 						acc.setAcc_balance(acc.getAcc_balance()
 								.subtract(new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
 						acc.push(); // update account to database
+						
+						DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(), 
+								"Acheter " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name(),
+								new DateTime(), 
+								new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares)).multiply(new BigDecimal(-1))));
+						
 						// add holding share in database
 						DaoHoldingShare.addHoldingShare(
 								new HoldingShare(0, ticker, acc.getAcc_id(), nbShares, new DateTime()));

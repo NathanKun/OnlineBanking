@@ -24,7 +24,7 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-	
+	<link href="css/typeahead.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -369,6 +369,9 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
+    
+    <!-- Typeahead auto complete -->
+    <script src="js/typeahead.bundle.js"></script>
     
 	<script src="./js/subscribe.js"></script>
     

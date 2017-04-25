@@ -23,13 +23,6 @@ import model.TransactionHistory;
 public class AddMoneyToMyAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public AddMoneyToMyAccount() {
-        // TODO Auto-generated constructor stub
-    }
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -46,14 +39,18 @@ public class AddMoneyToMyAccount extends HttpServlet {
 		// emetteur and beneficiare send in will be one of these: courant, epargne, titre
 		String recepteur = request.getParameter("recepteur");
 		String montant= request.getParameter("montant");
+		String accnumber="";
+		String description = " Vous avez credite votre compte de: ";
+		
+		/*
 		String typeCarte = request.getParameter("type");
 		String titulaire= request.getParameter("titulaire");
 		String numCarte= request.getParameter("numcarte");
 		String mois= request.getParameter("mois");
 		String annee= request.getParameter("annee");
 		String crypto= request.getParameter("crypto");
-		String accnumber="";
-		String description = " Vous avez credite votre compte de: ";
+		*/
+		
 		Client c= (Client)request.getSession(true).getAttribute("client");
 		
 		if(recepteur.equals("courant"))
@@ -62,7 +59,6 @@ public class AddMoneyToMyAccount extends HttpServlet {
 			accnumber=a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-			
 		}
 		
 		if ( recepteur.equals("epargne"))
@@ -71,7 +67,6 @@ public class AddMoneyToMyAccount extends HttpServlet {
 			accnumber=a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-			
 		}
 		
 		if ( recepteur.equals("titre"))
@@ -80,15 +75,11 @@ public class AddMoneyToMyAccount extends HttpServlet {
 			accnumber= a.getAcc_number();
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
-			
 		}
 		
 		
 		// check if emetteur account has enough money, if no reponse "No enough money"
-		
-			response.getWriter().print("No enough money");
-		
-		// if has enough money, transfer money, and reponse "ok"
+		//response.getWriter().print("No enough money");
 	
 
 	TransactionHistory t = new TransactionHistory(0,accnumber,description,new DateTime().toDateTimeISO() ,new BigDecimal(montant));

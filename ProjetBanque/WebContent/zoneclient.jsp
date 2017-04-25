@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page
    import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList, org.joda.time.format.DateTimeFormat"%>
 <%@ include file="./includes/sessionCheck.inc.jsp"%>
@@ -8,6 +10,7 @@
 <html>
    <head>
       <meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
@@ -38,13 +41,13 @@
             <div class="col-lg-12">
                <ul id="myTab" class="nav nav-tabs nav-justified">
                   <li class="active"><a href="#generalites" data-toggle="tab"><i
-                     class="fa fa-tree"></i> G�n�ralit�s du compte</a></li>
+                     class="fa fa-tree"></i> Généralités du compte</a></li>
                   <li class=""><a href="#comptes" data-toggle="tab"><i
                      class="fa fa-car"></i> Historique des transactions</a></li>
                   <li class=""><a href="#virement" data-toggle="tab"><i
                      class="fa fa-car"></i> Transferts et virement</a></li>
                   <li class=""><a href="#creditercompte" data-toggle="tab"><i
-                     class="fa fa-support"></i> Cr�diter mon compte</a></li>
+                     class="fa fa-support"></i> Créditer mon compte</a></li>
                   <li class=""><a href="#infosperso" data-toggle="tab"><i
                      class="fa fa-database"></i> Mes informations</a></li>
                </ul>
@@ -58,8 +61,8 @@
                      <table id="accountsInfo">
                         <tr>
                            <th>Type</th>
-                           <th>Num�ro</th>
-                           <th>int�ret</th>
+                           <th>Numéro</th>
+                           <th>intéret</th>
                            <th>Solde (€)</th>
                         </tr>
                         <tr>
@@ -71,7 +74,7 @@
                         <tr>
                            <%if(clt.getSavingAccount() != null){ %>
                         <tr>
-                           <td>Compte d'�pargne:</td>
+                           <td>Compte d'épargne:</td>
                            <td>${ client.getSavingAccount().getAcc_number() }</td>
                            <td>${ client.getSavingAccount().getAcc_interest() }</td>
                            <td id="savingBalance"><button class="btn btn-primary" onclick="showBalance('savingBalance');">Show</button></td>
@@ -86,18 +89,18 @@
                         </tr>
                         <% }if(clt.getSavingAccount() == null){ %>
                         <tr>
-                           <td>Cr�er un compte d'�pargne</td>
-                           <td><button class="btn btn-primary" onclick="createAccount('savingAccount');">Cr�er</button></td>
+                           <td>Créer un compte d'épargne</td>
+                           <td><button class="btn btn-primary" onclick="createAccount('savingAccount');">Créer</button></td>
                         </tr>
                         <% } if(clt.getSecuritiesAccount() == null){ %>
                         <tr>
-                           <td>Cr�er un compte de titre:</td>
-                           <td><button class="btn btn-primary" onclick="createAccount('securitiesAccount');">Cr�er</button></td>
+                           <td>Créer un compte de titre:</td>
+                           <td><button class="btn btn-primary" onclick="createAccount('securitiesAccount');">Créer</button></td>
                         </tr>
                         <% } %>
                      </table>
                   </div>
-                  <!-- G�n�ralit�s comptes -->
+                  <!-- Généralités comptes -->
                   
                   
                   <div class="tab-pane fade" id="comptes">
@@ -108,7 +111,7 @@
                      <table id="currentHistory">
                      </table>
                      <%if(clt.getSavingAccount() != null){ %>
-                     <p>Compte d'�pargne: ${ client.getSavingAccount().getAcc_number() }</p>
+                     <p>Compte d'épargne: ${ client.getSavingAccount().getAcc_number() }</p>
                      <button class="btn btn-primary" onclick="showTsh('savingHistory')">show</button>
                      <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=savingHistory'">CSV</button>
                      <table id="savingHistory">
@@ -142,7 +145,7 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <label class="col-md-4 control-label">Compte � Cr�diter :</label>
+                           <label class="col-md-4 control-label">Compte à Créditer :</label>
                            <div class="col-md-6">
                               <input id="radioCourant2" type="radio" name="beneficiaire" value="courant">
                               <label for="radioCourant2"> Compte courant</label>
@@ -309,7 +312,7 @@
 	                              </td>
 	                           </tr>
 	                           <tr>
-	                              <td><label>Pr�nom</label></td>
+	                              <td><label>Prénom</label></td>
 	                              <td>
 	                                 <c:out value="${client.getClt_fname()}" />
 	                              </td>
@@ -321,7 +324,7 @@
 	                              </td>
 	                           </tr>
 	                           <tr>
-	                              <td><label>Nationalit� : </label></td>
+	                              <td><label>Nationalité : </label></td>
 	                              <td>
 	                                 <c:out value="${client.getClt_nationality()}" />
 	                              </td>
@@ -351,7 +354,7 @@
 	                              </td>
 	                           </tr>
 	                           <tr>
-	                              <td><label>Num�ro de t�l�phone : </label></td>
+	                              <td><label>Numéro de téléphone : </label></td>
 	                              <td>
 	                                 <c:out value="${client.getClt_telephonenumber()}" />
 	                              </td>
@@ -426,7 +429,7 @@
          function createAccount(type) {
          	switch(type){
          	case "savingAccount":
-         		if(confirm("Vous voulez cr�er un compte d'�pargne ?")){
+         		if(confirm("Vous voulez créer un compte d'épargne ?")){
          			$.get("./CreateAccount", { type: 'SavingAccount' }, function(responseText){
          				if(responseText == "Done"){
          					window.location.reload();
@@ -437,7 +440,7 @@
          		}
          		break;
          	case "securitiesAccount":
-         		if(confirm("Vous voulez cr�er un compte de titre ?")){
+         		if(confirm("Vous voulez créer un compte de titre ?")){
          			$.get("./CreateAccount", { type: 'SecuritiesAccount' }, function(responseText){
          				if(responseText == "Done"){
          					window.location.reload();
@@ -508,13 +511,13 @@
              	$("#transferHint").text("Veuillez choisir un compte a debiter.");
             } else if(beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre" && beneficiaire != "external") {
              	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Veuillez choisir un b�n�ficiaire.");
+             	$("#transferHint").text("Veuillez choisir un bénéficiaire.");
             } else if(beneficiaire == "external" && !(IBAN.isValid($("#transferIban").val())) ) {
              	$("#transferSubmit").prop('disabled', true);
              	$("#transferHint").text("IBAN incorrect");
             } else if(emetteur == beneficiaire){
              	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Le compte a debiter et le beneficiaire est le m�me.");
+             	$("#transferHint").text("Le compte a debiter et le beneficiaire est le même.");
             } else if(!$("#transferAmount").val()){
              	$("#transferSubmit").prop('disabled', true);
              	$("#transferHint").text("Veuillez entrer une somme de virement.");

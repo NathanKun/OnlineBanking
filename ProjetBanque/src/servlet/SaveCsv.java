@@ -1,12 +1,9 @@
 package servlet;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -40,6 +37,8 @@ public class SaveCsv extends HttpServlet {
 			Client clt = (Client) request.getSession().getAttribute("client");
 			// System.out.println(clt.getCurrentAccount());
 			ArrayList<TransactionHistory> tshList = null;
+			
+			// get account
 			Account acc = null;
 			switch (type) {
 			case "currentHistory":
@@ -61,17 +60,22 @@ public class SaveCsv extends HttpServlet {
 				System.out.println("Wrinting file...");
 				String path = request.getServletContext().getRealPath("WEB-INF/../") + "data.csv";
 				dataOut = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false),"UTF-8"));
+				// UTF-8 BOM to tell excel the file encode in UTF-8
+				dataOut.write("\uFEFF");
+				// Tell excel to use',' as CSV separator
+				dataOut.write("\"sep=,\"\n");
 				
-				dataOut.write("\"sep=,\"");
+				// write file header
 				dataOut.write("Client : " + clt.getFullName());
-				dataOut.flush();
 				dataOut.write("\n");
 				dataOut.write("Numéro de compte : " + acc.getAcc_number());
-				dataOut.flush();
 				dataOut.write("\n");
+				
+				// write table header
 				dataOut.write("Date,Description,Montant\n");
 				dataOut.flush();
 				
+				// write data
 				for (TransactionHistory tsh : tshList) {
 					dataOut.write(tsh.getTsh_transactionOn().toString(DateTimeFormat.forPattern("yyyy/MM/dd")) + ",");
 					dataOut.write(tsh.getTsh_description() + ",");
@@ -90,7 +94,7 @@ public class SaveCsv extends HttpServlet {
 
 			
 		} else {
-			response.getWriter().print("<h1>Login please</h1>");
+			response.sendRedirect("./");
 		}
 
 	}
