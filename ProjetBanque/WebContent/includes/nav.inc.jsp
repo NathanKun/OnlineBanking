@@ -17,6 +17,9 @@
                     <li id="about">
                         <a href="<%=request.getContextPath()%>/about.jsp">Mieux nous connaitre</a>
                     </li>
+                    <li id="news">
+                        <a href="<%=request.getContextPath()%>/news.jsp">Actualité</a>
+                    </li>
                     <li id="services">
                         <a href="<%=request.getContextPath()%>/services.jsp">Nos services</a>
                     </li>

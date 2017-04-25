@@ -94,7 +94,8 @@ abstract public class Dao {
 			if (rs.next()) {
 				switch (type) {
 				case "News":
-					retour = new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text"));
+					retour = new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text"), 
+							rs.getString("nws_image"), rs.getString("nws_type"), new DateTime(rs.getTimestamp("nws_date")));
 					break;
 
 				case "FindAdvisorByLogin":
@@ -211,9 +212,14 @@ abstract public class Dao {
 
 			// we crosse all the line of the results
 			switch (type) {
+			case "find3BankNews":
+			case "find3OtherNews":
+			case "findAllBankNews":
+			case "findAllOtherNews":
 			case "News":
 				while (rs.next()) {
-					returnList.add(new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text")));
+					returnList.add(new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text"), 
+							rs.getString("nws_image"), rs.getString("nws_type"), new DateTime(rs.getDate("nws_date"))));
 				}
 				break;
 
@@ -365,9 +371,11 @@ abstract public class Dao {
 			switch (type) {
 			case "News":
 				News nws = (News) item;
-				ps = con.prepareStatement("INSERT INTO news_nws VALUES(null, ?, ?)");
+				ps = con.prepareStatement("INSERT INTO news_nws VALUES(null, ?, ?, ?, ?, NOW())");
 				ps.setString(1, nws.getNws_title());
 				ps.setString(2, nws.getNws_text());
+				ps.setString(3, nws.getNws_image());
+				ps.setString(4, nws.getNws_type());
 				break;
 
 			case "Advisor":

@@ -6,6 +6,55 @@ import model.News;
 
 public class DaoNews extends Dao {
 
+
+	/**
+	 * get 3 pieces of latest bank's news
+	 * 
+	 * @return the list of all the News in the data base
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<News> find3BankNews() {
+		String sql = "SELECT * FROM News_nws WHERE nws_type = 'BankRading' ORDER BY nws_date DESC LIMIT 3";
+		return (ArrayList<News>) Dao.getList("find3BankNews", sql);
+	}
+
+
+	/**
+	 * get 3 pieces of latest other news
+	 * 
+	 * @return the list of all the News in the data base
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<News> find3OtherNews() {
+		String sql = "SELECT * FROM News_nws WHERE nws_type != 'BankRading' ORDER BY nws_date DESC LIMIT 3";
+		return (ArrayList<News>) Dao.getList("find3BankNews", sql);
+	}
+
+	
+	/**
+	 * get 3 pieces of latest bank's news
+	 * 
+	 * @return the list of all the News in the data base
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<News> findAllBankNews() {
+		String sql = "SELECT * FROM News_nws WHERE nws_type = 'BankRading' ORDER BY nws_date DESC";
+		return (ArrayList<News>) Dao.getList("findAllBankNews", sql);
+	}
+
+
+	/**
+	 * get 3 pieces of latest other news
+	 * 
+	 * @return the list of all the News in the data base
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<News> findAllOtherNews() {
+		String sql = "SELECT * FROM News_nws WHERE nws_type != 'BankRading' ORDER BY nws_date DESC";
+		return (ArrayList<News>) Dao.getList("findAllOtherNews", sql);
+	}
+	
+	
 	/**
 	 * return a specific News by it's id.
 	 * 
@@ -77,6 +126,9 @@ public class DaoNews extends Dao {
 
 		// delete test
 //		System.out.println(DaoNews.deleteNews(1));
+
+//		System.out.println(DaoNews.find3BankNews());
+		System.out.println(DaoNews.find3OtherNews());
 	}
 
 }

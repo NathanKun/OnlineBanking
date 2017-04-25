@@ -37,7 +37,7 @@
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta charset="UTF-8">
-      <title>IRadBanking - Bourse</title>
+      <title>BankRading - Bourse</title>
       <!-- Bootstrap Core CSS -->
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <!-- Custom CSS -->

@@ -23,7 +23,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Modern Business - Start Bootstrap Template</title>
+<title>BankRading - Login</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -71,7 +71,7 @@
 						<div class="form-group">
 							<label class="control-label" for="nomUtilisateur"><span
 								class="glyphicon glyphicon-user"></span> Nom d'utilisateur</label> <a
-								class="pull-right" href="/Subscrib;">Créer
+								class="pull-right" href="./Subscribe">Créer
 								un compte</a>
 							<div>
 								<input id="nomUtilisateur" name="login" type="text"
@@ -83,8 +83,7 @@
 						<!-- Password input-->
 						<div class="form-group">
 							<label class="control-label" for="password"><span
-								class="glyphicon glyphicon-lock"></span> Mot de passe</label> <a
-								class="pull-right">Mot de passe oublié</a>
+								class="glyphicon glyphicon-lock"></span> Mot de passe</label>
 							<div>
 								<input id="password" name="password" type="password"
 									placeholder="Entrez votre mot de passe"

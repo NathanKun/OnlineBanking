@@ -12,7 +12,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
       <meta name="author" content="">
-      <title>Modern Business - Start Bootstrap Template</title>
+      <title>BankRading - Mon espace</title>
       <link href="css/accountsInfo.css" rel="stylesheet">
       <link href="css/zoneclient.css" rel="stylesheet">
       <!-- Bootstrap Core CSS -->
@@ -104,16 +104,19 @@
                      <h3>Historique des transactions</h3>
                      <p>Compte courant: ${ client.getCurrentAccount().getAcc_number() }</p>
                      <button class="btn btn-primary" onclick="showTsh('currentHistory')">show</button>
+                     <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=currentHistory'">CSV</button>
                      <table id="currentHistory">
                      </table>
                      <%if(clt.getSavingAccount() != null){ %>
                      <p>Compte d'épargne: ${ client.getSavingAccount().getAcc_number() }</p>
                      <button class="btn btn-primary" onclick="showTsh('savingHistory')">show</button>
+                     <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=savingHistory'">CSV</button>
                      <table id="savingHistory">
                      </table>
                      <%} if(clt.getSecuritiesAccount() != null){ %>
                      <p>Compte de titre: ${ client.getSecuritiesAccount().getAcc_number() }</p>
                      <button class="btn btn-primary" onclick="showTsh('securitiesHistory')">show</button>
+                     <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=securitiesHistory'">CSV</button>
                      <table id="securitiesHistory">
                      </table>
                      <%} %>
@@ -527,7 +530,7 @@
          $(document).on("submit", "#transferForm", function() {
                    var $form = $(this);
                    $.post($form.attr("action"), $form.serialize(), function(responseText) {
-                   	alert(responseText);
+                   	//alert(responseText);
                    	if(responseText == "No enough money")
                        	$("#hint").text("L'argent insuffisant dans le compte à débiter");
                    	else{

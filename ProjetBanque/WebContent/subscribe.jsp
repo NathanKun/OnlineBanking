@@ -13,7 +13,7 @@
     
     <link rel="stylesheet" href="./css/subscribe.css" type="text/css">
 
-    <title>Créer compte client</title>
+    <title>BankRading - Créer compte client</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

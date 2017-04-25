@@ -58,7 +58,7 @@ public class GuiMain extends JFrame {
 	/**
 	 * label shows: Les historiques de trransaction : :
 	 */
-	private final JLabel lbTransactionHistory = new JLabel("Les historiques de trransaction :");
+	private final JLabel lbTransactionHistory = new JLabel("Les historiques de transaction :");
 	/**
 	 * text field for search a client
 	 */
@@ -242,9 +242,9 @@ public class GuiMain extends JFrame {
 		}
 		
 		// add columns and show keys for jtableClientInfo
-		String[] keysClientInfo = {"Pr®¶nom", "Nom", "Sexe", "Login", "Date de naissance", "Nationalit®¶", 
-				"Adresse", "Code postale", "Ville", "Num®¶ro de t®¶l®¶phone", "Mail", "Statut",
-				"Date de cr®¶ation de compte", "Derni®®re connexion"};
+		String[] keysClientInfo = {"Pr√©nom", "Nom", "Sexe", "Login", "Date de naissance", "Nationalit√©", 
+				"Adresse", "Code postale", "Ville", "Num√©ro de t√©l√©phone", "Mail", "Statut",
+				"Date de cr√©ation de compte", "Derni√®re connexion"};
 		modelJTableClientInfo.addColumn("Key", keysClientInfo);
 		modelJTableClientInfo.addColumn("Value");
 		
@@ -320,22 +320,22 @@ public class GuiMain extends JFrame {
 			for (int i = modelJTableClientInfo.getRowCount() - 1; i >= 0; i--) {
 				modelJTableClientInfo.removeRow(i);
 			}
-			modelJTableClientInfo.addRow(new Object[] { "Pr®¶nom", clt.getClt_fname() });
+			modelJTableClientInfo.addRow(new Object[] { "Pr√©nom", clt.getClt_fname() });
 			modelJTableClientInfo.addRow(new Object[] { "Nom", clt.getClt_lname() });
 			modelJTableClientInfo.addRow(new Object[] { "Sexe", clt.getClt_gender() });
 			modelJTableClientInfo.addRow(new Object[] { "Login", clt.getClt_login() });
 			modelJTableClientInfo.addRow(new Object[] { "Date de naissance",
 					clt.getClt_birthday().toString(DateTimeFormat.forPattern("dd/MM/yyyy")) });
-			modelJTableClientInfo.addRow(new Object[] { "Nationalit®¶", clt.getClt_nationality() });
+			modelJTableClientInfo.addRow(new Object[] { "Nationalit√©", clt.getClt_nationality() });
 			modelJTableClientInfo.addRow(new Object[] { "Adresse", clt.getClt_address() });
 			modelJTableClientInfo.addRow(new Object[] { "Code postale", clt.getClt_postalcode() });
 			modelJTableClientInfo.addRow(new Object[] { "Ville", clt.getClt_city() });
-			modelJTableClientInfo.addRow(new Object[] { "Num®¶ro de t®¶l®¶phone", clt.getClt_telephonenumber() });
+			modelJTableClientInfo.addRow(new Object[] { "Num√©ro de t√©l√©phone", clt.getClt_telephonenumber() });
 			modelJTableClientInfo.addRow(new Object[] { "Mail", clt.getClt_email() });
 			modelJTableClientInfo.addRow(new Object[] { "Statut", clt.getClt_status() });
-			modelJTableClientInfo.addRow(new Object[] { "Date de cr®¶ation de compte",
+			modelJTableClientInfo.addRow(new Object[] { "Date de cr√©ation de compte",
 					clt.getClt_createdon().toString(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")) });
-			modelJTableClientInfo.addRow(new Object[] { "Derni®®re connexion",
+			modelJTableClientInfo.addRow(new Object[] { "Derni√®re connexion",
 					clt.getClt_lastlogin().toString(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")) });
 			resizeColumnWidth(jtableClientInfo);
 		}

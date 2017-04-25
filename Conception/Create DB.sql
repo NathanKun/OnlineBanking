@@ -114,7 +114,10 @@ CREATE TABLE IF NOT EXISTS holdingshare_hds(
 CREATE TABLE IF NOT EXISTS news_nws (
 	nws_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nws_title VARCHAR(255),
-    nws_text LONGTEXT
+    nws_text LONGTEXT,
+    nws_image VARCHAR(255),
+    nws_type VARCHAR(32),
+    nws_date DATETIME
 );
 
 
@@ -242,7 +245,7 @@ INSERT INTO stock_stk VALUES('DG.PA', 'Vinci', 'FR0000125586');
 INSERT INTO stock_stk VALUES('VIV.PA', 'Vivendi', 'FR0000127771');
 
 # gauss distribution generator
-DROP FUNCTION IF EXISTS gauss;
+/*DROP FUNCTION IF EXISTS gauss;
 DELIMITER //
 CREATE FUNCTION gauss(mean float, stdev float) RETURNS float
 BEGIN
@@ -251,7 +254,7 @@ set @gaus = ((sqrt(-2*log(@x))*cos(2*pi()*@y))*stdev)+mean;
 return @gaus;
 END
 //
-DELIMITER ;
+DELIMITER ;*/
 
 # procedure to generate random historical price
 /*DELIMITER $$
@@ -305,3 +308,11 @@ INSERT INTO advisor_avs VALUES(null, 'MsAdvisorB', 'b',
 INSERT INTO advisor_avs VALUES(null, 'MrsAdvisorC', 'c', 
 	"$31$16$BnYo6uJe7XrpkVWoOB0VQ3a_czDxDs0Y3K6JnhN-dTTGNgskiOsIFSywcuBgB_gR2JBuMFkLmus91-IaaRdl3ZAMLlnsaXIcJy0soYuTmdmo_VEJJbXG2FbsZ-iukUTvxnno0LUqokfwKpjI8qtcUkP_DsHSqNo7Gt8UaLmwLBQ"
 );
+
+
+INSERT INTO news_nws VALUES(null, "BankRading et Compte-Normandie s'allient", "Dans le cadre des partenariats avec la Confédération des Buralistes de France, notre banque rajoute un nouvel allié à son actif.", "images/bank.png", "BankRading", NOW());
+INSERT INTO news_nws VALUES(null, "Actionnaires : nouvelle plateforme !", "Bonne nouvelle pour le cercle des actionnaires de la BankRading, notre groupe se fortifie d'un nouveau site Internet exclusif, muni des dernières mises à jour.", "images/bank.png", "BankRading", NOW());
+INSERT INTO news_nws VALUES(null, "Groupe BankRading : Résultars au 31 mars 2017", "Le Conseil d'administration de la BankRading a examiné les résultats de la banque pour le premier trimestre de l'année en cours.", "images/bank.png", "BankRading", NOW());
+INSERT INTO news_nws VALUES(null, "MACRON ET LE PEN AU DERNIER TOUR !", "Le ministère de l'Intérieur a publié les résultats définitifs du premier tour de la présidentielle ce lundi après-midi. Emmanuel Macron obtient ainsi 24,01% des suffrages exprimes, devant à 21,30%. ", "http://i.f1g.fr/media/ext/805x453_crop/www.lefigaro.fr/medias/2017/04/23/20170423PHOWWW00392.jpg", "OFFICIEL", NOW());
+INSERT INTO news_nws VALUES(null, "le CAC40 en forte hausse après les premiers résultats.", "Les principales Bourses européennes ont ouvert en vive hausse lundi au lendemain du premier tour de l'élection présidentielle française qui a placé en tête Emmanuel Macron, un résultat qui profite aux actifs financiers français, en premier lieu le CAC 40 et ses valeurs bancaires.", "http://www.cbnews.fr/var/media/225/original/indice-cac40-224325.jpg", "BOURSE", NOW());
+INSERT INTO news_nws VALUES(null, "LIGUE DES CHAMPIONS : Monaco dans le dernier carré !", "L'AS Monaco a battu le Borussia Dortmund ce mercredi en quarts de finale retour de la Ligue des champions (3-1, 6-3 sur l'ensemble des deux matches) grâce à des buts Mbappé, Falcao et Germain, et disputera les demi-finales, une première pour un club français depuis 2010.", "https://www.cuw.edu/_files/images/test3.JPG", "SPORT", NOW());
