@@ -1,3 +1,8 @@
+#clientNameDiv {
+	color: #4286f4;
+	display: float;
+}
+
 #transferHint {
 	color: red;
 }

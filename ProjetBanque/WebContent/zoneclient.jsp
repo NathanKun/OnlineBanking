@@ -33,7 +33,7 @@
          <!-- Service Tabs -->
          <div class="row">
             <div class="col-lg-12">
-               <h2 class="page-header">${ client.getClt_lname() }, Bienvenue dans votre espace client</h2>
+               <h2 class="page-header"><span id="clientNameDiv">${ client.getClt_lname() }</span><span>, bienvenue dans votre espace client</span></h2>
                <h4>Votre login : ${ client.getClt_login() }</h4>
             </div>
          </div>
