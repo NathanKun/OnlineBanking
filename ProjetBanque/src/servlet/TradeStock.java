@@ -70,12 +70,12 @@ public class TradeStock extends HttpServlet {
 							acc.setAcc_balance(acc.getAcc_balance()
 									.add(new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
 							acc.push();
-							
+
 							// add transaction history
-							DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(), 
+							DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(),
 									"Vendre " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name(),
 									new DateTime(), new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
-							
+
 							// delete(sold all) the holding share
 							if (hds.getHds_numberOfShares() == nbShares) {
 								DaoHoldingShare.deleteHoldingShare(hds.getHds_id());
@@ -87,9 +87,9 @@ public class TradeStock extends HttpServlet {
 							// refresh object client in session
 							request.getSession().removeAttribute("client");
 							request.getSession().setAttribute("client", DaoClient.getClient(clt.getClt_id()));
-							
+
 							response.getWriter().print("Done");
-							
+
 						} else {// wont't happen normally, controlled by
 								// javascript in browser side
 							response.getWriter().print("HoldingShare not enough");
@@ -119,16 +119,29 @@ public class TradeStock extends HttpServlet {
 						acc.setAcc_balance(acc.getAcc_balance()
 								.subtract(new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
 						acc.push(); // update account to database
-						
-						DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(), 
+
+						DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(),
 								"Acheter " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name(),
-								new DateTime(), 
-								new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares)).multiply(new BigDecimal(-1))));
-						
-						// add holding share in database
-						// TODO : Fix error
-						DaoHoldingShare.addHoldingShare(
-								new HoldingShare(0, ticker, acc.getAcc_id(), nbShares, new DateTime()));
+								new DateTime(), new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))
+										.multiply(new BigDecimal(-1))));
+
+						ArrayList<HoldingShare> hdsList = clt.getHoldingShare();
+						boolean isHdsFound = false;
+						for (HoldingShare hds : hdsList) { // find the holding
+															// share of
+															// this ticker
+							if (hds.getHds_stk_ticker().equals(ticker)) {
+								isHdsFound = true;
+								hds.setHds_numberOfShares(hds.getHds_numberOfShares() + nbShares);
+								DaoHoldingShare.updateHoldingShare(hds);
+							}
+						}
+
+						if (!isHdsFound) {
+							// add holding share in database
+							DaoHoldingShare.addHoldingShare(
+									new HoldingShare(0, ticker, acc.getAcc_id(), nbShares, new DateTime()));
+						}
 
 						// refresh object client in session
 						request.getSession().removeAttribute("client");
