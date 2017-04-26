@@ -123,17 +123,19 @@ public class TransferMoney extends HttpServlet {
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
 		}
+		if((new BigDecimal (montant)).compareTo(BigDecimal.ZERO) != 0) {
+			String description1 = "vous avez effectue un virement au compte " + accnumber2 + "le motif: " + motif;
+			TransactionHistory t1 = new TransactionHistory(0, accnumber1, description1, new DateTime().toDateTimeISO(),
+					new BigDecimal(montant).multiply(new BigDecimal(-1)));
+			String description2 = "vous avez recu un virement du compte " + accnumber1 + " le motif: " + motif;
+			TransactionHistory t2 = new TransactionHistory(0, accnumber2, description2, new DateTime().toDateTimeISO(),
+					new BigDecimal(montant));
+			DaoTransactionHistory.addTransactionHistory(t1);
+			DaoTransactionHistory.addTransactionHistory(t2);
+		}
 		
-		String description1 = "vous avez effectue un virement au compte " + accnumber2 + "le motif: " + motif;
-		TransactionHistory t1 = new TransactionHistory(0, accnumber1, description1, new DateTime().toDateTimeISO(),
-				new BigDecimal(montant).multiply(new BigDecimal(-1)));
-		String description2 = "vous avez recu un virement du compte " + accnumber1 + " le motif: " + motif;
-		TransactionHistory t2 = new TransactionHistory(0, accnumber2, description2, new DateTime().toDateTimeISO(),
-				new BigDecimal(montant));
-		DaoTransactionHistory.addTransactionHistory(t1);
-		DaoTransactionHistory.addTransactionHistory(t2);
 		
-		response.getWriter().print("ok");
+		//response.getWriter().print("ok");
 	}
 
 }

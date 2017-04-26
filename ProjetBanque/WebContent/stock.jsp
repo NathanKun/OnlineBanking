@@ -160,7 +160,7 @@
 	                     <label id="lbPay"></label>
 	                  </div>
 	                  <div class="col-md-4">
-	                     <input id="submitBuy" type="submit" disabled class="btn btn-primary" value="Vendre">
+	                     <input id="submitBuy" type="submit" disabled class="btn btn-primary" value="Acheter">
 	                  </div>
 	                  <div class="form-group">
 	                     <div class="col-md-8">

@@ -411,11 +411,11 @@
       <script>
          window.onload = function() {
          	document.getElementById("customerarea").className = "dropdown active";
-         	if((new Date).getMonth() <= 10){
+         	/*if((new Date).getMonth() <= 10){
          		document.getElementById("creditMonth").min = (new Date).getMonth() + 1;
          	} else {
          		document.getElementById("creditMonth").min = 12;
-         	}
+         	}*/
          	
          };
          
@@ -554,9 +554,9 @@
          $(document).on("submit", "#transferForm", function() {
                    var $form = $(this);
                    $.post($form.attr("action"), $form.serialize(), function(responseText) {
-                   	//alert(responseText);
+                   	alert(responseText);
                    	if(responseText == "No enough money")
-                       	$("#hint").text("L'argent insuffisant dans le compte a debiter");
+                       	$("#transferHint").text("L'argent insuffisant dans le compte a debiter");
                    	else{
                    		alert("Virement effectue.");
                    		window.location.reload();

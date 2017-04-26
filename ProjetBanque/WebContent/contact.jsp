@@ -91,7 +91,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h3>Envoyez nous un message</h3>
-                <form id="form" name="sentMessage" id="contactForm" action="./Contact">
+                <form id="form" name="sentMessage" id="contactForm" action="./Contact" onsubmit='return checkInput();'>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Nom complet :</label>
@@ -102,7 +102,7 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Numéro de téléphone :</label>
-                            <input type="tel" pattern="[0-9]{10}" class="form-control" id="phone" name="phone" maxlength="10" required data-validation-required-message="Please enter your phone number.">
+                            <input type="text" class="form-control" id="phone" name="phone" maxlength="10" required data-validation-required-message="Please enter your phone number.">
                         </div>
                     </div>
                     <div class="control-group form-group">
@@ -159,6 +159,24 @@
             });
             event.preventDefault(); // Important! Prevents submitting the form.
         });
+		
+        <script>
+        function checkInput() {
+        	var tel = $('#phone').val();
+        	if (tel.startsWith("0") && tel.length == 10) {
+    			return true;
+    		} else if (tel.startsWith("+33")
+    				&& tel.length == 12) {
+    			return true;
+    		} else if (tel.startsWith("0033")
+    				&& tel.length == 13) {
+    			return true;
+    		} else {
+    			alert("Votre numéro de téléphone est incorrect");
+    			return false;
+    		}
+        }
+        </script>
     </script>
     
 </body>

@@ -126,6 +126,7 @@ public class TradeStock extends HttpServlet {
 								new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares)).multiply(new BigDecimal(-1))));
 						
 						// add holding share in database
+						// TODO : Fix error
 						DaoHoldingShare.addHoldingShare(
 								new HoldingShare(0, ticker, acc.getAcc_id(), nbShares, new DateTime()));
 

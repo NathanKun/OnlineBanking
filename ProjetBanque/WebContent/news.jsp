@@ -39,7 +39,7 @@
                         <ol class="breadcrumb">
                             <li><a href="index.jsp">Accueil</a>
                             </li>
-                            <li class="active">Actualité</li>
+                            <li class="active">Actualités</li>
                         </ol>
                     </div>
                 </div>
