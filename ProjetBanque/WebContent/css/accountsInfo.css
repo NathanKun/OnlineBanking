@@ -1,10 +1,14 @@
 @CHARSET "UTF-8";
 
-#accountsInfo td, #currentHistory td, #savingHistory td, #securitiesHistory td { 
+#accountsInfo td, #currentHistory td, #savingHistory td, #securitiesHistory td, #stockList td { 
     padding: 10px;
 }
 
-#accountsInfo, #currentHistory, #savingHistory, #securitiesHistory { 
+#accountsInfo, #currentHistory, #savingHistory, #securitiesHistory, #stockList { 
     border-spacing: 10px;
     border-collapse: separate;
+}
+
+#stockList {
+	display: none;
 }

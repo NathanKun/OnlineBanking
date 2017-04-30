@@ -25,8 +25,11 @@
       <!-- Custom Fonts -->
       <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
          type="text/css">
+      <!-- Preloader -->
+	  <link href="css/preloader.css" rel="stylesheet">
    </head>
    <body>
+      <div class="preloader"></div>
       <%@ include file="./includes/nav.inc.jsp"%>
       <!-- Page Content -->
       <div class="container">
@@ -72,33 +75,40 @@
                            <td id="currentBalance"><button class="btn btn-primary" onclick="showBalance('currentBalance');">Show</button></td>
                         </tr>
                         <tr>
-                           <%if(clt.getSavingAccount() != null){ %>
-                        <tr>
-                           <td>Compte d'épargne:</td>
-                           <td>${ client.getSavingAccount().getAcc_number() }</td>
-                           <td>${ client.getSavingAccount().getAcc_interest() }</td>
-                           <td id="savingBalance"><button class="btn btn-primary" onclick="showBalance('savingBalance');">Show</button></td>
-                        </tr>
-                        <tr>
-                           <%} if(clt.getSecuritiesAccount() != null){ %>
-                        <tr>
-                           <td>Compte de titre:</td>
-                           <td>${ client.getSecuritiesAccount().getAcc_number() }</td>
-                           <td>${ client.getSecuritiesAccount().getAcc_interest() }</td>
-                           <td id="securitiesBalance"><button class="btn btn-primary" onclick="showBalance('securitiesBalance');">Show</button></td>
-                        </tr>
-                        <% }if(clt.getSavingAccount() == null){ %>
-                        <tr>
-                           <td>Créer un compte d'épargne</td>
-                           <td><button class="btn btn-primary" onclick="createAccount('savingAccount');">Créer</button></td>
-                        </tr>
-                        <% } if(clt.getSecuritiesAccount() == null){ %>
-                        <tr>
-                           <td>Créer un compte de titre:</td>
-                           <td><button class="btn btn-primary" onclick="createAccount('securitiesAccount');">Créer</button></td>
-                        </tr>
-                        <% } %>
+                        <c:if test="${not empty client.getSavingAccount() }">
+	                        <tr>
+	                           <td>Compte d'épargne:</td>
+	                           <td>${ client.getSavingAccount().getAcc_number() }</td>
+	                           <td>${ client.getSavingAccount().getAcc_interest() }</td>
+	                           <td id="savingBalance"><button class="btn btn-primary" onclick="showBalance('savingBalance');">Show</button></td>
+	                        </tr>
+						</c:if>
+                        <c:if test="${not empty client.getSecuritiesAccount() }">
+	                        <tr>
+	                           <td>Compte de titre:</td>
+	                           <td>${ client.getSecuritiesAccount().getAcc_number() }</td>
+	                           <td>${ client.getSecuritiesAccount().getAcc_interest() }</td>
+	                           <td id="securitiesBalance"><button class="btn btn-primary" onclick="showBalance('securitiesBalance');">Mes actions</button></td>
+	                        </tr>
+						</c:if>
+                        <c:if test="${empty client.getSavingAccount() }">
+	                        <tr>
+	                           <td>Créer un compte d'épargne</td>
+	                           <td><button class="btn btn-primary" onclick="createAccount('savingAccount');">Créer</button></td>
+	                        </tr>
+						</c:if>
+                        <c:if test="${empty client.getSecuritiesAccount() }">
+	                        <tr>
+	                           <td>Créer un compte de titre:</td>
+	                           <td><button class="btn btn-primary" onclick="createAccount('securitiesAccount');">Créer</button></td>
+	                        </tr>
+						</c:if>
                      </table>
+                     <c:if test="${not empty client.getSecuritiesAccount() }">
+                     	<table id="stockList">
+                     		<tr><th>Nom</th><th>Nombre</th><th>Prix par action actuel</th><th>Prix total actuel</th></tr>
+	                    </table>
+					</c:if>
                   </div>
                   <!-- Généralités comptes -->
                   
@@ -110,19 +120,20 @@
                      <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=currentHistory'">CSV</button>
                      <table id="currentHistory">
                      </table>
-                     <%if(clt.getSavingAccount() != null){ %>
-                     <p>Compte d'épargne: ${ client.getSavingAccount().getAcc_number() }</p>
-                     <button class="btn btn-primary" onclick="showTsh('savingHistory')">show</button>
-                     <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=savingHistory'">CSV</button>
-                     <table id="savingHistory">
-                     </table>
-                     <%} if(clt.getSecuritiesAccount() != null){ %>
-                     <p>Compte de titre: ${ client.getSecuritiesAccount().getAcc_number() }</p>
-                     <button class="btn btn-primary" onclick="showTsh('securitiesHistory')">show</button>
-                     <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=securitiesHistory'">CSV</button>
-                     <table id="securitiesHistory">
-                     </table>
-                     <%} %>
+                     <c:if test="${not empty client.getSavingAccount() }">
+	                     <p>Compte d'épargne: ${ client.getSavingAccount().getAcc_number() }</p>
+	                     <button class="btn btn-primary" onclick="showTsh('savingHistory')">show</button>
+	                     <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=savingHistory'">CSV</button>
+	                     <table id="savingHistory">
+	                     </table>
+	                 </c:if>
+                     <c:if test="${not empty client.getSecuritiesAccount() }">
+	                     <p>Compte de titre: ${ client.getSecuritiesAccount().getAcc_number() }</p>
+	                     <button class="btn btn-primary" onclick="showTsh('securitiesHistory')">show</button>
+	                     <button class="btn btn-primary" onclick="location.href='./SaveCsv?type=securitiesHistory'">CSV</button>
+	                     <table id="securitiesHistory">
+	                     </table>
+	                 </c:if>
                   </div>
                   <!-- Transaction history -->
                   
@@ -135,10 +146,10 @@
                            <div class="col-md-6">
                               <input id="radioCourant1" type="radio" name="emetteur" value="courant"> 
                               <label for="radioCourant1"> Compte courant</label>
-                              <% if(clt.getSavingAccount() != null) { %>
-                              <input id="radioEpargne1" type="radio" name="emetteur" value="epargne"> 
-                              <label for="radioEpargne1"> Compte d'epargne</label>
-                              <% } %>
+                     		  <c:if test="${not empty client.getSavingAccount() }">
+	                              <input id="radioEpargne1" type="radio" name="emetteur" value="epargne"> 
+	                              <label for="radioEpargne1"> Compte d'epargne</label>
+                              </c:if>
                            </div>
                         </div>
                         <div class="form-group">
@@ -146,10 +157,10 @@
                            <div class="col-md-6">
                               <input id="radioCourant2" type="radio" name="beneficiaire" value="courant">
                               <label for="radioCourant2"> Compte courant</label>
-                              <% if(clt.getSavingAccount() != null) { %>
-                              <input id="radioEpargne2" type="radio" name="beneficiaire" value="epargne">
-                              <label for="radioEpargne2"> Compte d'epargne</label>
-                              <% } %>
+                     		  <c:if test="${not empty client.getSavingAccount() }">
+	                              <input id="radioEpargne2" type="radio" name="beneficiaire" value="epargne">
+	                              <label for="radioEpargne2"> Compte d'epargne</label>
+                              </c:if>
                             <input id="radioExternal" type="radio" name="beneficiaire" value="external">
                               <label for="radioExternal">Virement externe</label>
                            </div>
@@ -205,10 +216,10 @@
                            <div class="col-md-8">
                               <input type="radio" id="addMoneyRadioCourant" name="recepteur" value="courant" required>
                               <label for="addMoneyRadioCourant">Compte courant</label>
-                              <% if(clt.getSavingAccount() != null) { %>
-                              <input type="radio" id="addMoneyRadioEpargne" name="recepteur" value="epargne">
-                              <label for="addMoneyRadioEpargne">Compte épargne</label>
-                              <%} %>
+                     		  <c:if test="${not empty client.getSavingAccount() }">
+	                              <input type="radio" id="addMoneyRadioEpargne" name="recepteur" value="epargne">
+	                              <label for="addMoneyRadioEpargne">Compte épargne</label>
+                              </c:if>
                            </div>
                         </div>
                         <div class="form-group">
@@ -411,12 +422,7 @@
       <script>
          window.onload = function() {
          	document.getElementById("customerarea").className = "dropdown active";
-         	/*if((new Date).getMonth() <= 10){
-         		document.getElementById("creditMonth").min = (new Date).getMonth() + 1;
-         	} else {
-         		document.getElementById("creditMonth").min = 12;
-         	}*/
-         	
+			$(".preloader").delay(300).fadeOut(500);
          };
          
          // show balance
@@ -431,7 +437,13 @@
          			break;
          		<%} if(clt.getSecuritiesAccount() != null){ %>
          		case "securitiesBalance":
-         			document.getElementById("securitiesBalance").innerHTML = <%= clt.getSecuritiesAccount().getAcc_balance() %>;
+         			document.getElementById("securitiesBalance").innerHTML = "";
+         			$(".preloader").fadeIn(300);
+         			$.get("./GetMyStockList", function(responseText){
+         				$('#stockList').find('tbody').append(responseText);
+             			$('#stockList').show();
+         				$(".preloader").fadeOut(1000);
+         			});
          			break;
          		<% } %>
          	}

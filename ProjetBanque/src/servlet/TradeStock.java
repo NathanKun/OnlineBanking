@@ -64,7 +64,7 @@ public class TradeStock extends HttpServlet {
 						if (hds.getHds_numberOfShares() >= nbShares) { // nbShares
 																		// control
 							isHdsFound = true;
-							Account acc = clt.getSecuritiesAccount();
+							Account acc = clt.getCurrentAccount();
 
 							// add money to account
 							acc.setAcc_balance(acc.getAcc_balance()
@@ -72,9 +72,18 @@ public class TradeStock extends HttpServlet {
 							acc.push();
 
 							// add transaction history
+							// current account + money
 							DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(),
 									"Vendre " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name(),
 									new DateTime(), new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
+
+							// securities account - stock
+							DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0,
+									clt.getSecuritiesAccount().getAcc_number(),
+									"Vendre " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name()
+											+ ", " + price + " euros par action",
+									new DateTime(), (new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))
+											.multiply(new BigDecimal(-1)))));
 
 							// delete(sold all) the holding share
 							if (hds.getHds_numberOfShares() == nbShares) {
@@ -108,7 +117,7 @@ public class TradeStock extends HttpServlet {
 															// stock.jsp
 					response.getWriter().print("No account");
 				} else {
-					Account acc = clt.getSecuritiesAccount();
+					Account acc = clt.getCurrentAccount();
 
 					if (acc.getAcc_balance().doubleValue() < (Double.valueOf(price) * Integer.valueOf(nbShares))) { // account
 																													// balance
@@ -120,10 +129,18 @@ public class TradeStock extends HttpServlet {
 								.subtract(new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
 						acc.push(); // update account to database
 
+						// current account - money
 						DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(),
 								"Acheter " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name(),
 								new DateTime(), new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))
 										.multiply(new BigDecimal(-1))));
+
+						// securities account + stock
+						DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0,
+								clt.getSecuritiesAccount().getAcc_number(),
+								"Acheter " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name() + ", "
+										+ price + " euros par action",
+								new DateTime(), new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
 
 						ArrayList<HoldingShare> hdsList = clt.getHoldingShare();
 						boolean isHdsFound = false;

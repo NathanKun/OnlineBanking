@@ -1,6 +1,10 @@
 package model;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+
 import dao.DaoStock;
+import util.HttpUtil;
 
 /**
  * Data transfer object of stock
@@ -38,6 +42,17 @@ public class Stock {
 		this.stk_ticker = ticker;
 		this.stk_name = name;
 		this.stk_description = description;
+	}
+	
+	public BigDecimal getCurrentPrice(){
+		String csv;
+		try {
+			csv = HttpUtil.get("http://finance.yahoo.com/d/quotes.csv?s=" + this.stk_ticker + "&f=l1d1t1c1ohg&e=.csv");
+	   		return new BigDecimal(csv.split(",")[0]);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return BigDecimal.ZERO;
+		}
 	}
 
 	/**

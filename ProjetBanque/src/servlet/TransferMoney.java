@@ -20,7 +20,7 @@ import model.TransactionHistory;
 /**
  * Servlet implementation class TransferMoney
  * 
- * @author
+ * @author HE Junyang
  */
 @WebServlet("/TransferMoney")
 public class TransferMoney extends HttpServlet {

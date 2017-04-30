@@ -17,6 +17,7 @@ import util.JsonReader;
 
 /**
  * Servlet implementation class SearchAddress
+ * @author HE Junyang
  */
 @WebServlet("/SearchAddress")
 public class SearchAddress extends HttpServlet {

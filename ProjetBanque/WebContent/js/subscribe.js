@@ -2,6 +2,8 @@
  * js file to handle subscribe events
  */
 
+var isEmailChecked = false;
+
 // accent folding for typeahead
 var charMap = {
 	"à" : "a",
@@ -117,6 +119,10 @@ function checkInputs() {
 	var city = document.getElementById("ville").value;
 	var email = document.getElementById("email").value;
 	var tel = document.getElementById("tel").value;
+	
+	var isOK = false;
+	var rt = false;
+	
 	if (checkXSS(fname)) {
 		if (checkXSS(lname)) {
 			if (checkXSS(address)) {
@@ -125,46 +131,56 @@ function checkInputs() {
 						if (checkXSS(email)) {
 							if (checkXSS(tel)) {
 								if (tel.startsWith("0") && tel.length == 10) {
-									return true;
+									isOK = true;
 								} else if (tel.startsWith("+33")
 										&& tel.length == 12) {
-									return true;
+									isOK = true;
 								} else if (tel.startsWith("0033")
 										&& tel.length == 13) {
-									return true;
+									isOK = true;
 								} else {
-									alert("Votre numéro de téléphone est incorrect");
-									return false;
+									$('#hint').text("Votre numéro de téléphone est incorrect");
 								}
 							} else {
-								alert("Les caractères spécials sont interdits dans le numéro de téléphone");
-								return false;
+								$('#hint').text("Les caractères spécials sont interdits dans le numéro de téléphone");
 							}
 						} else {
-							alert("Les caractères spécials sont interdits dans le mail");
-							return false;
+							$('#hint').text("Les caractères spécials sont interdits dans le mail");
 						}
 					} else {
-						alert("Les caractères spécials sont interdits dans le nom de la ville");
-						return false;
+						$('#hint').text("Les caractères spécials sont interdits dans le nom de la ville");
 					}
 				} else {
-					alert("Les caractères spécials sont interdits dans le code postal");
-					return false;
+					$('#hint').text("Les caractères spécials sont interdits dans le code postal");
 				}
 			} else {
-				alert("Les caractères spécials sont interdits dans l'adresse");
-				return false;
+				$('#hint').text("Les caractères spécials sont interdits dans l'adresse");
 			}
 		} else {
-			alert("Les caractères spécials sont interdits dans le nom");
-			return false;
+			$('#hint').text("Les caractères spécials sont interdits dans le nom");
 		}
 	} else {
-		alert("Les caractères spécials sont interdits dans le prénom");
-		return false;
+		$('#hint').text("Les caractères spécials sont interdits dans le prénom");
 	}
-	return false;
+
+	if(isOK && !isEmailChecked){
+		$.post( "./EmailCheck", { action: "send", email: $('#email').val() })
+		  .done(function(res) {
+			    if(res == "ok"){
+					$('#subscribeFormDiv').hide();
+					$('#submitBtn').prop('disabled', true);
+					$('#emailCheckDiv').show();
+					$('#hint').text("");
+			    } else {
+					$('#hint').text("ERREUR");
+			    }
+		});
+	} else if(isOK && isEmailChecked){
+		rt = true;
+	}
+	
+	return rt;
+	
 }
 
 // check if 2 passwords are the same
@@ -173,42 +189,28 @@ function checkPw() {
 	var pw2 = document.getElementById("password2").value;
 
 	if (pw1.length < 6) {
-		document.getElementById('submit').disabled = true;
+		document.getElementById('submitBtn').disabled = true;
 		document.getElementById("hint").innerHTML = "Le mot de passe est trop court";
 	} else {
 		if (pw1 == pw2) {
-			document.getElementById('submit').disabled = false;
+			document.getElementById('submitBtn').disabled = false;
 			document.getElementById("hint").innerHTML = "";
 		} else {
-			document.getElementById('submit').disabled = true;
+			document.getElementById('submitBtn').disabled = true;
 			document.getElementById("hint").innerHTML = "Deux mots de passe sont différents";
 		}
 	}
 }
 
-function jsoncallback(data) {
-	// il y a une erreur retournée
-	if (typeof data.erreur != "undefined") {
-		// mettre en place un affichage
-		alert('Erreur ramenée par le serveur\n Libellé : ' + data.erreur);
-		// $("#cpoucommune").hide();
-		return;
-	}
-	// Rien trouvé
-	if (data.count == 0) {
-		$("#bc_dpt").hide();
-		$("#pasglop").show().delay(2000).fadeOut();
-		return;
-	}
 
-	document.getElementById("ville").value = data[1].ville; // start by 1
-};
-
-function getCity() {
-	// set nationality list
-	if ($("#codepostal").val().length == 5) {
-		$.getJSON("http://www.cp-ville.com/cpcom.php?jsoncallback=?", {
-			cpcommune : document.getElementById("codepostal").value
-		});
-	}
-}
+$(document).on("click", "#emailCheckSubmit", function() {
+	$.post( "./EmailCheck", { action: "check", code: $('#code').val() })
+	  .done(function(res) {
+    	if(res == "incorrect"){
+            $("#hint2").text("Code incorrect");
+    	} else if(res == "ok"){
+    		isEmailChecked = true;
+    		$('#subscribeForm').submit();
+    	}
+    });
+});

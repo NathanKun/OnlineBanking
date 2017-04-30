@@ -2,6 +2,8 @@ package model;
 
 import org.joda.time.DateTime;
 
+import dao.DaoStock;
+
 /**
  * Data transfer object of Holding share
  * 
@@ -56,6 +58,9 @@ public class HoldingShare {
 		this.hds_boughtOn = boughtOn;
 	}
 	
+	public Stock getStock(){
+		return DaoStock.getStock(this.hds_stk_ticker);
+	}
 
 	/**
 	 * @return the hds_id
