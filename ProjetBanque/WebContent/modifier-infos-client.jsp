@@ -354,6 +354,9 @@
 							</div>
 						</div>
 
+						
+						<legend>Le mot de passe ne sera pas changé si vous le laisser vide</legend>
+
 						<!-- Text input-->
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="revMensNet">Choisissez
@@ -391,9 +394,12 @@
 						<!-- Button -->
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="send"></label>
-							<div class="col-md-6">
+							<div class="col-md-3">
 								<input type="submit" value=" Modifier" id="submit" name="send"
 									class="btn btn-primary">
+							</div>
+							<div class="col-md-3">
+								<button class="btn btn-primary" onclick="location.href='./zoneclient.jsp';">Retour</button>
 							</div>
 						</div>
 

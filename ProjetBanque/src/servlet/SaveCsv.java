@@ -55,11 +55,11 @@ public class SaveCsv extends HttpServlet {
 				break;
 			}
 
-			BufferedWriter dataOut;
+			String path = request.getServletContext().getRealPath("WEB-INF/../") + "data.csv";
+			BufferedWriter dataOut  = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false),"UTF-8"));
+			
 			try {
 				System.out.println("Wrinting file...");
-				String path = request.getServletContext().getRealPath("WEB-INF/../") + "data.csv";
-				dataOut = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false),"UTF-8"));
 				// UTF-8 BOM to tell excel the file encode in UTF-8
 				dataOut.write("\uFEFF");
 				// Tell excel to use',' as CSV separator
@@ -84,10 +84,12 @@ public class SaveCsv extends HttpServlet {
 					dataOut.flush();
 				}
 
-				dataOut.close();
-				System.out.println("File write complete!");
+				System.out.println("Write file complete!");
 			} catch (Exception e) {
+				System.out.println("Write file faild!");
 				e.printStackTrace();
+			} finally {
+				dataOut.close();
 			}
 
 			response.sendRedirect(request.getContextPath() + "/data.csv");

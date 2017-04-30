@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS contactform_ctf (
 	ctf_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ctf_name VARCHAR(60) NOT NULL,
     ctf_email VARCHAR(255) NOT NULL,
-    ctf_tel VARCHAR(10),
+    ctf_tel VARCHAR(13),
     ctf_message TEXT
 ) ENGINE = Innodb;
     

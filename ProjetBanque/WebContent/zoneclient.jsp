@@ -129,7 +129,7 @@
                   
                   <div class="tab-pane fade" id="virement">
                      <h3>Effectuer un virement :</h3>
-                     <form class="form-horizontal" id="transferForm" action="./TransferMoney" method="post" onsubmit="return checkInputs()" accept-charset="UTF-8">
+                     <form class="form-horizontal" id="transferForm" action="./TransferMoney" onsubmit="return transferSubmit();" method="post" accept-charset="UTF-8">
                         <div class="form-group">
                            <label class="col-md-4 control-label">Compte à débiter :</label>
                            <div class="col-md-6">
@@ -138,9 +138,6 @@
                               <% if(clt.getSavingAccount() != null) { %>
                               <input id="radioEpargne1" type="radio" name="emetteur" value="epargne"> 
                               <label for="radioEpargne1"> Compte d'epargne</label>
-                              <% } if(clt.getSecuritiesAccount() != null) { %>
-                              <input id="radioTitre1" type="radio" name="emetteur" value="titre"> 
-                              <label for="radioTitre1"> Compte de titre</label>
                               <% } %>
                            </div>
                         </div>
@@ -152,9 +149,6 @@
                               <% if(clt.getSavingAccount() != null) { %>
                               <input id="radioEpargne2" type="radio" name="beneficiaire" value="epargne">
                               <label for="radioEpargne2"> Compte d'epargne</label>
-                              <% } if(clt.getSecuritiesAccount() != null) { %>
-                              <input id="radioTitre2" type="radio" name="beneficiaire" value="titre">
-                              <label for="radioTitre2"> Compte de titre</label>
                               <% } %>
                             <input id="radioExternal" type="radio" name="beneficiaire" value="external">
                               <label for="radioExternal">Virement externe</label>
@@ -186,12 +180,14 @@
                         <div class="form-group">
                            <label class="col-md-6 control-label" id="transferHint"></label>
                         </div>
+                        <div class="form-group">
+                           <label id="transferMoneyHint" class="col-md-8 control-label"></label>
+                        </div>
                         <!-- Button -->
                         <div class="form-group">
-                           <label class="col-md-4 control-label" for="send">                                   </label>
+                           <label class="col-md-6 control-label" for="send">                                   </label>
                            <div class="col-md-4">
-                              <input type="submit" value=" Valider" id="submit" name="send"
-									class="btn btn-primary">
+                              <input type="submit" value=" Valider" id="submit" name="send" class="btn btn-primary">
                            </div>
                         </div>
                      </form>
@@ -202,23 +198,23 @@
                  <div class="tab-pane fade" id="creditercompte">
                      <h4>Alimenter mon compte</h4>
                      
-                     <form id="form" class="form-horizontal" action="./AddMoneyToMyAccount"
-					method="post" onsubmit="return checkInputs()" accept-charset="UTF-8">
+                     <form id="addMoneyForm" class="form-horizontal" action="./AddMoneyToMyAccount"
+					method="post" accept-charset="UTF-8">
                         <div class="form-group">
                            <label class="col-md-4 control-label">Compte à créditer: </label>
                            <div class="col-md-8">
-                              <input type="radio"  name="recepteur" value="courant" required>
-                              <label for="recepteur">Compte courant</label>
-                              <input type="radio"  name="recepteur" value="epargne">
-                              <label for="recepteur">Compte épargne</label>
-                              <input type="radio" name="recepteur" value="titre"> 
-                              <label for="recepteur">Compte titre</label>
+                              <input type="radio" id="addMoneyRadioCourant" name="recepteur" value="courant" required>
+                              <label for="addMoneyRadioCourant">Compte courant</label>
+                              <% if(clt.getSavingAccount() != null) { %>
+                              <input type="radio" id="addMoneyRadioEpargne" name="recepteur" value="epargne">
+                              <label for="addMoneyRadioEpargne">Compte épargne</label>
+                              <%} %>
                            </div>
                         </div>
                         <div class="form-group">
                            <label class="col-md-4 control-label" for="montant">Montant:</label>
                            <div class="col-md-4">
-                              <input type="text" class="form-control" name="montant" required 
+                              <input type="text" id="addMoneyAmount" class="form-control" name="montant" required 
                                  onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                            </div>
                         </div>
@@ -258,13 +254,14 @@
                         <div class="form-group">
                            <label class="col-md-4 control-label" for="nom">Date d'expiration: </label>  
                            <div class="col-md-2">
-                              <input id="creditMonth" name="mois" class="form-control input-md" 
+                              <input id="addMoneyMonth" name="mois" class="form-control input-md" 
                                  placeholder="MM" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="2" 
-                                 required min="1" max="12" type="number">
+                                 required min="1" max="12" type="number" maxlength="2">
                            </div>
                            <div class="col-md-2">
-                              <input id="alimenterYear" name="annee" class="form-control input-md" 
-                                 placeholder="YYYY" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="4" required min="2017" max="2099" type="number">
+                              <input id="addMoneyYear" name="annee" class="form-control input-md" 
+                                 placeholder="YYYY" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="4" 
+                                 required min="2017" max="2099" type="number" maxlength="2">
                            </div>
                         </div>
                         <!-- Text input-->
@@ -279,11 +276,14 @@
                         </div>
                         <!-- Button -->
                         <div class="form-group">
-                           <label class="col-md-4 control-label" for="send">                                   </label>
+                           <label class="col-md-6 control-label" for="send">                                   </label>
                            <div class="col-md-4">
                               <input type="submit" value=" Valider" id="submit" name="send"
 									class="btn btn-primary">
                            </div>
+                        </div>
+                        <div class="form-group">
+                           <label id="addMoneyHint" class="col-md-8 control-label"></label>
                         </div>
                      </form>
                   </div>
@@ -493,12 +493,10 @@
          }
          
          // Transfer money's inputs control
-         function transferCheck() {
+         function transferSelect() {
              var emetteur=$('[name="emetteur"]:checked').val();
              var beneficiaire=$('[name="beneficiaire"]:checked').val();
              
-             
-         
              if(emetteur == "courant"){
              	$("#radioCourant2").prop('disabled', true);
              } else {
@@ -515,29 +513,6 @@
              	$("#radioTitre2").prop('disabled', false);
              }
              
-             if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre" && 
-             		beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre") {
-             	$("#transferSubmit").prop('disabled', true); // initial stat
-            } else if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre") {
-             	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Veuillez choisir un compte a debiter.");
-            } else if(beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre" && beneficiaire != "external") {
-             	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Veuillez choisir un bénéficiaire.");
-            } else if(beneficiaire == "external" && !(IBAN.isValid($("#transferIban").val())) ) {
-             	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("IBAN incorrect");
-            } else if(emetteur == beneficiaire){
-             	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Le compte a debiter et le beneficiaire est le même.");
-            } else if(!$("#transferAmount").val()){
-             	$("#transferSubmit").prop('disabled', true);
-             	$("#transferHint").text("Veuillez entrer une somme de virement.");
-			} else {
-         	    $("#transferSubmit").prop('disabled', false);
-         	    $("#transferHint").text("");
-            }
-             
              if(beneficiaire == "external"){
             	 $('#transferIbanDiv').show();
              } else {
@@ -547,23 +522,79 @@
          
          
          // transfer radio button on change event
-         $(document).on("change", "input[type=radio]", transferCheck);
+         $(document).on("change", "input[type=radio]", transferSelect);
+         
+         function transferSubmit() {
+             var emetteur=$('[name="emetteur"]:checked').val();
+             var beneficiaire=$('[name="beneficiaire"]:checked').val();
+             var rt = false;
+
+    		$("#transferHint").css('color', 'red');
+            if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre" && 
+             		beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre") {
+             	//$("#transferSubmit").prop('disabled', true); // initial stat
+            } else if(emetteur != "courant" && emetteur != "epargne" && emetteur != "titre") {
+             	//$("#transferSubmit").prop('disabled', true);
+             	$("#transferHint").text("Veuillez choisir un compte a debiter.");
+            } else if(beneficiaire != "courant" && beneficiaire != "epargne" && beneficiaire != "titre" && beneficiaire != "external") {
+             	//$("#transferSubmit").prop('disabled', true);
+             	$("#transferHint").text("Veuillez choisir un bénéficiaire.");
+            } else if(beneficiaire == "external" && !(IBAN.isValid($("#transferIban").val())) ) {
+             	//$("#transferSubmit").prop('disabled', true);
+             	$("#transferHint").text("IBAN incorrect");
+            } else if(emetteur == beneficiaire){
+             	//$("#transferSubmit").prop('disabled', true);
+             	$("#transferHint").text("Le compte a debiter et le beneficiaire est le même.");
+            } else if(!$("#transferAmount").val()){
+             	//$("#transferSubmit").prop('disabled', true);
+             	$("#transferHint").text("Veuillez entrer une somme de virement.");
+			} else {
+         	    //$("#transferSubmit").prop('disabled', false);
+         	    $("#transferHint").text("");
+         	    rt = true;
+            }
+             
+             return rt;
+         }
          
          
          // Ajax transfer money and get result
          $(document).on("submit", "#transferForm", function() {
-                   var $form = $(this);
-                   $.post($form.attr("action"), $form.serialize(), function(responseText) {
-                   	alert(responseText);
-                   	if(responseText == "No enough money")
-                       	$("#transferHint").text("L'argent insuffisant dans le compte a debiter");
-                   	else{
-                   		alert("Virement effectue.");
-                   		window.location.reload();
-                   	}
-                   });
-                   event.preventDefault(); // Important! Prevents submitting the form.
-               });
+        	 if(transferSubmit()){
+        		 var $form = $(this);
+                 $.post($form.attr("action"), $form.serialize(), function(responseText) {
+                 	if(responseText == "No enough money") {
+                     	$("#transferHint").text("L'argent insuffisant dans le compte à debiter");
+           				$("#transferHint").css('color', 'red');
+                 } else{
+                      $("#transferHint").text("Virement effectué.");
+               		$("#transferHint").css('color', 'green');
+                 		setTimeout(function(){window.location.reload()}, 2000);
+                 		$('#transferAmount').val("");
+                 	}
+                 });
+        	 }  
+             event.preventDefault(); // Prevents submitting the form.
+         });
+         
+         
+ 		// Ajax to add money to account and get return message
+         $(document).on("submit", "#addMoneyForm", function() {
+         	if(($('#addMoneyYear').val() == new Date().getFullYear()) 
+         			&& ($('#addMoneyMonth').val() < (new Date().getMonth() + 1))){
+         		$("#addMoneyHint").text("La date d'expiration de votre carte est atteinte.");
+         		$("#addMoneyHint").css('color', 'red');
+         	} else {
+         		var $form = $(this);
+                $.post($form.attr("action"), $form.serialize(), function(responseText) {
+                    $("#addMoneyHint").text("Votre demande est bien enregistré");
+             		$("#addMoneyHint").css('color', 'green');
+             		$('#addMoneyAmount').val("");
+               		setTimeout(function(){window.location.reload()}, 2000);
+                });
+         	}
+             event.preventDefault();
+         });
       </script>
    </body>
 </html>

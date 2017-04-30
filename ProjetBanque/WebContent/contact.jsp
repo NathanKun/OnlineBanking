@@ -91,7 +91,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h3>Envoyez nous un message</h3>
-                <form id="form" name="sentMessage" id="contactForm" action="./Contact" onsubmit='return checkInput();'>
+                <form id="form" name="sentMessage" id="contactForm" action="./Contact">
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Nom complet :</label>
@@ -102,7 +102,9 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Numéro de téléphone :</label>
-                            <input type="text" class="form-control" id="phone" name="phone" maxlength="10" required data-validation-required-message="Please enter your phone number.">
+                            <input type="text" class="form-control" id="phone" name="phone" maxlength="13" 
+                            required data-validation-required-message="Please enter your phone number." 
+                            onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 43'>
                         </div>
                     </div>
                     <div class="control-group form-group">
@@ -122,7 +124,7 @@
                     <input type="submit" class="btn btn-primary" value="Envoyez le message">
                
 					<br> <br>
-					<label id="hint"></label>
+					<label id="hint" class="hint"></label>
                 </form>
             </div>
 
@@ -153,15 +155,23 @@
 	<script>
 		// ajax to save the form and get return message
         $(document).on("submit", "#form", function() {
-            var $form = $(this);
-            $.post($form.attr("action"), $form.serialize(), function(responseText) {
-                $("#hint").text(responseText);
-            });
+        	if(checkInputs()){
+        		var $form = $(this);
+                $.post($form.attr("action"), $form.serialize(), function(responseText) {
+            		$("#hint").css('color', 'green');
+                    $("#hint").text(responseText);
+                });
+                
+                // clear inputs
+                $('#phone').val("");
+                $('#name').val("");
+                $('#email').val("");
+                $('#message').val("");
+        	}
             event.preventDefault(); // Important! Prevents submitting the form.
         });
 		
-        <script>
-        function checkInput() {
+        function checkInputs() {
         	var tel = $('#phone').val();
         	if (tel.startsWith("0") && tel.length == 10) {
     			return true;
@@ -172,11 +182,12 @@
     				&& tel.length == 13) {
     			return true;
     		} else {
-    			alert("Votre numéro de téléphone est incorrect");
+        		$("#hint").css('color', 'red');
+    			$("#hint").text("Votre numéro de téléphone est incorrect");
     			return false;
     		}
+			return false;
         }
-        </script>
     </script>
     
 </body>

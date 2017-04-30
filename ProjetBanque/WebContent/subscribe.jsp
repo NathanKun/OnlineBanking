@@ -92,13 +92,13 @@
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="Ddn">Date de Naissance</label>  
                           <div class="col-md-2">
-                          	<input class="form-control input-md" type="number" name="jour" min="1" max="31" required >
+                          	<input class="form-control input-md" type="number" name="jour" min="1" max="31" maxlength="2" required >
                           </div>
                           <div class="col-md-2">
-				            <input class="form-control input-md" type="number"  name="mois" min="1" max="12" required >
+				            <input class="form-control input-md" type="number"  name="mois" min="1" max="12" maxlength="2" required >
                           </div>
                           <div class="col-md-2">
-				            <input class="form-control input-md" type="number"  name="annee" min="1900" max="2000" required >
+				            <input class="form-control input-md" type="number"  name="annee" min="1900" max="2000" maxlength="4" required >
                           </div>
                         </div>
 
