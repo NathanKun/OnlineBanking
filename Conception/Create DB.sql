@@ -12,13 +12,13 @@ DROP TABLE IF EXISTS stock_stk;
 DROP TABLE IF EXISTS transactionhistory_tsh;
 DROP TABLE IF EXISTS account_acc;
 DROP TABLE IF EXISTS client_clt;
-DROP PROCEDURE IF EXISTS InsertRvariableandToSHP;
+DROP PROCEDURE IF EXISTS InsertRandToSHP;
     
 CREATE TABLE IF NOT EXISTS manager_mng (
 	mng_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    mng_name VARCHAR(60) NOT NULL,
-	mng_login VARCHAR(20) NOT NULL UNIQUE,
-    mng_password VARCHAR(178) NOT NULL
+    mng_name VARCHAR(30) NOT NULL,
+	mng_login VARCHAR(30) NOT NULL UNIQUE,
+    mng_password VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS advisor_avs (

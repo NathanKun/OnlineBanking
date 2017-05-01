@@ -14,6 +14,7 @@ import model.Advisor;
 import model.Client;
 import model.ContactForm;
 import model.HoldingShare;
+import model.Manager;
 import model.News;
 import model.Stock;
 import model.StockHistoricalPrice;
@@ -67,6 +68,7 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement(sql);
 			switch (type) {
+			case "Manager":
 			case "Advisor":
 			case "Client":
 			case "Account":
@@ -93,6 +95,11 @@ abstract public class Dao {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				switch (type) {
+				case "Manager":
+					retour = new Manager(rs.getInt("mng_id"), rs.getString("mng_name"), rs.getString("mng_login"), 
+							rs.getString("mng_password"));
+					break;
+					
 				case "News":
 					retour = new News(rs.getInt("nws_id"), rs.getString("nws_title"), rs.getString("nws_text"), 
 							rs.getString("nws_image"), rs.getString("nws_type"), new DateTime(rs.getTimestamp("nws_date")));
@@ -213,6 +220,13 @@ abstract public class Dao {
 
 			// we crosse all the line of the results
 			switch (type) {
+			case "Manager":
+				while (rs.next()) {
+					returnList.add(new Manager(rs.getInt("mng_id"), rs.getString("mng_name"), rs.getString("mng_login"), 
+							rs.getString("mng_password")));
+				}
+				break;
+			
 			case "find3BankNews":
 			case "find3OtherNews":
 			case "findAllBankNews":
@@ -370,6 +384,14 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "Manager":
+				Manager mng = (Manager) item;
+				ps = con.prepareStatement("INSERT INTO manager_mng VALUES(null, ?, ?, ?)");
+				ps.setString(1, mng.getmng_name());
+				ps.setString(2, mng.getmng_login());
+				ps.setString(3, mng.getmng_password());
+				break;
+			
 			case "News":
 				News nws = (News) item;
 				ps = con.prepareStatement("INSERT INTO news_nws VALUES(null, ?, ?, ?, ?, NOW())");
@@ -524,6 +546,10 @@ abstract public class Dao {
 			boolean isStringTypeCorrect = true;
 
 			switch (type) {
+			case "Manager":
+				ps = con.prepareStatement("DELETE FROM manager_mng WHERE mng_id=?");
+				break;
+			
 			case "News":
 				ps = con.prepareStatement("DELETE FROM news_nws WHERE nws_id=?");
 				break;
@@ -617,6 +643,16 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "Manager":
+				Manager mng = (Manager) item;
+				ps = con.prepareStatement(
+						"UPDATE manager_mng SET mng_login=?, mng_password=?, mng_name=? WHERE mng_id=?");
+				ps.setString(1, mng.getmng_login());
+				ps.setString(2, mng.getmng_password());
+				ps.setString(3, mng.getmng_name());
+				ps.setInt(4, mng.getmng_id());
+				break;
+				
 			case "Advisor":
 				Advisor advisor = (Advisor) item;
 				ps = con.prepareStatement(
