@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS onlineBank;
 #DROP DATABASE onlinebank;
 USE onlinebank;
 
+DROP TABLE IF EXISTS manager_mng;
 DROP TABLE IF EXISTS news_nws;
 DROP TABLE IF EXISTS advisor_avs;
 DROP TABLE IF EXISTS contactform_ctf;
@@ -11,9 +12,15 @@ DROP TABLE IF EXISTS stock_stk;
 DROP TABLE IF EXISTS transactionhistory_tsh;
 DROP TABLE IF EXISTS account_acc;
 DROP TABLE IF EXISTS client_clt;
-DROP PROCEDURE IF EXISTS InsertRandToSHP;
+DROP PROCEDURE IF EXISTS InsertRvariableandToSHP;
     
-    
+CREATE TABLE IF NOT EXISTS manager_mng (
+	mng_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    mng_name VARCHAR(60) NOT NULL,
+	mng_login VARCHAR(20) NOT NULL UNIQUE,
+    mng_password VARCHAR(178) NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS advisor_avs (
 	avs_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     avs_name VARCHAR(60) NOT NULL,
