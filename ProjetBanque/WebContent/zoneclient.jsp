@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page
    import="model.Client, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList, org.joda.time.format.DateTimeFormat"%>
 <%@ include file="./includes/sessionCheck.inc.jsp"%>

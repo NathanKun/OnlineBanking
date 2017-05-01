@@ -35,7 +35,7 @@ abstract public class Dao {
 	/**
 	 * load jdbc driver
 	 */
-	public Dao() {
+	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
