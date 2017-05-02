@@ -1,4 +1,4 @@
-package src.dao;
+package dao;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class DaoManager extends Dao{
 	 */
 	public static Manager getManager(int id){
 		String sql = "SELECT * FROM manager_mng WHERE mng_id = ?";
-		manager mng = (Manager) getOne("Manager", sql, id);
+		Manager mng = (Manager) getOne("Manager", sql, id);
 		return mng;
 	}
 	
