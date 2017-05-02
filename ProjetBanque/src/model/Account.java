@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -13,7 +14,12 @@ import dao.DaoTransactionHistory;
  * @author Junyang HE
  *
  */
-public class Account {
+public class Account implements Serializable{
+
+	/**
+	 * generated serialVersionUID
+	 */
+	private static final long serialVersionUID = -2423945948890528730L;
 
 	/**
 	 * l'id du compte

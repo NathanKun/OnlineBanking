@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * Classe Client
@@ -19,7 +20,11 @@ import dao.DaoHoldingShare;
  * @author Junyang HE
  *
  */
-public class Client {
+public class Client implements Serializable{
+	/**
+	 * generated serialVersionUID
+	 */
+	private static final long serialVersionUID = 1423389198819788270L;
 	/**
 	 * L'identifiant du client
 	 */

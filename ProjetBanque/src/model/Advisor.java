@@ -1,12 +1,18 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Data transfer object of Advisor
  * 
  * @author Junyang HE
  *
  */
-public class Advisor {
+public class Advisor implements Serializable{
+	/**
+	 * generated serialVersionUID
+	 */
+	private static final long serialVersionUID = -8886234657997605636L;
 	private int avs_id;
 	private String avs_name;
 	private String avs_login;

@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListCellRenderer;
@@ -23,11 +24,10 @@ import javax.swing.table.TableColumnModel;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.format.DateTimeFormat;
 
-import dao.DaoClient;
 import model.Account;
 import model.Client;
 import model.TransactionHistory;
-import util.SetTheme;
+import server.DbClient;
 
 /**
  * Gui of main page of the system
@@ -44,7 +44,7 @@ public class GuiMain extends JFrame {
 	/**
 	 * full client list
 	 */
-	private final ArrayList<Client> clientList = DaoClient.getClientList();
+	private ArrayList<Client> clientList;
 	/**
 	 * label shows: Liste des clients
 	 */
@@ -110,6 +110,12 @@ public class GuiMain extends JFrame {
 	 * Constructor of jframe
 	 */
 	public GuiMain() {
+		try {
+			clientList = DbClient.getClientList();
+		} catch (IOException e) {
+			clientList = new ArrayList<Client> ();
+			e.printStackTrace();
+		}
 		setFont(new Font("Arial", Font.PLAIN, 15));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(1024, 566);
