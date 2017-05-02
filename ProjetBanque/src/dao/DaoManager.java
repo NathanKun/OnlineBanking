@@ -71,13 +71,6 @@ public class DaoManager extends Dao{
 	public static int updateManager(Manager mng) {
 		return Dao.updateLine("Manager", mng);
 	}
-	
-	
-	public static Manager findManagerByLogin(String login) {
-		String sql = "SELECT * FROM manager_mng WHERE mng_login=?";
-		Manager mng = (Manager) getOne("FindManagerByLogin", sql, login);
-		return mng;
-	}
 
 
 	/**
@@ -87,11 +80,11 @@ public class DaoManager extends Dao{
 	 */
 	public static void main(String args[]){
 		// insert test
-//		Manager mng = new Manager(0, "addtestName", "login3", "pw");
+//		Manager mng = new Manager(0, "addtestName2", "login2", "pw2");
 //		System.out.println(DaoManager.addManager(mng));
-//		
+
 		// get one test
-//		System.out.println(DaoManager.getManager(3));
+//		System.out.println(DaoManager.getManager(2));
 		
 		// get all test
 //		for (Manager mng : DaoManager.getManagerList()){
@@ -99,18 +92,15 @@ public class DaoManager extends Dao{
 //		}
 		
 		// delete test
-//		DaoManager.deleteManager(7);
+//		DaoManager.deleteManager(1);
 		
 //		// Update test
-//		Manager mng = DaoManager.getManager(9);
+//		Manager mng = DaoManager.getManager(2);
 //		mng.setmng_login("112233");
 //		mng.setmng_password("updatedPw");
 //		mng.setmng_name("updatedName");
 //		DaoManager.updateManager(mng);
-//		System.out.println(DaoManager.getManager(9).toString());
-		
-		// find Manager by login test
-//		System.out.println(findManagerByLogin(" "));
+//		System.out.println(DaoManager.getManager(2).toString());
 		
 	}
 }

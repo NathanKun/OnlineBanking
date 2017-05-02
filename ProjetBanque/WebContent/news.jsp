@@ -33,9 +33,7 @@
                 <!-- Page Heading/Breadcrumbs -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Qui  sommes-nous ?
-               <small>BanKrading</small>
-            </h1>
+                        <h1 class="page-header">Actualités<small>BanKrading</small></h1>
                         <ol class="breadcrumb">
                             <li><a href="index.jsp">Accueil</a>
                             </li>
@@ -43,7 +41,19 @@
                         </ol>
                     </div>
                 </div>
-                <!-- /.row -->
+                
+                <div class="row">
+                	<form action="./newsList.jsp" method="get" accept-charset="UTF-8" class="form-horizontal">
+		                <div class="form-group">
+				            <div class="col-md-6">
+				            	<input id="search" name="search" placeholder="Mots clés" class="form-control input-md" type="text">
+				            </div>
+		                    <div class="col-md-6">
+		                    	<input type="submit" value="Rechercher" id="searchBtn" class="btn btn-primary">
+		                    </div>
+			            </div>
+		            </form>
+                </div>
 
                 <div class='container-fluid'>
                     <div class='row'>
@@ -55,7 +65,7 @@
                     </div>
                     <div class='row'>
                         <!--STYLE1-->
-                        <a href='#' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./newsArticle.jsp?newsId=<%=otherNewsList.get(0).getNws_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                             <article class='style1'>
                                 <div class='date'>
                                     <%=otherNewsList.get(0).getNws_type() %>
@@ -73,7 +83,7 @@
                                 </div>
                             </article>
                         </a>
-                        <a href='#' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./newsArticle.jsp?newsId=<%=otherNewsList.get(1).getNws_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                             <article class='style1'>
                                 <div class='date'>
                                     <%=otherNewsList.get(1).getNws_type() %>
@@ -91,7 +101,7 @@
                                 </div>
                             </article>
                         </a>
-                        <a href='#' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./newsArticle.jsp?newsId=<%=otherNewsList.get(2).getNws_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                             <article class='style1'>
                                 <div class='date'>
                                     <%=otherNewsList.get(2).getNws_type() %>
@@ -118,11 +128,12 @@
                         <nav class='col-xs-12'>
                             <div class='newsnav'>
                                 <div id='recentnews'><i class="fa fa-newspaper-o"></i><span class='hidden-xxs'>Actualités de la banque</span></div>
+                                
                             </div>
                         </nav>
                     </div>
                     <div class='row'>
-                        <a href='#' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./newsArticle.jsp?newsId=<%=bankNewsList.get(0).getNws_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                             <article class='style1'>
                                 <div class='date'>
                                     <%=bankNewsList.get(0).getNws_type() %>
@@ -140,7 +151,7 @@
                                 </div>
                             </article>
                         </a>
-                        <a href='#' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./newsArticle.jsp?newsId=<%=bankNewsList.get(1).getNws_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                             <article class='style1'>
                                 <div class='date'>
                                     <%=bankNewsList.get(1).getNws_type() %>
@@ -158,7 +169,7 @@
                                 </div>
                             </article>
                         </a>
-                        <a href='#' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./newsArticle.jsp?newsId=<%=bankNewsList.get(2).getNws_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                             <article class='style1'>
                                 <div class='date'>
                                     <%=bankNewsList.get(2).getNws_type() %>

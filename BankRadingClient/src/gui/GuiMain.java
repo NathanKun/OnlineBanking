@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Component;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListCellRenderer;
@@ -26,6 +27,7 @@ import dao.DaoClient;
 import model.Account;
 import model.Client;
 import model.TransactionHistory;
+import util.SetTheme;
 
 /**
  * Gui of main page of the system
@@ -95,15 +97,22 @@ public class GuiMain extends JFrame {
 	 * jlist contains all account of selected client
 	 */
 	private JList<Account> jlistAccount = new JList<Account>(modelJListAccount);
+	/**
+	 * scroll pane for transaction history table
+	 */
 	private final JScrollPane jspTSHTable = new JScrollPane();
+	/**
+	 * scroll pane for client list
+	 */
 	private final JScrollPane jspClientList = new JScrollPane();
 	
 	/**
 	 * Constructor of jframe
 	 */
 	public GuiMain() {
+		setFont(new Font("Arial", Font.PLAIN, 15));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(1024, 768);
+		setSize(1024, 566);
 		setTitle("Front Office Advisor System");
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -118,21 +127,26 @@ public class GuiMain extends JFrame {
 	 * initiate components
 	 */
 	private void initComponents() {
+		lbClientList.setFont(new Font("Arial", Font.PLAIN, 15));
 		// labels
 		lbClientList.setBounds(6, 15, 219, 21);
 		getContentPane().add(lbClientList);
+		lbAccountList.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		lbAccountList.setBounds(237, 271, 341, 18);
+		lbAccountList.setBounds(237, 399, 341, 18);
 		getContentPane().add(lbAccountList);
+		lbInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		lbInfo.setBounds(237, 16, 341, 18);
 		getContentPane().add(lbInfo);
+		lbTransactionHistory.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		lbTransactionHistory.setBounds(237, 355, 341, 18);
+		lbTransactionHistory.setBounds(237, 576, 341, 18);
 		getContentPane().add(lbTransactionHistory);
-		jspClientList.setBounds(6, 68, 219, 654);
+		jspClientList.setBounds(6, 68, 219, 460);
 		
 		getContentPane().add(jspClientList);
+		jlistClient.setFont(new Font("Arial", Font.PLAIN, 15));
 		jspClientList.setViewportView(jlistClient);
 		// set a custom renderer to jlist which show client's full name when it contains a list of Client objects
 		jlistClient.setCellRenderer(new DefaultListCellRenderer() {
@@ -166,6 +180,7 @@ public class GuiMain extends JFrame {
 			}
 			
 		});
+		tfSearch.setFont(new Font("Arial Unicode MS", Font.PLAIN, 15));
 
 		// textfield for search client
 		tfSearch.setBounds(6, 35, 219, 30);
@@ -192,12 +207,15 @@ public class GuiMain extends JFrame {
 		});
 		
 		// jtable of client's info
-		jtableClientInfo.setSize(775, 224);
+		jtableClientInfo.setSize(775, 354);
 		jtableClientInfo.setLocation(237, 35);
 		getContentPane().add(jtableClientInfo);
+		jlistAccount.setFont(new Font("Arial", Font.PLAIN, 15));
+		jtableClientInfo.setRowHeight(25);
 		
 		// jlist of account
-		jlistAccount.setBounds(237, 290, 775, 59);
+		jtableClientInfo.setFont(new Font("Arial Unicode MS", Font.PLAIN, 15));
+		jlistAccount.setBounds(237, 427, 775, 101);
 		getContentPane().add(jlistAccount);
 		// set a custom renderer to jlist account which will show account number when it contains a list of Account objects
 		jlistAccount.setCellRenderer(new DefaultListCellRenderer() {
@@ -226,14 +244,20 @@ public class GuiMain extends JFrame {
 		jlistAccount.addListSelectionListener(new ListSelectionListener(){
 
 			@Override
-			public void valueChanged(ListSelectionEvent arg0) {
-				updateJTableTSH();
+			public void valueChanged(ListSelectionEvent ev) {
+				//updateJTableTSH();
+				if (!ev.getValueIsAdjusting()) {//This line prevents double events
+					if(jlistAccount.getSelectedValue() != null){
+						new GuiTransactionHistory(jlistAccount.getSelectedValue(), jlistClient.getSelectedValue().getFullName());
+					}
+			    }
 			}
 			
 		});
-		jspTSHTable.setBounds(237, 374, 775, 348);
+		jspTSHTable.setBounds(237, 604, 775, 118);
 		
 		getContentPane().add(jspTSHTable);
+		jtableTransactionHistory.setFont(new Font("Arial", Font.PLAIN, 15));
 		jspTSHTable.setViewportView(jtableTransactionHistory);
 
 		// add clients in jlist
