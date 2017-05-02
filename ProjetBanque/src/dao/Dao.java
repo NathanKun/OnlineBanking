@@ -257,6 +257,7 @@ abstract public class Dao {
 				}
 				break;
 
+			case "FindAccountByClientId":
 			case "Account":
 				while (rs.next()) {
 					returnList.add(new Account(rs.getInt("acc_id"), rs.getString("acc_number"),
@@ -265,6 +266,7 @@ abstract public class Dao {
 				}
 				break;
 
+			case "FindHdsByCltId":
 			case "HoldingShare":
 				while (rs.next()) {
 					returnList.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"),
@@ -280,6 +282,8 @@ abstract public class Dao {
 				}
 				break;
 
+
+			case "FindShpByStkId":
 			case "StockHistoricalPrice":
 				while (rs.next()) {
 					returnList.add(new StockHistoricalPrice(rs.getInt("shp_id"), rs.getInt("shp_stk_id"),
@@ -287,42 +291,13 @@ abstract public class Dao {
 				}
 				break;
 
+
 			case "TransactionHistory":
+			case "findTshByAccNumber":
 				while (rs.next()) {
 					returnList.add(new TransactionHistory(rs.getInt("tsh_id"), rs.getString("tsh_acc_number"),
 							rs.getString("tsh_description"), new DateTime(rs.getDate("tsh_transactionOn")),
 							rs.getBigDecimal("tsh_amount")));
-				}
-				break;
-
-			case "FindAccountByClientId":
-				while (rs.next()) {
-					returnList.add(new Account(rs.getInt("acc_id"), rs.getString("acc_number"),
-							rs.getString("acc_iban"), rs.getInt("acc_clt_id"), rs.getBigDecimal("acc_balance"),
-							rs.getBigDecimal("acc_interest"), rs.getInt("acc_type")));
-				}
-				break;
-
-			case "FindTshByAccId":
-				while (rs.next()) {
-					returnList.add(new TransactionHistory(rs.getInt("tsh_id"), rs.getString("tsh_acc_number"),
-							rs.getString("tsh_description"), new DateTime(rs.getDate("tsh_transactionOn")),
-							rs.getBigDecimal("tsh_amount")));
-				}
-				break;
-
-			case "FindHdsByCltId":
-				while (rs.next()) {
-					returnList.add(new HoldingShare(rs.getInt("hds_id"), rs.getString("hds_stk_ticker"),
-							rs.getInt("hds_acc_id"), rs.getInt("hds_numberofshares"),
-							new DateTime(rs.getDate("hds_boughton"))));
-				}
-				break;
-
-			case "FindShpByStkId":
-				while (rs.next()) {
-					returnList.add(new StockHistoricalPrice(rs.getInt("shp_id"), rs.getInt("shp_stk_id"),
-							new DateTime(rs.getDate("shp_datetime")), rs.getBigDecimal("shp_price")));
 				}
 				break;
 

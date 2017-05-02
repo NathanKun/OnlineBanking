@@ -81,7 +81,7 @@ public class DaoTransactionHistory extends Dao {
 	@SuppressWarnings("unchecked")
 	public static ArrayList<TransactionHistory> findTshByAccNumber(String number) {
 		String sql = "SELECT * FROM transactionhistory_tsh WHERE tsh_acc_number = " + number;
-		ArrayList<TransactionHistory> tshList = (ArrayList<TransactionHistory>) getList("FindTshByAccId", sql);
+		ArrayList<TransactionHistory> tshList = (ArrayList<TransactionHistory>) getList("findTshByAccNumber", sql);
 		return tshList;
 	}
 
@@ -113,5 +113,8 @@ public class DaoTransactionHistory extends Dao {
 //		tsh.setTsh_description("Updated");
 //		DaoTransactionHistory.updateTransactionHistory(tsh);
 //		System.out.println(DaoTransactionHistory.getTransactionHistory(3).toString());
+		
+		// findTshByAccNumber test
+		System.out.println(findTshByAccNumber("2222333322220001"));
 	}
 }

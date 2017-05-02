@@ -8,32 +8,48 @@ import java.util.ArrayList;
 
 import dao.DaoAdvisor;
 import dao.DaoClient;
+import dao.DaoTransactionHistory;
 import model.Advisor;
 import model.Client;
+import model.TransactionHistory;
 
 /**
+ * A thread create when a client connect to server
  * Ref: http://blog.csdn.net/ns_code/article/details/14105457
  * 
- * @author 兰亭风雨
+ * @author Junyang HE
  *
  */
 public class DbServerThread implements Runnable {
+	/**
+	 * socket of connection
+	 */
 	private Socket socket = null;
 
+	/**
+	 * Constructor of thread
+	 * @param socket socket of connection
+	 */
 	public DbServerThread(Socket socket) {
 		this.socket = socket;
 	}
 
+	/**
+	 * action when run the thread
+	 */
 	@Override
 	public void run() {
 		try {
-			// 获取Socket的输出流，用来向客户端发送数据
+			// Server out: object; Server in: String
+			
+			// get output stream from socket in order to sent object to client
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-			// 获取Socket的输入流，用来接收从客户端发送过来的数据
+			// get output stream from socket in order to receive string from client
 			BufferedReader buf = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			
 			boolean flag = true;
 			while (flag) {
-				// 接收从客户端发送过来的数据
+				// receive string from client
 				String str = buf.readLine();
 				if (str == null || "".equals(str)) {
 					flag = false;
@@ -41,6 +57,7 @@ public class DbServerThread implements Runnable {
 					switch (str) {
 					case "bye":
 						flag = false;
+						System.out.println("Server: bye");
 						break;
 
 					// use dao to get object, and sent to client
@@ -59,8 +76,16 @@ public class DbServerThread implements Runnable {
 						System.out.println("Server: findAdvisorByLogin ended");
 						break;
 
+					case "DaoTransactionHistory.findTshByAccNumber":
+						System.out.println("Server: findTshByAccNumber started");
+						String accNumber = buf.readLine();
+						ArrayList<TransactionHistory> tshList = DaoTransactionHistory.findTshByAccNumber(accNumber);
+						out.writeObject(tshList);
+						System.out.println("Server: findTshByAccNumber ended");
+						break;
+
 					default:
-						System.out.println("String type error");
+						System.out.println("Server: String type error");
 					}
 				}
 			}

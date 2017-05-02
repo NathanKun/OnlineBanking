@@ -1,7 +1,10 @@
 package gui;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 import java.awt.Component;
 import java.awt.Font;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -16,7 +19,14 @@ import org.joda.time.format.DateTimeFormat;
 
 import model.Account;
 import model.TransactionHistory;
+import server.DbClient;
 
+/**
+ * JFrame to show transaction history of an account
+ * 
+ * @author Junyang HE
+ *
+ */
 public class GuiTransactionHistory extends JFrame {
 
 	/**
@@ -47,6 +57,9 @@ public class GuiTransactionHistory extends JFrame {
 	
 	/**
 	 * Constructor of jframe
+	 * 
+	 * @param	acc the account to show transaction history
+	 * @param	fullname the full name of the client
 	 */
 	public GuiTransactionHistory(Account acc, String fullname) {
 		setFont(new Font("Arial", Font.PLAIN, 15));
@@ -57,7 +70,14 @@ public class GuiTransactionHistory extends JFrame {
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		initComponents(acc, fullname);
+		
+		// connect to server to get tsh list
+		try {
+			initComponents(acc, fullname);
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+			showMessageDialog(this, "Cannot connect to server");
+		}
 
 		setVisible(true);
 	}
@@ -65,8 +85,10 @@ public class GuiTransactionHistory extends JFrame {
 	/**
 	 * initiate components
 	 * @param acc	account to show transaction history
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	private void initComponents(Account acc, String fullname) {
+	private void initComponents(Account acc, String fullname) throws ClassNotFoundException, IOException {
 		lbClientInfo.setText("Client : " + fullname);
 		lbAccountInfo.setText(acc.getAcc_type() + " : " + acc.getAcc_number());
 		
@@ -96,10 +118,12 @@ public class GuiTransactionHistory extends JFrame {
 	}
 	/**
 	 * update jtableTransactionHistory when select an account
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
 	 */
-	private void initJTableTSH(Account acc) {
+	private void initJTableTSH(Account acc) throws ClassNotFoundException, IOException {
 		if(acc != null){
-			ArrayList<TransactionHistory> tshList = acc.getTransactionHistory();
+			ArrayList<TransactionHistory> tshList = DbClient.findTshByAccNumber(acc.getAcc_number());
 			
 			for(TransactionHistory tsh : tshList){
 				modelJTableTSH.addRow(new Object[]{tsh.getTsh_transactionOn().toString(DateTimeFormat.forPattern("yyyy/MM/dd")),

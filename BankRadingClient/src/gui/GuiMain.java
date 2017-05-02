@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,8 +28,8 @@ import org.joda.time.format.DateTimeFormat;
 
 import model.Account;
 import model.Client;
-import model.TransactionHistory;
 import server.DbClient;
+import server.DbServer;
 
 /**
  * Gui of main page of the system
@@ -58,10 +60,6 @@ public class GuiMain extends JFrame {
 	 */
 	private final JLabel lbInfo = new JLabel("Informations de client :");
 	/**
-	 * label shows: Les historiques de trransaction : :
-	 */
-	private final JLabel lbTransactionHistory = new JLabel("Les historiques de transaction :");
-	/**
 	 * text field for search a client
 	 */
 	private JTextField tfSearch = new JTextField();
@@ -86,10 +84,6 @@ public class GuiMain extends JFrame {
 	 */
 	private DefaultTableModel modelJTableTSH = new DefaultTableModel();
 	/**
-	 * jtable contains list of transaction history of selected account
-	 */
-	private JTable jtableTransactionHistory = new JTable(modelJTableTSH);
-	/**
 	 * model for jlistAccount
 	 */
 	private DefaultListModel<Account> modelJListAccount = new DefaultListModel<Account>();
@@ -98,26 +92,27 @@ public class GuiMain extends JFrame {
 	 */
 	private JList<Account> jlistAccount = new JList<Account>(modelJListAccount);
 	/**
-	 * scroll pane for transaction history table
-	 */
-	private final JScrollPane jspTSHTable = new JScrollPane();
-	/**
 	 * scroll pane for client list
 	 */
 	private final JScrollPane jspClientList = new JScrollPane();
 	
 	/**
 	 * Constructor of jframe
+	 * 
+	 * @param dbServer  the intermediate server
 	 */
-	public GuiMain() {
+	public GuiMain(DbServer dbServer) {
+		// connect to server to get client list
 		try {
 			clientList = DbClient.getClientList();
 		} catch (IOException e) {
 			clientList = new ArrayList<Client> ();
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 		setFont(new Font("Arial", Font.PLAIN, 15));
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(1024, 566);
 		setTitle("Front Office Advisor System");
 		setResizable(false);
@@ -125,6 +120,17 @@ public class GuiMain extends JFrame {
 		getContentPane().setLayout(null);
 
 		initComponents();
+		
+		// exit_on_close event, stop server when close windows
+		addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+            	dbServer.stopServer();
+                e.getWindow().dispose();
+            }
+        });
 
 		setVisible(true);
 	}
@@ -145,10 +151,6 @@ public class GuiMain extends JFrame {
 		
 		lbInfo.setBounds(237, 16, 341, 18);
 		getContentPane().add(lbInfo);
-		lbTransactionHistory.setFont(new Font("Arial", Font.PLAIN, 15));
-		
-		lbTransactionHistory.setBounds(237, 576, 341, 18);
-		getContentPane().add(lbTransactionHistory);
 		jspClientList.setBounds(6, 68, 219, 460);
 		
 		getContentPane().add(jspClientList);
@@ -260,11 +262,6 @@ public class GuiMain extends JFrame {
 			}
 			
 		});
-		jspTSHTable.setBounds(237, 604, 775, 118);
-		
-		getContentPane().add(jspTSHTable);
-		jtableTransactionHistory.setFont(new Font("Arial", Font.PLAIN, 15));
-		jspTSHTable.setViewportView(jtableTransactionHistory);
 
 		// add clients in jlist
 		for(Client clt : clientList){
@@ -290,23 +287,6 @@ public class GuiMain extends JFrame {
 	private void clearJTableTSH(){
 		for (int i = modelJTableTSH.getRowCount() - 1; i >= 0; i--) {
 			modelJTableTSH.removeRow(i);
-		}
-	}
-	
-	/**
-	 * update jtableTransactionHistory when select an account
-	 */
-	private void updateJTableTSH() {
-		if(!jlistAccount.isSelectionEmpty()){ // avoid event generate by reset account list
-			Account acc = jlistAccount.getSelectedValue();
-			ArrayList<TransactionHistory> tshList = acc.getTransactionHistory();
-			clearJTableTSH();
-			
-			for(TransactionHistory tsh : tshList){
-				modelJTableTSH.addRow(new Object[]{tsh.getTsh_transactionOn().toString(DateTimeFormat.forPattern("yyyy/MM/dd")),
-						tsh.getTsh_description(), tsh.getTsh_amount()});
-			}
-			resizeColumnWidth(jtableTransactionHistory);
 		}
 	}
 	
@@ -395,6 +375,10 @@ public class GuiMain extends JFrame {
 	 * @param args inputs arguments
 	 */
 	public static void main(String[] args) {
-		new GuiMain();
+    	DbServer dbServer = new DbServer();
+    	Thread server = new Thread(dbServer);
+    	server.start();
+    	
+		new GuiMain(dbServer);
 	}
 }
