@@ -303,7 +303,7 @@ public class GuiMain extends JFrame {
 	}
 	
 	/**
-	 * update jlist of account when select a client
+	 * update JList of account when select a client
 	 */
 	private void updateJListAccount() {
 		if(!jlistClient.isSelectionEmpty()){ // avoid event generate by reset client list

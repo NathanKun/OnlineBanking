@@ -79,7 +79,8 @@ abstract public class Dao {
 			case "News":
 				ps.setInt(1, (int) item);
 				break;
-
+				
+			case "findManagerByLogin":
 			case "FindAccountByIban":
 			case "FindAdvisorByLogin":
 			case "FindClientByLogin":
@@ -95,6 +96,7 @@ abstract public class Dao {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				switch (type) {
+				case "findManagerByLogin":
 				case "Manager":
 					retour = new Manager(rs.getInt("mng_id"), rs.getString("mng_name"), rs.getString("mng_login"), 
 							rs.getString("mng_password"));

@@ -28,6 +28,12 @@ public class DaoManager extends Dao{
 		return mng;
 	}
 	
+	public static Manager findManagerByLogin(String login){
+		String sql = "SELECT * FROM manager_mng WHERE mng_login = ?";
+		Manager mng = (Manager) getOne("findManagerByLogin", sql, login);
+		return mng;
+	}
+	
 	/**
 	 * allow to have the full list of Manager in the data base.
 	 * 

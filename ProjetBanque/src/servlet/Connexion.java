@@ -1,6 +1,15 @@
-package src.servlet;
+package servlet;
 
 import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.DaoManager;
+import model.Manager;
+import util.PasswordAuthentication;
 
 
 /**
@@ -29,7 +38,7 @@ private static final long serialVersionUID = 1L;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/* Récupération des champs du formulaire */
+		/* Rï¿½cupï¿½ration des champs du formulaire */
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		Manager mng = DaoManager.findManagerByLogin(login);
@@ -48,7 +57,7 @@ private static final long serialVersionUID = 1L;
 		}
 		
 		else {
-			// Revenir à la page ConnexionManager 
+			// Revenir a la page ConnexionManager 
 			request.setAttribute("loginFailed", true);
 			request.setAttribute("login", login);
 			request.getRequestDispatcher("./login.jsp").forward(request, response);
