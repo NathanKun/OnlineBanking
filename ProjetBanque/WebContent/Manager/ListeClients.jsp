@@ -59,7 +59,7 @@
 										<th>Numéro du Client</th>
 										<th>Numéro de compte</th>
 										<th>IBAN</th>
-										<th>Solde du compte</th>
+										<th>Solde du compte courant</th>
 										<th>Somme des dépôts</th>
 									</tr>
 								</thead>
@@ -74,7 +74,7 @@
 										<c:set var="clientDepotSomme" scope="session" value="${0}" />
 										<c:forEach var="tsh" items="${tshList}">
 											<c:if
-												test="${fn:contains(tsh.getTsh_description(), 'Credité de ')}">
+												test="${fn:contains(tsh.getTsh_description(), 'ajoutés via une carte de type')}">
 												<c:set var="clientDepotSomme" scope="session"
 													value="${clientDepotSomme + tsh.getTsh_amount()}" />
 											</c:if>

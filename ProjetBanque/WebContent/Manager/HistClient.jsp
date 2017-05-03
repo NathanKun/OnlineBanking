@@ -49,23 +49,20 @@
 						<div class="panel with-nav-tabs panel-info">
 							<div class="panel-heading">
 								<ul class="nav nav-tabs">
-									<li class="active"><a href="#virement" data-toggle="tab">
-											Historique des virements </a></li>
-									<li><a href="#depots" data-toggle="tab">Historique des
-											dépots </a></li>
+									<li class="active"><a href="#courant" data-toggle="tab">
+											Historique compte courant</a></li>
+									<li><a href="#epargne" data-toggle="tab">Historique compte �pargne </a></li>
+									<li><a href="#titre" data-toggle="tab">Historique compte titre </a></li>
 									<li><a href="#solde" data-toggle="tab">Solde du compte</a></li>
 								</ul>
 							</div>
 							<div class="panel-body">
 								<div class="tab-content">
-									<div class="tab-pane fade in active" id="virements">
-										Les virements effectués
-										<p></p>
-										<p></p>
-										</
+									<div class="tab-pane fade in active" id="courants">
+										Les transactions effectuees															
 									</div>
-									<div class="tab-pane fade" id="depots">les dépots
-										effectués</div>
+									<div class="tab-pane fade" id="epargne">Les transactions effectuees</div>
+									<div class="tab-pane fade" id="titre">les transactions des actions effectu�es sont:</div>
 									<div class="tab-pane fade" id="solde">Solde des comptes</div>
 
 								</div>
