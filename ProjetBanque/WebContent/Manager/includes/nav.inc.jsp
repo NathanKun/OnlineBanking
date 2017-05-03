@@ -41,7 +41,7 @@
 						Reporting général </a></li>
 				<li><a href="ListeClients.jsp"><i class="fa fa-table fa-fw"></i>
 						Comptes clients </a></li>
-				<li><a href="ActivitesClients.html"><i
+				<li><a href="HistClient.jsp"><i
 						class="fa fa-edit fa-fw"></i> Activités Clients </a></li>
 			</ul>
 		</div>
