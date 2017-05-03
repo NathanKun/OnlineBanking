@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS manager_mng (
 	mng_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     mng_name VARCHAR(30) NOT NULL,
 	mng_login VARCHAR(30) NOT NULL UNIQUE,
-    mng_password VARCHAR(30) NOT NULL
+    mng_password VARCHAR(178) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS advisor_avs (

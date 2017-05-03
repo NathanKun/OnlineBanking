@@ -108,5 +108,8 @@ public class DaoManager extends Dao{
 //		DaoManager.updateManager(mng);
 //		System.out.println(DaoManager.getManager(2).toString());
 		
+		// test findManagerByLogin
+		System.out.println(findManagerByLogin("a"));
+		
 	}
 }

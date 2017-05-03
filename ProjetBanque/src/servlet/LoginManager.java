@@ -11,17 +11,15 @@ import dao.DaoManager;
 import model.Manager;
 import util.PasswordAuthentication;
 
-
 /**
  * Servlet implementation class connexion
+ * 
  * @author Amghar zakaria
  */
-@WebServlet("/Connexion")
+@WebServlet("/Manager/Login")
 
-public class Connexion extends HttpServlet {
-private static final long serialVersionUID = 1L;
-
-	
+public class LoginManager extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -29,7 +27,7 @@ private static final long serialVersionUID = 1L;
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("./ConnexionManager.jsp");
+		response.sendRedirect("./login.jsp");
 	}
 
 	/**
@@ -38,29 +36,34 @@ private static final long serialVersionUID = 1L;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/* R�cup�ration des champs du formulaire */
+		/* Recuperation des champs du formulaire */
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		Manager mng = DaoManager.findManagerByLogin(login);
 		boolean isFound = false;
 		Manager mngFound = null;
 
+		//System.out.println(mng);
+
 		PasswordAuthentication pa = new PasswordAuthentication();
-		
+
 		if (mng != null) {
 			if (pa.authenticate(password.toCharArray(), mng.getmng_password())) {
 				isFound = true;
 				mngFound = mng;
-				request.getSession(true).setAttribute("manager", mngFound);
-				response.sendRedirect("./AccesMng.jsp");
 			}
 		}
-		
-		else {
-			// Revenir a la page ConnexionManager 
+
+		if (isFound) {
+			request.getSession(true).setAttribute("manager", mngFound);
+			response.sendRedirect("./index.jsp");
+			System.out.println("login ok");
+		} else {
+			// Revenir a la page ConnexionManager
 			request.setAttribute("loginFailed", true);
 			request.setAttribute("login", login);
 			request.getRequestDispatcher("./login.jsp").forward(request, response);
-    }
-}}
-
+			System.out.println("login failed");
+		}
+	}
+}
