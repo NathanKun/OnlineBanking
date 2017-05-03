@@ -20,7 +20,7 @@ import model.TransactionHistory;
 /**
  * Servlet implementation class TransferMoney
  * 
- * @author HE Junyang
+ * @author HE Junyang,DJAMEN Yann, Ndjamo Ursula
  */
 @WebServlet("/TransferMoney")
 public class TransferMoney extends HttpServlet {
@@ -41,10 +41,9 @@ public class TransferMoney extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// here is a little indication
+		
 
-		// emetteur and beneficiare send in will be one of these: courant,
-		// epargne, titre
+		 
 		String emetteur = request.getParameter("emetteur");
 		String beneficiaire = request.getParameter("beneficiaire");
 		String montant = request.getParameter("montant");
@@ -52,77 +51,107 @@ public class TransferMoney extends HttpServlet {
 		String iban = request.getParameter("iban");
 		String accnumber1 = "";
 		String accnumber2 = "";
-
+		
+		
 		Client c = (Client) request.getSession(true).getAttribute("client");
 
-		if (emetteur.equals("courant")) {
+		// We check  which is the debit account
+		switch (emetteur)
+		{
+		 //if the debit account is the current account
+		 case "courant":   
+			 //We get the current account in an object
+			  Account a1 = c.getCurrentAccount();
+			 
+			 //We get the account number
+				accnumber1 = a1.getAcc_number();
+			
+			 //We check if the debit account has enough money
+				
+			 //if the account balance is less than the amount to debit
+				if (a1.getAcc_balance().compareTo(new BigDecimal(montant)) == -1) {
+					response.getWriter().print("No enough money");
+					montant = "0";
+				} 
+				//if the account balance is more than the amount to debit,
+				//we debit that amount from the debit account
+				else {
+					a1.setAcc_balance(a1.getAcc_balance().subtract(new BigDecimal(montant)));
+					a1.push();
+				}
+				break; 
+				
+		  //if the debit account is the saving account
+		  case "epargne":
+			//We get the saving account in an object
+			  Account a = c.getSavingAccount();
+			  
+			//We get the account number
+			  accnumber1 = a.getAcc_number();
+			  	
+		    //We check if the debit account has enough money
+				
+		    //if the account balance is less than the amount to debit
+				if (a.getAcc_balance().compareTo(new BigDecimal(montant)) == -1) {
+					response.getWriter().print("No enough money");
+					montant = "0";
+				} 
+			//if the account balance is more than the amount to debit,
+			//we debit that amount from the debit account	
+				else {
+					a.setAcc_balance(a.getAcc_balance().subtract(new BigDecimal(montant)));
+					a.push();
+				}
+		    break; 
 
+		}
+		
+		// We check  which is the account to be credited
+		switch(beneficiaire)
+		{
+		//if the account to be credited is the current account
+		case "courant":
+			//We get the current account in an object
 			Account a = c.getCurrentAccount();
-			accnumber1 = a.getAcc_number();
-			// check if emetteur account has enough money, if no reponse "No
-			// enough money"
-
-			if (a.getAcc_balance().compareTo(new BigDecimal(montant)) == -1) {
-				response.getWriter().print("No enough money");
-				montant = "0";
-			} else {
-				a.setAcc_balance(a.getAcc_balance().subtract(new BigDecimal(montant)));
-				a.push();
+			//We get the account number	
+			accnumber2 = a.getAcc_number();
+			//We change the value of the account balance
+			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
+			a.push();
+		break;
+		
+		//if the account to be credited is the saving account
+		case"epargne":
+			//We get the current account in an object
+			Account ae = c.getSavingAccount();
+			//We get the account number	
+			accnumber2 = ae.getAcc_number();
+			//We change the value of the account balance
+			ae.setAcc_balance(ae.getAcc_balance().add(new BigDecimal(montant)));
+			ae.push();	
+		break;
+		
+		//if the account to be credited is an external account
+		case"external":
+			//We find the account in the database by its iban and get it in an object
+			Account aex = DaoAccount.findAccountByIban(iban);
+			
+			//if there's no account found in the database(then it's an acount from another bank)
+			if(aex==null)
+			{
+				accnumber2 = "Compte externe Iban" + iban;
 			}
+			//if there's is a match with an account in the database
+			else {
+			//We get the account number	
+			accnumber2 = aex.getAcc_number();
+			//We change the value of the account balance
+			aex.setAcc_balance(aex.getAcc_balance().add(new BigDecimal(montant)));
+			aex.push();}
+		break;
 		}
 
-		if (emetteur.equals("epargne")) {
-			Account a = c.getSavingAccount();
-			accnumber1 = a.getAcc_number();
-			if (a.getAcc_balance().compareTo(new BigDecimal(montant)) == -1) {
-				response.getWriter().print("No enough money");
-				montant = "0";
-			} else {
-				a.setAcc_balance(a.getAcc_balance().subtract(new BigDecimal(montant)));
-				a.push();
-			}
-		}
-
-		if (emetteur.equals("titre")) {
-			Account a = c.getSecuritiesAccount();
-			accnumber1 = a.getAcc_number();
-			if (a.getAcc_balance().compareTo(new BigDecimal(montant)) == -1) {
-				response.getWriter().print("No enough money");
-				montant = "0";
-			} else {
-				a.setAcc_balance(a.getAcc_balance().subtract(new BigDecimal(montant)));
-				a.push();
-			}
-		}
-
-		if (beneficiaire.equals("courant")) {
-			Account a = c.getCurrentAccount();
-			accnumber2 = a.getAcc_number();
-			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
-			a.push();
-
-		}
-
-		if (beneficiaire.equals("epargne")) {
-			Account a = c.getSavingAccount();
-			accnumber2 = a.getAcc_number();
-			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
-			a.push();
-		}
-
-		if (beneficiaire.equals("titre")) {
-			Account a = c.getSecuritiesAccount();
-			accnumber2 = a.getAcc_number();
-			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
-			a.push();
-		}
-
-		if (beneficiaire.equals("external")) {
-			Account a = DaoAccount.findAccountByIban(iban);
-			accnumber2 = a.getAcc_number();
-			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
-			a.push();
-		}
+		// Here we add notes to the transaction history of each account
 		if((new BigDecimal (montant)).compareTo(BigDecimal.ZERO) != 0) {
 			String description1 = "vous avez effectue un virement au compte " + accnumber2 + "le motif: " + motif;
 			TransactionHistory t1 = new TransactionHistory(0, accnumber1, description1, new DateTime().toDateTimeISO(),
@@ -133,9 +162,7 @@ public class TransferMoney extends HttpServlet {
 			DaoTransactionHistory.addTransactionHistory(t1);
 			DaoTransactionHistory.addTransactionHistory(t2);
 		}
-		
-		
-		//response.getWriter().print("ok");
+
 	}
 
 }

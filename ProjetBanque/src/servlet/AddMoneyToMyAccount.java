@@ -34,57 +34,48 @@ public class AddMoneyToMyAccount extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// here is a little indication
-		
-		// emetteur and beneficiare send in will be one of these: courant, epargne, titre
+		//Here we get the parameters
 		String recepteur = request.getParameter("recepteur");
 		String montant= request.getParameter("montant");
 		String accnumber="";
-		String description = "CreditÃ© de " + montant + " euros dans l'espace client.";
-		
-		/*
 		String typeCarte = request.getParameter("type");
 		String titulaire= request.getParameter("titulaire");
 		String numCarte= request.getParameter("numcarte");
 		String mois= request.getParameter("mois");
 		String annee= request.getParameter("annee");
 		String crypto= request.getParameter("crypto");
-		*/
+		String description = "" + montant + " euros ajoutés via une carte de type " + typeCarte;
 		
 		Client c= (Client)request.getSession(true).getAttribute("client");
-		
-		if(recepteur.equals("courant"))
-		{
+		switch(recepteur){
+			//if the account to be credited is the current account
+			case "courant":
+			//We get the current account in an object
 			Account a= c.getCurrentAccount();
+			//We get the account number
 			accnumber=a.getAcc_number();
+			//We change the value of the account balance
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
+		    break;
+		
+			//if the account to be credited is the saving account
+			case "epargne":
+			//We get the saving account in an object
+			Account ae= c.getSavingAccount();
+			//We get the account number
+			accnumber=ae.getAcc_number();
+			//We change the value of the account balance
+			ae.setAcc_balance(ae.getAcc_balance().add(new BigDecimal(montant)));
+			ae.push();
+			break;
 		}
-		
-		if ( recepteur.equals("epargne"))
-		{
-			Account a= c.getSavingAccount();
-			accnumber=a.getAcc_number();
-			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
-			a.push();
-		}
-		
-		if ( recepteur.equals("titre"))
-		{
-			Account a= c.getSecuritiesAccount();
-			accnumber= a.getAcc_number();
-			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
-			a.push();
-		}
-		
-		
-		// check if emetteur account has enough money, if no reponse "No enough money"
-		//response.getWriter().print("No enough money");
-	
-
+		// Here we add notes to the transaction history of the account to be credited
+		if((new BigDecimal (montant)).compareTo(BigDecimal.ZERO) != 0) {	
 	TransactionHistory t = new TransactionHistory(0,accnumber,description,new DateTime().toDateTimeISO() ,new BigDecimal(montant));
 	DaoTransactionHistory.addTransactionHistory(t);
 	response.sendRedirect("./zoneclient.jsp");
 	}
+		}
 	
 }
