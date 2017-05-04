@@ -8,7 +8,7 @@
 			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
 			<span class="icon-bar"></span> <span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="Manager/index.html"> Manager index</a>
+		<a class="navbar-brand" href="Manager/index.jsp"> Manager index</a>
 	</div>
 	<!-- /.navbar-header -->
 	<ul class="nav navbar-top-links navbar-right">
@@ -37,7 +37,7 @@
 						</span>
 					</div> <!-- /input-group -->
 				</li>
-				<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
+				<li><a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i>
 						Reporting général </a></li>
 				<li><a href="ListeClients.jsp"><i class="fa fa-table fa-fw"></i>
 						Comptes clients </a></li>

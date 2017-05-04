@@ -217,10 +217,10 @@
                            <div class="col-md-8">
                               <input type="radio" id="addMoneyRadioCourant" name="recepteur" value="courant" required>
                               <label for="addMoneyRadioCourant">Compte courant</label>
-                     		  <c:if test="${not empty client.getSavingAccount() }">
+                     		 <!-- <c:if test="${not empty client.getSavingAccount() }">
 	                              <input type="radio" id="addMoneyRadioEpargne" name="recepteur" value="epargne">
 	                              <label for="addMoneyRadioEpargne">Compte épargne</label>
-                              </c:if>
+                              </c:if> -->
                            </div>
                         </div>
                         <div class="form-group">

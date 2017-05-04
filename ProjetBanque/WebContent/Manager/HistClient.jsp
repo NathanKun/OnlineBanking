@@ -1,3 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page
+   import="model.Client,model.TransactionHistory, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList,java.math.BigDecimal, org.joda.time.format.DateTimeFormat" %>
+ <%
+String login = request.getParameter("login");
+String message = "";
+String type= request.getParameter("type");
+BigDecimal amount1 = new BigDecimal("0");
+BigDecimal amount2 = new BigDecimal("0");
+BigDecimal amount3 = new BigDecimal("0");
+Client clt = DaoClient.findClientByLogin(login);
+ArrayList<TransactionHistory> tshList1 = null;
+ArrayList<TransactionHistory> tshList2 = null;
+ArrayList<TransactionHistory> tshList3 = null;
+if (clt != null){
+		amount1= clt.getCurrentAccount().getAcc_balance();
+		session.setAttribute("amount1", amount1);
+		tshList1 = clt.getCurrentAccount().getTransactionHistory();
+		session.setAttribute("tshList1", tshList1);
+		if ( clt.getSavingAccount()!=null){
+		amount2= clt.getSavingAccount().getAcc_balance();
+		session.setAttribute("amount2", amount2);
+		tshList2 = clt.getSavingAccount().getTransactionHistory();
+		session.setAttribute("tshList2", tshList2);
+		
+		}
+		
+		if ( clt.getSecuritiesAccount()!=null){
+		amount3= clt.getSecuritiesAccount().getAcc_balance();
+		session.setAttribute("amount3", amount3);
+		tshList3 = clt.getSecuritiesAccount().getTransactionHistory();
+		session.setAttribute("tshList3", tshList3);
+		}
+		
+}
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,28 +86,57 @@
 				<div class="row">
 
 					<div class="col-md-6">
+					<form class="form-horizontal" id="SearchClient" action="HistClient.jsp" onsubmit="return transferSubmit();" method="get" accept-charset="UTF-8">
+						
 						<div class="panel with-nav-tabs panel-info">
 							<div class="panel-heading">
+							<ul>
+							
+							<div class="input-group custom-search-form">
+						<input type="text" class="form-control" name="login" placeholder="Login client"> 
+						<span class="input-group-btn">
+							<input type="submit" value=" Rechercher" id="submit" name="send" class="btn btn-primary">
+						</span>
+						
+					</div></ul>
 								<ul class="nav nav-tabs">
-									<li class="active"><a href="#courant" data-toggle="tab">
-											Historique compte courant</a></li>
-									<li><a href="#epargne" data-toggle="tab">Historique compte épargne </a></li>
-									<li><a href="#titre" data-toggle="tab">Historique compte titre </a></li>
-									<li><a href="#solde" data-toggle="tab">Solde du compte</a></li>
+									
+									
+									<li class="active" ><a href="#courant" data-toggle="tab"name= "type" value="courant">Historique compte courant</a></li>
+									<li><a href="#epargne" data-toggle="tab"name="type" value = "epargne">Historique compte Ã©pargne </a></li>
+									<li><a href="#titre" data-toggle="tab" name="type" value = "titre">Historique compte titre </a></li>
+									<li><a href="#solde" data-toggle="tab" name="type" value = "solde">Solde du compte</a></li>
+								
 								</ul>
 							</div>
 							<div class="panel-body">
 								<div class="tab-content">
-									<div class="tab-pane fade in active" id="courants">
-										Les transactions effectuees															
+									<div class="tab-pane fade in active" id="courant" >
+										<c:forEach var="tsh" items="${tshList1}">
+											<c:out value="${tsh.getTsh_description()} "></c:out>
+											<br>
+											</c:forEach>													
 									</div>
-									<div class="tab-pane fade" id="epargne">Les transactions effectuees</div>
-									<div class="tab-pane fade" id="titre">les transactions des actions effectuées sont:</div>
-									<div class="tab-pane fade" id="solde">Solde des comptes</div>
+									<div class="tab-pane fade" id="epargne">
+									<br>
+									<c:forEach var="tsh" items="${tshList2}">
+											<c:out value="${tsh.getTsh_description()} "></c:out>
+											<br>
+											</c:forEach></div>
+									<div class="tab-pane fade" id="titre" > </div>
+									<div class="tab-pane fade" id="solde">Solde des comptes 
+									<br>
+									Compte courant (â‚¬): <c:out value="${amount1}"></c:out>
+									<br>
+									Compte epargne (â‚¬): <c:out value="${amount2}"></c:out>
+									<br>
+									Compte titre: <c:out value="${amount3}"></c:out>
+									</div>
 
 								</div>
 							</div>
 						</div>
+						</form>
 					</div>
 				</div>
 			</div>
