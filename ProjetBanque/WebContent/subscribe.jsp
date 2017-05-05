@@ -75,8 +75,7 @@
 	                        <div class="form-group">
 	                          <label class="col-md-4 control-label" for="nom">Nom</label>  
 	                          <div class="col-md-6">
-	                          <input id="nom" name="nom" placeholder="Nom" class="form-control input-md" required type="text">
-	                            
+	                          	 <input id="nom" name="nom" placeholder="Nom" class="form-control input-md" required type="text">
 	                          </div>
 	                        </div>
 	
@@ -342,7 +341,7 @@
 	                        <div class="form-group">
 	                         <label class="col-md-4 control-label"></label>
 	                          <div class="col-md-6">
-	                            <input type="submit" value="Je crée mon compte !" id="submitBtn" name="send" class="btn btn-primary">
+	                            <input type="submit" value="Je crée mon compte !" id="submitBtn" class="btn btn-primary">
 	                          </div>
 	                        </div>
 	

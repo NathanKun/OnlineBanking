@@ -5,6 +5,9 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,8 +16,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import dao.DaoAdvisor;
 import model.Advisor;
+import server.DbClient;
+import server.DbServer;
 import util.PasswordAuthentication;
 import util.SetTheme;
 
@@ -58,13 +62,19 @@ public class GuiLogin extends JFrame implements ActionListener {
 	 * button for login action
 	 */
 	private JButton btnLogin = new JButton("Login");
+	/**
+	 * server for connecting to database
+	 */
+	private DbServer dbServer = null;
 	
 	/**
-	 * consctuctor of jframe
+	 * constructor of JFrame
+	 * 
+	 * @param	dbServer the intermediate server
 	 */
-	public GuiLogin() {
+	public GuiLogin(DbServer dbServer) {
 		// exit on close
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		// size
 		setSize(300, 250);
 		//title
@@ -77,6 +87,19 @@ public class GuiLogin extends JFrame implements ActionListener {
 		getContentPane().setLayout(null);
 		// initiate components
 		initComponents();
+		this.dbServer = dbServer;
+		
+		// exit_on_close event, stop server when close windows
+		addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+            	dbServer.stopServer();
+                e.getWindow().dispose();
+            }
+        });
+		
 		// show window
 		setVisible(true);
 	}
@@ -123,15 +146,26 @@ public class GuiLogin extends JFrame implements ActionListener {
 	 */
 	public void loginOnclick(){
 		if(!tfId.getText().isEmpty() && tfPw.getPassword().length != 0){
-			Advisor avs = DaoAdvisor.findAdvisorByLogin(tfId.getText());
-			
-			PasswordAuthentication pa = new PasswordAuthentication();
-			if(pa.authenticate(tfPw.getPassword(), avs.getAvs_password())){
-				dispose();
-				new GuiMain();
-			} else{
-				showMessageDialog(this, "L'identifiant ou le mot de passe est incorrect.");
+			//Advisor avs = DaoAdvisor.findAdvisorByLogin(tfId.getText());
+			Advisor avs = null;
+			// connect to server to get advisor
+			try {
+				avs = DbClient.findAdvisorByLogin(tfId.getText());
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
 			}
+			if(avs != null) {
+				PasswordAuthentication pa = new PasswordAuthentication();
+				if(pa.authenticate(tfPw.getPassword(), avs.getAvs_password())){
+					dispose();
+					new GuiMain(dbServer);
+				} else{
+					showMessageDialog(this, "L'identifiant ou le mot de passe est incorrect.");
+				}
+			} else {
+				showMessageDialog(this, "Cannot connect to server");
+			}
+			
 		} else {
 			showMessageDialog(this, "Veillez entrer l'identifiant et le mot de passe.");
 		}
@@ -153,10 +187,13 @@ public class GuiLogin extends JFrame implements ActionListener {
 	 * @param args input arguments
 	 */
 	public static void main(String[] args) {
-		
+    	DbServer dbServer = new DbServer();
+    	Thread server = new Thread(dbServer);
+    	server.start();
+    	
 		SetTheme.setNimbus();
 
-        new GuiLogin();
+        new GuiLogin(dbServer);
 
 	}
 }

@@ -1,6 +1,10 @@
 package gui;
 
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListCellRenderer;
@@ -22,10 +26,10 @@ import javax.swing.table.TableColumnModel;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.format.DateTimeFormat;
 
-import dao.DaoClient;
 import model.Account;
 import model.Client;
-import model.TransactionHistory;
+import server.DbClient;
+import server.DbServer;
 
 /**
  * Gui of main page of the system
@@ -42,7 +46,7 @@ public class GuiMain extends JFrame {
 	/**
 	 * full client list
 	 */
-	private final ArrayList<Client> clientList = DaoClient.getClientList();
+	private ArrayList<Client> clientList;
 	/**
 	 * label shows: Liste des clients
 	 */
@@ -55,10 +59,6 @@ public class GuiMain extends JFrame {
 	 * label shows: Informations de client :
 	 */
 	private final JLabel lbInfo = new JLabel("Informations de client :");
-	/**
-	 * label shows: Les historiques de trransaction : :
-	 */
-	private final JLabel lbTransactionHistory = new JLabel("Les historiques de transaction :");
 	/**
 	 * text field for search a client
 	 */
@@ -84,10 +84,6 @@ public class GuiMain extends JFrame {
 	 */
 	private DefaultTableModel modelJTableTSH = new DefaultTableModel();
 	/**
-	 * jtable contains list of transaction history of selected account
-	 */
-	private JTable jtableTransactionHistory = new JTable(modelJTableTSH);
-	/**
 	 * model for jlistAccount
 	 */
 	private DefaultListModel<Account> modelJListAccount = new DefaultListModel<Account>();
@@ -95,21 +91,46 @@ public class GuiMain extends JFrame {
 	 * jlist contains all account of selected client
 	 */
 	private JList<Account> jlistAccount = new JList<Account>(modelJListAccount);
-	private final JScrollPane jspTSHTable = new JScrollPane();
+	/**
+	 * scroll pane for client list
+	 */
 	private final JScrollPane jspClientList = new JScrollPane();
 	
 	/**
 	 * Constructor of jframe
+	 * 
+	 * @param dbServer  the intermediate server
 	 */
-	public GuiMain() {
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(1024, 768);
+	public GuiMain(DbServer dbServer) {
+		// connect to server to get client list
+		try {
+			clientList = DbClient.getClientList();
+		} catch (IOException e) {
+			clientList = new ArrayList<Client> ();
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		setFont(new Font("Arial", Font.PLAIN, 15));
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setSize(1024, 566);
 		setTitle("Front Office Advisor System");
 		setResizable(false);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 
 		initComponents();
+		
+		// exit_on_close event, stop server when close windows
+		addWindowListener(new WindowAdapter()
+        {
+            @Override
+            public void windowClosing(WindowEvent e)
+            {
+            	dbServer.stopServer();
+                e.getWindow().dispose();
+            }
+        });
 
 		setVisible(true);
 	}
@@ -118,21 +139,22 @@ public class GuiMain extends JFrame {
 	 * initiate components
 	 */
 	private void initComponents() {
+		lbClientList.setFont(new Font("Arial", Font.PLAIN, 15));
 		// labels
 		lbClientList.setBounds(6, 15, 219, 21);
 		getContentPane().add(lbClientList);
+		lbAccountList.setFont(new Font("Arial", Font.PLAIN, 15));
 		
-		lbAccountList.setBounds(237, 271, 341, 18);
+		lbAccountList.setBounds(237, 399, 341, 18);
 		getContentPane().add(lbAccountList);
+		lbInfo.setFont(new Font("Arial", Font.PLAIN, 15));
 		
 		lbInfo.setBounds(237, 16, 341, 18);
 		getContentPane().add(lbInfo);
-		
-		lbTransactionHistory.setBounds(237, 355, 341, 18);
-		getContentPane().add(lbTransactionHistory);
-		jspClientList.setBounds(6, 68, 219, 654);
+		jspClientList.setBounds(6, 68, 219, 460);
 		
 		getContentPane().add(jspClientList);
+		jlistClient.setFont(new Font("Arial", Font.PLAIN, 15));
 		jspClientList.setViewportView(jlistClient);
 		// set a custom renderer to jlist which show client's full name when it contains a list of Client objects
 		jlistClient.setCellRenderer(new DefaultListCellRenderer() {
@@ -166,6 +188,7 @@ public class GuiMain extends JFrame {
 			}
 			
 		});
+		tfSearch.setFont(new Font("Arial Unicode MS", Font.PLAIN, 15));
 
 		// textfield for search client
 		tfSearch.setBounds(6, 35, 219, 30);
@@ -192,12 +215,15 @@ public class GuiMain extends JFrame {
 		});
 		
 		// jtable of client's info
-		jtableClientInfo.setSize(775, 224);
+		jtableClientInfo.setSize(775, 354);
 		jtableClientInfo.setLocation(237, 35);
 		getContentPane().add(jtableClientInfo);
+		jlistAccount.setFont(new Font("Arial", Font.PLAIN, 15));
+		jtableClientInfo.setRowHeight(25);
 		
 		// jlist of account
-		jlistAccount.setBounds(237, 290, 775, 59);
+		jtableClientInfo.setFont(new Font("Arial Unicode MS", Font.PLAIN, 15));
+		jlistAccount.setBounds(237, 427, 775, 101);
 		getContentPane().add(jlistAccount);
 		// set a custom renderer to jlist account which will show account number when it contains a list of Account objects
 		jlistAccount.setCellRenderer(new DefaultListCellRenderer() {
@@ -226,15 +252,16 @@ public class GuiMain extends JFrame {
 		jlistAccount.addListSelectionListener(new ListSelectionListener(){
 
 			@Override
-			public void valueChanged(ListSelectionEvent arg0) {
-				updateJTableTSH();
+			public void valueChanged(ListSelectionEvent ev) {
+				//updateJTableTSH();
+				if (!ev.getValueIsAdjusting()) {//This line prevents double events
+					if(jlistAccount.getSelectedValue() != null){
+						new GuiTransactionHistory(jlistAccount.getSelectedValue(), jlistClient.getSelectedValue().getFullName());
+					}
+			    }
 			}
 			
 		});
-		jspTSHTable.setBounds(237, 374, 775, 348);
-		
-		getContentPane().add(jspTSHTable);
-		jspTSHTable.setViewportView(jtableTransactionHistory);
 
 		// add clients in jlist
 		for(Client clt : clientList){
@@ -264,23 +291,6 @@ public class GuiMain extends JFrame {
 	}
 	
 	/**
-	 * update jtableTransactionHistory when select an account
-	 */
-	private void updateJTableTSH() {
-		if(!jlistAccount.isSelectionEmpty()){ // avoid event generate by reset account list
-			Account acc = jlistAccount.getSelectedValue();
-			ArrayList<TransactionHistory> tshList = acc.getTransactionHistory();
-			clearJTableTSH();
-			
-			for(TransactionHistory tsh : tshList){
-				modelJTableTSH.addRow(new Object[]{tsh.getTsh_transactionOn().toString(DateTimeFormat.forPattern("yyyy/MM/dd")),
-						tsh.getTsh_description(), tsh.getTsh_amount()});
-			}
-			resizeColumnWidth(jtableTransactionHistory);
-		}
-	}
-	
-	/**
 	 * search client which name contains the input text, and update jlist
 	 */
 	private void updateJListClient() {
@@ -293,7 +303,7 @@ public class GuiMain extends JFrame {
 	}
 	
 	/**
-	 * update jlist of account when select a client
+	 * update JList of account when select a client
 	 */
 	private void updateJListAccount() {
 		if(!jlistClient.isSelectionEmpty()){ // avoid event generate by reset client list
@@ -365,6 +375,10 @@ public class GuiMain extends JFrame {
 	 * @param args inputs arguments
 	 */
 	public static void main(String[] args) {
-		new GuiMain();
+    	DbServer dbServer = new DbServer();
+    	Thread server = new Thread(dbServer);
+    	server.start();
+    	
+		new GuiMain(dbServer);
 	}
 }

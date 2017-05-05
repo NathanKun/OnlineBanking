@@ -71,15 +71,23 @@ public class SendMail {
 
 		// Get a Properties object
 		Properties props = System.getProperties();
+		props.put("mail.transport.protocol", "smtp");
 		props.put("mail.smtp.starttls.enable","true");
 		props.put("mail.smtp.auth", "true");  // need to authenticate
-		// SSL
-		props.put("mail.smtp.socketFactory.port", "465");
-		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-		props.put("mail.smtp.socketFactory.fallback", "false");
+		props.put("mail.smtps.host", "mail.catprogrammer.com");
 		
-		props.setProperty("mail.smtps.host", "mail.catprogrammer.com");
-		props.setProperty("mail.smtp.port", "465");
+		// SSL
+//		props.put("mail.smtp.socketFactory.port", "465");
+//		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//		props.put("mail.smtp.socketFactory.fallback", "false");
+		
+		
+//		props.setProperty("mail.smtp.port", "465");
+		
+		
+		// starttl
+//		props.put("mail.smtp.socketFactory.port", "587");
+		props.put("mail.smtp.port", "587");
 
 		/*
 		 * If set to false, the QUIT command is sent and the connection is
@@ -95,6 +103,7 @@ public class SendMail {
 		props.put("mail.smtps.quitwait", "true");
 
 		Session session = Session.getInstance(props, null);
+		session.setDebug(true);
 
 		// -- Create a new message --
 		final MimeMessage msg = new MimeMessage(session);
@@ -110,8 +119,12 @@ public class SendMail {
 		msg.setSubject(title);
 		msg.setText(message, "utf-8");
 		msg.setSentDate(new Date());
-
-		SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
+		
+		// ssl
+		//SMTPTransport t = (SMTPTransport) session.getTransport("smtps");
+		
+		// starttl
+		SMTPTransport t = (SMTPTransport) session.getTransport("smtp");
 
 		t.connect("mail.catprogrammer.com", username, password);
 		t.sendMessage(msg, msg.getAllRecipients());
@@ -137,5 +150,8 @@ public class SendMail {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	public static void main (String[] args) {
+		sendVerificationCode("1234", "nathanhejunyang@gmail.com");
 	}
 }

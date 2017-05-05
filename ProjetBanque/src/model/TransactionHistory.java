@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
@@ -10,7 +11,12 @@ import org.joda.time.DateTime;
  * @author Junyang HE
  *
  */
-public class TransactionHistory {
+public class TransactionHistory implements Serializable{
+
+	/**
+	 * generated serialVersionUID
+	 */
+	private static final long serialVersionUID = 4997773902150564873L;
 
 	/**
 	 * l'identifiant de l'historique des transactions

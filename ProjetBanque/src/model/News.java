@@ -1,8 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 import org.joda.time.DateTime;
 
-public class News {
+public class News implements Serializable{
+	/**
+	 * generate serialVersionUID
+	 */
+	private static final long serialVersionUID = -5116067082860499178L;
 	/**
 	 * id of news
 	 */
