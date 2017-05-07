@@ -62,54 +62,68 @@
                <div id="myTabContent" class="tab-content">
                   <div class="tab-pane fade active in" id="generalites">
                      <h3>Mes comptes</h3>
-                     <table id="accountsInfo">
-                        <tr>
-                           <th>Type</th>
-                           <th>Numéro</th>
-                           <th>intéret</th>
-                           <th>Solde (€)</th>
-                        </tr>
-                        <tr>
-                           <td>Compte courant:</td>
-                           <td>${ client.getCurrentAccount().getAcc_number() }</td>
-                           <td>${ client.getCurrentAccount().getAcc_interest() }</td>
-                           <td id="currentBalance"><button class="btn btn-primary" onclick="showBalance('currentBalance');">Show</button></td>
-                        </tr>
-                        <tr>
-                        <c:if test="${not empty client.getSavingAccount() }">
+                     
+                     <div class="col-md-6">
+	                     <table id="accountsInfo">
 	                        <tr>
-	                           <td>Compte d'épargne:</td>
-	                           <td>${ client.getSavingAccount().getAcc_number() }</td>
-	                           <td>${ client.getSavingAccount().getAcc_interest() }</td>
-	                           <td id="savingBalance"><button class="btn btn-primary" onclick="showBalance('savingBalance');">Show</button></td>
+	                           <th>Type</th>
+	                           <th>Numéro</th>
+	                           <th>intéret</th>
+	                           <th>Solde (€)</th>
 	                        </tr>
-						</c:if>
-                        <c:if test="${not empty client.getSecuritiesAccount() }">
 	                        <tr>
-	                           <td>Compte de titre:</td>
-	                           <td>${ client.getSecuritiesAccount().getAcc_number() }</td>
-	                           <td>${ client.getSecuritiesAccount().getAcc_interest() }</td>
-	                           <td id="securitiesBalance"><button class="btn btn-primary" onclick="showBalance('securitiesBalance');">Mes actions</button></td>
+	                           <td>Compte courant:</td>
+	                           <td>${ client.getCurrentAccount().getAcc_number() }</td>
+	                           <td>${ client.getCurrentAccount().getAcc_interest() }</td>
+	                           <td id="currentBalance"><button class="btn btn-primary" onclick="showBalance('currentBalance');">Show</button></td>
 	                        </tr>
-						</c:if>
-                        <c:if test="${empty client.getSavingAccount() }">
 	                        <tr>
-	                           <td>Créer un compte d'épargne</td>
-	                           <td><button class="btn btn-primary" onclick="createAccount('savingAccount');">Créer</button></td>
-	                        </tr>
+	                        <c:if test="${not empty client.getSavingAccount() }">
+		                        <tr>
+		                           <td>Compte d'épargne:</td>
+		                           <td>${ client.getSavingAccount().getAcc_number() }</td>
+		                           <td>${ client.getSavingAccount().getAcc_interest() }</td>
+		                           <td id="savingBalance"><button class="btn btn-primary" onclick="showBalance('savingBalance');">Show</button></td>
+		                        </tr>
+							</c:if>
+	                        <c:if test="${not empty client.getSecuritiesAccount() }">
+		                        <tr>
+		                           <td>Compte de titre:</td>
+		                           <td>${ client.getSecuritiesAccount().getAcc_number() }</td>
+		                           <td>${ client.getSecuritiesAccount().getAcc_interest() }</td>
+		                           <td id="securitiesBalance"><button class="btn btn-primary" onclick="showBalance('securitiesBalance');">Mes actions</button></td>
+		                        </tr>
+							</c:if>
+	                        <c:if test="${empty client.getSavingAccount() }">
+		                        <tr>
+		                           <td>Créer un compte d'épargne</td>
+		                           <td><button class="btn btn-primary" onclick="createAccount('savingAccount');">Créer</button></td>
+		                        </tr>
+							</c:if>
+	                        <c:if test="${empty client.getSecuritiesAccount() }">
+		                        <tr>
+		                           <td>Créer un compte de titre:</td>
+		                           <td><button class="btn btn-primary" onclick="createAccount('securitiesAccount');">Créer</button></td>
+		                        </tr>
+							</c:if>
+	                     </table>
+                     </div>
+                     <div class="col-md-6">
+                     	<canvas id="doughnutChart"></canvas>
+                     	<form onsubmit="return setDoughnutTarget();">
+	                     	<div class="col-md-9">
+	                     		<input class="form-control input-md" type="number" step="0.01" value="0.00" placeholder="0.00" id="inputSetDoughnutTarget"/>
+	                     	</div>
+	                     	<input type="submit" id="btnSetDoughnutTarget" class="btn btn-primary" value="Enregistrer" />
+                     	</form>
+                     </div>
+                     <div class="col-md-8">
+	                     <c:if test="${not empty client.getSecuritiesAccount() }">
+	                     	<table id="stockList">
+	                     		<tr><th>Nom</th><th>Nombre</th><th>Prix par action actuel</th><th>Prix total actuel</th></tr>
+		                    </table>
 						</c:if>
-                        <c:if test="${empty client.getSecuritiesAccount() }">
-	                        <tr>
-	                           <td>Créer un compte de titre:</td>
-	                           <td><button class="btn btn-primary" onclick="createAccount('securitiesAccount');">Créer</button></td>
-	                        </tr>
-						</c:if>
-                     </table>
-                     <c:if test="${not empty client.getSecuritiesAccount() }">
-                     	<table id="stockList">
-                     		<tr><th>Nom</th><th>Nombre</th><th>Prix par action actuel</th><th>Prix total actuel</th></tr>
-	                    </table>
-					</c:if>
+                     </div>
                   </div>
                   <!-- Généralités comptes -->
                   
@@ -408,17 +422,16 @@
          <%@ include file="./includes/footer.inc.jsp"%>
       </div>
       <!-- /.container -->
+      
       <!-- jQuery -->
       <script src="js/jquery.js"></script>
       <!-- Bootstrap Core JavaScript -->
       <script src="js/bootstrap.min.js"></script>
-      <!-- Script to Activate the Carousel -->
-      <script>
-         $('.carousel').carousel({
-         	interval : 5000
-         //changes the speed
-         })
-      </script>
+      <!-- semi-circle pie chart -->
+      <script src="js/Chart.js"></script>
+      <!-- jquery cookie plugin -->
+      <script src="js/jquery.cookie.js"></script>
+      <!-- iban checker -->
       <script src="js/iban.js"></script>
       <script>
          window.onload = function() {
@@ -608,6 +621,94 @@
          	}
              event.preventDefault();
          });
+ 		
+ 		
+        
+
+ 		
+ 		// semi-circle chart
+        //$.removeCookie('doughnutTarget'); // => true
+        function setDoughnutTarget() {
+        	$.cookie('doughnutTarget', $("#inputSetDoughnutTarget").val(), { expires: 365 });
+            location.reload();
+        	
+        	return false;
+        }
+        
+        $(function() {
+	        // Handler for .ready() called.
+	        if (typeof $.cookie('doughnutTarget') != 'undefined'){
+	        	$("#inputSetDoughnutTarget").val($.cookie('doughnutTarget'));
+	        }
+	        createChart();
+        });
+        
+ 		function createChart() {
+ 			
+ 			var balance = <%= clt.getCurrentAccount().getAcc_balance() %>;
+ 			var target = 0;
+ 			if (typeof $.cookie('doughnutTarget') === 'undefined'){
+ 				target = balance;
+ 	        } else if($.cookie('doughnutTarget') < balance){
+ 	        	target = balance;
+ 	        } else {
+ 	        	target = $.cookie('doughnutTarget');
+ 	        }
+ 	 		var rest = Math.round((target - balance) * 100) / 100;
+ 			var data = {
+ 			  labels: [
+ 			    "Solde",
+ 			    "Manque"
+ 			  ],
+ 			  datasets: [
+ 			    {
+ 			      data: [balance, rest],
+ 			      backgroundColor: [
+ 			        "#66CCFF",
+ 			        "#AAAAAA"
+ 			      ],
+ 			      hoverBackgroundColor: [
+ 			        "#88EEFF",
+ 			        "#BBBBBB"
+ 			      ]
+ 			    }]
+ 			};
+ 			
+ 			Chart.pluginService.register({
+ 			  beforeDraw: function(chart) {
+ 			    var width = chart.chart.width,
+ 			        height = chart.chart.height,
+ 			        ctx = chart.chart.ctx;
+ 			
+ 			    ctx.restore();
+ 			    var fontSize = (height / 57).toFixed(2);
+ 			    ctx.font = fontSize + "em sans-serif";
+ 			    ctx.textBaseline = "middle";
+ 			
+ 			    var text = Math.round(balance / target * 100) + "%",
+ 			        textX = Math.round((width - ctx.measureText(text).width) / 2),
+ 			        textY = height/1.25;
+ 			    ctx.fillText(text, textX, textY);
+ 			    ctx.save();
+ 			  }
+ 			});
+ 			
+ 			var chart = new Chart(document.getElementById('doughnutChart'), {
+ 			  type: 'doughnut',
+ 			  data: data,
+ 			  options: {
+ 			  	responsive: true,
+ 			    legend: {
+ 			      display: false
+ 			    },
+ 			    circumference: Math.PI,
+ 			    rotation: Math.PI
+ 			  }
+ 			});
+ 		}
+ 		
+		
+		
       </script>
    </body>
 </html>
