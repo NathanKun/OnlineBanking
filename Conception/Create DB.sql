@@ -14,21 +14,20 @@ DROP TABLE IF EXISTS stock_stk;
 DROP TABLE IF EXISTS transactionhistory_tsh;
 DROP TABLE IF EXISTS account_acc;
 DROP TABLE IF EXISTS client_clt;
-DROP PROCEDURE IF EXISTS InsertRvariableandToSHP;
+DROP PROCEDURE IF EXISTS InsertRandToSHP;
 
 CREATE TABLE IF NOT EXISTS offres_ofr (
 	ofr_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ofr_title VARCHAR(255),
     ofr_text LONGTEXT,
     ofr_image VARCHAR(255),
-    ofr_type VARCHAR(32),
     ofr_date DATETIME
 );
-    
+
 CREATE TABLE IF NOT EXISTS manager_mng (
-	mng_imanager_mngd INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    mng_name VARCHAR(60) NOT NULL,
-	mng_login VARCHAR(20) NOT NULL UNIQUE,
+	mng_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    mng_name VARCHAR(30) NOT NULL,
+	mng_login VARCHAR(30) NOT NULL UNIQUE,
     mng_password VARCHAR(178) NOT NULL
 );
 
@@ -143,7 +142,7 @@ CREATE TABLE IF NOT EXISTS news_nws (
 
 INSERT INTO client_clt VALUES(null, "login", 
 	"$31$16$-uVazABmj_zVigoaLAUSoXxH8J9lmy4yODXNHijAuJAqd-KK7-6J3Mxl4mPNxIe5B5hfqdswHa5KXlMLwW4JqPP27cvaZFNjQ1yvrW6aLfns_7PcrF72o4f7gSyj8oLTCxnTAq8Pf5dH_zkklWcJiTnXXcpjapxydXSE_GdHQR0", 
-    "firstName", "lastName", STR_TO_DATE('1994-07-10','%Y-%d-%m'),
+    "firstName", "lastName", STR_TO_DATE('1994-07-10','%Y-%m-%d'),
 	"Chinese", "M", "1 rue Abc", "76000", "Rouen", "01234567", "e@mail.com", "Marié(e)", NOW(), 
 	('2009-06-08 23:53:17'));
 INSERT INTO account_acc VALUES(null, "4444555566660001", "AL47212110090000000235698741", 1, 987.65, 0, 1);
@@ -153,7 +152,7 @@ INSERT INTO account_acc VALUES(null, "4444555566660003", "BA391290079401028494",
 
 INSERT INTO client_clt VALUES(null, "a", 
 	"$31$16$dbPTfmG7Rsoc_404pj9xhSdcYfeSnRWUTpceh1k2Qf9WYXmEYdjU-kAf3Lo4wycfc2awxnRyCiMhDVPl4V-AX24NuC6dC2iXaMEVm_5p2D0Egbb6gR4M08o_w1oWEgk5zkH_Kkr8g7_JdCbxGngvPVwFL49KWXGfKvQXm353FdY", 
-	"Haoran", "Wang", STR_TO_DATE('1999-09-09','%Y-%d-%m'),
+	"Haoran", "Wang", STR_TO_DATE('1999-09-09','%Y-%m-%d'),
 	"Chinese", "M", "233 rue de Rouen", "76800", "St du Ry", "0607080910", "wanghaoran@gmail.com", 
 	"Divorcé(e)", NOW(), ('2017-03-29 10:05:21'));
 INSERT INTO account_acc VALUES(null, "2222333322220001", "BE62510007547061", 2, 1643.68, 0, 1);
@@ -195,7 +194,7 @@ INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 3", "2222333
 
 INSERT INTO client_clt VALUES(null, "b", 
 	"$31$16$qcBh8ENZcSfpeStNzJnhpc0-uw6SIxwJUK6gAEaIn3hkb_Rg6BAhXcqw2EUWabPq3kz6e7eXMTKgOLpbSUTiCnEKlvvpOga2G760JqfQu7ljJbl1D-7vGEGKY-Z00XjC7jrD4BdKny4CI82dchPxQBWLbt7xEeAgeKfAYfzedG0", 
-	"Onepunch", "Man", STR_TO_DATE('1888-08-08','%Y-%d-%m'),
+	"Onepunch", "Man", STR_TO_DATE('1888-08-08','%Y-%m-%d'),
 	"Chinese", "M", "321 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee", "33445", "Fukuchima", "0607080910", "wanghaoran@gmail.com", 
 	"Séparé(e)", NOW(), ('2015-01-02 20:33:45'));
 INSERT INTO account_acc VALUES(null, "3333666699990001", "AZ21NABZ00000000137010001944", 3, 65535.00, 0, 1);
@@ -213,7 +212,7 @@ INSERT INTO transactionhistory_tsh VALUES(null, "b acc3 description 3", "3333666
 
 INSERT INTO client_clt VALUES(null, "1236784567", 
 	"$31$16$BnYo6uJe7XrpkVWoOB0VQ3a_czDxDs0Y3K6JnhN-dTTGNgskiOsIFSywcuBgB_gR2JBuMFkLmus91-IaaRdl3ZAMLlnsaXIcJy0soYuTmdmo_VEJJbXG2FbsZ-iukUTvxnno0LUqokfwKpjI8qtcUkP_DsHSqNo7Gt8UaLmwLBQ", 
-	"Bill", "Gate", STR_TO_DATE('1960-03-11','%Y-%d-%m'),
+	"Bill", "Gate", STR_TO_DATE('1960-03-11','%Y-%m-%d'),
 	"American", "M", "some rode", "01234", "SomeCity", "0607080910", "billgate@gmail.com", 
 	"Célibataire", NOW(), ('2016-07-08 07:20:11'));
 INSERT INTO account_acc VALUES(null, "4444888844440001", "HR1210010051863000160", 4, 10086, 0, 1);
@@ -328,6 +327,7 @@ INSERT INTO advisor_avs VALUES(null, 'MrsAdvisorC', 'c',
 );
 
 
+<<<<<<< HEAD
 INSERT INTO news_nws VALUES(null, "BankRading et Compte-Normandie s'allient", "Dans le cadre des partenariats avec la Confédération des Buralistes de France, notre banque rajoute un nouvel allié à son actif.", "images/bank.png", "BankRading", NOW());
 INSERT INTO news_nws VALUES(null, "Actionnaires : nouvelle plateforme !", "Bonne nouvelle pour le cercle des actionnaires de la BankRading, notre groupe se fortifie d'un nouveau site Internet exclusif, muni des dernières mises à jour.", "images/bank.png", "BankRading", NOW());
 INSERT INTO news_nws VALUES(null, "Groupe BankRading : Résultars au 31 mars 2017", "Le Conseil d'administration de la BankRading a examiné les résultats de la banque pour le premier trimestre de l'année en cours.", "images/bank.png", "BankRading", NOW());
@@ -341,3 +341,17 @@ INSERT INTO news_nws VALUES(null, "Emmanuel MACRON élu président de la Républ
 INSERT INTO news_nws VALUES(null, "BankRading expose au salon Franchise Expo Toulouse 2016", "BankRading expose au Salon de Toulouse. Toute l'équipe du pôle Franchise et Commerce Associé deBankRading sera présente afin d'informer sur un projet,répondre aux interrogations et conseiller/accompagner dans la réalisation d'un projet.", "http://www.photononstop.com/tmp/c17daa03f4079e4f369d96623153001162d288dd0/PNS-3711877.jpg", "BankRading", NOW());
 INSERT INTO news_nws VALUES(null, "L'euro au-dessus de $1,10 après les résultats de la présidentielle", "L'euro a franchi dimanche le seuil de 1,10 dollar pour la première fois depuis l'élection de Donald Trump à la présidence des Etats-Unis et a inscrit un plus haut d'un an contre le yen en réaction à la large victoire d'Emmanuel Macron.", "http://www.photononstop.com/tmp/c17daa03f4079e4f369d96623153001162d288dd0/PNS-3025610.jpg", "BOURSE", NOW());
 INSERT INTO news_nws VALUES(null, "Prêt Personnel BankRading, au printemps, c'est maintenant !", "Vous avez envie de partir en vacances ou de changer de voiture, vous avez besoin de remplacer une partie de votre équipement, les projets ne manquent pas, encore faut-il disposer des bons leviers pour les rendre concrets !", "http://www.photononstop.com/tmp/c17daa03f4079e4f369d96623153001162d288dd0/PNS-704030595.jpg", "BankRading", NOW());
+=======
+INSERT INTO news_nws VALUES(null, "BankRading et Compte-Normandie s'allient", "Dans le cadre des partenariats avec la Confédération des Buralistes de France, notre banque rajoute un nouvel allié à son actif.", "images/bank.png", "BankRading", STR_TO_DATE('2017-03-10, 14:15:16','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "Actionnaires : nouvelle plateforme !", "Bonne nouvelle pour le cercle des actionnaires de la BankRading, notre groupe se fortifie d'un nouveau site Internet exclusif, muni des dernières mises à jour.", "images/bank.png", "BankRading", STR_TO_DATE('2017-04-15, 14:15:16','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "Groupe BankRading : Résultars au 31 mars 2017", "Le Conseil d'administration de la BankRading a examiné les résultats de la banque pour le premier trimestre de l'année en cours.", "images/bank.png", "BankRading", STR_TO_DATE('2017-05-01, 18:19:20','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "MACRON ET LE PEN AU DERNIER TOUR !", "Le ministère de l'Intérieur a publié les résultats définitifs du premier tour de la présidentielle ce lundi après-midi. Emmanuel Macron obtient ainsi 24,01% des suffrages exprimes, devant à 21,30%. ", "http://i.f1g.fr/media/ext/805x453_crop/www.lefigaro.fr/medias/2017/04/23/20170423PHOWWW00392.jpg", "OFFICIEL", STR_TO_DATE('2017-04-24, 14:15:16','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "le CAC40 en forte hausse après les premiers résultats.", "Les principales Bourses européennes ont ouvert en vive hausse lundi au lendemain du premier tour de l'élection présidentielle française qui a placé en tête Emmanuel Macron, un résultat qui profite aux actifs financiers français, en premier lieu le CAC 40 et ses valeurs bancaires.", "http://www.cbnews.fr/var/media/225/original/indice-cac40-224325.jpg", "BOURSE", STR_TO_DATE('2017-04-24, 07:08:09','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "LIGUE DES CHAMPIONS : Monaco dans le dernier carré !", "L'AS Monaco a battu le Borussia Dortmund ce mercredi en quarts de finale retour de la Ligue des champions (3-1, 6-3 sur l'ensemble des deux matches) grâce à des buts Mbappé, Falcao et Germain, et disputera les demi-finales, une première pour un club français depuis 2010.", "https://www.cuw.edu/_files/images/test3.JPG", "SPORT", STR_TO_DATE('2017-04-24, 9:15:35','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "Offre d'emploi : Ingénieur Expert en Collaboration (Voix et Vidéo)", "Le candidat sera affecté à un environnement à forte expertise technique allant de l'évaluation, conception, implémentation et livraison de solutions complexes. ", "images/bank.png", "BankRading", STR_TO_DATE('2017-05-05, 14:10:08','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "LIGUE DES CHAMPIONS : Ce sera JUVENTUS vs Real Madrid en Finale !", "Pour l'édition 2017 de la Coupe européenne des clubs, la JUVENTUS s'est qualifiée au détriment de l'AS MONACO, au terme d'une rencontre bouillante. Ainsi était le cas pour le REAL MADRID qui s'est contenté d'un nul au retour.", "https://www.cuw.edu/_files/images/test3.JPG", "SPORT", STR_TO_DATE('2017-05-07, 9:15:35','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "LVMH détrône Total au sommet du CAC 40","Andrea Tueni,analyste chez Saxo Banque:'C’est une première depuis la fin des années 1980, puisqu’il y avait habituellement des valeurs de l’industrie lourde en tête des capitalisations.'Mieux vaut vendre des robes Dior et des sacs Louis Vuitton que d’extraire et raffiner du pétrole!","http://www.cbnews.fr/var/media/225/original/indice-cac40-224325.jpg", "BOURSE", STR_TO_DATE('2017-05-06, 13:12:11','%Y-%m-%d, %H:%i:%s'));
+
+INSERT INTO manager_mng VALUES(null, "manager a", "a", 
+	"$31$16$dbPTfmG7Rsoc_404pj9xhSdcYfeSnRWUTpceh1k2Qf9WYXmEYdjU-kAf3Lo4wycfc2awxnRyCiMhDVPl4V-AX24NuC6dC2iXaMEVm_5p2D0Egbb6gR4M08o_w1oWEgk5zkH_Kkr8g7_JdCbxGngvPVwFL49KWXGfKvQXm353FdY");
+>>>>>>> 35e67d5ee8ad18f463472f85dd3e0f9fc5bf6b01
