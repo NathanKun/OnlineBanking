@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ include file="./includes/session.inc.jsp"%>
 <%@ page
 	import="java.util.ArrayList, dao.DaoClient, model.Client, org.apache.commons.lang3.StringUtils"%>
 <%
