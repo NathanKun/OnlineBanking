@@ -39,12 +39,12 @@ public class AddMoneyToMyAccount extends HttpServlet {
 		String montant= request.getParameter("montant");
 		String accnumber="";
 		String typeCarte = request.getParameter("type");
-		/*String titulaire= request.getParameter("titulaire");
+		String titulaire= request.getParameter("titulaire");
 		String numCarte= request.getParameter("numcarte");
 		String mois= request.getParameter("mois");
 		String annee= request.getParameter("annee");
-		String crypto= request.getParameter("crypto");*/
-		String description = "" + montant + " euros ajoutï¿½s via une carte de type " + typeCarte;
+		String crypto= request.getParameter("crypto");
+		String description = "" + montant + " euros ajoutés via une carte de type " + typeCarte;
 		
 		Client c= (Client)request.getSession(true).getAttribute("client");
 		switch(recepteur){

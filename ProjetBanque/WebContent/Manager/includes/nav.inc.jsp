@@ -17,7 +17,7 @@
 				<i class="fa fa-caret-down"></i>
 		</a>
 			<ul class="dropdown-menu dropdown-user">
-				<li><a href="login.jsp?logout=true"><i class="fa fa-sign-out fa-fw"></i>
+				<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
 						Me déconnecter </a></li>
 			</ul> <!-- /.dropdown-user --></li>
 		<!-- /.dropdown -->

@@ -11,6 +11,10 @@
 	String[] keyWords = input.split(" ");
 	System.out.println("input = " + input);
 	System.out.println("keyWords");
+	for(String str : keyWords){
+		System.out.println(str);
+		
+	}
 
 	ArrayList<News> bankNewsList = DaoNews.findAllBankNews();
 	ArrayList<News> otherNewsList = DaoNews.findAllOtherNews();
@@ -27,8 +31,7 @@
 					StringUtils.containsIgnoreCase(nws.getNws_type(), key) ){
 				isContains = true;
 			}
-			// news contains key word and it is not added into the list yet
-			if(isContains && !bankNewsShowList.contains(nws)){
+			if(isContains){
 				bankNewsShowList.add(nws);
 			}
 		}
@@ -42,8 +45,7 @@
 					StringUtils.containsIgnoreCase(nws.getNws_type(), key) ){
 				isContains = true;
 			}
-			// news contains key word and it is not added into the list yet
-			if(isContains && !otherNewsShowList.contains(nws)){
+			if(isContains){
 				otherNewsShowList.add(nws);
 			}
 		}

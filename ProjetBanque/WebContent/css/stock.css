@@ -1,14 +1,4 @@
 @CHARSET "UTF-8";
-.red {
-	color: red;
-	font-size: 200%;
-}
-
-.green {
-	color: green;
-	font-size: 200%;
-}
-
 aside {
 	float: left;
     position: relative;
