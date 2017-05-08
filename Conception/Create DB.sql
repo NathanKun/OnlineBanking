@@ -157,21 +157,8 @@ INSERT INTO client_clt VALUES(null, "a",
 	"Divorcé(e)", NOW(), ('2017-03-29 10:05:21'));
 INSERT INTO account_acc VALUES(null, "2222333322220001", "BE62510007547061", 2, 1643.68, 0, 1);
 INSERT INTO account_acc VALUES(null, "2222333322220002", "BH67BMAG00001299123456", 2, 2500.00, 2.5, 2);
+INSERT INTO account_acc VALUES(null, "2222333322220003", "x", 2, 0, 0, 3);
 
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1", "2222333322220001", NOW(), 33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
@@ -198,7 +185,8 @@ INSERT INTO client_clt VALUES(null, "b",
 	"Chinese", "M", "321 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee", "33445", "Fukuchima", "0607080910", "wanghaoran@gmail.com", 
 	"Séparé(e)", NOW(), ('2015-01-02 20:33:45'));
 INSERT INTO account_acc VALUES(null, "3333666699990001", "AZ21NABZ00000000137010001944", 3, 65535.00, 0, 1);
-INSERT INTO account_acc VALUES(null, "3333666699990003", "AD1200012030200359100100", 3, 1200.00, 0, 3);
+INSERT INTO account_acc VALUES(null, "3333666699990003", "xx", 3, 1200.00, 0, 3);
+INSERT INTO account_acc VALUES(null, "3333666699990002", "AD1200012030200359100100", 3, 10, 2.7, 2);
 
 INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 1", "3333666699990001", NOW(), -733.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "b acc1 description 2", "3333666699990001", NOW(), -723.33);
@@ -216,6 +204,46 @@ INSERT INTO client_clt VALUES(null, "1236784567",
 	"American", "M", "some rode", "01234", "SomeCity", "0607080910", "billgate@gmail.com", 
 	"Célibataire", NOW(), ('2016-07-08 07:20:11'));
 INSERT INTO account_acc VALUES(null, "4444888844440001", "HR1210010051863000160", 4, 10086, 0, 1);
+
+
+INSERT INTO client_clt VALUES(null, "1236784568", 
+	"$31$16$2ec4sn8HF7BL3emHhaRnVO1mXuBS1kgT8n2dZGeLnOvEteyjEb27Gsba06Cjdl1bFJKVKlek93veTr_llOpFuWkAiOLLMw2w2vUaf0l9A11pQLN8Wyngn1-lywD0Rzxt1g7TleFaTwf91d7qqKTSK_3kOBNjqPoS50zOzqJU53o", 
+	"What", "Ever", STR_TO_DATE('1990-03-11','%Y-%m-%d'),
+	"American", "M", "What ever rode", "01234", "WhatEverCity", "0607080910", "what@ever.omg", 
+	"Célibataire", NOW(), ('2016-03-03 03:30:30'));
+INSERT INTO account_acc VALUES(null, "4444888844440002", "FR7688888666661123678456816", 5, 600, 0, 1);
+INSERT INTO account_acc VALUES(null, "4444888844440003", "FR7688888666662123678456863", 5, 1322, 1.5, 2);
+INSERT INTO account_acc VALUES(null, "4444888844440004", "FR7688888666663123678456813", 5, 0, 0, 3);
+
+INSERT INTO transactionhistory_tsh VALUES(null, "212 euros ajoutés via une carte de type Visa", "2222333322220001", STR_TO_DATE('2016-12-02, 07:08:09','%Y-%m-%d, %H:%i:%s'), 212);
+INSERT INTO transactionhistory_tsh VALUES(null, "312 euros ajoutés via une carte de type Visa", "3333666699990001", STR_TO_DATE('2016-12-02, 07:08:09','%Y-%m-%d, %H:%i:%s'), 312);
+INSERT INTO transactionhistory_tsh VALUES(null, "12 euros ajoutés via une carte de type Visa", "2222333322220002", STR_TO_DATE('2016-12-13, 07:08:09','%Y-%m-%d, %H:%i:%s'), 12);
+INSERT INTO transactionhistory_tsh VALUES(null, "232 euros ajoutés via une carte de type Visa", "2222333322220002", STR_TO_DATE('2016-12-24, 07:08:09','%Y-%m-%d, %H:%i:%s'), 232);
+INSERT INTO transactionhistory_tsh VALUES(null, "1 euros ajoutés via une carte de type Visa", "2222333322220001", STR_TO_DATE('2017-01-01, 07:08:09','%Y-%m-%d, %H:%i:%s'), 1);
+INSERT INTO transactionhistory_tsh VALUES(null, "231 euros ajoutés via une carte de type Visa", "2222333322220002", STR_TO_DATE('2017-01-08, 07:08:09','%Y-%m-%d, %H:%i:%s'), 231);
+INSERT INTO transactionhistory_tsh VALUES(null, "1 euros ajoutés via une carte de type Visa", "2222333322220001", STR_TO_DATE('2017-01-09, 07:08:09','%Y-%m-%d, %H:%i:%s'), 1);
+INSERT INTO transactionhistory_tsh VALUES(null, "2 euros ajoutés via une carte de type Visa", "3333666699990001", STR_TO_DATE('2017-01-20, 07:08:09','%Y-%m-%d, %H:%i:%s'), 2);
+INSERT INTO transactionhistory_tsh VALUES(null, "212 euros ajoutés via une carte de type Visa", "2222333322220001", STR_TO_DATE('2017-02-02, 07:08:09','%Y-%m-%d, %H:%i:%s'), 212);
+INSERT INTO transactionhistory_tsh VALUES(null, "312 euros ajoutés via une carte de type Visa", "3333666699990001", STR_TO_DATE('2017-02-02, 07:08:09','%Y-%m-%d, %H:%i:%s'), 312);
+INSERT INTO transactionhistory_tsh VALUES(null, "231 euros ajoutés via une carte de type Visa", "2222333322220002", STR_TO_DATE('2017-03-08, 07:08:09','%Y-%m-%d, %H:%i:%s'), 231);
+INSERT INTO transactionhistory_tsh VALUES(null, "2 euros ajoutés via une carte de type Visa", "3333666699990001", STR_TO_DATE('2017-03-20, 07:08:09','%Y-%m-%d, %H:%i:%s'), 2);
+INSERT INTO transactionhistory_tsh VALUES(null, "12 euros ajoutés via une carte de type Visa", "2222333322220002", STR_TO_DATE('2017-04-13, 07:08:09','%Y-%m-%d, %H:%i:%s'), 12);
+INSERT INTO transactionhistory_tsh VALUES(null, "232 euros ajoutés via une carte de type Visa", "2222333322220002", STR_TO_DATE('2017-05-24, 07:08:09','%Y-%m-%d, %H:%i:%s'), 232);
+
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 3333666699990001  motif: ", "2222333322220002", STR_TO_DATE('2016-10-13, 07:08:09','%Y-%m-%d, %H:%i:%s'), -122);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 3333666699990001  motif: ", "2222333322220002", STR_TO_DATE('2016-10-24, 07:08:09','%Y-%m-%d, %H:%i:%s'), -632);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 2222333322220002  motif: ", "2222333322220001", STR_TO_DATE('2016-11-02, 07:08:09','%Y-%m-%d, %H:%i:%s'), -612);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 2222333322220002  motif: ", "3333666699990001", STR_TO_DATE('2016-11-02, 07:08:09','%Y-%m-%d, %H:%i:%s'), -312);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 3333666699990001  motif: ", "2222333322220001", STR_TO_DATE('2016-12-01, 07:08:09','%Y-%m-%d, %H:%i:%s'), -123);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 3333666699990001  motif: ", "2222333322220002", STR_TO_DATE('2017-01-08, 07:08:09','%Y-%m-%d, %H:%i:%s'), -231);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 3333666699990001  motif: ", "2222333322220001", STR_TO_DATE('2017-01-09, 07:08:09','%Y-%m-%d, %H:%i:%s'), -13);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 2222333322220001  motif: ", "3333666699990001", STR_TO_DATE('2017-01-20, 07:08:09','%Y-%m-%d, %H:%i:%s'), -20);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 2222333322220002  motif: ", "2222333322220001", STR_TO_DATE('2017-02-02, 07:08:09','%Y-%m-%d, %H:%i:%s'), -712);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 2222333322220001  motif: ", "3333666699990001", STR_TO_DATE('2017-02-02, 07:08:09','%Y-%m-%d, %H:%i:%s'), -512);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 3333666699990001  motif: ", "2222333322220002", STR_TO_DATE('2017-03-08, 07:08:09','%Y-%m-%d, %H:%i:%s'), -431);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 2222333322220001  motif: ", "3333666699990001", STR_TO_DATE('2017-03-20, 07:08:09','%Y-%m-%d, %H:%i:%s'), -233);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 2222333322220001  motif: ", "2222333322220002", STR_TO_DATE('2017-04-13, 07:08:09','%Y-%m-%d, %H:%i:%s'), -112);
+INSERT INTO transactionhistory_tsh VALUES(null, "vous avez effectue un virement au compte 2222333322220001  motif: ", "2222333322220002", STR_TO_DATE('2017-04-24, 07:08:09','%Y-%m-%d, %H:%i:%s'), -32);
 
 
 INSERT INTO stock_stk VALUES('^FCHI', 'CAC 40', '');

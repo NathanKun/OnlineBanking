@@ -103,7 +103,7 @@ public class SendMail {
 		props.put("mail.smtps.quitwait", "true");
 
 		Session session = Session.getInstance(props, null);
-		session.setDebug(true);
+		session.setDebug(false);
 
 		// -- Create a new message --
 		final MimeMessage msg = new MimeMessage(session);

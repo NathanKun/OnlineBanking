@@ -75,7 +75,7 @@
 										<c:set var="clientDepotSomme" scope="session" value="${0}" />
 										<c:forEach var="tsh" items="${tshList}">
 											<c:if
-												test="${fn:contains(tsh.getTsh_description(), 'ajoutés via une carte de type')}">
+												test="${fn:contains(tsh.getTsh_description(), 'via une carte de type')}">
 												<c:set var="clientDepotSomme" scope="session"
 													value="${clientDepotSomme + tsh.getTsh_amount()}" />
 											</c:if>
@@ -107,20 +107,22 @@
 								</tbody>
 							</table>
 							<!-- /.table-responsive -->
-							<div class="well">
-								<h4>
-									Somme des soldes de compte courrant clients :
-									<c:out value="${totalCurrent}"></c:out>
-								</h4>
-								<h4>
-									Somme des soldes de compte épargne clients :
-									<c:out value="${totalSaving}"></c:out>
-								</h4>
-								<h4>
-									Somme des dépots clients :
-									<c:out value="${totalDepotSomme}"></c:out>
-								</h4>
-							</div>
+							<!-- 
+							    <div class="well">
+									<h4>
+										Somme des soldes de compte courrant clients :
+										<c:out value="${totalCurrent}"></c:out>
+									</h4>
+									<h4>
+										Somme des soldes de compte épargne clients :
+										<c:out value="${totalSaving}"></c:out>
+									</h4>
+									<h4>
+										Somme des dépots clients :
+										<c:out value="${totalDepotSomme}"></c:out>
+									</h4>
+								</div>
+							-->
 						</div>
 						<!-- /.panel-body -->
 					</div>
@@ -204,6 +206,9 @@
 				</div>
 			</div>
 			<!-- /.panel-body -->
+			
+	        <!-- Footer -->
+	        <%@ include file="./includes/footer.inc.jsp"%>
 		</div>
 		<!-- /.panel -->
 	</div>

@@ -32,12 +32,12 @@ public class CreateAccount extends HttpServlet {
 		if (clt != null) {
 			if (request.getParameter("type").equals("SavingAccount") && clt.getSavingAccount() == null) {
 				DaoAccount.addAccount(
-						new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(clt.getClt_id(), 2),
+						new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(clt.getClt_login(), 2),
 								clt.getClt_id(), new BigDecimal(0), new BigDecimal(2.5), 2));
 				response.getWriter().print("Done");
 			} else if (request.getParameter("type").equals("SecuritiesAccount") && clt.getSecuritiesAccount() == null) {
 				DaoAccount.addAccount(
-						new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(clt.getClt_id(), 3),
+						new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(clt.getClt_login(), 3),
 								clt.getClt_id(), new BigDecimal(0), new BigDecimal(0), 3));
 				response.getWriter().print("Done");
 			} else {

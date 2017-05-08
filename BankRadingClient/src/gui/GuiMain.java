@@ -176,7 +176,7 @@ public class GuiMain extends JFrame implements ActionListener {
 	/**
 	 * button to show list of accounts of the client
 	 */
-	private final JButton jbShowAccList = new JButton("Voir liste des compte");
+	private final JButton jbShowAccList = new JButton("Voir liste des comptes");
 	/**
 	 * button to return to client info page
 	 */
