@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 
 import model.News;
+import model.Stock;
 
 public class DaoNews extends Dao {
 
@@ -102,6 +103,11 @@ public class DaoNews extends Dao {
 	}
 	
 	
+	
+	
+	public static int updateNews(News nws) {
+		return Dao.updateLine("News", nws);
+	}
 	
 	/**
 	 * Main for testing

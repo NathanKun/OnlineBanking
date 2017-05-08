@@ -53,6 +53,9 @@ public class GuiTransactionHistory extends JFrame {
 	 * jlabel: acc number, acc type
 	 */
 	private final JLabel lbAccountInfo = new JLabel("Account infos");
+	/**
+	 * scrol pane for jtableTransactionHistory
+	 */
 	private final JScrollPane jspTSHTable = new JScrollPane();
 	
 	/**

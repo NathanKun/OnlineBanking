@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
 /**
  * Data transfer object of Transaction History
  * 
- * @author Junyang HE
+ * @authors BENJILANY Junyang HE
  *
  */
 public class TransactionHistory implements Serializable{

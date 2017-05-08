@@ -9,13 +9,13 @@ import util.HttpUtil;
 /**
  * Data transfer object of stock
  * 
- * @author Junyang HE
+ * @authors BENJILANY Junyang HE
  *
  */
 public class Stock {
 
 	/**
-	 * ticker symbol de l'action
+	 * ticker symbole de l'action
 	 */
 	private String stk_ticker;
 
