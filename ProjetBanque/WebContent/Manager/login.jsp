@@ -1,23 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<<<<<<< HEAD
 <c:if test="${not empty param.logout}" >
 	<c:if test="${param.logout == 'true'}" >
 		<%session.removeAttribute("manager"); %>
 	</c:if>
 </c:if>
 <c:if test="${not empty manager}" >
-=======
-<c:if test="${not empty param.logout}">
-	<c:if test="${param.logout == 'true'}">
-		<%
-			session.removeAttribute("manager");
-		%>
-	</c:if>
-</c:if>
-<c:if test="${not empty manager}">
->>>>>>> c0e8ffddedbc65cd176c70ed8293ce819cca5f47
 	<c:redirect url="./index.jsp" />
 </c:if>
 <%

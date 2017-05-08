@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ page
-   import="java.util.ArrayList, dao.DaoOffres, model.Offres"%>
+   import="java.util.ArrayList, dao.DaoOffer, model.Offer"%>
 <%
-	ArrayList<Offres> bankOffresList = DaoOffers.find3BankOffres();
+	ArrayList<Offer> bankOffresList = DaoOffer.getOfferList();
 %>
     <!DOCTYPE html>
     <html>
@@ -53,12 +53,8 @@
                         </nav>
                     </div>
                     <div class='row'>
-                        <a href='./OffresArticle.jsp?offresId=<%=bankOffresList.get(0).getOfr_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./offerDetail.jsp?offerId=<%=bankOffresList.get(0).getOfr_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                            <article class='style1'>
-                           <a href='offres/offre1.jsp'> offre 1 </a>
-                                <div class='date'>
-                                    <%=bankOffresList.get(0).getOfr_type() %>
-                                </div>
                                 <!--must have larger width than height-->
                                 <img src='<%=bankOffresList.get(0).getOfr_image() %>'>
                                 <div class='content'>
@@ -72,12 +68,8 @@
                                 </div>
                             </article>
                         </a>
-                        <a href='./OffresArticle.jsp?offresId=<%=bankOffresList.get(1).getOfr_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./offerDetail.jsp?offerId=<%=bankOffresList.get(1).getOfr_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                            <article class='style1'>
-                            <a href='offres/offre2.jsp'> offre 2 </a>
-                                <div class='date'>
-                                    <%=bankOffresList.get(1).getOfr_type() %>
-                                </div>
                                 <!--must have larger width than height-->
                                 <img src='<%=bankOffresList.get(1).getOfr_image() %>'>
                                 <div class='content'>
@@ -91,12 +83,8 @@
                                 </div>
                             </article>
                         </a>
-                        <a href='./OffresArticle.jsp?newsId=<%=bankOffresList.get(2).getOfr_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
+                        <a href='./offerDetail.jsp?offerId=<%=bankOffresList.get(2).getOfr_id() %>' class='col-lg-3 col-md-4 col-sm-6 col-xs-6 col-xxs-12'>
                             <article class='style1'>
-                            <a href='offres/offre3.jsp'> offre 3 </a>
-                                <div class='date'>
-                                    <%=bankOffresList.get(2).getOfr_type() %>
-                                </div>
                                 <!--must have larger width than height-->
                                 <img src='<%=bankOffresList.get(2).getOfr_image() %>'>
                                 <div class='content'>

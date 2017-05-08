@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.joda.time.DateTime;
 
-public class Offers implements Serializable{
+public class Offer implements Serializable{
 	/**
 	 * generate serialVersionUID
 	 */
@@ -26,10 +26,6 @@ public class Offers implements Serializable{
 	 */
 	private String ofr_image;
 	/**
-	 * type of the offer
-	 */
-	private String ofr_type;
-	/**
 	 * Date time when the offer is save
 	 */
 	private DateTime ofr_date;
@@ -38,16 +34,14 @@ public class Offers implements Serializable{
 	 * @param ofr_title	title
 	 * @param ofr_text	text
 	 * @param ofr_image	path of image
-	 * @param ofr_type	type of the offer
 	 * @param ofr_date 	Date time when the offer is save
 	 */
-	public Offers(int ofr_id, String ofr_title, String ofr_text, String ofr_image, String ofr_type, DateTime ofr_date) {
+	public Offer(int ofr_id, String ofr_title, String ofr_text, String ofr_image, DateTime ofr_date) {
 		super();
 		this.ofr_id = ofr_id;
 		this.ofr_title = ofr_title;
 		this.ofr_text = ofr_text;
 		this.ofr_image = ofr_image;
-		this.ofr_type = ofr_type;
 		this.ofr_date = ofr_date;
 	}
 	/**
@@ -99,18 +93,6 @@ public class Offers implements Serializable{
 		this.ofr_image = ofr_image;
 	}
 	/**
-	 * @return the ofr_type
-	 */
-	public String getOfr_type() {
-		return ofr_type;
-	}
-	/**
-	 * @param ofr_type the ofr_type to set
-	 */
-	public void setOfr_type(String ofr_type) {
-		this.ofr_type = ofr_type;
-	}
-	/**
 	 * @return the ofr_date
 	 */
 	public DateTime getOfr_date() {
@@ -128,6 +110,6 @@ public class Offers implements Serializable{
 	@Override
 	public String toString() {
 		return "Offers [ofr_id=" + ofr_id + ", ofr_title=" + ofr_title + ", ofr_text=" + ofr_text + ", ofr_image="
-				+ ofr_image + ", ofr_type=" + ofr_type + ", ofr_date=" + ofr_date + "]";
+				+ ofr_image + ", ofr_date=" + ofr_date + "]";
 	}
 }

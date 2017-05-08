@@ -3,12 +3,13 @@ CREATE DATABASE IF NOT EXISTS onlineBank;
 USE onlinebank;
 
 
+DROP TABLE IF EXISTS offer_ofr;
+DROP TABLE IF EXISTS offres_ofr;
 DROP TABLE IF EXISTS manager_mng;
 DROP TABLE IF EXISTS news_nws;
 DROP TABLE IF EXISTS advisor_avs;
 DROP TABLE IF EXISTS contactform_ctf;
 DROP TABLE IF EXISTS holdingshare_hds;
-DROP TABLE IF EXISTS offres_ofr;
 DROP TABLE IF EXISTS stockhistoricalprice_shp;
 DROP TABLE IF EXISTS stock_stk;
 DROP TABLE IF EXISTS transactionhistory_tsh;
@@ -16,7 +17,7 @@ DROP TABLE IF EXISTS account_acc;
 DROP TABLE IF EXISTS client_clt;
 DROP PROCEDURE IF EXISTS InsertRandToSHP;
 
-CREATE TABLE IF NOT EXISTS offres_ofr (
+CREATE TABLE IF NOT EXISTS offer_ofr (
 	ofr_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ofr_title VARCHAR(255),
     ofr_text LONGTEXT,
@@ -372,3 +373,36 @@ INSERT INTO news_nws VALUES(null, "LVMH détrône Total au sommet du CAC 40","An
 INSERT INTO manager_mng VALUES(null, "manager a", "a", 
 	"$31$16$dbPTfmG7Rsoc_404pj9xhSdcYfeSnRWUTpceh1k2Qf9WYXmEYdjU-kAf3Lo4wycfc2awxnRyCiMhDVPl4V-AX24NuC6dC2iXaMEVm_5p2D0Egbb6gR4M08o_w1oWEgk5zkH_Kkr8g7_JdCbxGngvPVwFL49KWXGfKvQXm353FdY");
 
+
+INSERT INTO offer_ofr VALUES(null, "Compte sans frais", 
+				"<br>Compte sans frais!:<br><br><br>
+                <h2>*Mentions legales</h2>
+				<img src='./images/mentions.png' alt='Mentions legals' />", 
+                "./images/offre_1.png", NOW());
+INSERT INTO offer_ofr VALUES(null, "Carte VISA graduite", 
+				"<br>Carte VISA graduite:<br><br><br>
+                <h2>*Mentions legales</h2>
+				<p>Avec votre Carte Bancaire Visa Premier BankRading, c’est vous
+					qui décidez, vous pouvez :</p>
+				<p>-Bénéficier de garanties d’assurance et assistance pour vous
+					et votre famille, en France et à l’étranger lors de vos voyages</p>
+				<p>-Choisir entre le débit immédiat et différé</p>
+				<p>-Ajuster vous-même vos plafonds de façon temporaire ou
+					définitive en fonction de vos besoins (Sous réserve d’acceptation en
+					ligne par la Banque)</p>
+				<p>-Disposer du paiement sans contact</p>
+				<p>-Fixer les alertes sur vos opérations cartes depuis votre
+					Espace Client</p>", 
+				"./images/offre2.png", NOW());
+INSERT INTO offer_ofr VALUES(null, "Offre compte bancaire", 
+					"<br>Prime de 80€ offerte:<br><br><br>
+                    <h2>Conditions de l'offre :</h2>
+					<p>-Prime de 80€ offerte pour une première ouverture d'un Compte Bancaire BankRading 
+					jusqu'au 27/04/2017 dont la Carte Bancaire a été activée dans le mois suivant l'ouverture du compte</p>  
+					<p>-La prime sera versée sur le Compte Bancaire par la banque dans les 15 jours ouvrés suivant l’activation de la carte.</p>
+					<h3>Si demande d'ouverture simultanée d'un Livret d'épargne BankRading :</h3>
+					<p>-Prime de 50€ offerte pour une première ouverture d'un Livret d'épargne BankRading, jusqu'au 27/04/2017,
+					ouvert concomitamment au compte bancaire, et 3% annuels brut garantis pendant 2 mois pour un montant de 75 000€ maximum.
+					Au-delà de cette période et de ce montant, le taux standard du Livret d'épargne est appliqué. 
+					Le taux standard du Livret d’épargne BforBank est actuellement de 0,30% annuel brut et est susceptible d’être révisé à tout moment par la banque.</p>", 
+                    "./images/offre3.png", NOW());

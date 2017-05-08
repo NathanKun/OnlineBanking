@@ -14,7 +14,11 @@
 	} catch(NumberFormatException e) {
 		response.sendRedirect("./news.jsp");
 	}
+	
 	News nws = DaoNews.getNews(id);
+	if (nws == null){
+		response.sendRedirect("./news.jsp");
+	}
 	session.setAttribute("news", nws);
 %>
 

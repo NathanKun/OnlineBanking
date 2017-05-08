@@ -16,6 +16,7 @@ import model.ContactForm;
 import model.HoldingShare;
 import model.Manager;
 import model.News;
+import model.Offer;
 import model.Stock;
 import model.StockHistoricalPrice;
 import model.TransactionHistory;
@@ -68,6 +69,7 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 			ps = con.prepareStatement(sql);
 			switch (type) {
+			case "Offer":
 			case "Manager":
 			case "Advisor":
 			case "Client":
@@ -96,6 +98,11 @@ abstract public class Dao {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				switch (type) {
+				case "Offer":
+					retour = new Offer(rs.getInt("ofr_id"), rs.getString("ofr_title"), rs.getString("ofr_text"), 
+							rs.getString("ofr_image"), new DateTime(rs.getTimestamp("ofr_date")));
+					break;
+				
 				case "findManagerByLogin":
 				case "Manager":
 					retour = new Manager(rs.getInt("mng_id"), rs.getString("mng_name"), rs.getString("mng_login"), 
@@ -222,6 +229,13 @@ abstract public class Dao {
 
 			// we crosse all the line of the results
 			switch (type) {
+			case "Offer":
+				while (rs.next()) {
+					returnList.add(new Offer(rs.getInt("ofr_id"), rs.getString("ofr_title"), rs.getString("ofr_text"), 
+						rs.getString("ofr_image"), new DateTime(rs.getTimestamp("ofr_date"))));
+					}
+				break;
+			
 			case "Manager":
 				while (rs.next()) {
 					returnList.add(new Manager(rs.getInt("mng_id"), rs.getString("mng_name"), rs.getString("mng_login"), 
@@ -361,6 +375,14 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "Offer":
+				Offer ofr = (Offer) item;
+				ps = con.prepareStatement("INSERT INTO offer_ofr VALUES(null, ?, ?, ?, NOW())");
+				ps.setString(1, ofr.getOfr_title());
+				ps.setString(2, ofr.getOfr_text());
+				ps.setString(3, ofr.getOfr_image());
+				break;
+			
 			case "Manager":
 				Manager mng = (Manager) item;
 				ps = con.prepareStatement("INSERT INTO manager_mng VALUES(null, ?, ?, ?)");
@@ -523,6 +545,10 @@ abstract public class Dao {
 			boolean isStringTypeCorrect = true;
 
 			switch (type) {
+			case "Offer":
+				ps = con.prepareStatement("DELETE FROM offer_ofr WHERE ofr_id=?");
+				break;
+			
 			case "Manager":
 				ps = con.prepareStatement("DELETE FROM manager_mng WHERE mng_id=?");
 				break;
@@ -620,6 +646,14 @@ abstract public class Dao {
 			con = DriverManager.getConnection(URL, LOGIN, PASS);
 
 			switch (type) {
+			case "Offer":
+				Offer ofr = (Offer) item;
+				ps = con.prepareStatement("UPDATE manager_mng SET ofr_title=?, ofr_text=?, ofr_image=?, ofr_date=NOW()");
+				ps.setString(1, ofr.getOfr_title());
+				ps.setString(2, ofr.getOfr_text());
+				ps.setString(3, ofr.getOfr_image());
+				break;
+			
 			case "Manager":
 				Manager mng = (Manager) item;
 				ps = con.prepareStatement(
