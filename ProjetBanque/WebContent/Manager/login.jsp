@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:if test="${not empty param.logout}" >
+	<c:if test="${param.logout == 'true'}" >
+		<%session.removeAttribute("manager"); %>
+	</c:if>
+</c:if>
+<c:if test="${not empty manager}" >
+	<c:redirect url="./index.jsp" />
+</c:if>
 <%
 	// get entered login if redirection by login failed (login/password incorrect)
 	String login = (String) request.getAttribute("login");
@@ -10,7 +19,7 @@
 		hint = "ID ou mot de passe incorrect";
 %>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
