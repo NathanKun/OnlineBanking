@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+.headerCenter {
+	text-align: center;
+}
+
+canvas {
+	display: block;
+}
+
+.well {
+	display: inline-block;
+	min-width: 750px;
+	vertical-align: text-top;
+}
+
+.panel-body {
+	text-align:center;
+}

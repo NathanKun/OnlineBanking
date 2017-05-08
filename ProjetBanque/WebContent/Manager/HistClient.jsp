@@ -140,6 +140,9 @@ if (clt != null){
 						</form>
 					</div>
 				</div>
+			
+		        <!-- Footer -->
+		        <%@ include file="./includes/footer.inc.jsp"%>
 			</div>
 
 			<!-- /#page-wrapper -->
