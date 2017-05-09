@@ -36,9 +36,10 @@ public class IbanUtil {
 	 * @param type	type of account, from 1 to 3
 	 * @return	the IBAN generated
 	 */
-	public static String generateIban(int clientId, int type) {
+	public static String generateIban(String clientIdStr, int type) {
 		// Format IBAN : FRkk BBBBB GGGGG CCC CCC CCC CC KK
 		// B = code banque, G = code guichet, C = numéro de compte, K = clef
+		int clientId = Integer.parseInt(clientIdStr);
 		String iban = "";
 		String country = "FR";
 		String b = "88888";
@@ -63,6 +64,7 @@ public class IbanUtil {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(checkIban("FR7688888666661123456789021"));
+		System.out.println(generateIban("1236784568", 2));
+		System.out.println(checkIban(generateIban("1236784568", 2)));
 	}
 }

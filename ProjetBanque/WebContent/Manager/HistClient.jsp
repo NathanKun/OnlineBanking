@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="./includes/session.inc.jsp"%>
 <%@ page
    import="model.Client,model.TransactionHistory, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList,java.math.BigDecimal, org.joda.time.format.DateTimeFormat" %>
  <%
@@ -139,6 +140,9 @@ if (clt != null){
 						</form>
 					</div>
 				</div>
+			
+		        <!-- Footer -->
+		        <%@ include file="./includes/footer.inc.jsp"%>
 			</div>
 
 			<!-- /#page-wrapper -->

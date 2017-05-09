@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Data transfer object of Advisor
  * 
- * @author Junyang HE
+ * @author Benjilany Junyang HE
  *
  */
 public class Advisor implements Serializable{

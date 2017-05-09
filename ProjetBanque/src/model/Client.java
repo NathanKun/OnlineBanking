@@ -17,8 +17,7 @@ import dao.DaoHoldingShare;
 /**
  * Data transfer object of Client
  * 
- * @author Junyang HE
- *
+ * @authors Benjilany Junyang HE *
  */
 public class Client implements Serializable{
 	/**

@@ -100,15 +100,17 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-check"></i> Service 1
+							<i class="fa fa-fw fa-check"></i>  Prêt Personnel BankRading
 						</h4>
 					</div>
 					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque, optio corporis quae nulla aspernatur in alias at numquam
-							rerum ea excepturi expedita tenetur assumenda voluptatibus
-							eveniet incidunt dicta nostrum quod?</p>
-						<a href="#" class="btn btn-default">Pour en savoir plus</a>
+						<p>Vous avez envie de partir en vacances ou de changer de voiture, 
+						vous avez besoin de remplacer une partie de votre équipement? 
+						Les projets ne manquent pas, encore faut-il disposer des bons leviers
+						 pour les rendre concrets !</p>
+						
+						<a class="btn btn-lg btn-default btn-block"
+						href="offres/news.jsp">plus d'actualités</a>
 					</div>
 				</div>
 			</div>
@@ -116,15 +118,13 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-gift"></i> &amp; Service 2
+							<i class="fa fa-fw fa-gift"></i> &amp; Offre d'emploi
 						</h4>
 					</div>
 					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque, optio corporis quae nulla aspernatur in alias at numquam
-							rerum ea excepturi expedita tenetur assumenda voluptatibus
-							eveniet incidunt dicta nostrum quod?</p>
-						<a href="#" class="btn btn-default">Plus ...</a>
+						<p>Ingénieur Expert en Collaboration (Voix et Vidéo)</p>
+						<a class="btn btn-lg btn-default btn-block"
+						href="offres/news.jsp">en savoir plus</a>
 					</div>
 				</div>
 			</div>
@@ -136,11 +136,9 @@
 						</h4>
 					</div>
 					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque, optio corporis quae nulla aspernatur in alias at numquam
-							rerum ea excepturi expedita tenetur assumenda voluptatibus
-							eveniet incidunt dicta nostrum quod?</p>
-						<a href="#" class="btn btn-default">Plus ...</a>
+						<p>Compte bancaire BankRading : Jusqu'à 130 offertes dès l'ouverture !</p>
+						<a class="btn btn-lg btn-default btn-block"
+						href="offres/offre3.jsp">consulter l'offre</a>
 					</div>
 				</div>
 			</div>
@@ -189,15 +187,14 @@
 		<!-- Features Section -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="page-header">BankRadind</h2>
+				<h2 class="page-header">BankRading</h2>
 			</div>
 			<div class="col-md-6">
 				<p>La banque en ligne Bankrading inclut des services tels que:</p>
 				<ul>
 					<!-- <li><strong>Bootstrap v3.3.7</strong>
                     </li>-->
-					<li>80 euros offerts lors de l'ouverture de votre premier
-						compte</li>
+					
 					<li>Des conseillers clients en chair et en os</li>
 					<li>Une assistance de proximité</li>
 					<li>Accès instantané à la bourse</li>
@@ -223,7 +220,7 @@
 				</div>
 				<div class="col-md-4">
 					<a class="btn btn-lg btn-default btn-block"
-						href="offres/offre1.jsp">Voir les offres</a>
+						href="offres/offre1.jsp">consulter l'offre</a>
 				</div>
 			</div>
 		</div>

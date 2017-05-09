@@ -18,7 +18,7 @@ public class HoldingShare {
 	private int hds_id;
 
 	/**
-	 * ticker symbol de l'action achete
+	 * ticker symbole de l'action achetée
 	 */
 	private String hds_stk_ticker;
 
@@ -28,7 +28,7 @@ public class HoldingShare {
 	private int hds_acc_id;
 
 	/**
-	 * le nombre d'actions achetï¿½es
+	 * le nombre d'actions achetées
 	 */
 	private int hds_numberOfShares;
 

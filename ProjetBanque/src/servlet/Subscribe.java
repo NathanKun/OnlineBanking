@@ -75,7 +75,7 @@ public class Subscribe extends HttpServlet {
 			c = DaoClient.findClientByLogin(login);
 
 			// On cree un compte courant pour le nouveau client
-			Account acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_id(), 1),
+			Account acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_login(), 1),
 					c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 1);
 			DaoAccount.addAccount(acc);
 
@@ -88,13 +88,13 @@ public class Subscribe extends HttpServlet {
 
 			if (epargneCB.equals("on")) {
 				// create saving account
-				acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_id(), 2),
+				acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_login(), 2),
 						c.getClt_id(), BigDecimal.ZERO, new BigDecimal(1.5), 2);
 				DaoAccount.addAccount(acc);
 			}
 			if (titreCB.equals("on")) {
 				// create securities account
-				acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_id(), 3),
+				acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_login(), 3),
 						c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 3);
 				DaoAccount.addAccount(acc);
 			}
