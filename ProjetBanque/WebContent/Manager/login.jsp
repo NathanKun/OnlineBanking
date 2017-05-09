@@ -39,16 +39,12 @@
 						method="post">
 						<input type="text" id="login" name="login"
 							class="form-control input-sm chat-input" placeholder="login"
-<<<<<<< HEAD
-							maxlength="20" />
-						<input type="password" id="password" name="password"
-							class="form-control input-sm chat-input" placeholder="password"
-							maxlength="178" />
-=======
-							maxlength="20" /> <input type="text" id="password"
+							maxlength="20" /> 
+						<input type="text" id="password"
 							name="password" class="form-control input-sm chat-input"
 							placeholder="password" maxlength="178" />
->>>>>>> b8f84812db8921721bdaba6edaaefaa20567f66c
+
+
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="send"> </label>
 							<div class="col-md-4">
