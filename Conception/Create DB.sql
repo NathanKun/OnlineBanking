@@ -160,27 +160,7 @@ INSERT INTO account_acc VALUES(null, "2222333322220001", "BE62510007547061", 2, 
 INSERT INTO account_acc VALUES(null, "2222333322220002", "BH67BMAG00001299123456", 2, 2500.00, 2.5, 2);
 INSERT INTO account_acc VALUES(null, "2222333322220003", "x", 2, 0, 0, 3);
 
-<<<<<<< HEAD
-=======
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1", "2222333322220001", NOW(), -33.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
 
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 1", "2222333322220002", NOW(), -333.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 2", "2222333322220002", NOW(), -323.33);
-INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 3", "2222333322220002", NOW(), -313.33);
->>>>>>> b8f84812db8921721bdaba6edaaefaa20567f66c
 
 INSERT INTO transactionhistory_tsh VALUES(null, "virement emis vers le compte 3333666699990001","2222333322220001", NOW(), -23.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 3333666699990001", "2222333322220001", NOW(), 13.33);
