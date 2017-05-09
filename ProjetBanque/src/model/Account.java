@@ -22,37 +22,37 @@ public class Account implements Serializable{
 	private static final long serialVersionUID = -2423945948890528730L;
 
 	/**
-	 * l'id du compte
+	 * the account id
 	 */
 	private int acc_id;
 
 	/**
-	 * le numero du compte
+	 * the account number
 	 */
 	private String acc_number;
 
 	/**
-	 * l'iban du compte
+	 * the account IBAN
 	 */
 	private String acc_iban;
 
 	/**
-	 * l'id du client possedant le compte
+	 * the client id 
 	 */
 	private int acc_clt_id;
 
 	/**
-	 * le solde du compte
+	 * the account balance
 	 */
 	private BigDecimal acc_balance;
 
 	/**
-	 * les interets du compte
+	 * the account interest
 	 */
 	private BigDecimal acc_interest;
 
 	/**
-	 * le type du compte
+	 * the account type
 	 */
 	private String acc_type;
 
@@ -80,7 +80,9 @@ public class Account implements Serializable{
 		this.acc_balance = balance;
 		this.acc_interest = interest;
 
-		// set String of account's type by (int)type
+		/**
+		 *  set String of account's type by (int)type
+		 */
 		switch (type) {
 		case 1:
 			this.acc_type = "Compte de courant";

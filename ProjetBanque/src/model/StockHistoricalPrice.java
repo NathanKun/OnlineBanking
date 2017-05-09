@@ -13,22 +13,22 @@ import org.joda.time.DateTime;
 public class StockHistoricalPrice {
 
 	/**
-	 * l'identifiant de l'historique du prix de l'action.
+	 * the StockHistorical Price id
 	 */
 	private int shp_id;
 
 	/**
-	 * l'identifiant de l'action dont l'historique du prix.
+	 * the stock id in the Historical 
 	 */
 	private int shp_stk_id;
 
 	/**
-	 * la date de l'historique du prix de l'action
+	 * the Historical date
 	 */
 	private DateTime shp_datetime;
 
 	/**
-	 * le prix de l'action de la date
+	 * the stock price in the historical
 	 */
 	private BigDecimal shp_price;
 

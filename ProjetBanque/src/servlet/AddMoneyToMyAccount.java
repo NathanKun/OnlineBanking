@@ -18,6 +18,7 @@ import model.TransactionHistory;
 
 /**
  * Servlet implementation class AddMoneyToMyAccount
+ * @author BENJILANY Boubeker, DJAMEN Yann, HE Junyang
  */
 @WebServlet("/AddMoneyToMyAccount")
 public class AddMoneyToMyAccount extends HttpServlet {
@@ -34,7 +35,9 @@ public class AddMoneyToMyAccount extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Here we get the parameters
+		/**
+		 * Here we get the parameters
+		 */
 		String recepteur = request.getParameter("recepteur");
 		String montant= request.getParameter("montant");
 		String accnumber="";
@@ -48,29 +51,57 @@ public class AddMoneyToMyAccount extends HttpServlet {
 		
 		Client c= (Client)request.getSession(true).getAttribute("client");
 		switch(recepteur){
-			//if the account to be credited is the current account
+		
+			/**
+			 * if the account to be credited is the current account
+			 */
 			case "courant":
-			//We get the current account in an object
+				
+			/**
+			 * We get the current account in an object
+			 */
 			Account a= c.getCurrentAccount();
-			//We get the account number
+			
+			/**
+			 * We get the account number
+			 */
 			accnumber=a.getAcc_number();
-			//We change the value of the account balance
+			
+			/**
+			 * We change the value of the account balance
+			 */
 			a.setAcc_balance(a.getAcc_balance().add(new BigDecimal(montant)));
 			a.push();
 		    break;
 		
-			//if the account to be credited is the saving account
+			/**
+			 * if the account to be credited is the saving account
+			 */
+		    
 			case "epargne":
-			//We get the saving account in an object
+				
+			/**
+			 * We get the saving account in an object
+			 */
+				
 			Account ae= c.getSavingAccount();
-			//We get the account number
+			
+			/**
+			 * We get the account number
+			 */
 			accnumber=ae.getAcc_number();
-			//We change the value of the account balance
+			
+			/**
+			 * We change the value of the account balance
+			 */
 			ae.setAcc_balance(ae.getAcc_balance().add(new BigDecimal(montant)));
 			ae.push();
 			break;
 		}
-		// Here we add notes to the transaction history of the account to be credited
+		
+		/**
+		 *  Here we add notes to the transaction history of the account to be credited
+		 */
 		if((new BigDecimal (montant)).compareTo(BigDecimal.ZERO) != 0) {	
 	TransactionHistory t = new TransactionHistory(0,accnumber,description,new DateTime().toDateTimeISO() ,new BigDecimal(montant));
 	DaoTransactionHistory.addTransactionHistory(t);

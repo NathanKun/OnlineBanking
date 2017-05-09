@@ -21,7 +21,7 @@ import util.PasswordAuthentication;
 /**
  * Servlet implementation class Inscription
  * 
- * @author DJAMEN Yann, HE Junyang
+ * @author DJAMEN Yann, HE Junyang, BENJILANY Boubeker
  */
 @WebServlet("/Subscribe")
 public class Subscribe extends HttpServlet {
@@ -43,7 +43,10 @@ public class Subscribe extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if(((String)(request.getSession().getAttribute("code"))).equals("ok")){
-			// On recupere les parametres entre dans le formulaire HTML
+			
+			/**
+			 * Here we get the parameters entered in the HTML form
+			 */
 			String nom = request.getParameter("nom");
 			String prenom = request.getParameter("prenom");
 			String nationalite = request.getParameter("nationalite");
@@ -62,23 +65,37 @@ public class Subscribe extends HttpServlet {
 			int m = Integer.parseInt(mois);
 			int a = Integer.parseInt(annee);
 
+			/**
+			 * We give automatically a login for the new client
+			 */
 			String login = DaoClient.getNextClientLogin();
 
+			/**
+			 * We give a password for the new client
+			 */
 			PasswordAuthentication pa = new PasswordAuthentication();
 			password = pa.hash(password.toCharArray());
 
 			Client c = new Client(0, login, password, prenom, nom, new DateTime(a, m, j, 0, 0, 0, 0), nationalite, sexe,
 					adresse, codepostal, ville, tel, email, statut, null, new DateTime().toDateTimeISO());
 
-			// On ajoute les infos du client dans la base de donnees
+			/**
+			 *  We add the client to the DataBase
+			 */
 			DaoClient.addClient(c);
 			c = DaoClient.findClientByLogin(login);
 
-			// On cree un compte courant pour le nouveau client
+			/**
+			 * We create a current account for the new client
+			 */
 			Account acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_login(), 1),
 					c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 1);
 			DaoAccount.addAccount(acc);
 
+			
+			/**
+			 * We create a saving or/and securities accounts for the new client if he asks for
+			 */
 			String epargneCB = "";
 			String titreCB = "";
 			if (request.getParameter("epargneCheckBox") != null)
@@ -87,21 +104,31 @@ public class Subscribe extends HttpServlet {
 				titreCB = request.getParameter("titreCheckBox");
 
 			if (epargneCB.equals("on")) {
-				// create saving account
+				/**
+				 * create saving account
+				 */
 				acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_login(), 2),
 						c.getClt_id(), BigDecimal.ZERO, new BigDecimal(1.5), 2);
 				DaoAccount.addAccount(acc);
 			}
 			if (titreCB.equals("on")) {
-				// create securities account
+				/**
+				 *  create securities account
+				 */
 				acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_login(), 3),
 						c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 3);
 				DaoAccount.addAccount(acc);
 			}
-			// redirection
+			/**
+			 * redirection
+			 */
 			request.getSession(true).setAttribute("client", DaoClient.findClientByLogin(login));
 			response.sendRedirect("./zoneclient.jsp");
-		} else { // email not checked
+		} else { 
+			/**
+			 * email not checked
+			 */
+		}
 			response.getWriter().print("Something wrong, email check not passed");
 		}
 	}

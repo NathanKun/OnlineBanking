@@ -15,17 +15,17 @@ import util.HttpUtil;
 public class Stock {
 
 	/**
-	 * ticker symbole de l'action
+	 * the ticker stock
 	 */
 	private String stk_ticker;
 
 	/**
-	 * le nom de l'action
+	 * the ticker name
 	 */
 	private String stk_name;
 
 	/**
-	 * la description de l'action
+	 * the ticker description
 	 */
 	private String stk_description;
 	
