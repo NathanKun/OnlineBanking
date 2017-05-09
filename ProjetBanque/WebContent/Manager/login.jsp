@@ -30,7 +30,7 @@
 						<input type="text" id="login" name="login"
 							class="form-control input-sm chat-input" placeholder="login"
 							maxlength="20" />
-						<input type="text" id="password" name="password"
+						<input type="password" id="password" name="password"
 							class="form-control input-sm chat-input" placeholder="password"
 							maxlength="178" />
 						<div class="form-group">
