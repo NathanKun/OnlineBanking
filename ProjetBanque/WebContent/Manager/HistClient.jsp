@@ -5,22 +5,17 @@
 <%@ page
    import="model.Client,model.TransactionHistory, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList,java.math.BigDecimal, org.joda.time.format.DateTimeFormat" %>
  <%
-<<<<<<< HEAD
+
 String name = request.getParameter("name");
 String message = "",fname="",lname="",actionnumber="";
-=======
-String login = request.getParameter("login");
-String message = "";
->>>>>>> f76a9102e09a43e6beab6554f0540383ac9172e4
+
 String type= request.getParameter("type");
 BigDecimal amount1 = new BigDecimal("0");
 BigDecimal amount2 = new BigDecimal("0");
 BigDecimal amount3 = new BigDecimal("0");
-<<<<<<< HEAD
+
 Client clt = DaoClient.findClientByName2(name);
-=======
-Client clt = DaoClient.findClientByLogin(login);
->>>>>>> f76a9102e09a43e6beab6554f0540383ac9172e4
+
 ArrayList<TransactionHistory> tshList1 = null;
 ArrayList<TransactionHistory> tshList2 = null;
 ArrayList<TransactionHistory> tshList3 = null;
@@ -123,20 +118,12 @@ if (clt != null){
 						<div class="panel with-nav-tabs panel-info">
 							<div class="panel-heading">
 							
-<<<<<<< HEAD
+
 					<ul> <h3>
 								Client:
 								<c:out value="${lname}"></c:out> 
 								<c:out value="${fname} "></c:out></h3></ul>
-=======
-							<div class="input-group custom-search-form">
-						<input type="text" class="form-control" name="login" placeholder="Login client"> 
-						<span class="input-group-btn">
-							<input type="submit" value=" Rechercher" id="submit" name="send" class="btn btn-primary">
-						</span>
-						
-					</div></ul>
->>>>>>> f76a9102e09a43e6beab6554f0540383ac9172e4
+
 								<ul class="nav nav-tabs">
 									
 									
@@ -150,7 +137,7 @@ if (clt != null){
 							<div class="panel-body">
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="courant" >
-<<<<<<< HEAD
+
 								
 						<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
 						<c:out value="${message}"></c:out>
@@ -183,16 +170,7 @@ if (clt != null){
 								</tbody>
 							</table>
 							<% } %>				
-											
-											
-											
-																								
-=======
-										<c:forEach var="tsh" items="${tshList1}">
-											<c:out value="${tsh.getTsh_description()} "></c:out>
-											<br>
-											</c:forEach>													
->>>>>>> f76a9102e09a43e6beab6554f0540383ac9172e4
+
 									</div>
 									<div class="tab-pane fade" id="epargne">
 									<br>
@@ -203,7 +181,7 @@ if (clt != null){
 									<div class="tab-pane fade" id="titre" > </div>
 									<div class="tab-pane fade" id="solde">Solde des comptes 
 									<br>
-<<<<<<< HEAD
+
 									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
 						<c:out value="${message}"></c:out>
 						<%} 
@@ -257,14 +235,7 @@ if (clt != null){
 									</tbody>
 									</table>
 									<%} %>
-									
-=======
-									Compte courant (€): <c:out value="${amount1}"></c:out>
-									<br>
-									Compte epargne (€): <c:out value="${amount2}"></c:out>
-									<br>
-									Compte titre: <c:out value="${amount3}"></c:out>
->>>>>>> f76a9102e09a43e6beab6554f0540383ac9172e4
+
 									</div>
 
 								</div>

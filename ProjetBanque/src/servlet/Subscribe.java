@@ -132,4 +132,4 @@ public class Subscribe extends HttpServlet {
 			response.getWriter().print("Something wrong, email check not passed");
 		}
 	}
-}
+
