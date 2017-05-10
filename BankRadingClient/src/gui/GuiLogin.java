@@ -51,9 +51,9 @@ public class GuiLogin extends JFrame implements ActionListener {
 	 */
 	private JLabel lbPw = new JLabel("Mot de passe : ");
 	/**
-	 * label shows: RadBanking
+	 * label shows: BankRading
 	 */
-	private JLabel lbTitle = new JLabel("RadBanking");
+	private JLabel lbTitle = new JLabel("BankRading");
 	/**
 	 * label shows: Front office advisor system
 	 */
@@ -153,6 +153,7 @@ public class GuiLogin extends JFrame implements ActionListener {
 				avs = DbClient.findAdvisorByLogin(tfId.getText());
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
+				showMessageDialog(this, "Cannot connect to server");
 			}
 			if(avs != null) {
 				PasswordAuthentication pa = new PasswordAuthentication();
@@ -163,7 +164,7 @@ public class GuiLogin extends JFrame implements ActionListener {
 					showMessageDialog(this, "L'identifiant ou le mot de passe est incorrect.");
 				}
 			} else {
-				showMessageDialog(this, "Cannot connect to server");
+				showMessageDialog(this, "L'identifiant ou le mot de passe est incorrect.");
 			}
 			
 		} else {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.14" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="util.IbanUtil" project="ProjetBanque" file="/ProjetBanque/src/util/IbanUtil.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="170" x="303" y="164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="util.PasswordAuthentication" project="ProjetBanque" 
+    file="/ProjetBanque/src/util/PasswordAuthentication.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="193" x="513" y="164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="util.HttpUtil" project="ProjetBanque" file="/ProjetBanque/src/util/HttpUtil.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="326" x="746" y="164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="util.JsonReader" project="ProjetBanque" 
+    file="/ProjetBanque/src/util/JsonReader.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="205" x="1112" y="164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="util.RandomCodeGenerator" project="ProjetBanque" 
+    file="/ProjetBanque/src/util/RandomCodeGenerator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="157" x="1357" y="164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="util.SqlInjectFilter" project="ProjetBanque" 
+    file="/ProjetBanque/src/util/SqlInjectFilter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="305" x="1554" y="164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="util.SendMail" project="ProjetBanque" file="/ProjetBanque/src/util/SendMail.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="265" x="1899" y="164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="util.FusionCharts" project="ProjetBanque" 
+    file="/ProjetBanque/src/util/FusionCharts.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="312" x="2204" y="164"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
