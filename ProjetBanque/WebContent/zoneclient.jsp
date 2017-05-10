@@ -73,7 +73,7 @@
 	                           <th>intéret</th>
 	                           <th>Solde (€)</th>
 	                        </tr>
-	                        <tr>
+	                        <tr> 
 	                           <td>Compte courant:</td>
 	                           <td>${ client.getCurrentAccount().getAcc_number() }</td>
 	                           <td>${ client.getCurrentAccount().getAcc_interest() }</td>

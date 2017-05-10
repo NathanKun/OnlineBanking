@@ -12,9 +12,15 @@ body {
     background-color: #F2FEF7;
 }
 
-.navbar{
+.navbar {
     background-color: #D5F2F2;
     
+    font-weight: bold;
+    
+}
+
+.navbar collapse{
+	color: red;
 }
 
 body {

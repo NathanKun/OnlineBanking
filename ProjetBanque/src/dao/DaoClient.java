@@ -78,6 +78,25 @@ public class DaoClient extends Dao{
 		Client clt = (Client) getOne("FindClientByLogin", sql, login);
 		return clt;
 	}
+	
+	public static Client findClientByName(String name) {
+		String sql = "SELECT * FROM client_clt WHERE clt_lname=?";
+		Client clt = (Client) getOne("FindClientByLogin", sql, name);
+		return clt;
+	}
+
+	
+	public static Client findClientByName(String name) {
+		String sql = "SELECT * FROM client_clt WHERE clt_lname=?";
+		Client clt = (Client) getOne("FindClientByLogin", sql, name);
+		return clt;
+	}
+	public static Client findClientByName2(String name) {
+		String sql = "SELECT * FROM client_clt WHERE clt_lname like '%" + name + "%'";
+		Client clt = (Client) getOne("findClientByName", sql, name);
+		return clt;
+	}
+
 
 	public static String getNextClientLogin() {
 		String sql = "SELECT clt_login FROM client_clt WHERE clt_id = (( " 
@@ -139,6 +158,6 @@ public class DaoClient extends Dao{
 //		System.out.println(DaoClient.findClientByLogin("a"));
 		
 		// get next clt login test
-		System.out.println(getNextClientLogin());
+		System.out.println(findClientByName2("a"));
 	}
 }

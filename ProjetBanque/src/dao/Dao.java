@@ -88,6 +88,9 @@ abstract public class Dao {
 			case "FindClientByLogin":
 			case "Stock":
 				ps.setString(1, (String) item);
+				
+			case "findClientByName":
+				
 				break;
 
 			default:
@@ -120,6 +123,7 @@ abstract public class Dao {
 							rs.getString("avs_password"));
 					break;
 
+				case "findClientByName":
 				case "FindClientByLogin":
 				case "Client":
 					retour = new Client(rs.getInt("clt_id"), rs.getString("clt_login"), rs.getString("clt_password"),
