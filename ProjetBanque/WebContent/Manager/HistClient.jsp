@@ -6,12 +6,12 @@
    import="model.Client,model.TransactionHistory, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList,java.math.BigDecimal, org.joda.time.format.DateTimeFormat" %>
  <%
 String name = request.getParameter("name");
-String message = "",fname="",lname="";
+String message = "",fname="",lname="",actionnumber="";
 String type= request.getParameter("type");
 BigDecimal amount1 = new BigDecimal("0");
 BigDecimal amount2 = new BigDecimal("0");
 BigDecimal amount3 = new BigDecimal("0");
-Client clt = DaoClient.findClientByName(name);
+Client clt = DaoClient.findClientByName2(name);
 ArrayList<TransactionHistory> tshList1 = null;
 ArrayList<TransactionHistory> tshList2 = null;
 ArrayList<TransactionHistory> tshList3 = null;
@@ -35,8 +35,7 @@ if (clt != null){
 		}
 		
 		if ( clt.getSecuritiesAccount()!=null){
-		amount3= clt.getSecuritiesAccount().getAcc_balance();
-		session.setAttribute("amount3", amount3);
+		
 		tshList3 = clt.getSecuritiesAccount().getTransactionHistory();
 		session.setAttribute("tshList3", tshList3);
 		}
@@ -93,22 +92,40 @@ session.setAttribute("message", message);}
 
 			<div class="container">
 				<div class="row">
+					
+					<!-- /.panel-heading -->
+						<div class="col-md-3">
+							<table class="table table-striped table-bordered table-hover"
+								id="dataTables-example">
+								<thead>
+									<tr>
+										<th>Nom du Client</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="clt" items="${clientList}">
 
-					<div class="col-md-6">
+										<!-- Generate table -->
+										<tr class="gradeA">
+											<td> <a href="./HistClient.jsp?name=${clt.getClt_lname()}&send=+Rechercher" ><c:out value="${clt.getFullName()}"></c:out></a></td>
+											
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+					</div>
+					
+					<div class="col-md-9">
 					<form class="form-horizontal" id="SearchClient" action="HistClient.jsp" onsubmit="return transferSubmit();" method="get" accept-charset="UTF-8">
 						
 						<div class="panel with-nav-tabs panel-info">
 							<div class="panel-heading">
-							<ul>
 							
-							<div class="input-group custom-search-form">
-						<input type="text" class="form-control" name="name" placeholder="nom du client"> 
-						<span class="input-group-btn">
-							<input type="submit" value=" Rechercher" id="submit" name="send" class="btn btn-primary">
-						</span>
-						
-					</div></ul>
-					<ul> <h3> Resultat pour : <c:out value="${name}"></c:out></h3></ul>
+					<ul> <h3>
+								Client:
+								<c:out value="${lname}"></c:out> 
+								<c:out value="${fname} "></c:out></h3></ul>
 								<ul class="nav nav-tabs">
 									
 									
@@ -128,10 +145,7 @@ session.setAttribute("message", message);}
 						<%} 
 						else 
 						{ %>	
-								<h3>
-								Client:
-								<c:out value="${lname}"></c:out> 
-								<c:out value="${fname} "></c:out></h3>
+								
 								<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
 								
@@ -237,14 +251,22 @@ session.setAttribute("message", message);}
 						<c:out value="${message}"></c:out>
 						<%} 
 						else 
-						{ %>
-									Compte courant (€): <c:out value="${amount1}"></c:out>
-									<br>
-									Compte epargne (€): <c:out value="${amount2}"></c:out>
-									<br>
-									Compte titre: <c:out value="${amount3}"></c:out>
-									
+						{ %>		<table class="table table-striped table-bordered table-hover"
+								id="dataTables-example">
+								<thead>
+									<td>Compte courant (€):</td> 
+									<td>Compte epargne (€):</td> 
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+									<td><c:out value="${amount1}"></c:out></td>
+									<td><c:out value="${amount2}"></c:out></td>
+									</tr>
+									</tbody>
+									</table>
 									<%} %>
+									
 									</div>
 
 								</div>
@@ -252,6 +274,7 @@ session.setAttribute("message", message);}
 						</div>
 						</form>
 					</div>
+					
 				</div>
 			
 		        <!-- Footer -->
