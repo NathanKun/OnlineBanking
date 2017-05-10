@@ -158,7 +158,7 @@ INSERT INTO client_clt VALUES(null, "a",
 	"Divorcé(e)", NOW(), ('2017-03-29 10:05:21'));
 INSERT INTO account_acc VALUES(null, "2222333322220001", "BE62510007547061", 2, 1643.68, 0, 1);
 INSERT INTO account_acc VALUES(null, "2222333322220002", "BH67BMAG00001299123456", 2, 2500.00, 2.5, 2);
-INSERT INTO account_acc VALUES(null, "2222333322220003", "x", 2, 0, 0, 3);
+#INSERT INTO account_acc VALUES(null, "2222333322220003", "x", 2, 0, 0, 3);
 
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 4", "2222333322220001", NOW(), -3.33);
@@ -196,8 +196,8 @@ INSERT INTO client_clt VALUES(null, "b",
 	"Chinese", "M", "321 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee", "33445", "Fukuchima", "0607080910", "wanghaoran@gmail.com", 
 	"Séparé(e)", NOW(), ('2015-01-02 20:33:45'));
 INSERT INTO account_acc VALUES(null, "3333666699990001", "AZ21NABZ00000000137010001944", 3, 65535.00, 0, 1);
-INSERT INTO account_acc VALUES(null, "3333666699990003", "xx", 3, 1200.00, 0, 3);
-INSERT INTO account_acc VALUES(null, "3333666699990002", "AD1200012030200359100100", 3, 10, 2.7, 2);
+#INSERT INTO account_acc VALUES(null, "3333666699990003", "xx", 3, 1200.00, 0, 3);
+#INSERT INTO account_acc VALUES(null, "3333666699990002", "AD1200012030200359100100", 3, 10, 2.7, 2);
 
 INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 2222333322220001", "3333666699990001", NOW(), 733.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 2222333322220001", "3333666699990001", NOW(), 723.33);

@@ -12,7 +12,7 @@ import dao.DaoContactForm;
 import model.ContactForm;
 /**
  * Servlet implementation class Contact
- * @author DJAMEN Yann, HE Junyang
+ * @author BENJILANY Boubeker, DJAMEN Yann, HE Junyang
  */
 @WebServlet("/Contact")
 public class Contact extends HttpServlet {
@@ -29,17 +29,30 @@ public class Contact extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/**
+		 * Here we get the parameters
+		 */
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		String message = request.getParameter("message");
 		
+		/**
+		 * We create the contact
+		 */
 		int rt = DaoContactForm.addContactForm(new ContactForm(0, name, email, phone, message));
 		
+		/**
+		 * If the contact is created
+		 */
 		if(rt == 1){
 			response.setContentType("text/html; charset=UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write("Message envoyé"); 
+			
+			/**
+			 * If the contact isn't created
+			 */
 		} else {
 			response.getWriter().write("Failed"); 
 		}

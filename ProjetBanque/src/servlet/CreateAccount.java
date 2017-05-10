@@ -17,6 +17,7 @@ import util.IbanUtil;
 
 /**
  * Servlet implementation class CreateAccount
+ * @author BENJILANY Boubeker, DJAMEN Yann, HE Junyang
  */
 @WebServlet("/CreateAccount")
 public class CreateAccount extends HttpServlet {
@@ -28,18 +29,47 @@ public class CreateAccount extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		/**
+		 *  We save  the client in an object clt
+		 */
 		Client clt = (Client) request.getSession().getAttribute("client");
-		if (clt != null) {
+		
+		/**
+		 *  We check  if the client exist
+		 */
+		if ( clt != null) {
+			
+			/**
+			 *
+			 *  We check if the type of account we want to create doesn't exist
+			 */
 			if (request.getParameter("type").equals("SavingAccount") && clt.getSavingAccount() == null) {
+				
+				/**
+				 *  We create the account
+				 */
 				DaoAccount.addAccount(
 						new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(clt.getClt_login(), 2),
 								clt.getClt_id(), new BigDecimal(0), new BigDecimal(2.5), 2));
 				response.getWriter().print("Done");
+				
+				/**
+				 * We check if the type of account we want to create doesn't exist
+				 */
 			} else if (request.getParameter("type").equals("SecuritiesAccount") && clt.getSecuritiesAccount() == null) {
+				
+				/**
+				 *  We create the account
+				 */
 				DaoAccount.addAccount(
 						new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(clt.getClt_login(), 3),
 								clt.getClt_id(), new BigDecimal(0), new BigDecimal(0), 3));
 				response.getWriter().print("Done");
+				
+				/**
+				 * Here We redirect the client to the login
+				 */
 			} else {
 				response.sendRedirect("./Login");
 			}

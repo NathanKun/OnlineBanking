@@ -39,8 +39,12 @@ public class SaveCsv extends HttpServlet {
 			// System.out.println(clt.getCurrentAccount());
 			ArrayList<TransactionHistory> tshList = null;
 			
-			// get account
+			/**
+			 * We check that the account exists
+			 */
 			Account acc = null;
+			
+			
 			switch (type) {
 			case "currentHistory":
 				acc = clt.getCurrentAccount();

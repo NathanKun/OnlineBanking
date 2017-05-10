@@ -19,7 +19,7 @@ import util.JsonReader;
 
 /**
  * Servlet implementation class GetStockChart
- * @author Junyang HE
+ * @author Junyang HE, Boubeker BENJILANY
  */
 @WebServlet("/GetStockChart")
 public class GetStockChart extends HttpServlet {
@@ -29,6 +29,10 @@ public class GetStockChart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/**
+		 * Here we get the parameters
+		 */
 		String ticker = request.getParameter("ticker");
 		String width = request.getParameter("width");
 		System.out.println("width = " + width);

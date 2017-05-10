@@ -7,9 +7,25 @@ package model;
  *
  */
 public class Manager {
+	
+	/**
+	 * the manager id 
+	 */
 	private int mng_id;
+	
+	/**
+	 * the manager name 
+	 */
 	private String mng_name;
+	
+	/**
+	 * the manager login 
+	 */
 	private String mng_login;
+	
+	/**
+	 * the manager password hashed 
+	 */
 	private String mng_password;
 
 	/**

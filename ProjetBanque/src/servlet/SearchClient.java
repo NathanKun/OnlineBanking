@@ -18,6 +18,7 @@ import model.TransactionHistory;
 
 /**
  * Servlet implementation class SearchClient
+ * @author BENJILANY Boubeker, DJAMEN Yann, HE Junyang
  */
 @WebServlet("/SearchClient")
 public class SearchClient extends HttpServlet {
@@ -42,15 +43,29 @@ public class SearchClient extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		/**
+		 * Here we get the parameters
+		 */
 		String login = request.getParameter("login");
 		String message = "";
 		String type= request.getParameter("type");
 		
+		/**
+		 * We save the client in an object clt by his login
+		 */
 		Client clt = DaoClient.findClientByLogin(login);
 		
+		/**
+		 * In case of incorrect login
+		 */
 		if (clt == null){
 			message= "Ce client n'existe pas. Veuillez entrer un login correct SVP";
 		}
+		
+		/**
+		 * In case of login
+		 */
 		else
 		{
 			

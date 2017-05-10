@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Data transfer object of Advisor
  * 
- * @author Benjilany Junyang HE
+ * @author Benjilany Boubeker, Junyang HE
  *
  */
 public class Advisor implements Serializable{
@@ -13,9 +13,26 @@ public class Advisor implements Serializable{
 	 * generated serialVersionUID
 	 */
 	private static final long serialVersionUID = -8886234657997605636L;
+	
+
+	/**
+	 * the advisor id
+	 */
 	private int avs_id;
+	
+	/**
+	 * the advisor name
+	 */
 	private String avs_name;
+	
+	/**
+	 * the advisor login
+	 */
 	private String avs_login;
+	
+	/**
+	 * the advisor password
+	 */
 	private String avs_password;
 
 	/**
