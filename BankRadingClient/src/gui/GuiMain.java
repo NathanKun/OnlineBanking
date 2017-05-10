@@ -258,6 +258,9 @@ public class GuiMain extends JFrame implements ActionListener {
 
 	/**
 	 * switch to tsh list of account page
+	 * 
+	 * @param acc account to show transaction list
+	 * @param fullname full name of client who own the account 
 	 */
 	private void switchJpTshList(Account acc, String fullname) {
 		updateJpTshList(acc, fullname);
@@ -432,6 +435,8 @@ public class GuiMain extends JFrame implements ActionListener {
 
 	/**
 	 * initial tsh list panel
+	 * @throws ClassNotFoundException ClassNotFoundException
+	 * @throws IOException IOException
 	 */
 	private void initJpTshList() throws ClassNotFoundException, IOException {
 
@@ -629,8 +634,8 @@ public class GuiMain extends JFrame implements ActionListener {
 	 * 
 	 * @param acc
 	 *            the account
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @throws IOException	IOException
+	 * @throws ClassNotFoundException	ClassNotFoundException
 	 */
 	private void initJTableTSH(Account acc) throws ClassNotFoundException, IOException {
 		if (acc != null) {

@@ -112,6 +112,8 @@ public class GuiMainAllInOne extends JFrame {
 
 	/**
 	 * Constructor of jframe
+	 * 
+	 * @param dbServer server to connect to db
 	 */
 	public GuiMainAllInOne(DbServer dbServer) {
 		this.dbServer = dbServer;

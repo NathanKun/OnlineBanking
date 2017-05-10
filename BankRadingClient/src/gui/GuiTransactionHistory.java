@@ -88,8 +88,9 @@ public class GuiTransactionHistory extends JFrame {
 	/**
 	 * initiate components
 	 * @param acc	account to show transaction history
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
+	 * @param fullname fullname of the client who own the account
+	 * @throws IOException 	IOException
+	 * @throws ClassNotFoundException	ClassNotFoundException 
 	 */
 	private void initComponents(Account acc, String fullname) throws ClassNotFoundException, IOException {
 		lbClientInfo.setText("Client : " + fullname);
@@ -121,8 +122,10 @@ public class GuiTransactionHistory extends JFrame {
 	}
 	/**
 	 * update jtableTransactionHistory when select an account
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
+	 * 
+	 * @param acc account to show transaction history
+	 * @throws IOException	IOException 
+	 * @throws ClassNotFoundException	ClassNotFoundException 
 	 */
 	private void initJTableTSH(Account acc) throws ClassNotFoundException, IOException {
 		if(acc != null){

@@ -11,7 +11,7 @@ import dao.DaoTransactionHistory;
 /**
  * Data transfer object of Account
  * 
- * @authors BENJILANY - Junyang HE
+ * @author BENJILANY - Junyang HE
  *
  */
 public class Account implements Serializable{

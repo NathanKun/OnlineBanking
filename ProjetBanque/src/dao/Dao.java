@@ -207,10 +207,6 @@ abstract public class Dao {
 	 *            the type of object
 	 * @param sql
 	 *            SQL code
-	 * @param parameterNumber
-	 *            numbers of parameter
-	 * @param id
-	 *            the parameter
 	 * @return A list of object
 	 */
 	protected static Object getList(String type, String sql) {

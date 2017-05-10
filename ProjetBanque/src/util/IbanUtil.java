@@ -1,4 +1,4 @@
-﻿package util;
+package util;
 
 import java.math.BigDecimal;
 
@@ -32,7 +32,7 @@ public class IbanUtil {
 
 	/**
 	 * Generate IBAN by client number and account type
-	 * @param clientId	client's id
+	 * @param clientIdStr	client's id
 	 * @param type	type of account, from 1 to 3
 	 * @return	the IBAN generated
 	 */

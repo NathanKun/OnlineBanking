@@ -37,8 +37,8 @@ public class JsonReader {
 	 * read JSON object from Url
 	 * @param url	url to read
 	 * @return	The JSON Object
-	 * @throws IOException
-	 * @throws JSONException
+	 * @throws IOException IOException
+	 * @throws JSONException JSONException
 	 */
 	public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
 		InputStream is = new URL(url).openStream();

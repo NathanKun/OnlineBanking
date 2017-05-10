@@ -8,10 +8,10 @@ import org.joda.time.DateTime;
 /**
  * Data transfer object of Transaction History
  * 
- * @authors BENJILANY Junyang HE
+ * @author BENJILANY, Junyang HE
  *
  */
-public class TransactionHistory implements Serializable{
+public class TransactionHistory implements Serializable {
 
 	/**
 	 * generated serialVersionUID
@@ -24,7 +24,7 @@ public class TransactionHistory implements Serializable{
 	private int tsh_id;
 
 	/**
-	 * the account number for the TransactionHistory 
+	 * the account number for the TransactionHistory
 	 */
 	private String tsh_acc_number;
 
@@ -33,14 +33,14 @@ public class TransactionHistory implements Serializable{
 	 */
 	private String tsh_description;
 
-	//**
+	/**
 	 * the TransactionHistory date
 	 */
 	private DateTime tsh_transactionOn;
 
-	 /**
-		 * the TransactionHistory amount
-		 */
+	/**
+	 * the TransactionHistory amount
+	 */
 	private BigDecimal tsh_amount;
 
 	/**

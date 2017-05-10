@@ -42,8 +42,8 @@ public class Subscribe extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if(((String)(request.getSession().getAttribute("code"))).equals("ok")){
-			
+		if (((String) (request.getSession().getAttribute("code"))).equals("ok")) {
+
 			/**
 			 * Here we get the parameters entered in the HTML form
 			 */
@@ -80,7 +80,7 @@ public class Subscribe extends HttpServlet {
 					adresse, codepostal, ville, tel, email, statut, null, new DateTime().toDateTimeISO());
 
 			/**
-			 *  We add the client to the DataBase
+			 * We add the client to the DataBase
 			 */
 			DaoClient.addClient(c);
 			c = DaoClient.findClientByLogin(login);
@@ -92,9 +92,9 @@ public class Subscribe extends HttpServlet {
 					c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 1);
 			DaoAccount.addAccount(acc);
 
-			
 			/**
-			 * We create a saving or/and securities accounts for the new client if he asks for
+			 * We create a saving or/and securities accounts for the new client
+			 * if he asks for
 			 */
 			String epargneCB = "";
 			String titreCB = "";
@@ -113,7 +113,7 @@ public class Subscribe extends HttpServlet {
 			}
 			if (titreCB.equals("on")) {
 				/**
-				 *  create securities account
+				 * create securities account
 				 */
 				acc = new Account(0, DaoAccount.getNextAccountNumber(), IbanUtil.generateIban(c.getClt_login(), 3),
 						c.getClt_id(), BigDecimal.ZERO, BigDecimal.ZERO, 3);
@@ -124,12 +124,12 @@ public class Subscribe extends HttpServlet {
 			 */
 			request.getSession(true).setAttribute("client", DaoClient.findClientByLogin(login));
 			response.sendRedirect("./zoneclient.jsp");
-		} else { 
+		} else {
 			/**
 			 * email not checked
 			 */
 		}
-			response.getWriter().print("Something wrong, email check not passed");
-		}
+		response.getWriter().print("Something wrong, email check not passed");
 	}
+
 }

@@ -3,7 +3,7 @@ package model;
 /**
  * Data transfer object of Contact form
  * 
- * @authors Benjilany Junyang HE
+ * @author Benjilany Junyang HE
  *
  */
 public class ContactForm {

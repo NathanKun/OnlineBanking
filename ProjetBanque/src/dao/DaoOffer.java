@@ -61,7 +61,7 @@ public class DaoOffer extends Dao {
 	
 	/**
 	 * Main for testing
-	 * @param args
+	 * @param args	args for main
 	 */
 	public static void main(String[] args) {
 

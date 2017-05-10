@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS news_nws (
 
 # insert data
 
-INSERT INTO client_clt VALUES(null, "login", 
+INSERT INTO client_clt VALUES(null, "1000000000", 
 	"$31$16$-uVazABmj_zVigoaLAUSoXxH8J9lmy4yODXNHijAuJAqd-KK7-6J3Mxl4mPNxIe5B5hfqdswHa5KXlMLwW4JqPP27cvaZFNjQ1yvrW6aLfns_7PcrF72o4f7gSyj8oLTCxnTAq8Pf5dH_zkklWcJiTnXXcpjapxydXSE_GdHQR0", 
     "firstName", "lastName", STR_TO_DATE('1994-07-10','%Y-%m-%d'),
 	"Chinese", "M", "1 rue Abc", "76000", "Rouen", "01234567", "e@mail.com", "Marié(e)", NOW(), 
@@ -151,7 +151,7 @@ INSERT INTO account_acc VALUES(null, "4444555566660002", "BG80BNBG96611020345678
 INSERT INTO account_acc VALUES(null, "4444555566660003", "BA391290079401028494", 1, 1200.00, 0, 3);
 
 
-INSERT INTO client_clt VALUES(null, "a", 
+INSERT INTO client_clt VALUES(null, "1000000001", 
 	"$31$16$dbPTfmG7Rsoc_404pj9xhSdcYfeSnRWUTpceh1k2Qf9WYXmEYdjU-kAf3Lo4wycfc2awxnRyCiMhDVPl4V-AX24NuC6dC2iXaMEVm_5p2D0Egbb6gR4M08o_w1oWEgk5zkH_Kkr8g7_JdCbxGngvPVwFL49KWXGfKvQXm353FdY", 
 	"Haoran", "Wang", STR_TO_DATE('1999-09-09','%Y-%m-%d'),
 	"Chinese", "M", "233 rue de Rouen", "76800", "St du Ry", "0607080910", "wanghaoran@gmail.com", 
@@ -190,7 +190,7 @@ INSERT INTO transactionhistory_tsh VALUES(null, "virement emis vers le compte 33
 INSERT INTO transactionhistory_tsh VALUES(null, "virement emis vers le compte 3333666699990001", "2222333322220001", NOW(), -23.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 3333666699990001", "2222333322220001", NOW(), 13.33);
 
-INSERT INTO client_clt VALUES(null, "b", 
+INSERT INTO client_clt VALUES(null, "1000000002", 
 	"$31$16$qcBh8ENZcSfpeStNzJnhpc0-uw6SIxwJUK6gAEaIn3hkb_Rg6BAhXcqw2EUWabPq3kz6e7eXMTKgOLpbSUTiCnEKlvvpOga2G760JqfQu7ljJbl1D-7vGEGKY-Z00XjC7jrD4BdKny4CI82dchPxQBWLbt7xEeAgeKfAYfzedG0", 
 	"Onepunch", "Man", STR_TO_DATE('1888-08-08','%Y-%m-%d'),
 	"Chinese", "M", "321 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee21 rue abbe de l'epee", "33445", "Fukuchima", "0607080910", "wanghaoran@gmail.com", 
@@ -361,10 +361,10 @@ INSERT INTO advisor_avs VALUES(null, 'MrsAdvisorC', 'c',
 );
 
 
-INSERT INTO news_nws VALUES(null, "Emmanuel MACRON élu président de la République Française !", "Avec une estimation de 65.5% des voix, le jeune de 39 ans devient le nouveau président français pour les 5 ans à venir, devançant ainsi Marine LE PEN, la leader droite en France. Notons que le taux d'abstention est un record depuis 1969.", "http://www.photononstop.com/tmp/c17daa03f4079e4f369d96623153001162d288dd0/PNS-3826111.jpg", "OFFICIEL", STR_TO_DATE('2017-05-08, 06:07:08','%Y-%m-%d, %H:%i:%s'));
-INSERT INTO news_nws VALUES(null, "BankRading expose au salon Franchise Expo Toulouse 2016", "BankRading expose au Salon de Toulouse. Toute l'équipe du pôle Franchise et Commerce Associé deBankRading sera présente afin d'informer sur un projet,répondre aux interrogations et conseiller/accompagner dans la réalisation d'un projet.", "http://www.photononstop.com/tmp/c17daa03f4079e4f369d96623153001162d288dd0/PNS-3711877.jpg", "BankRading", STR_TO_DATE('2017-05-07, 21:22:23','%Y-%m-%d, %H:%i:%s'));
-INSERT INTO news_nws VALUES(null, "L'euro au-dessus de $1,10 après les résultats de la présidentielle", "L'euro a franchi dimanche le seuil de 1,10 dollar pour la première fois depuis l'élection de Donald Trump à la présidence des Etats-Unis et a inscrit un plus haut d'un an contre le yen en réaction à la large victoire d'Emmanuel Macron.", "http://www.photononstop.com/tmp/c17daa03f4079e4f369d96623153001162d288dd0/PNS-3025610.jpg", "BOURSE", STR_TO_DATE('2017-05-06, 17:18:19','%Y-%m-%d, %H:%i:%s'));
-INSERT INTO news_nws VALUES(null, "Prêt Personnel BankRading, au printemps, c'est maintenant !", "Vous avez envie de partir en vacances ou de changer de voiture, vous avez besoin de remplacer une partie de votre équipement, les projets ne manquent pas, encore faut-il disposer des bons leviers pour les rendre concrets !", "http://www.photononstop.com/tmp/c17daa03f4079e4f369d96623153001162d288dd0/PNS-704030595.jpg", "BankRading", STR_TO_DATE('2017-05-05, 11:10:09','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "Emmanuel MACRON élu président de la République Française !", "Avec une estimation de 65.5% des voix, le jeune de 39 ans devient le nouveau président français pour les 5 ans à venir, devançant ainsi Marine LE PEN, la leader droite en France. Notons que le taux d'abstention est un record depuis 1969.", "http://france3-regions.francetvinfo.fr/hauts-de-france/sites/regions_france3/files/styles/top_big_2x/public/assets/images/2017/05/07/12424293-3041841.png?itok=jbhqj4cR", "OFFICIEL", STR_TO_DATE('2017-05-08, 06:07:08','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "BankRading expose au salon Franchise Expo Toulouse 2016", "BankRading expose au Salon de Toulouse. Toute l'équipe du pôle Franchise et Commerce Associé deBankRading sera présente afin d'informer sur un projet,répondre aux interrogations et conseiller/accompagner dans la réalisation d'un projet.", "http://www.accesscreditspro.com/wp-content/uploads/2017/02/slider.jpg", "BankRading", STR_TO_DATE('2017-05-07, 21:22:23','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "L'euro au-dessus de $1,10 après les résultats de la présidentielle", "L'euro a franchi dimanche le seuil de 1,10 dollar pour la première fois depuis l'élection de Donald Trump à la présidence des Etats-Unis et a inscrit un plus haut d'un an contre le yen en réaction à la large victoire d'Emmanuel Macron.", "http://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2013/11/20/101216114-stacks_oh_euro_bank_notes.1910x1000.jpg", "BOURSE", STR_TO_DATE('2017-05-06, 17:18:19','%Y-%m-%d, %H:%i:%s'));
+INSERT INTO news_nws VALUES(null, "Prêt Personnel BankRading, au printemps, c'est maintenant !", "Vous avez envie de partir en vacances ou de changer de voiture, vous avez besoin de remplacer une partie de votre équipement, les projets ne manquent pas, encore faut-il disposer des bons leviers pour les rendre concrets !", "http://img.20mn.fr/coWoab2ETqqi-wwlQm8l1w/2048x1536-fit_illustration-fleurs-printemps.jpg", "BankRading", STR_TO_DATE('2017-05-05, 11:10:09','%Y-%m-%d, %H:%i:%s'));
 INSERT INTO news_nws VALUES(null, "BankRading et Compte-Normandie s'allient", "Dans le cadre des partenariats avec la Confédération des Buralistes de France, notre banque rajoute un nouvel allié à son actif.", "images/bank.png", "BankRading", STR_TO_DATE('2017-03-10, 14:15:16','%Y-%m-%d, %H:%i:%s'));
 INSERT INTO news_nws VALUES(null, "Actionnaires : nouvelle plateforme !", "Bonne nouvelle pour le cercle des actionnaires de la BankRading, notre groupe se fortifie d'un nouveau site Internet exclusif, muni des dernières mises à jour.", "images/bank.png", "BankRading", STR_TO_DATE('2017-04-15, 14:15:16','%Y-%m-%d, %H:%i:%s'));
 INSERT INTO news_nws VALUES(null, "Groupe BankRading : Résultars au 31 mars 2017", "Le Conseil d'administration de la BankRading a examiné les résultats de la banque pour le premier trimestre de l'année en cours.", "images/bank.png", "BankRading", STR_TO_DATE('2017-05-01, 18:19:20','%Y-%m-%d, %H:%i:%s'));

@@ -73,7 +73,7 @@ public class SaveCsv extends HttpServlet {
 				// write file header
 				dataOut.write("Client : " + clt.getFullName());
 				dataOut.write("\n");
-				dataOut.write("Numéro de compte : " + acc.getAcc_number());
+				dataOut.write("Numero de compte : " + acc.getAcc_number());
 				dataOut.write("\n");
 				
 				// write table header

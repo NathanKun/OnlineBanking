@@ -7,7 +7,7 @@ import org.joda.time.DateTime;
 /**
  * Data transfer object of stock historical price
  * 
- * @authors BENJILANY Junyang HE
+ * @author BENJILANY Junyang HE
  *
  */
 public class StockHistoricalPrice {

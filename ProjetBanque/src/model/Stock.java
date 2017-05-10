@@ -9,7 +9,7 @@ import util.HttpUtil;
 /**
  * Data transfer object of stock
  * 
- * @authors BENJILANY Junyang HE
+ * @author BENJILANY Junyang HE
  *
  */
 public class Stock {
