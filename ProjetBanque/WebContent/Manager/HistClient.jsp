@@ -6,20 +6,12 @@
    import="model.Client,model.TransactionHistory, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList,java.math.BigDecimal, org.joda.time.format.DateTimeFormat" %>
  <%
 String name = request.getParameter("name");
-<<<<<<< HEAD
-String message = "",fname="",lname="";
-=======
 String message = "",fname="",lname="",actionnumber="";
->>>>>>> origin/master
 String type= request.getParameter("type");
 BigDecimal amount1 = new BigDecimal("0");
 BigDecimal amount2 = new BigDecimal("0");
 BigDecimal amount3 = new BigDecimal("0");
-<<<<<<< HEAD
-Client clt = DaoClient.findClientByName(name);
-=======
 Client clt = DaoClient.findClientByName2(name);
->>>>>>> origin/master
 ArrayList<TransactionHistory> tshList1 = null;
 ArrayList<TransactionHistory> tshList2 = null;
 ArrayList<TransactionHistory> tshList3 = null;
@@ -49,7 +41,7 @@ if (clt != null){
 		}
 		
 }
-else{message="Aucun client trouvé, veuillez verifier le nom";
+else{message="Aucun client trouv? veuillez verifier le nom";
 session.setAttribute("message", message);}
 %>
 
@@ -130,26 +122,15 @@ session.setAttribute("message", message);}
 						<div class="panel with-nav-tabs panel-info">
 							<div class="panel-heading">
 							
-<<<<<<< HEAD
-							<div class="input-group custom-search-form">
-						<input type="text" class="form-control" name="name" placeholder="nom du client"> 
-						<span class="input-group-btn">
-							<input type="submit" value=" Rechercher" id="submit" name="send" class="btn btn-primary">
-						</span>
-						
-					</div></ul>
-					<ul> <h3> Resultat pour : <c:out value="${name}"></c:out></h3></ul>
-=======
 					<ul> <h3>
 								Client:
 								<c:out value="${lname}"></c:out> 
 								<c:out value="${fname} "></c:out></h3></ul>
->>>>>>> origin/master
 								<ul class="nav nav-tabs">
 									
 									
 									<li  ><a href="#courant" data-toggle="tab">Historique compte courant</a></li>
-									<li><a href="#epargne" data-toggle="tab">Historique compte épargne </a></li>
+									<li><a href="#epargne" data-toggle="tab">Historique compte 閜argne </a></li>
 									<li><a href="#titre" data-toggle="tab" >Historique compte titre </a></li>
 									<li><a href="#solde" data-toggle="tab" >Solde des comptes </a></li>
 								
@@ -159,19 +140,12 @@ session.setAttribute("message", message);}
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="courant" >
 								
-						<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
+						<%if(message.equals("Aucun client trouv? veuillez verifier le nom")){ %>
 						<c:out value="${message}"></c:out>
 						<%} 
 						else 
 						{ %>	
-<<<<<<< HEAD
-								<h3>
-								Client:
-								<c:out value="${lname}"></c:out> 
-								<c:out value="${fname} "></c:out></h3>
-=======
 								
->>>>>>> origin/master
 								<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
 								
@@ -204,7 +178,7 @@ session.setAttribute("message", message);}
 									</div>
 									<div class="tab-pane fade" id="epargne">
 									<br>
-									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
+									<%if(message.equals("Aucun client trouv? veuillez verifier le nom")){ %>
 						<c:out value="${message}"></c:out>
 						<%} 
 						else 
@@ -238,9 +212,8 @@ session.setAttribute("message", message);}
 							</div>
 							
 									<div class="tab-pane fade" id="titre" > 
-<<<<<<< HEAD
 									<br>
-									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
+									<%if(message.equals("Aucun client trouv? veuillez verifier le nom")){ %>
 						<c:out value="${message}"></c:out>
 						<%} 
 						else 
@@ -274,55 +247,7 @@ session.setAttribute("message", message);}
 									</div>
 									<div class="tab-pane fade" id="solde">
 									<br>
-									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
-						<c:out value="${message}"></c:out>
-						<%} 
-						else 
-						{ %>
-									Compte courant (€): <c:out value="${amount1}"></c:out>
-=======
->>>>>>> origin/master
-									<br>
-									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
-						<c:out value="${message}"></c:out>
-						<%} 
-						else 
-						{ %>
-									<table class="table table-striped table-bordered table-hover"
-								id="dataTables-example">
-								<thead>
-									<tr>
-										<th>Date</th>
-										<th>Description</th>
-										<th>Montant</th>
-										
-									</tr>
-								</thead>
-								<tbody>
-									
-									<c:forEach var="tsh" items="${tshList3}">
-
-
-										<!-- Generate table -->
-										<tr class="gradeA">
-											<td><c:out value="${tsh.getTsh_transactionOn().toString(DateTimeFormat.forPattern(\"yyyy/MM/dd\"))}"></c:out></td>
-											<td><c:out value="${tsh.getTsh_description()} "></c:out></td>
-											<td><c:out value="${tsh.getTsh_amount()} "></c:out></td>
-										
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-							<%} %>
-									</div>
-									<div class="tab-pane fade" id="solde">
-									<br>
-<<<<<<< HEAD
-									Compte titre: <c:out value="${amount3}"></c:out>
-									
-									<%} %>
-=======
-									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
+									<%if(message.equals("Aucun client trouv? veuillez verifier le nom")){ %>
 						<c:out value="${message}"></c:out>
 						<%} 
 						else 
@@ -342,7 +267,6 @@ session.setAttribute("message", message);}
 									</table>
 									<%} %>
 									
->>>>>>> origin/master
 									</div>
 
 								</div>
