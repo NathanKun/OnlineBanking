@@ -47,9 +47,12 @@
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 <link href="css/stock.css" rel="stylesheet">
+<!-- Preloader -->
+<link href="css/preloader.css" rel="stylesheet">
 <script src="./js/fusioncharts.js"></script>
 </head>
 <body>
+    <div class="preloader"></div>
 	<%@ include file="./includes/nav.inc.jsp"%>
 	<!-- Page Content -->
 	<div class="container">
@@ -151,6 +154,7 @@
 										du moment ou la vente effectue.</label>
 								</div>
 							</div>
+							<label id="sellHint" class="col-md-4 control-label"></label>
 						</div>
 					</form>
 				</c:if>
@@ -179,6 +183,7 @@
 									du moment ou l'achat effectue.</label>
 							</div>
 						</div>
+						<label id="buyHint" class="col-md-4 control-label"></label>
 					</div>
 				</form>
 			</div>
@@ -211,6 +216,7 @@
 	<script>
 		window.onload = function() {
 			document.getElementById("bourse").className = "dropdown active";
+			$(".preloader").delay(300).fadeOut(500);
 		}
 
 		// control sellShare input when it change
@@ -251,56 +257,48 @@
 		}
 
 		// Sell stock by Ajax, action depends on responseText
-		$(document)
-				.on(
-						"submit",
-						"#sellForm",
+		$(document).on("submit", "#sellForm",
 						function() {
 							var $form = $(this);
-							$
-									.post(
-											$form.attr("action"),
-											$form.serialize(),
-											function(responseText) {
-												if (responseText == "HoldingShare not found") {
-													alert("Vous n'avez pas cette action dans votre compte!");
-												} else if (responseText == "HoldingShare not enough") {
-													alert("Vous n'avez pas assez d'action pour vendre dans votre compte!");
-												} else if (responseText == "Done") {
-													alert("La vente est bien réussie!");
-													window.location.reload();
-												} else {
-													alert("responseText = "
-															+ responseText);
-												}
-											});
+							$.post($form.attr("action"), $form.serialize(),
+								function(responseText) {
+									if (responseText == "HoldingShare not found") {
+										$("#sellHint").text("Vous n'avez pas cette action dans votre compte!");
+										$("#sellHint").css('color', 'red');
+									} else if (responseText == "HoldingShare not enough") {
+										$("#sellHint").text("Vous n'avez pas assez d'action pour vendre dans votre compte!");
+										$("#sellHint").css('color', 'red');
+									} else if (responseText == "Done") {
+										$("#sellHint").text("La vente est bien réussie");
+										$("#sellHint").css('color', 'green');
+										window.location.reload();
+									} else {
+										alert("responseText = " + responseText);
+									}
+								});
 							event.preventDefault(); // Important! Prevents submitting the form.
 						});
 
 		// Buy stock by Ajax, action depends on responseText
-		$(document)
-				.on(
-						"submit",
-						"#buyForm",
-						function() {
+		$(document).on("submit", "#buyForm", 
+				function() {
 							var $form = $(this);
-							$
-									.post(
-											$form.attr("action"),
-											$form.serialize(),
-											function(responseText) {
-												if (responseText == "No account") {
-													alert("Vous n'avez pas de compte de titre!");
-												} else if (responseText == "No enough money") {
-													alert("Vous n'avez pas assez d'argent dans votre compte de titre!");
-												} else if (responseText == "Done") {
-													alert("L'achat est bien réussi!");
-													window.location.reload();
-												} else {
-													alert("responseText = "
-															+ responseText);
-												}
-											});
+							$.post($form.attr("action"), $form.serialize(),
+								function(responseText) {
+									if (responseText == "No account") {
+										$("#buyHint").text("Vous n'avez pas de compte de titre!");
+										$("#buyHint").css('color', 'red');
+									} else if (responseText == "No enough money") {
+										$("#buyHint").text("Vous n'avez pas assez d'argent dans votre compte de titre!");
+										$("#buyHint").css('color', 'red');
+									} else if (responseText == "Done") {
+										$("#buyHint").text("L'achat est bien réussi!");
+										$("#buyHint").css('color', 'green');
+										window.location.reload();
+									} else {
+										alert("responseText = " + responseText);
+									}
+								});
 							event.preventDefault(); // Important! Prevents submitting the form.
 						});
 	</script>
@@ -313,6 +311,5 @@
 		} catch (java.lang.ArrayIndexOutOfBoundsException e) {
 			response.getWriter().print("No data for stock " + ticker);
 		}
-
 	}
 %>

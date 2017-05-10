@@ -11,7 +11,7 @@
 <html>
    <head>
       <meta charset="utf-8">
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="">
@@ -28,6 +28,8 @@
          type="text/css">
       <!-- Preloader -->
 	  <link href="css/preloader.css" rel="stylesheet">
+	  <!-- sweetalert -->
+	  <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
    </head>
    <body>
       <div class="preloader"></div>
@@ -71,7 +73,7 @@
 	                           <th>intéret</th>
 	                           <th>Solde (€)</th>
 	                        </tr>
-	                        <tr>
+	                        <tr> 
 	                           <td>Compte courant:</td>
 	                           <td>${ client.getCurrentAccount().getAcc_number() }</td>
 	                           <td>${ client.getCurrentAccount().getAcc_interest() }</td>
@@ -433,6 +435,8 @@
       <script src="js/jquery.cookie.js"></script>
       <!-- iban checker -->
       <script src="js/iban.js"></script>
+      <!-- sweetalert -->
+      <script src="js/sweetalert.min.js"></script>
       <script>
          window.onload = function() {
          	document.getElementById("customerarea").className = "dropdown active";
@@ -467,26 +471,76 @@
          function createAccount(type) {
          	switch(type){
          	case "savingAccount":
-         		if(confirm("Vous voulez créer un compte d'épargne ?")){
-         			$.get("./CreateAccount", { type: 'SavingAccount' }, function(responseText){
-         				if(responseText == "Done"){
-         					window.location.reload();
-         				} else {
-         					alert("Error");
-         				}
+         		swal({
+         			  title: "Création d'un compte d'épargne",
+         			  text: "Vous voulez créer un compte d'épargne ?",
+         			  type: "info",
+         			  showCancelButton: true,
+         			  confirmButtonColor: "#DD6B55",
+         			  confirmButtonText: "Oui, créer le!",
+         			  cancelButtonText: "Non!",
+         			  closeOnConfirm: false,
+         			  showLoaderOnConfirm: true,
+         			  closeOnCancel: false
+         			},
+         			function(isConfirm){
+         			  if (isConfirm) {
+         				$.get("./CreateAccount", { type: 'SavingAccount' }, function(responseText){
+              				if(responseText == "Done"){
+                   			    swal({
+                       			  title: "Compte créé !",
+                       			  text: "Vous avez un compte d'épargne maintenant.",
+                       			  type: "success",
+                         			  closeOnConfirm: false,
+                         			  confirmButtonColor: "#DD6B55",
+                         			  confirmButtonText: "OK!"
+                 			    }, function(){
+               					window.location.reload();
+                 			    });
+              				} else {
+              					swal("Erreur", "Veuillez contactez notre équipe technique", "error");
+              				}
+              			});
+         			  } else {
+         			    swal("Opération annulé", "", "error");
+         			  }
          			});
-         		}
          		break;
          	case "securitiesAccount":
-         		if(confirm("Vous voulez créer un compte de titre ?")){
-         			$.get("./CreateAccount", { type: 'SecuritiesAccount' }, function(responseText){
-         				if(responseText == "Done"){
-         					window.location.reload();
-         				} else {
-         					alert("Error");
-         				}
-         			});
-         		}
+             		swal({
+           			  title: "Création d'un compte de titre",
+           			  text: "Vous voulez créer un compte de titre ?",
+           			  type: "info",
+           			  showCancelButton: true,
+           			  confirmButtonColor: "#DD6B55",
+           			  confirmButtonText: "Oui, créer le!",
+           			  cancelButtonText: "Non!",
+           			  closeOnConfirm: false,
+           			  showLoaderOnConfirm: true,
+           			  closeOnCancel: false
+           			},
+           			function(isConfirm){
+           			  if (isConfirm) {
+           				$.get("./CreateAccount", { type: 'SecuritiesAccount' }, function(responseText){
+                				if(responseText == "Done"){
+                   			    swal({
+                         			  title: "Compte créé !",
+                         			  text: "Vous avez un compte de titre maintenant.",
+                         			  type: "success",
+                           			  closeOnConfirm: false,
+                           			  confirmButtonColor: "#DD6B55",
+                           			  confirmButtonText: "OK"
+                   			    }, function(){
+                 					window.location.reload();
+                   			    });
+                				} else {
+                					swal("Erreur", "Veuillez contactez notre équipe technique", "error");
+                				}
+                			});
+           			  } else {
+           			    swal("Opération annulé", "", "error");
+           			  }
+           			});
          		break;
          	}
          }

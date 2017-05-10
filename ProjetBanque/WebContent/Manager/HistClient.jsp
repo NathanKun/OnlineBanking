@@ -6,12 +6,20 @@
    import="model.Client,model.TransactionHistory, dao.DaoClient, model.Account, dao.DaoAccount, java.util.ArrayList,java.math.BigDecimal, org.joda.time.format.DateTimeFormat" %>
  <%
 String name = request.getParameter("name");
+<<<<<<< HEAD
 String message = "",fname="",lname="";
+=======
+String message = "",fname="",lname="",actionnumber="";
+>>>>>>> origin/master
 String type= request.getParameter("type");
 BigDecimal amount1 = new BigDecimal("0");
 BigDecimal amount2 = new BigDecimal("0");
 BigDecimal amount3 = new BigDecimal("0");
+<<<<<<< HEAD
 Client clt = DaoClient.findClientByName(name);
+=======
+Client clt = DaoClient.findClientByName2(name);
+>>>>>>> origin/master
 ArrayList<TransactionHistory> tshList1 = null;
 ArrayList<TransactionHistory> tshList2 = null;
 ArrayList<TransactionHistory> tshList3 = null;
@@ -35,8 +43,7 @@ if (clt != null){
 		}
 		
 		if ( clt.getSecuritiesAccount()!=null){
-		amount3= clt.getSecuritiesAccount().getAcc_balance();
-		session.setAttribute("amount3", amount3);
+		
 		tshList3 = clt.getSecuritiesAccount().getTransactionHistory();
 		session.setAttribute("tshList3", tshList3);
 		}
@@ -93,14 +100,37 @@ session.setAttribute("message", message);}
 
 			<div class="container">
 				<div class="row">
+					
+					<!-- /.panel-heading -->
+						<div class="col-md-3">
+							<table class="table table-striped table-bordered table-hover"
+								id="dataTables-example">
+								<thead>
+									<tr>
+										<th>Nom du Client</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="clt" items="${clientList}">
 
-					<div class="col-md-6">
+										<!-- Generate table -->
+										<tr class="gradeA">
+											<td> <a href="./HistClient.jsp?name=${clt.getClt_lname()}&send=+Rechercher" ><c:out value="${clt.getFullName()}"></c:out></a></td>
+											
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+					</div>
+					
+					<div class="col-md-9">
 					<form class="form-horizontal" id="SearchClient" action="HistClient.jsp" onsubmit="return transferSubmit();" method="get" accept-charset="UTF-8">
 						
 						<div class="panel with-nav-tabs panel-info">
 							<div class="panel-heading">
-							<ul>
 							
+<<<<<<< HEAD
 							<div class="input-group custom-search-form">
 						<input type="text" class="form-control" name="name" placeholder="nom du client"> 
 						<span class="input-group-btn">
@@ -109,6 +139,12 @@ session.setAttribute("message", message);}
 						
 					</div></ul>
 					<ul> <h3> Resultat pour : <c:out value="${name}"></c:out></h3></ul>
+=======
+					<ul> <h3>
+								Client:
+								<c:out value="${lname}"></c:out> 
+								<c:out value="${fname} "></c:out></h3></ul>
+>>>>>>> origin/master
 								<ul class="nav nav-tabs">
 									
 									
@@ -128,10 +164,14 @@ session.setAttribute("message", message);}
 						<%} 
 						else 
 						{ %>	
+<<<<<<< HEAD
 								<h3>
 								Client:
 								<c:out value="${lname}"></c:out> 
 								<c:out value="${fname} "></c:out></h3>
+=======
+								
+>>>>>>> origin/master
 								<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
 								
@@ -198,6 +238,7 @@ session.setAttribute("message", message);}
 							</div>
 							
 									<div class="tab-pane fade" id="titre" > 
+<<<<<<< HEAD
 									<br>
 									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
 						<c:out value="${message}"></c:out>
@@ -239,12 +280,69 @@ session.setAttribute("message", message);}
 						else 
 						{ %>
 									Compte courant (€): <c:out value="${amount1}"></c:out>
+=======
+>>>>>>> origin/master
 									<br>
-									Compte epargne (€): <c:out value="${amount2}"></c:out>
+									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
+						<c:out value="${message}"></c:out>
+						<%} 
+						else 
+						{ %>
+									<table class="table table-striped table-bordered table-hover"
+								id="dataTables-example">
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>Description</th>
+										<th>Montant</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									
+									<c:forEach var="tsh" items="${tshList3}">
+
+
+										<!-- Generate table -->
+										<tr class="gradeA">
+											<td><c:out value="${tsh.getTsh_transactionOn().toString(DateTimeFormat.forPattern(\"yyyy/MM/dd\"))}"></c:out></td>
+											<td><c:out value="${tsh.getTsh_description()} "></c:out></td>
+											<td><c:out value="${tsh.getTsh_amount()} "></c:out></td>
+										
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<%} %>
+									</div>
+									<div class="tab-pane fade" id="solde">
 									<br>
+<<<<<<< HEAD
 									Compte titre: <c:out value="${amount3}"></c:out>
 									
 									<%} %>
+=======
+									<%if(message.equals("Aucun client trouvé, veuillez verifier le nom")){ %>
+						<c:out value="${message}"></c:out>
+						<%} 
+						else 
+						{ %>		<table class="table table-striped table-bordered table-hover"
+								id="dataTables-example">
+								<thead>
+									<td>Compte courant (€):</td> 
+									<td>Compte epargne (€):</td> 
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+									<td><c:out value="${amount1}"></c:out></td>
+									<td><c:out value="${amount2}"></c:out></td>
+									</tr>
+									</tbody>
+									</table>
+									<%} %>
+									
+>>>>>>> origin/master
 									</div>
 
 								</div>
@@ -252,6 +350,7 @@ session.setAttribute("message", message);}
 						</div>
 						</form>
 					</div>
+					
 				</div>
 			
 		        <!-- Footer -->

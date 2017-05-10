@@ -33,7 +33,7 @@ public class TransactionHistory implements Serializable{
 	 */
 	private String tsh_description;
 
-	//**
+	/**
 	 * the TransactionHistory date
 	 */
 	private DateTime tsh_transactionOn;
