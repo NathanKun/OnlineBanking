@@ -24,119 +24,135 @@ public class Client implements Serializable{
 	 * generated serialVersionUID
 	 */
 	private static final long serialVersionUID = 1423389198819788270L;
+	
 	/**
-	 * L'identifiant du client
+	 * the client id
 	 */
 	private int clt_id;
+	
 	/**
-	 * Le login du client
+	 * the client login
 	 */
 	private String clt_login;
+	
 	/**
-	 * Le prénom du client
+	 * the client first name
 	 */
 	private String clt_fname;
+	
 	/**
-	 * Le nom du client
+	 * the client last name
 	 */
 	private String clt_lname;
 	/**
-	 * La nationalite du client
+	 * 
+	 * the client nationality
 	 */
 	private String clt_nationality;
+	
 	/**
-	 * Le sexe du client
+	 * the client gender
 	 */
 	private String clt_gender;
+	
 	/**
-	 * L'adresse du client
+	 * the client address
 	 */
 	private String clt_address;
+	
 	/**
-	 * Le code postal du client
+	 * the client postal code
 	 */
 	private String clt_postalcode;
+	
 	/**
-	 * La ville du client
+	 * the client city
 	 */
 	private String clt_city;
+	
 	/**
-	 * Le numéro de téléphone du client
+	 * the client telephone number
 	 */
 	private String clt_telephonenumber;
+	
 	/**
-	 * L'email du client
+	 * the client email
 	 */
 	private String clt_email;
+	
 	/**
-	 * Le statut du client
+	 * the client status
 	 */
 	private String clt_status;
+	
 	/**
-	 * Le mot de passe du client
+	 * the client password
 	 */
 	private String clt_password;
+	
 	/**
-	 * La date de naissance du client
+	 * the client birthday date
 	 */
 	private DateTime clt_birthday;
+	
 	/**
-	 * La derniere connexion du client
+	 * the client last login date
 	 */
 	private DateTime clt_lastlogin;
+	
 	/**
-	 * La date de création du compte courant du client
+	 * the date where the client create the account
 	 */
 	private DateTime clt_createdon;
 
 	/**
-	 * Compte de courrant
+	 * current account
 	 */
 	private Account currentAccount = null;
 	/**
-	 * Compte d'epargne
+	 * saving account
 	 */
 	private Account savingAccount = null;
 	/**
-	 * Compte de titre
+	 * securities account
 	 */
 	private Account securitiesAccount = null;
 
 	/**
-	 * Le constructeur de la classe Client
+	 * Constructor
 	 *
 	 * @param clt_id
-	 *            L'id du client
+	 *            client id
 	 * @param clt_fname
-	 *            Le pr�nom du client
+	 *            client first name
 	 * @param clt_lname
-	 *            Le nom du client
+	 *            client last name
 	 * @param clt_nationality
-	 *            la nationalite du client
+	 *            client nationality
 	 * @param clt_gender
-	 *            Le sexe du client
+	 *            client gender
 	 * @param clt_address
-	 *            l'adresse du client
+	 *            client address
 	 * @param clt_postalcode
-	 *            Le code postal du client
+	 *            client postal code 
 	 * @param clt_city
-	 *            la ville du client
+	 *            client city
 	 * @param clt_telephonenumber
-	 *            le numero du client
+	 *            client phone number
 	 * @param clt_email
-	 *            l'email du client
+	 *            client email
 	 * @param clt_status
-	 *            le statut du client
+	 *            client status
 	 * @param clt_password
-	 *            le mot de passe du client
+	 *            client password
 	 * @param clt_login
-	 *            le login du client
+	 *            client login
 	 * @param clt_birthday
-	 *            la date de naissance du client
+	 *            client birthday date
 	 * @param clt_lastlogin
-	 *            la date de la derniere connexion du client
+	 *            client last login date
 	 * @param clt_createdon
-	 *            la date de creation du compte courant du client
+	 *            the date where the client create the account
 	 */
 	public Client(int clt_id, String clt_login, String clt_password, String clt_fname, String clt_lname,
 			DateTime clt_birthday, String clt_nationality, String clt_gender, String clt_address, String clt_postalcode,
@@ -162,7 +178,9 @@ public class Client implements Serializable{
 		this.savingAccount = null;
 		this.securitiesAccount = null;
 
-		// set accounts
+		/**
+		 *  set accounts
+		 */
 		ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt_id);
 		for (Account acc : accList) {
 			switch (acc.getAcc_type()) {
@@ -208,7 +226,9 @@ public class Client implements Serializable{
 		this.savingAccount = null;
 		this.securitiesAccount = null;
 
-		// set accounts
+		/**
+		 *  set accounts
+		 */
 		ArrayList<Account> accList = DaoAccount.findAccountByClientId(clt_id);
 		for (Account acc : accList) {
 			switch (acc.getAcc_type()) {

@@ -78,6 +78,7 @@ public class DaoClient extends Dao{
 		Client clt = (Client) getOne("FindClientByLogin", sql, login);
 		return clt;
 	}
+<<<<<<< HEAD
 	
 	public static Client findClientByName(String name) {
 		String sql = "SELECT * FROM client_clt WHERE clt_lname=?";
@@ -89,6 +90,8 @@ public class DaoClient extends Dao{
 		Client clt = (Client) getOne("findClientByName", sql, name);
 		return clt;
 	}
+=======
+>>>>>>> f76a9102e09a43e6beab6554f0540383ac9172e4
 
 	public static String getNextClientLogin() {
 		String sql = "SELECT clt_login FROM client_clt WHERE clt_id = (( " 

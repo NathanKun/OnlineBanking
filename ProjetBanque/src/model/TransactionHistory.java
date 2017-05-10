@@ -19,28 +19,28 @@ public class TransactionHistory implements Serializable{
 	private static final long serialVersionUID = 4997773902150564873L;
 
 	/**
-	 * l'identifiant de l'historique des transactions
+	 * the TransactionHistory id
 	 */
 	private int tsh_id;
 
 	/**
-	 * le numéro de compte dont l'historique des transactions
+	 * the account number for the TransactionHistory 
 	 */
 	private String tsh_acc_number;
 
 	/**
-	 * la description de l'historique des transactions
+	 * the TransactionHistory description
 	 */
 	private String tsh_description;
 
-	/**
-	 * date de transaction
+	//**
+	 * the TransactionHistory date
 	 */
 	private DateTime tsh_transactionOn;
 
-	/**
-	 * Somme de transaction
-	 */
+	 /**
+		 * the TransactionHistory amount
+		 */
 	private BigDecimal tsh_amount;
 
 	/**

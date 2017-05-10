@@ -40,6 +40,10 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		/**
+		 * Here we get the parameters
+		 */
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		Client clt = DaoClient.findClientByLogin(login);
@@ -48,7 +52,11 @@ public class Login extends HttpServlet {
 
 		PasswordAuthentication pa = new PasswordAuthentication();
 
+		/**
+		 *  We check  if the client exist
+		 */
 		if (clt != null) {
+			
 			if (pa.authenticate(password.toCharArray(), clt.getClt_password())) {
 				isFound = true;
 				cltFound = clt;
@@ -58,12 +66,18 @@ public class Login extends HttpServlet {
 		if (isFound) {
 			cltFound.setClt_lastlogin(new DateTime());
 			DaoClient.updateClient(cltFound);
-			// redirection
+			
+			/**
+			 *  redirection
+			 */
 			request.getSession(true).setAttribute("client", cltFound);
 			//System.out.println("clt found");
 			response.sendRedirect("./zoneclient.jsp");
 		} else {
-			// go back to login page
+			
+			/**
+			 *  go back to login page
+			 */
 			request.setAttribute("loginFailed", true);
 			request.setAttribute("login", login);
 			request.getRequestDispatcher("./login.jsp").forward(request, response);

@@ -24,7 +24,7 @@ import model.TransactionHistory;
 /**
  * Servlet implementation class TradeStock
  * 
- * @author Junyang HE
+ * @author Junyang HE, BENJILANY Boubeker
  */
 @WebServlet(description = "Buy or sell stock for a client", urlPatterns = { "/TradeStock" })
 public class TradeStock extends HttpServlet {
@@ -45,6 +45,10 @@ public class TradeStock extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		/**
+		 * Here we get the parameters
+		 */
 		String ticker = (String) request.getSession().getAttribute("ticker");
 		Client clt = (Client) request.getSession().getAttribute("client");
 
@@ -52,32 +56,50 @@ public class TradeStock extends HttpServlet {
 		int nbShares = Integer.valueOf(request.getParameter("nbShares"));
 		String price = request.getParameter("price");
 
+		/**
+		 * We check if the client exist
+		 */
 		if (clt != null) {
-			// sell stocks
+			/**
+			 *  sell stocks
+			 */
 			if (action.equals("Vendre")) {
 				ArrayList<HoldingShare> hdsList = clt.getHoldingShare();
 				boolean isHdsFound = false;
 
-				for (HoldingShare hds : hdsList) { // find the holding share of
-													// this ticker
+				for (HoldingShare hds : hdsList) { 
+					
+					/** find the holding share of this ticker
+					 * 
+					 */												
 					if (hds.getHds_stk_ticker().equals(ticker)) {
-						if (hds.getHds_numberOfShares() >= nbShares) { // nbShares
-																		// control
+						if (hds.getHds_numberOfShares() >= nbShares) {
+							
+							/**
+							 *  Control the number of shares
+							 */											
 							isHdsFound = true;
 							Account acc = clt.getCurrentAccount();
 
-							// add money to account
+							/** add money to account
+							 * 
+							 */
 							acc.setAcc_balance(acc.getAcc_balance()
 									.add(new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
 							acc.push();
 
-							// add transaction history
-							// current account + money
+							/**
+							 *  add transaction history
+							 *  current account + money
+							 */
 							DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(),
 									"Vendre " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name(),
 									new DateTime(), new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
 
-							// securities account - stock
+							/**
+							 * add transaction history
+							 *  securities account - stock
+							 */
 							DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0,
 									clt.getSecuritiesAccount().getAcc_number(),
 									"Vendre " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name()
@@ -85,22 +107,32 @@ public class TradeStock extends HttpServlet {
 									new DateTime(), (new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))
 											.multiply(new BigDecimal(-1)))));
 
-							// delete(sold all) the holding share
+							/**
+							 *  delete(sold all) the holding share
+							 */
 							if (hds.getHds_numberOfShares() == nbShares) {
 								DaoHoldingShare.deleteHoldingShare(hds.getHds_id());
-							} else { // update(sell a part) hds
+							} else { 
+								/**
+								 *  update(sell a part) hds
+								 */
 								hds.setHds_numberOfShares(hds.getHds_numberOfShares() - nbShares);
 								DaoHoldingShare.updateHoldingShare(hds);
 							}
 
-							// refresh object client in session
+							/**
+							 *  refresh object client in session
+							 */
 							request.getSession().removeAttribute("client");
 							request.getSession().setAttribute("client", DaoClient.getClient(clt.getClt_id()));
 
 							response.getWriter().print("Done");
 
-						} else {// wont't happen normally, controlled by
-								// javascript in browser side
+						} else {
+							/**
+							 * wont't happen normally, controlled by javascript in browser side
+							 */
+								
 							response.getWriter().print("HoldingShare not enough");
 						}
 					}
@@ -124,18 +156,27 @@ public class TradeStock extends HttpServlet {
 																													// check
 						response.getWriter().print("No enough money");
 					} else {
-						// subtract money in account
+						/**
+						 *  subtract money in account
+						 */
 						acc.setAcc_balance(acc.getAcc_balance()
 								.subtract(new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))));
-						acc.push(); // update account to database
+						acc.push(); 
+						/**
+						 *  update account to database
+						 */
 
-						// current account - money
+						/**
+						 *  current account - money
+						 */
 						DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0, acc.getAcc_number(),
 								"Acheter " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name(),
 								new DateTime(), new BigDecimal(Double.valueOf(price) * Integer.valueOf(nbShares))
 										.multiply(new BigDecimal(-1))));
 
-						// securities account + stock
+						/**
+						 *  securities account + stock
+						 */
 						DaoTransactionHistory.addTransactionHistory(new TransactionHistory(0,
 								clt.getSecuritiesAccount().getAcc_number(),
 								"Acheter " + nbShares + "action(s) de " + DaoStock.getStock(ticker).getStk_name() + ", "
@@ -144,9 +185,11 @@ public class TradeStock extends HttpServlet {
 
 						ArrayList<HoldingShare> hdsList = clt.getHoldingShare();
 						boolean isHdsFound = false;
-						for (HoldingShare hds : hdsList) { // find the holding
-															// share of
-															// this ticker
+						for (HoldingShare hds : hdsList) { 
+							/**
+							 *  find the holding share of this ticker
+							 */
+					
 							if (hds.getHds_stk_ticker().equals(ticker)) {
 								isHdsFound = true;
 								hds.setHds_numberOfShares(hds.getHds_numberOfShares() + nbShares);
@@ -155,12 +198,17 @@ public class TradeStock extends HttpServlet {
 						}
 
 						if (!isHdsFound) {
-							// add holding share in database
+							
+							/**
+							 *  add holding share in database
+							 */
 							DaoHoldingShare.addHoldingShare(
 									new HoldingShare(0, ticker, acc.getAcc_id(), nbShares, new DateTime()));
 						}
 
-						// refresh object client in session
+						/**
+						 *  refresh object client in session
+						 */
 						request.getSession().removeAttribute("client");
 						request.getSession().setAttribute("client", DaoClient.getClient(clt.getClt_id()));
 

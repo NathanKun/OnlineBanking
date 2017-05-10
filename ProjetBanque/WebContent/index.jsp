@@ -110,7 +110,7 @@
 						 pour les rendre concrets !</p>
 						
 						<a class="btn btn-lg btn-default btn-block"
-						href="offres/news.jsp">plus d'actualités</a>
+						href="news.jsp">plus d'actualités</a>
 					</div>
 				</div>
 			</div>
@@ -124,7 +124,7 @@
 					<div class="panel-body">
 						<p>Ingénieur Expert en Collaboration (Voix et Vidéo)</p>
 						<a class="btn btn-lg btn-default btn-block"
-						href="offres/news.jsp">en savoir plus</a>
+						href="news.jsp">en savoir plus</a>
 					</div>
 				</div>
 			</div>

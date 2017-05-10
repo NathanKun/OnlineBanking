@@ -7,33 +7,34 @@ import dao.DaoStock;
 /**
  * Data transfer object of Holding share
  * 
- * @author Junyang HE
+ * @author Junyang HE, BENJILANY Boubeker
  *
  */
 public class HoldingShare {
 
 	/**
-	 * l'identifiant du HoldingShare
+	 * the HoldingShare id
 	 */
 	private int hds_id;
 
 	/**
-	 * ticker symbole de l'action achetée
+	 * the stock ticker of the HoldingShare 
 	 */
 	private String hds_stk_ticker;
 
 	/**
-	 * l'identifiant du compte du HoldingShare
+	 * the account id that hold the HoldingShare
 	 */
+	
 	private int hds_acc_id;
 
 	/**
-	 * le nombre d'actions achetées
+	 * the number of shares in the HoldingShare
 	 */
 	private int hds_numberOfShares;
 
 	/**
-	 * la date de l'achat
+	 * the date when was bought stocks for the HoldingSshare
 	 */
 	private DateTime hds_boughtOn;
 

@@ -16,7 +16,7 @@ import util.PasswordAuthentication;
 
 /**
  * Servlet implementation class ModifyInfo
- * @author  DJAMEN Yann, HE Junyang
+ * @author  DJAMEN Yann, HE Junyang, BENJILANY Boubeker
  */
 @WebServlet("/ModifyInfo")
 public class ModifyInfo extends HttpServlet {
@@ -33,6 +33,10 @@ public class ModifyInfo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/**
+		 * Here we get the parameters
+		 */
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String nationalite = request.getParameter("nationalite");
@@ -51,6 +55,9 @@ public class ModifyInfo extends HttpServlet {
         int m= Integer.parseInt(mois);
         int a= Integer.parseInt(annee);
 
+        /**
+		 *  We save  the client in an object c
+		 */
 		Client c= (Client)request.getSession(true).getAttribute("client");
         
         if((!password.isEmpty()) & password != null) {
@@ -60,6 +67,10 @@ public class ModifyInfo extends HttpServlet {
         }
         
 		//On doit reprendre le login precedent
+        
+        /**
+		 *  We add setters to modify client infos
+		 */
 		c.setClt_lname(nom);
 		c.setClt_fname(prenom);
 		c.setClt_nationality(nationalite);
