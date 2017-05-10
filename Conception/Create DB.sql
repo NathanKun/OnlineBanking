@@ -158,6 +158,7 @@ INSERT INTO client_clt VALUES(null, "a",
 INSERT INTO account_acc VALUES(null, "2222333322220001", "BE62510007547061", 2, 1643.68, 0, 1);
 INSERT INTO account_acc VALUES(null, "2222333322220002", "BH67BMAG00001299123456", 2, 2500.00, 2.5, 2);
 
+<<<<<<< HEAD
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1a acc1 description 1", "2222333322220001", NOW(), 33.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 2", "2222333322220001", NOW(), -23.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc1 description 3", "2222333322220001", NOW(), -13.33);
@@ -191,6 +192,20 @@ INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 1", "2222333
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 2", "2222333322220002", NOW(), -323.33);
 INSERT INTO transactionhistory_tsh VALUES(null, "a acc2 description 3", "2222333322220002", NOW(), -313.33);
 
+=======
+
+
+INSERT INTO transactionhistory_tsh VALUES(null, "virement emis vers le compte 3333666699990001","2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 3333666699990001", "2222333322220001", NOW(), 13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 3333666699990001", "2222333322220001", NOW(), 3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement emis vers le compte 3333666699990001", "2222333322220001", NOW(), -33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 3333666699990001", "2222333322220001", NOW(), 23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 3333666699990001", "2222333322220001", NOW(), 13.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement emis vers le compte 3333666699990001", "2222333322220001", NOW(), -3.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement emis vers le compte 3333666699990001", "2222333322220001", NOW(), -33.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement emis vers le compte 3333666699990001", "2222333322220001", NOW(), -23.33);
+INSERT INTO transactionhistory_tsh VALUES(null, "virement recu du compte 3333666699990001", "2222333322220001", NOW(), 13.33);
+>>>>>>> 92c3fc2c383c7ebebaa9567aad15c28d8c602c96
 
 INSERT INTO client_clt VALUES(null, "b", 
 	"$31$16$qcBh8ENZcSfpeStNzJnhpc0-uw6SIxwJUK6gAEaIn3hkb_Rg6BAhXcqw2EUWabPq3kz6e7eXMTKgOLpbSUTiCnEKlvvpOga2G760JqfQu7ljJbl1D-7vGEGKY-Z00XjC7jrD4BdKny4CI82dchPxQBWLbt7xEeAgeKfAYfzedG0", 

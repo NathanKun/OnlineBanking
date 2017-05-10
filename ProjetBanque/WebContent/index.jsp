@@ -46,8 +46,8 @@
 					<div class="slide-1"></div>
 					<div class="hero">
 						<hgroup>
-							<h1>We are creative</h1>
-							<h3>Rejoignez nous</h3>
+							<h1>REJOIGNEZ NOUS </h1>
+							
 						</hgroup>
 						<button role="button" onclick="location.href='about.jsp'"
 							class="btn btn-hero btn-lg">Détails</button>
@@ -57,8 +57,9 @@
 					<div class="slide-2"></div>
 					<div class="hero">
 						<hgroup>
-							<h1>We are smart</h1>
-							<h3>Bénéficiez d'un compte sans frais</h3>
+							
+							<h1>Compte sans frais</h1>
+							
 						</hgroup>
 						<button class="btn btn-hero btn-lg" role="button"
 							onclick="location.href='offres/offre1.jsp'">Détails</button>
@@ -68,8 +69,8 @@
 					<div class="slide-3"></div>
 					<div class="hero">
 						<hgroup>
-							<h1>We are amazing</h1>
-							<h3>Obtenez gratuitement votre carte visa</h3>
+							<h1>Carte VISA gratuite</h1>
+							
 						</hgroup>
 						<button class="btn btn-hero btn-lg" role="button"
 							onclick="location.href='offres/offre2.jsp'">Détails</button>
@@ -107,10 +108,12 @@
 						<p>Vous avez envie de partir en vacances ou de changer de voiture, 
 						vous avez besoin de remplacer une partie de votre équipement? 
 						Les projets ne manquent pas, encore faut-il disposer des bons leviers
-						 pour les rendre concrets !</p>
+						 pour les rendre concrets !</p> <br><br>
+						 
+						 
 						
 						<a class="btn btn-lg btn-default btn-block"
-						href="news.jsp">plus d'actualités</a>
+						href="news.jsp">Plus d'actualités</a>
 					</div>
 				</div>
 			</div>
@@ -118,13 +121,20 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4>
-							<i class="fa fa-fw fa-gift"></i> &amp; Offre d'emploi
+							<i class="fa fa-fw fa-gift"></i> De nombreuses surprises
 						</h4>
 					</div>
 					<div class="panel-body">
-						<p>Ingénieur Expert en Collaboration (Voix et Vidéo)</p>
+						<p> Envie de vous déplacer avec votre argent chaque jour, sans inquiétude,
+							obtenez également votre carte de crédit sans frais.
+						</p>
+						<p> Chez nous, la carte VISA est gratuite à VIE ! 
+						N'hésitez plus !</p>
+						<p>    .
+						   </p>
+						
 						<a class="btn btn-lg btn-default btn-block"
-						href="news.jsp">en savoir plus</a>
+						href="offres/offre3.jsp"> En savoir plus</a>
 					</div>
 				</div>
 			</div>
@@ -136,7 +146,9 @@
 						</h4>
 					</div>
 					<div class="panel-body">
-						<p>Compte bancaire BankRading : Jusqu'à 130 offertes dès l'ouverture !</p>
+						<p>Jusqu'à 13O € OFFERTS! pour l'ouverture d'un compte courant chez BankRading et de nombreux autres avantages </p>
+						<p> Et ce n'est pas tout ... </p><br>
+						<p>    .</p>
 						<a class="btn btn-lg btn-default btn-block"
 						href="offres/offre3.jsp">consulter l'offre</a>
 					</div>
@@ -145,44 +157,7 @@
 		</div>
 		<!-- /.row -->
 
-		<!-- Portfolio Section // des images -->
-		<!--  <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Portfolio Heading</h2>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-        </div>
-       ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-		<!-- /.row -->
+		
 
 		<!-- Features Section -->
 		<div class="row">
@@ -205,7 +180,7 @@
 					quotidiens gratuits, ça change la vie.</p>
 			</div>
 			<div class="col-md-6">
-				<img class="img-responsive" src="http://placehold.it/700x450" alt="">
+				<img class="img-responsive" src="images/cochon.png" alt="le cochoon">
 			</div>
 		</div>
 		<!-- /.row -->
@@ -216,11 +191,11 @@
 		<div class="well">
 			<div class="row">
 				<div class="col-md-8">
-					<p>Une offre claire. Peu de frais... Jamais cachés</p>
+					<p>Des offres claires. Peu de frais... Jamais cachés</p>
 				</div>
 				<div class="col-md-4">
 					<a class="btn btn-lg btn-default btn-block"
-						href="offres/offre1.jsp">consulter l'offre</a>
+						href="offres/offre1.jsp">consulter les offres</a>
 				</div>
 			</div>
 		</div>
