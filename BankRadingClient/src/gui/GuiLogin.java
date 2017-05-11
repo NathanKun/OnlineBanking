@@ -51,9 +51,9 @@ public class GuiLogin extends JFrame implements ActionListener {
 	 */
 	private JLabel lbPw = new JLabel("Mot de passe : ");
 	/**
-	 * label shows: RadBanking
+	 * label shows: BankRading
 	 */
-	private JLabel lbTitle = new JLabel("RadBanking");
+	private JLabel lbTitle = new JLabel("BankRading");
 	/**
 	 * label shows: Front office advisor system
 	 */
@@ -66,6 +66,31 @@ public class GuiLogin extends JFrame implements ActionListener {
 	 * server for connecting to database
 	 */
 	private DbServer dbServer = null;
+	
+	/**
+	 * constructor of JFrame
+	 * 
+	 * @param	dbServer the intermediate server
+	 */
+	public GuiLogin() {
+		// exit on close
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// size
+		setSize(300, 250);
+		//title
+		setTitle("Login");
+		// not resizable
+		setResizable(false);
+		// center window to screen
+		setLocationRelativeTo(null);
+		// absolute layout
+		getContentPane().setLayout(null);
+		// initiate components
+		initComponents();
+		
+		// show window
+		setVisible(true);
+	}
 	
 	/**
 	 * constructor of JFrame
@@ -153,17 +178,22 @@ public class GuiLogin extends JFrame implements ActionListener {
 				avs = DbClient.findAdvisorByLogin(tfId.getText());
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
+				showMessageDialog(this, "Cannot connect to server");
 			}
 			if(avs != null) {
 				PasswordAuthentication pa = new PasswordAuthentication();
 				if(pa.authenticate(tfPw.getPassword(), avs.getAvs_password())){
 					dispose();
-					new GuiMain(dbServer);
+					if(dbServer == null) {
+						new GuiMain();
+					} else {
+						new GuiMain(dbServer);
+					}
 				} else{
 					showMessageDialog(this, "L'identifiant ou le mot de passe est incorrect.");
 				}
 			} else {
-				showMessageDialog(this, "Cannot connect to server");
+				showMessageDialog(this, "L'identifiant ou le mot de passe est incorrect.");
 			}
 			
 		} else {

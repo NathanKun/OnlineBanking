@@ -1,0 +1,1 @@
+ProjetBanque.war peut ¨ºtre d¨¦ploy¨¦ directement dans un serveur Tomcat 8.0.

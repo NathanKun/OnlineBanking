@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.14" icons="true" automaticImage="PNG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="servlet.GetMyStockList" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/GetMyStockList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="284" x="186" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="servlet.GetStockChart" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/GetStockChart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="284" x="510" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="servlet.GetTransactionHistories" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/GetTransactionHistories.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="284" x="834" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="servlet.SearchAddress" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/SearchAddress.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="284" x="1158" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="servlet.TransferMoney" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/TransferMoney.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="1482" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="servlet.AddMoneyToMyAccount" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/AddMoneyToMyAccount.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="1810" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="servlet.Contact" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/Contact.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="2138" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="servlet.Subscribe" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/Subscribe.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="2466" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="servlet.Logout" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/Logout.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="284" x="2794" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="servlet.LoginManager" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/LoginManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="3118" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="servlet.ModifyInfo" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/ModifyInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="3446" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="servlet.Login" project="ProjetBanque" file="/ProjetBanque/src/servlet/Login.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="3774" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="servlet.CreateAccount" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/CreateAccount.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="284" x="4102" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="servlet.SaveCsv" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/SaveCsv.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="284" x="4426" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="servlet.EmailCheck" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/EmailCheck.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="4750" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="servlet.TradeStock" project="ProjetBanque" 
+    file="/ProjetBanque/src/servlet/TradeStock.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="288" x="5078" y="290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

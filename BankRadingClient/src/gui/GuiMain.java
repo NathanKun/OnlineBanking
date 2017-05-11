@@ -210,6 +210,39 @@ public class GuiMain extends JFrame implements ActionListener {
 	 * @param dbServer
 	 *            the intermediate server
 	 */
+	public GuiMain() {
+		this.dbServer = null;
+		// connect to server to get client list
+		try {
+			clientList = DbClient.getClientList();
+		} catch (IOException e) {
+			clientList = new ArrayList<Client>();
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		setFont(new Font("Arial", Font.PLAIN, 15));
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(800, 600);
+		setTitle("Front Office Advisor System");
+		setResizable(false);
+		setLocationRelativeTo(null);
+
+		initMenuBar();
+
+		initPanels();
+
+		switchJpCltList();
+
+		setVisible(true);
+	}
+
+	/**
+	 * Constructor of jframe
+	 * 
+	 * @param dbServer
+	 *            the intermediate server
+	 */
 	public GuiMain(DbServer dbServer) {
 		this.dbServer = dbServer;
 		// connect to server to get client list

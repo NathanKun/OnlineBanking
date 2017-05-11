@@ -1,21 +1,3 @@
-<!--
-Add
-        <init-param>
-		  <param-name>compilerSourceVM</param-name>
-		  <param-value>1.8</param-value>
-		</init-param>
-		<init-param>
-		  <param-name>compilerTargetVM</param-name>
-		  <param-value>1.8</param-value>
-		</init-param>
-after
-	<servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
-in
-	web.xml of Server
--->
-
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
