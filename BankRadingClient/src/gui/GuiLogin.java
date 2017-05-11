@@ -72,6 +72,31 @@ public class GuiLogin extends JFrame implements ActionListener {
 	 * 
 	 * @param	dbServer the intermediate server
 	 */
+	public GuiLogin() {
+		// exit on close
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// size
+		setSize(300, 250);
+		//title
+		setTitle("Login");
+		// not resizable
+		setResizable(false);
+		// center window to screen
+		setLocationRelativeTo(null);
+		// absolute layout
+		getContentPane().setLayout(null);
+		// initiate components
+		initComponents();
+		
+		// show window
+		setVisible(true);
+	}
+	
+	/**
+	 * constructor of JFrame
+	 * 
+	 * @param	dbServer the intermediate server
+	 */
 	public GuiLogin(DbServer dbServer) {
 		// exit on close
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -159,7 +184,11 @@ public class GuiLogin extends JFrame implements ActionListener {
 				PasswordAuthentication pa = new PasswordAuthentication();
 				if(pa.authenticate(tfPw.getPassword(), avs.getAvs_password())){
 					dispose();
-					new GuiMain(dbServer);
+					if(dbServer == null) {
+						new GuiMain();
+					} else {
+						new GuiMain(dbServer);
+					}
 				} else{
 					showMessageDialog(this, "L'identifiant ou le mot de passe est incorrect.");
 				}

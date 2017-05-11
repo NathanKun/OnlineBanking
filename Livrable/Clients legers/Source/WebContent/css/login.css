@@ -1,0 +1,99 @@
+#hint {
+	color: red;
+}
+
+html{
+	background-color: #F7F2B2;
+	}
+
+div {
+	text-align:center;
+	}
+
+div#newcli{
+	width:50px;
+	height:50px;
+	background-color: black; 
+	}
+
+div#bandeau {
+	
+	width:100%;
+	height:50px;
+	background-color: black; 
+	}
+
+	div#contenu {
+	margin: 5% 0% 3px 30%;
+	
+	background-color:#FFCC00;
+	float: left;
+	}
+
+div#menu {
+	margin : 1% 1% 1% 0 ;
+	float:left;
+	width:150px;
+	height:10px ;
+	background-color:pink;
+	}
+
+div#piedpage {
+	margin: 50% 0 0 0;
+	width:100%;
+	height:50px;
+	background-color: black;
+	}
+
+
+
+body {
+ font-family:"trebuchet ms",sans-serif;
+ font-size:90%;
+ }
+form {
+ background-color:#FAFAFA;
+ padding:10px;
+ width:400px;
+ }
+fieldset {
+ padding:0 20px 20px 20px;
+ margin-bottom:10px;
+ border:1px solid #DF3F3F;
+ }
+legend {
+ color:#DF3F3F;
+ font-weight:bold
+ }
+label {
+ margin-top:10px;
+ display:block;
+ }
+label.inline {
+ display:inline;
+ margin-right:50px;
+ }
+input, textarea, select, option {
+ background-color:#FFF3F3;
+ }
+input, textarea, select {
+ padding:3px;
+ border:1px solid #F5C5C5;
+ border-radius:5px;
+ width:200px;
+ box-shadow:1px 1px 2px #C0C0C0 inset;
+ }
+select {
+ margin-top:10px;
+ }
+input[type=radio] {
+ background-color:transparent;
+ border:none;
+ width:10px;
+ }
+input[type=submit], input[type=reset] {
+ width:100px;
+ margin-left:5px;
+ box-shadow:1px 1px 1px #D83F3D;
+ cursor:pointer;
+ }

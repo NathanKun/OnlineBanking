@@ -59,4 +59,19 @@ public class DbServer implements Runnable {
 		}
 		System.out.println("Server: DB server ended");
 	}
+	
+
+
+	/**
+	 * Main entry of application
+	 * @param args	for main
+	 */
+    public static void main(String[] args) {
+    	// intermediate server to connect to database
+    	DbServer dbServer = new DbServer();
+    	// new thread for server
+    	Thread server = new Thread(dbServer);
+    	// start server
+    	server.start();
+    }
 }
