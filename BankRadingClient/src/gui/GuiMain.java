@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -57,6 +58,15 @@ public class GuiMain extends JFrame implements ActionListener {
 	 * label shows: Liste des clients
 	 */
 	private final JLabel lbClientList = new JLabel("Liste des clients :");
+	/**
+	 * label shows: Veuillez selectionner un client
+	 */
+	private final JLabel lbHintClient = new JLabel("*Veuillez selectionner un client");
+	/**
+	 * label shows: Veuillez selectionner un compte
+	 */
+	private final JLabel lbHintAccount = new JLabel("*Veuillez selectionner un compte");
+	
 	/**
 	 * label shows: Liste des compte :
 	 */
@@ -156,11 +166,11 @@ public class GuiMain extends JFrame implements ActionListener {
 	/**
 	 * button to select a client
 	 */
-	private JButton jbSelectClient = new JButton("Sélectionner");
+	private JButton jbSelectClient = new JButton("Afficher infos");
 	/**
 	 * menu item to logout
 	 */
-	private JMenuItem menuItemLogout = new JMenuItem("Déconnexion");
+	private JMenuItem menuItemLogout = new JMenuItem("Deconnexion");
 	/**
 	 * menu item to go to start page
 	 */
@@ -172,7 +182,7 @@ public class GuiMain extends JFrame implements ActionListener {
 	/**
 	 * button to return to client list
 	 */
-	private final JButton jbReturnClientList = new JButton("Retourner");
+	private final JButton jbReturnClientList = new JButton("Retour");
 	/**
 	 * button to show list of accounts of the client
 	 */
@@ -180,7 +190,7 @@ public class GuiMain extends JFrame implements ActionListener {
 	/**
 	 * button to return to client info page
 	 */
-	private final JButton jbReturnClientInfo = new JButton("Retourner");
+	private final JButton jbReturnClientInfo = new JButton("Retour");
 	/**
 	 * button to show tsh of the account
 	 */
@@ -188,7 +198,7 @@ public class GuiMain extends JFrame implements ActionListener {
 	/**
 	 * button to return to account list page
 	 */
-	private final JButton jbReturnAccList = new JButton("Retourner");
+	private final JButton jbReturnAccList = new JButton("Retour");
 	/**
 	 * the db server
 	 */
@@ -287,6 +297,7 @@ public class GuiMain extends JFrame implements ActionListener {
 		lbClientList.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbClientList.setBounds(10, 10, 219, 21);
 		jpCltList.add(lbClientList);
+		jpCltList.setBackground( new Color(159, 233, 248) );
 
 		jbSelectClient.addActionListener(this);
 		jbSelectClient.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -316,8 +327,11 @@ public class GuiMain extends JFrame implements ActionListener {
 			}
 
 		});
+		
 		jpCltList.add(tfSearch);
-
+		
+		
+		
 		jlistClient.setFont(new Font("Arial", Font.PLAIN, 15));
 		// set a custom renderer to jlist which show client's full name when it
 		// contains a list of Client objects
@@ -362,6 +376,7 @@ public class GuiMain extends JFrame implements ActionListener {
 		jpCltInfo.add(jbReturnClientList);
 
 		lbInfo.setFont(new Font("Arial", Font.PLAIN, 15));
+		jpCltInfo.setBackground(new Color(159, 233, 248));
 		lbInfo.setBounds(10, 27, 341, 18);
 		jpCltInfo.add(lbInfo);
 
@@ -372,9 +387,9 @@ public class GuiMain extends JFrame implements ActionListener {
 		jpCltInfo.add(jtableClientInfo);
 
 		// add columns and show keys for jtableClientInfo
-		String[] keysClientInfo = { "Prénom", "Nom", "Sexe", "Login", "Date de naissance", "Nationalité", "Adresse",
-				"Code postale", "Ville", "Numéro de téléphone", "Mail", "Statut", "Date de création de compte",
-				"Dernière connexion" };
+		String[] keysClientInfo = { "Prenom", "Nom", "Sexe", "Login", "Date de naissance", "Nationalite", "Adresse",
+				"Code postale", "Ville", "Numero de telephone", "Mail", "Statut", "Date de creation de compte",
+				"Derniere connexion" };
 		modelJTableClientInfo.addColumn("Key", keysClientInfo);
 		modelJTableClientInfo.addColumn("Value");
 
@@ -392,10 +407,12 @@ public class GuiMain extends JFrame implements ActionListener {
 
 		lbAccountList.setFont(new Font("Arial", Font.PLAIN, 15));
 		lbAccountList.setBounds(10, 115, 341, 18);
+		lbAccountList.setBackground(new Color(159, 233, 248));
 		jpCltAccList.add(lbAccountList);
 
 		// jtable of client's info
 		jlistAccount.setFont(new Font("Arial", Font.PLAIN, 15));
+		jpCltAccList.setBackground(new Color(159, 233, 248));
 		jlistAccount.setBounds(10, 177, 775, 161);
 		// set a custom renderer to jlist account which will show account number
 		// when it contains a list of Account objects
@@ -456,7 +473,7 @@ public class GuiMain extends JFrame implements ActionListener {
 		jspTSHTable.setBounds(10, 102, 774, 438);
 		jspTSHTable.setViewportView(jtableTransactionHistory);
 		jpTshList.add(jspTSHTable);
-
+		jpTshList.setBackground(new Color(159, 233, 248));
 		// add columns and show keys for jtableTransactionHistory
 		modelJTableTSH.addColumn("Date");
 		modelJTableTSH.addColumn("Description");
@@ -588,22 +605,22 @@ public class GuiMain extends JFrame implements ActionListener {
 		for (int i = modelJTableClientInfo.getRowCount() - 1; i >= 0; i--) {
 			modelJTableClientInfo.removeRow(i);
 		}
-		modelJTableClientInfo.addRow(new Object[] { "Prénom", clt.getClt_fname() });
+		modelJTableClientInfo.addRow(new Object[] { "Prenom", clt.getClt_fname() });
 		modelJTableClientInfo.addRow(new Object[] { "Nom", clt.getClt_lname() });
 		modelJTableClientInfo.addRow(new Object[] { "Sexe", clt.getClt_gender() });
 		modelJTableClientInfo.addRow(new Object[] { "Login", clt.getClt_login() });
 		modelJTableClientInfo.addRow(new Object[] { "Date de naissance",
 				clt.getClt_birthday().toString(DateTimeFormat.forPattern("dd/MM/yyyy")) });
-		modelJTableClientInfo.addRow(new Object[] { "Nationalité", clt.getClt_nationality() });
+		modelJTableClientInfo.addRow(new Object[] { "Nationalite", clt.getClt_nationality() });
 		modelJTableClientInfo.addRow(new Object[] { "Adresse", clt.getClt_address() });
 		modelJTableClientInfo.addRow(new Object[] { "Code postale", clt.getClt_postalcode() });
 		modelJTableClientInfo.addRow(new Object[] { "Ville", clt.getClt_city() });
-		modelJTableClientInfo.addRow(new Object[] { "Numéro de téléphone", clt.getClt_telephonenumber() });
+		modelJTableClientInfo.addRow(new Object[] { "Numero de téléphone", clt.getClt_telephonenumber() });
 		modelJTableClientInfo.addRow(new Object[] { "Mail", clt.getClt_email() });
 		modelJTableClientInfo.addRow(new Object[] { "Statut", clt.getClt_status() });
-		modelJTableClientInfo.addRow(new Object[] { "Date de création de compte",
+		modelJTableClientInfo.addRow(new Object[] { "Date de creation de compte",
 				clt.getClt_createdon().toString(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")) });
-		modelJTableClientInfo.addRow(new Object[] { "Dernière connexion",
+		modelJTableClientInfo.addRow(new Object[] { "Derniere connexion",
 				clt.getClt_lastlogin().toString(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")) });
 		resizeColumnWidth(jtableClientInfo);
 	}

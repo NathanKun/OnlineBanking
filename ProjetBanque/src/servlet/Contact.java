@@ -48,7 +48,7 @@ public class Contact extends HttpServlet {
 		if(rt == 1){
 			response.setContentType("text/html; charset=UTF-8");
 			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write("Message envoyÃ©"); 
+			response.getWriter().write("Message envoyé"); 
 			
 			/**
 			 * If the contact isn't created

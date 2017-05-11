@@ -130,7 +130,7 @@ session.setAttribute("message", message);}
 									
 									
 									<li  ><a href="#courant" data-toggle="tab">Historique compte courant</a></li>
-									<li><a href="#epargne" data-toggle="tab">Historique compte 閜argne </a></li>
+									<li><a href="#epargne" data-toggle="tab">Historique compte epargne </a></li>
 									<li><a href="#titre" data-toggle="tab" >Historique compte titre </a></li>
 									<li><a href="#solde" data-toggle="tab" >Solde des comptes </a></li>
 								
@@ -140,7 +140,7 @@ session.setAttribute("message", message);}
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="courant" >
 								
-						<%if(message.equals("Aucun client trouv? veuillez verifier le nom")){ %>
+						<%if(message.equals("Aucun client trouve veuillez verifier le nom")){ %>
 						<c:out value="${message}"></c:out>
 						<%} 
 						else 
