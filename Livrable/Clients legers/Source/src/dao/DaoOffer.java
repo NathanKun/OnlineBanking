@@ -54,6 +54,15 @@ public class DaoOffer extends Dao {
 	}
 	
 	
+	
+	/**
+	 * Update a line in database.
+	 * 
+	 * @param ofr
+	 *            Offer
+	 * @return numbers of line updated in the data base
+	 */
+	
 	public static int updateOffer(Offer ofr) {
 		return Dao.updateLine("Offer", ofr);
 	}

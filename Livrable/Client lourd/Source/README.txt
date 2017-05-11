@@ -1,1 +1,0 @@
-Le client lourd demande le package dao et le package model du projet ProjetBanque(client leger) pour fonctionner.

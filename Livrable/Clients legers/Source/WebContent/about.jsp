@@ -50,8 +50,8 @@
             </div>
             <div class="col-md-6">
                 <h2>BanKrading, la banque de proximité</h2>
-                <p>BankRading est un groupe bancaire internation présent dans près de 54 pays avec plus de 80 000 employés. Son siège social se trouve à Rouen.</p>
-                <p>BankRading ets une banque de financement, de gestion et de services financiers, créée en 2013. Nous intervenons dans le smétiers de la banque de clientèle, de l'épargne et des services financiers spécialisés et intègre des équipe de recherhe en économie.  </p>
+                <p>BankRading est un groupe bancaire international présent dans près de 54 pays avec plus de 80 000 employés. Son siège social se trouve à Rouen.</p>
+                <p>BankRading est une banque de financement, de gestion et de services financiers, créée en 2013. Nous intervenons dans les métiers de la banque de clientèle, de l'épargne et des services financiers spécialisés et nous intègrons également des équipes de recherhe en économie.  </p>
                
             </div>
         </div>
@@ -66,7 +66,7 @@
                 <div class="thumbnail">
                     <img class="img-responsive" src="./images/He.jpg" alt="la photo de he">
                     <div class="caption">
-                        <h3>He JUNYANG <br>
+                        <h3>Junyang HE<br>
                             <small>Chief Data Officer </small>
                         </h3>
                         <p>Le rôle de He est de s'assurer que vous puissiez pleinement profiter de tous les services qu'offre votre banque. Faites lui confiance, He is in charge !</p>
