@@ -139,7 +139,7 @@ public class SendMail {
 	 */
 	public static boolean sendVerificationCode(String code, String email) {
 		try {
-			Send("BankRading", "bankrading", email, "BankRading inscription",
+			Send("BankRading", "bankrading", email, "BankRading inscription - code",
 					"Votre code de vérification : " + code);
 			System.out.println("Email sent, code = " + code);
 			return true;
@@ -151,7 +151,28 @@ public class SendMail {
 			return false;
 		}
 	}
+	
+	/**
+	 * Send the login of client account created to an email address
+	 * @param 	login	login of client
+	 * @param 	email	email address to send the code
+	 * @return	is sending success
+	 */
+	public static boolean sendLoginCode(String login, String email) {
+		try {
+			Send("BankRading", "bankrading", email, "BankRading inscription - login",
+					"Inscription reussi! Votre login est : " + login);
+			System.out.println("Email sent, login = " + login);
+			return true;
+		} catch (AddressException e) {
+			e.printStackTrace();
+			return false;
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public static void main (String[] args) {
-		sendVerificationCode("1234", "nathanhejunyang@gmail.com");
+		sendLoginCode("1234", "nathanhejunyang@gmail.com");
 	}
 }

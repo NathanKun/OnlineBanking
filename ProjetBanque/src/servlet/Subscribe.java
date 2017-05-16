@@ -17,6 +17,7 @@ import model.Account;
 import model.Client;
 import util.IbanUtil;
 import util.PasswordAuthentication;
+import util.SendMail;
 
 /**
  * Servlet implementation class Inscription
@@ -122,6 +123,7 @@ public class Subscribe extends HttpServlet {
 			/**
 			 * redirection
 			 */
+			SendMail.sendLoginCode(login, email);
 			request.getSession(true).setAttribute("client", DaoClient.findClientByLogin(login));
 			response.sendRedirect("./zoneclient.jsp");
 		} else {
