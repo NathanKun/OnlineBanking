@@ -20,7 +20,7 @@ public class DaoTransactionHistory extends Dao {
 	 * @return tsh - the TransactionHistory
 	 */
 	public static TransactionHistory getTransactionHistory(int id) {
-		String sql = "SELECT * FROM TransactionHistory_tsh WHERE tsh_id = ?";
+		String sql = "SELECT * FROM transactionHistory_tsh WHERE tsh_id = ?";
 		TransactionHistory tsh = (TransactionHistory) getOne("TransactionHistory", sql, id);
 		return tsh;
 	}
@@ -32,7 +32,7 @@ public class DaoTransactionHistory extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<TransactionHistory> getTransactionHistoryList() {
-		String sql = "SELECT * FROM TransactionHistory_tsh";
+		String sql = "SELECT * FROM transactionHistory_tsh";
 		return (ArrayList<TransactionHistory>) Dao.getList("TransactionHistory", sql);
 	}
 

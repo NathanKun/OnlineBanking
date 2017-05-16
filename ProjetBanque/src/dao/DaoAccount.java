@@ -21,7 +21,7 @@ public class DaoAccount extends Dao {
 	 * @return acc - the Account
 	 */
 	public static Account getAccount(int id) {
-		String sql = "SELECT * FROM Account_acc WHERE acc_id = ?";
+		String sql = "SELECT * FROM account_acc WHERE acc_id = ?";
 		Account acc = (Account) getOne("Account", sql, id);
 		return acc;
 	}
@@ -33,7 +33,7 @@ public class DaoAccount extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Account> getAccountList() {
-		String sql = "SELECT * FROM Account_acc";
+		String sql = "SELECT * FROM account_acc";
 		return (ArrayList<Account>) Dao.getList("Account", sql);
 	}
 
@@ -80,7 +80,7 @@ public class DaoAccount extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Account> findAccountByClientId(int id) {
-		String sql = "SELECT * FROM Account_acc WHERE acc_clt_id = " + String.valueOf(id);
+		String sql = "SELECT * FROM account_acc WHERE acc_clt_id = " + String.valueOf(id);
 		ArrayList<Account> accList = (ArrayList<Account>) getList("FindAccountByClientId", sql);
 		return accList;
 	}
@@ -93,7 +93,7 @@ public class DaoAccount extends Dao {
 	 * @return tsh - the list of Account
 	 */
 	public static Account findAccountByIban(String iban) {
-		String sql = "SELECT * FROM Account_acc WHERE acc_iban = ?";
+		String sql = "SELECT * FROM account_acc WHERE acc_iban = ?";
 		return (Account) getOne("FindAccountByIban", sql, iban);
 	}
 

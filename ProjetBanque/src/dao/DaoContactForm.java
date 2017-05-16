@@ -22,7 +22,7 @@ public class DaoContactForm extends Dao {
 	 * @return ctf - the ContactForm
 	 */
 	public static ContactForm getContactForm(int id){
-		String sql = "SELECT * FROM ContactForm_ctf WHERE ctf_id = ?";
+		String sql = "SELECT * FROM contactform_ctf WHERE ctf_id = ?";
 		ContactForm ctf = (ContactForm) getOne("ContactForm", sql, id);
 		return ctf;
 	}
@@ -34,7 +34,7 @@ public class DaoContactForm extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<ContactForm> getContactFormList() {
-		String sql = "SELECT * FROM ContactForm_ctf";
+		String sql = "SELECT * FROM contactform_ctf";
 		return (ArrayList<ContactForm>) Dao.getList("ContactForm", sql);
 	}
 	
