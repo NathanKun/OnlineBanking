@@ -29,16 +29,17 @@ import model.TransactionHistory;
  */
 abstract public class Dao {
 
-	static String URL = "jdbc:mysql://localhost/onlinebank?autoReconnect=true&useSSL=false";
-	static String LOGIN = "root";
-	static String PASS = "root";
+	//static String URL = "jdbc:mysql://localhost/onlinebank?autoReconnect=true&useSSL=false";
+	static String URL = "jdbc:mariadb://localhost:3306/DB?autoReconnect=true&useSSL=false";
+	static String LOGIN = "bankrading";
+	static String PASS = "bankrading";
 
 	/**
 	 * load jdbc driver
 	 */
 	{
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Dirver not found");

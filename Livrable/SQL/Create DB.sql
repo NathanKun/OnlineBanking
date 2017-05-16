@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS onlineBank;
+CREATE DATABASE IF NOT EXISTS onlinebank;
 #DROP DATABASE onlinebank;
 USE onlinebank;
 
