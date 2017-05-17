@@ -1,4 +1,4 @@
-# Système d’information d’une banque en ligne#
+# Système d’information d’une banque en ligne #
 
 ESIGELEC 2016-2017 Projet S8 TIC
 
