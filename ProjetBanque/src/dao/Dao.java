@@ -30,7 +30,7 @@ import model.TransactionHistory;
 abstract public class Dao {
 
 	//static String URL = "jdbc:mysql://localhost/onlinebank?autoReconnect=true&useSSL=false";
-	static String URL = "jdbc:mariadb://localhost:3306/onlinebank?user=bankrading&password=bankrading";
+	static String URL = "jdbc:mariadb://catprogrammer.com:3306/onlinebank?user=bankrading&password=bankrading";
 
 	/**
 	 * load jdbc driver

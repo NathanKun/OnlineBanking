@@ -29,16 +29,15 @@ import model.TransactionHistory;
  */
 abstract public class Dao {
 
-	static String URL = "jdbc:mysql://localhost/onlinebank?autoReconnect=true&useSSL=false";
-	static String LOGIN = "root";
-	static String PASS = "root";
+	//static String URL = "jdbc:mysql://localhost/onlinebank?autoReconnect=true&useSSL=false";
+	static String URL = "jdbc:mariadb://127.0.0.1/onlinebank?user=bankrading&password=bankrading";
 
 	/**
 	 * load jdbc driver
 	 */
 	{
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("org.mariadb.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Dirver not found");
@@ -66,7 +65,7 @@ abstract public class Dao {
 
 		// connection to the data base
 		try {
-			con = DriverManager.getConnection(URL, LOGIN, PASS);
+			con = DriverManager.getConnection(URL);
 			ps = con.prepareStatement(sql);
 			switch (type) {
 			case "Offer":
@@ -221,7 +220,7 @@ abstract public class Dao {
 		ResultSet rs = null;
 		// connection to the data base
 		try {
-			con = DriverManager.getConnection(URL, LOGIN, PASS);
+			con = DriverManager.getConnection(URL);
 			ps = con.prepareStatement(sql);
 
 			// requet execution
@@ -372,7 +371,7 @@ abstract public class Dao {
 		int retour = 0;
 		// connection to date base
 		try {
-			con = DriverManager.getConnection(URL, LOGIN, PASS);
+			con = DriverManager.getConnection(URL);
 
 			switch (type) {
 			case "Offer":
@@ -541,7 +540,7 @@ abstract public class Dao {
 		int retour = 0;
 		// connection to date base
 		try {
-			con = DriverManager.getConnection(URL, LOGIN, PASS);
+			con = DriverManager.getConnection(URL);
 			boolean isStringTypeCorrect = true;
 
 			switch (type) {
@@ -643,7 +642,7 @@ abstract public class Dao {
 		int retour = 0;
 		// connection to date base
 		try {
-			con = DriverManager.getConnection(URL, LOGIN, PASS);
+			con = DriverManager.getConnection(URL);
 
 			switch (type) {
 			case "Offer":
@@ -779,7 +778,7 @@ abstract public class Dao {
 		String retour = "";
 		// connection to date base
 		try {
-			con = DriverManager.getConnection(URL, LOGIN, PASS);
+			con = DriverManager.getConnection(URL);
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 

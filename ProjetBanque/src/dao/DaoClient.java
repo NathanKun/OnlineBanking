@@ -142,6 +142,6 @@ public class DaoClient extends Dao {
 		// System.out.println(DaoClient.findClientByLogin("a"));
 
 		// get next clt login test
-		System.out.println(findClientByName2("a"));
+		System.out.println(getNextClientLogin());
 	}
 }
