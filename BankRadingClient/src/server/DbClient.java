@@ -27,7 +27,7 @@ public class DbClient {
 	 */
 	public static void bye() throws IOException {
 		// TCP connection
-		Socket s = new Socket("127.0.0.1", 20006);
+		Socket s = new Socket("catprogrammer.com", 20006);
 		s.setSoTimeout(10000);
 		// get socket output stream, str out put stream
 		PrintStream out = new PrintStream(s.getOutputStream());

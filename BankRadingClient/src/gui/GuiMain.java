@@ -57,16 +57,7 @@ public class GuiMain extends JFrame implements ActionListener {
 	/**
 	 * label shows: Liste des clients
 	 */
-	private final JLabel lbClientList = new JLabel("Liste des clients :");
-	/**
-	 * label shows: Veuillez selectionner un client
-	 */
-	private final JLabel lbHintClient = new JLabel("*Veuillez selectionner un client");
-	/**
-	 * label shows: Veuillez selectionner un compte
-	 */
-	private final JLabel lbHintAccount = new JLabel("*Veuillez selectionner un compte");
-	
+	private final JLabel lbClientList = new JLabel("Liste des clients :");	
 	/**
 	 * label shows: Liste des compte :
 	 */
