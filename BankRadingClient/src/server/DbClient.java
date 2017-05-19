@@ -52,7 +52,7 @@ public class DbClient {
 		Advisor rt = null;
 
 		// TCP connection
-		Socket s = new Socket("127.0.0.1", 20006);
+		Socket s = new Socket("catprogrammer.com", 20006);
 		s.setSoTimeout(10000);
 
 		// out: String; in: Object
@@ -100,7 +100,7 @@ public class DbClient {
 		ArrayList<Client> rt = null;
 
 		// TCP connection
-		Socket s = new Socket("127.0.0.1", 20006);
+		Socket s = new Socket("catprogrammer.com", 20006);
 		s.setSoTimeout(10000);
 
 		// out: String; in: Object
@@ -150,7 +150,7 @@ public class DbClient {
 		ArrayList<TransactionHistory> rt = null;
 
 		// TCP connection
-		Socket s = new Socket("127.0.0.1", 20006);
+		Socket s = new Socket("catprogrammer.com", 20006);
 		s.setSoTimeout(10000);
 
 		// out: String; in: Object

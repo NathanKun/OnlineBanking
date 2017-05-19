@@ -21,7 +21,7 @@ public class DaoHoldingShare extends Dao {
 	 * @return hds - the HoldingShare
 	 */
 	public static HoldingShare getHoldingShare(int id) {
-		String sql = "SELECT * FROM HoldingShare_hds WHERE hds_id = ?";
+		String sql = "SELECT * FROM holdingshare_hds WHERE hds_id = ?";
 		HoldingShare hds = (HoldingShare) getOne("HoldingShare", sql, id);
 		return hds;
 	}
@@ -33,7 +33,7 @@ public class DaoHoldingShare extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<HoldingShare> getHoldingShareList() {
-		String sql = "SELECT * FROM HoldingShare_hds";
+		String sql = "SELECT * FROM holdingshare_hds";
 		return (ArrayList<HoldingShare>) Dao.getList("HoldingShare", sql);
 	}
 

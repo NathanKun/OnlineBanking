@@ -20,7 +20,7 @@ public class DaoStock extends Dao {
 	 * @return stk - the Stock
 	 */
 	public static Stock getStock(String ticker) {
-		String sql = "SELECT * FROM Stock_stk WHERE stk_ticker = ?";
+		String sql = "SELECT * FROM stock_stk WHERE stk_ticker = ?";
 		Stock stk = (Stock) getOne("Stock", sql, ticker);
 		return stk;
 	}
@@ -32,7 +32,7 @@ public class DaoStock extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Stock> getStockList() {
-		String sql = "SELECT * FROM Stock_stk";
+		String sql = "SELECT * FROM stock_stk";
 		return (ArrayList<Stock>) Dao.getList("Stock", sql);
 	}
 

@@ -14,7 +14,7 @@ public class DaoNews extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<News> find3BankNews() {
-		String sql = "SELECT * FROM News_nws WHERE nws_type = 'BankRading' ORDER BY nws_date DESC LIMIT 3";
+		String sql = "SELECT * FROM news_nws WHERE nws_type = 'BankRading' ORDER BY nws_date DESC LIMIT 3";
 		return (ArrayList<News>) Dao.getList("find3BankNews", sql);
 	}
 
@@ -26,7 +26,7 @@ public class DaoNews extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<News> find3OtherNews() {
-		String sql = "SELECT * FROM News_nws WHERE nws_type != 'BankRading' ORDER BY nws_date DESC LIMIT 3";
+		String sql = "SELECT * FROM news_nws WHERE nws_type != 'BankRading' ORDER BY nws_date DESC LIMIT 3";
 		return (ArrayList<News>) Dao.getList("find3BankNews", sql);
 	}
 
@@ -38,7 +38,7 @@ public class DaoNews extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<News> findAllBankNews() {
-		String sql = "SELECT * FROM News_nws WHERE nws_type = 'BankRading' ORDER BY nws_date DESC";
+		String sql = "SELECT * FROM news_nws WHERE nws_type = 'BankRading' ORDER BY nws_date DESC";
 		return (ArrayList<News>) Dao.getList("findAllBankNews", sql);
 	}
 
@@ -50,7 +50,7 @@ public class DaoNews extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<News> findAllOtherNews() {
-		String sql = "SELECT * FROM News_nws WHERE nws_type != 'BankRading' ORDER BY nws_date DESC";
+		String sql = "SELECT * FROM news_nws WHERE nws_type != 'BankRading' ORDER BY nws_date DESC";
 		return (ArrayList<News>) Dao.getList("findAllOtherNews", sql);
 	}
 	
@@ -75,7 +75,7 @@ public class DaoNews extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<News> getNewsList() {
-		String sql = "SELECT * FROM News_nws";
+		String sql = "SELECT * FROM news_nws";
 		return (ArrayList<News>) Dao.getList("News", sql);
 	}
 

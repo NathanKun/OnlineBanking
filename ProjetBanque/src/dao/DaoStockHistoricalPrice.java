@@ -20,7 +20,7 @@ public class DaoStockHistoricalPrice extends Dao {
 	 * @return shp - the StockHistoricalPrice
 	 */
 	public static StockHistoricalPrice getStockHistoricalPrice(int id) {
-		String sql = "SELECT * FROM stockHistoricalprice_shp WHERE shp_id = ?";
+		String sql = "SELECT * FROM stockhistoricalprice_shp WHERE shp_id = ?";
 		StockHistoricalPrice shp = (StockHistoricalPrice) getOne("StockHistoricalPrice", sql, id);
 		return shp;
 	}
@@ -32,7 +32,7 @@ public class DaoStockHistoricalPrice extends Dao {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<StockHistoricalPrice> getStockHistoricalPriceList() {
-		String sql = "SELECT * FROM stockHistoricalprice_shp";
+		String sql = "SELECT * FROM stockhistoricalprice_shp";
 		return (ArrayList<StockHistoricalPrice>) Dao.getList("StockHistoricalPrice", sql);
 	}
 
