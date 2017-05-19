@@ -50,6 +50,8 @@ public class DbServer implements Runnable {
 			}
 			System.out.println("Server: Connected with client");
 			// open a new thread for every connection
+			System.out.println("Host name: " + socket.getInetAddress().getHostName());
+			System.out.println("Address: " + socket.getInetAddress().getHostAddress());
 			new Thread(new DbServerThread(socket)).start();
 		}
 		try {
