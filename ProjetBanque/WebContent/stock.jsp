@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page
 	import="java.util.ArrayList, java.io.IOException, util.FusionCharts, util.HttpUtil,
-     	dao.DaoStock, model.Client, model.HoldingShare"%>
+     	dao.DaoStock, model.Client, model.Stock, model.HoldingShare"%>
 <%
 	Client clt = (Client) session.getAttribute("client");
 	FusionCharts chart = (FusionCharts) session.getAttribute("chart");
@@ -13,7 +13,8 @@
 		response.sendRedirect("./GetStockChart");
 		return;
 	} else {
-		request.setAttribute("stockList", DaoStock.getStockList());
+		//request.setAttribute("stockList", DaoStock.getStockList());
+		request.setAttribute("stockList", new ArrayList<Stock>());
 		String csv = "";
 		try {
 			csv = HttpUtil.get("http://finance.yahoo.com/d/quotes.csv?s=" + ticker + "&f=l1d1t1c1ohg&e=.csv");

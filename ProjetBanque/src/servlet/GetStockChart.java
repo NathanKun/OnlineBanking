@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,12 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import dao.DaoStock;
+import util.FixYahooFinance;
 import util.FusionCharts;
 import util.JsonReader;
 
@@ -58,34 +59,40 @@ public class GetStockChart extends HttpServlet {
 		if(ticker.equals("%5EFCHI"))
 			ticker = "^FCHI";*/
 		title = DaoStock.getStock(ticker).getStk_name();
-
+		title = "test";
+		FixYahooFinance.get_yahoo_crumb();
+		
 		DateTime today = new DateTime();
-		String url = "http://query.yahooapis.com/v1/public/yql?q="
-				+ "select%20Date%2C+Close%20"
-				+ "from%20yahoo.finance.historicaldata%20"
-				+ "where%20symbol%20%3D%20%22" + ticker + "%22%20"
-				+ "and%20startDate%20%3D%20%22"
-				+ today.minusMonths(6).toString(DateTimeFormat.forPattern("yyyy-MM-dd")) + "%22%20"
-				+ "and%20endDate%20%3D%20%22"
-				+ today.toString(DateTimeFormat.forPattern("yyyy-MM-dd")) + "%22&"
-				+ "format=json&diagnostics=false&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+		String url = "https://query1.finance.yahoo.com/v7/finance/download/" + "SOP.PA" + 
+				"?period1=" + today.minusMonths(6).getMillis()/1000 + 
+				"&period2=" + today.getMillis()/1000 + 
+				"&interval=" + "1d" + 
+				"&events=history&crumb=" + FixYahooFinance.getCrumb();
+		System.out.println(FixYahooFinance.getCookie());
+		System.out.println(FixYahooFinance.getCrumb());
+		System.out.println(url);
 		JSONObject jsonObj = null;
 		try {	// try connect
-			jsonObj = JsonReader.readJsonFromUrl(url);
-		} catch (JSONException e) {
+			jsonObj = JsonReader.readJsonFromUrl(url, FixYahooFinance.getCookie());
+		} catch (JSONException | IOException e) {
 			e.printStackTrace();
 		}
 		try {
 			// get the result set
-			jsonObj = jsonObj.getJSONObject("query").getJSONObject("results");
-			// reverse the order of quote to from old to new (for show in chart)
-			JSONArray array = jsonObj.getJSONArray("quote");
-			JSONArray reverseArray = new JSONArray();
-			for (int i = array.length()-1; i>=0; i--) {
-				reverseArray.put(array.get(i));
+			JSONArray array = jsonObj.getJSONArray("stock");
+			JSONArray array2 = new JSONArray();
+			JSONObject jobj = null;
+			for(int i = 0; i < array.length(); i++) {
+				jobj = (JSONObject) array.get(i);
+				jobj.remove("Open");
+				jobj.remove("High");
+				jobj.remove("Low");
+				jobj.remove("Adj Close");
+				jobj.remove("Volume");
+				array2.put(jobj);
 			}
-			jsonObj.remove("quote");
-			jsonObj.put("quote", reverseArray);
+			jsonObj.remove("stock");
+			jsonObj.put("data", array2);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -94,9 +101,7 @@ public class GetStockChart extends HttpServlet {
 
 		jsonStr = jsonStr.replace("Date", "label");
 		jsonStr = jsonStr.replace("Close", "value");
-		jsonStr = jsonStr.replace("quote", "data");
 
-		//System.out.println("{\"results\": {}," + jsonStr.substring(1));
 		FusionCharts chart = new FusionCharts(
 				// chartType
 				"line",
@@ -143,5 +148,6 @@ public class GetStockChart extends HttpServlet {
 		request.getSession().setAttribute("title", title);
 		response.sendRedirect("./stock.jsp");
 
+		
 	}
 }
