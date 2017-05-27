@@ -13,8 +13,7 @@
 		response.sendRedirect("./GetStockChart");
 		return;
 	} else {
-		//request.setAttribute("stockList", DaoStock.getStockList());
-		request.setAttribute("stockList", new ArrayList<Stock>());
+		request.setAttribute("stockList", DaoStock.getStockList());
 		String csv = "";
 		try {
 			csv = HttpUtil.get("http://finance.yahoo.com/d/quotes.csv?s=" + ticker + "&f=l1d1t1c1ohg&e=.csv");

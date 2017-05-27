@@ -59,7 +59,6 @@ public class GetStockChart extends HttpServlet {
 		if(ticker.equals("%5EFCHI"))
 			ticker = "^FCHI";*/
 		title = DaoStock.getStock(ticker).getStk_name();
-		title = "test";
 		FixYahooFinance.get_yahoo_crumb();
 		
 		DateTime today = new DateTime();
