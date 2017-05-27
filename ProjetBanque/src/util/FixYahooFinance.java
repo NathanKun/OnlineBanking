@@ -6,14 +6,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLDecoder;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.joda.time.DateTime;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class FixYahooFinance {
 	static String _YAHOO_COOKIE_ = "";
@@ -37,7 +35,7 @@ public class FixYahooFinance {
 				List<String> cookies = connection.getHeaderFields().get("Set-Cookie");
 				// cookies.forEach(System.out::println);
 				_YAHOO_COOKIE_ = cookies.get(0).split(";")[0].substring(2);
-				_YAHOO_COOKIE_ = URLDecoder.decode(_YAHOO_COOKIE_, "utf-8");
+				_YAHOO_COOKIE_ = StringEscapeUtils.unescapeJava(_YAHOO_COOKIE_);
 
 				String regex = ".\"CrumbStore\":\\{\"crumb\":\"(?<crumb>[^\"]+)\"\\}";
 				Pattern pattern = Pattern.compile(regex);
@@ -50,7 +48,7 @@ public class FixYahooFinance {
 					m = pattern.matcher(line);
 					if (m.find()) {
 						_YAHOO_CRUMB_ = m.group().split("\"")[5];
-						_YAHOO_CRUMB_ = URLDecoder.decode(_YAHOO_CRUMB_, "utf-8");
+						_YAHOO_CRUMB_ = StringEscapeUtils.unescapeJava(_YAHOO_CRUMB_);
 
 						// set global params
 						_YAHOO_CHECKED_ = new DateTime();
@@ -74,7 +72,7 @@ public class FixYahooFinance {
 	}
 
 	public static void main(String[] args) {
-		get_yahoo_crumb();
+		/*get_yahoo_crumb();
 
 		System.out.println(_YAHOO_COOKIE_);
 		System.out.println(_YAHOO_CRUMB_);
@@ -93,7 +91,10 @@ public class FixYahooFinance {
 
 		if (jsonObj != null) {
 			System.out.println(jsonObj.toString());
-		}
+		}*/
+		
+		String str = "NZFrx\u002FSywZO";
+		System.out.println(StringEscapeUtils.unescapeJava(str));
 
 	}
 }

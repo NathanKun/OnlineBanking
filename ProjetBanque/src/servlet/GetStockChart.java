@@ -67,9 +67,9 @@ public class GetStockChart extends HttpServlet {
 				"&period2=" + today.getMillis()/1000 + 
 				"&interval=" + "1d" + 
 				"&events=history&crumb=" + FixYahooFinance.getCrumb();
-		System.out.println(FixYahooFinance.getCookie());
-		System.out.println(FixYahooFinance.getCrumb());
-		System.out.println(url);
+//		System.out.println(FixYahooFinance.getCookie());
+//		System.out.println(FixYahooFinance.getCrumb());
+//		System.out.println(url);
 		JSONObject jsonObj = null;
 		try {	// try connect
 			jsonObj = JsonReader.readJsonFromUrl(url, FixYahooFinance.getCookie());
