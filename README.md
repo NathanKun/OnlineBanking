@@ -7,10 +7,10 @@ Banque en ligne
 Groupe4
 
 ### Adresse ###
-* <a href="https://www.catprogrammer.com/OnlineBanking">Demo index</a>
-* <a href="https://onlinebanking.catprogrammer.com/">Thin client for visitor and customer</a>
-* <a href="https://onlinebanking.catprogrammer.com/Manager">Thin client for manager</a>
-* <a href="https://catprogrammer.com/OnlineBanking/BankRadingAdvisorSystem.jar">Heavy client for font office manager</a>
+* ~~<a href="https://www.catprogrammer.com/OnlineBanking">Demo index</a>~~
+* ~~<a href="https://onlinebanking.catprogrammer.com/">Thin client for visitor and customer</a>~~
+* ~~<a href="https://onlinebanking.catprogrammer.com/Manager">Thin client for manager</a>~~
+* ~~<a href="https://catprogrammer.com/OnlineBanking/BankRadingAdvisorSystem.jar">Heavy client for font office manager</a>~~
 
 ### Contexte ###
 
